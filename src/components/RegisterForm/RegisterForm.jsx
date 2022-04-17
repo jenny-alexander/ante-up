@@ -26,9 +26,10 @@ function RegisterForm() {
   return (
     <div className="relative flex-col justify-center mx-auto w-full max-w-md pt-10">
       <form className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4" onSubmit={registerUser}>
+        <p className="font-Biryani font-black text-3xl text-blue-900 pb-6">ANTE UP!</p>
         <p className="pb-0 font-bold text-xl text-left">Let's Get Started!</p>
         <div className="flex pt-1">
-          <p className="text-sm pr-1">Already have an account?</p>
+          <p className="text-sm pr-1">Already have an Ante Up account?</p>
           <button className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
             onClick={() => {
               history.push('/login');
@@ -55,7 +56,7 @@ function RegisterForm() {
             required />
         </div>
         <div className="flex flex-col items-center">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-14 rounded">Register</button>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-12 rounded">Register</button>
         </div>
       </form>
     </div>
