@@ -12,6 +12,8 @@ function RegisterForm() {
   const registerUser = (event) => {
     event.preventDefault();
 
+    console.log('in registerUser with:', username, password);
+
     dispatch({
       type: 'REGISTER',
       payload: {
@@ -38,23 +40,23 @@ function RegisterForm() {
           <label className="block text-gray-700 text-sm font-base mb-2" for="username">
             Username
           </label>
-          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Min 8 characters" />
+          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Min 8 characters"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+            required />
         </div>
         <div className="mb-6">
           <label className="block text-gray-700 text-sm font-base mb-2" for="password">
             Password
           </label>
-          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" />
+          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="********"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            required />
         </div>
         <div className="flex flex-col items-center">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-14 rounded"
-            onClick={() => {
-              history.push('/register');
-            }}
-          >
-            Register</button>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-14 rounded">Register</button>
         </div>
-
       </form>
     </div>
   );

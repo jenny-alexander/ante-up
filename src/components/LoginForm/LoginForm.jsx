@@ -3,15 +3,17 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-function LoginFormTW() {
+function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
   const dispatch = useDispatch();
-
   const history = useHistory();
+
   const login = (event) => {
     event.preventDefault();
+
+    console.log('in login with:', username, password);
 
     if (username && password) {
       dispatch({
@@ -34,13 +36,19 @@ function LoginFormTW() {
           <label className="block text-gray-700 text-sm font-base mb-2" for="username">
             Username
           </label>
-          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Min 8 characters" />
+          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Min 8 characters"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+            required />
         </div>
         <div className="mb-6">
           <label className="block text-gray-700 text-sm font-base mb-2" for="password">
             Password
           </label>
-          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" />
+          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="********"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            required />
         </div>
         <div className="flex flex-col items-center">
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-14 rounded">Login</button>
@@ -59,4 +67,4 @@ function LoginFormTW() {
   );
 }
 
-export default LoginFormTW;
+export default LoginForm;
