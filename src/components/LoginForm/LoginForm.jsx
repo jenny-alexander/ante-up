@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-//import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
+import { useHistory } from 'react-router-dom';
 
-function LoginForm() {
+function LoginFormTW() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
   const dispatch = useDispatch();
 
+  const history = useHistory();
   const login = (event) => {
     event.preventDefault();
 
@@ -26,42 +27,36 @@ function LoginForm() {
   }; // end login
 
   return (
-    <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
-      {errors.loginMessage && (
-        <h3 className="alert" role="alert">
-          {errors.loginMessage}
-        </h3>
-      )}
-      <div>
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            required
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
-      </div>
-    </form>
+    <div className="relative flex-col justify-center mx-auto w-full max-w-md pt-10">
+      <form className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4" onSubmit={login}>
+        <p className="pb-10 font-bold text-xl text-center">Sign into Ante Up!</p>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-base mb-2" for="username">
+            Username
+          </label>
+          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Min 8 characters" />
+        </div>
+        <div className="mb-6">
+          <label className="block text-gray-700 text-sm font-base mb-2" for="password">
+            Password
+          </label>
+          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" />
+        </div>
+        <div className="flex flex-col items-center">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-14 rounded">Login</button>
+        </div>
+        <div className="flex pt-4">
+          <p className="text-sm pr-2">Not yet registered?</p>
+          <button className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+            onClick={() => {
+              history.push('/registration');
+            }} >
+            Register here.
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
 
-export default LoginForm;
+export default LoginFormTW;
