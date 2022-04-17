@@ -29,7 +29,7 @@ function LoginFormTW() {
   return (
     <div className="relative flex-col justify-center mx-auto w-full max-w-md pt-10">
       <form className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4" onSubmit={login}>
-        <p className="pb-10 font-bold text-xl text-center">Sign into Ante Up!</p>
+        <p className="pb-8 font-bold text-xl text-left">Sign into Ante Up!</p>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-base mb-2" for="username">
             Username
@@ -45,8 +45,8 @@ function LoginFormTW() {
         <div className="flex flex-col items-center">
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-14 rounded">Login</button>
         </div>
-        <div className="flex pt-4">
-          <p className="text-sm pr-2">Not yet registered?</p>
+        <div className="flex pt-8">
+          <p className="text-sm pr-1">Not yet registered?</p>
           <button className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
             onClick={() => {
               history.push('/registration');
