@@ -19,6 +19,7 @@ function LoginPage() {
         >
           Register
         </button>
+        <button>Click me too!</button>
       </center>
     </div>
   );
