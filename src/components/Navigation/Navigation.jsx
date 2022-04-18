@@ -17,14 +17,14 @@ function Navigation(props) {
                         <Link to="/home" className="block mt-4 lg:inline-block lg:mt-0 px-4 py-2 text-gray-500 hover:text-black mr-3">
                             Home
                         </Link>
-                        <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 px-4 py-2 text-gray-500 hover:text-black">
+                        {/* <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 px-4 py-2 text-gray-500 hover:text-black">
                             Back
-                        </a>
+                        </a> */}
                     </div>
                     <div>
                         <button className="inline-block text-md font-bold px-4 py-2 leading-none text-gray-500 hover:text-black mt-4 lg:mt-0"
-                            onClick={() => dispatch({ type: 'LOGOUT' })}
-                        >Log Out
+                            onClick={() => dispatch({ type: 'LOGOUT' })}>
+                            Log Out
                         </button>
                     </div>
                 </div>

@@ -2,17 +2,16 @@ import reactRouterDom from 'react';
 import { CurrencyDollarIcon } from '@heroicons/react/solid';
 
 function PropertyCard(props) {
-    console.log(props)
 
     return (
-        <div>
+        <button>
             <div>
                 {props.cardProps.icon}
             </div>
             <div>
                 <p className="text-center">{props.cardProps.text}</p>
             </div>
-        </div>
+        </button>
     )
 }
 

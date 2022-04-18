@@ -20,6 +20,17 @@ function Home() {
         },
     ]
 
+    const onAllowanceClick = () => {
+        console.log('You clicked on the Allowance button!')
+    }
+    const onChoresClick = () => {
+        console.log('You clicked on the Chores button!')
+    }
+
+    const onSettingsClick = () => {
+        console.log('You clicked on the Allowance button!')
+    }
+
     return (
         <div className="relative flex-col justify-center mx-auto w-full max-w-lg pt-10">
             <div className="bg-white shadow-md rounded-lg px-8 pt-1 pb-8 mb-4" >
@@ -31,14 +42,14 @@ function Home() {
                         What do you want to do today?
                     </h2>
                     <div className="flex flex-row items-center justify-center gap-4 mx-6">
-                        <div className="basis-1/6 bg-green-300 shadow-md rounded-lg px-10" >
+                        <div className="basis-1/6 bg-green-300 shadow-md rounded-lg px-10 hover:bg-green-400 cursor-pointer" onClick={onAllowanceClick} >
                             <PropertyCard cardProps={cardProps[0]} />
 
                         </div>
-                        <div className="basis-1/6 bg-zinc-300 shadow-md rounded-lg px-12 py-3 ">
+                        <div className="basis-1/6 bg-zinc-300 shadow-md rounded-lg px-12 py-3 hover:bg-zinc-400 cursor-pointer" onClick={onChoresClick}>
                             <PropertyCard cardProps={cardProps[1]} />
                         </div>
-                        <div className="basis-1/6 bg-blue-300 shadow-md rounded-lg px-11 py-2">
+                        <div className="basis-1/6 bg-blue-300 shadow-md rounded-lg px-11 py-2 hover:bg-blue-400 cursor-pointer" onClick={onSettingsClick}>
                             <PropertyCard cardProps={cardProps[2]} />
 
                         </div>
