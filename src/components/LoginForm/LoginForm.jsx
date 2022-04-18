@@ -31,8 +31,8 @@ function LoginForm() {
   return (
     <div className="relative flex-col justify-center mx-auto w-full max-w-md pt-10">
       <form className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4" onSubmit={login}>
-        <p className="font-Biryani text-3xl text-blue-900 pb-6">ANTE UP!</p>
-        <p className="pb-0 font-bold text-lg text-left">Sign in</p>
+        {/* <p className="font-Biryani text-3xl text-blue-900 pb-6">ANTE UP!</p> */}
+        <p className="pb-0 font-bold text-xl text-left">Sign in</p>
         <div className="flex pt-1">
           <p className="text-sm pr-1">Not yet registered?</p>
           <button className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"

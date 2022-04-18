@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginForm from '../LoginForm/LoginForm';
 
-function LoginPageTW() {
+function LoginPage() {
 
   return (
     <div>
@@ -10,4 +10,4 @@ function LoginPageTW() {
   );
 }
 
-export default LoginPageTW;
+export default LoginPage;

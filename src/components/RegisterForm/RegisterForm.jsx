@@ -26,7 +26,7 @@ function RegisterForm() {
   return (
     <div className="relative flex-col justify-center mx-auto w-full max-w-md pt-10">
       <form className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4" onSubmit={registerUser}>
-        <p className="font-Biryani font-black text-3xl text-blue-900 pb-6">ANTE UP!</p>
+        {/* <p className="font-Biryani text-3xl text-blue-900 pb-6">ANTE UP!</p> */}
         <p className="pb-0 font-bold text-xl text-left">Let's Get Started!</p>
         <div className="flex pt-1">
           <p className="text-sm pr-1">Already have an Ante Up account?</p>

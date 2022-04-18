@@ -37,6 +37,7 @@ function* loginUser(action) {
 
 // worker Saga: will be fired on "LOGOUT" actions
 function* logoutUser(action) {
+  console.log('logoutUser fired!')
   try {
     const config = {
       headers: { 'Content-Type': 'application/json' },
