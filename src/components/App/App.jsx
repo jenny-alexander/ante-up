@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import Home from '../Home/Home';
 
 import './App.css';
 
@@ -57,7 +58,8 @@ function App() {
             exact
             path="/user"
           >
-            <UserPage />
+            {/* <UserPage /> */}
+            <Home />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -106,7 +108,8 @@ function App() {
               <Redirect to="/user" />
               :
               // Otherwise, show the Landing page
-              <LandingPage />
+              // <LandingPage />
+              <Home />
             }
           </Route>
 
