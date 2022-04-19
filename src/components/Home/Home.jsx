@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import PropertyCard from '../PropertyCard/PropertyCard';
 import { CurrencyDollarIcon } from '@heroicons/react/solid';
 import { TrashIcon } from '@heroicons/react/solid';
 import { UserIcon } from '@heroicons/react/solid';
 
 function Home() {
+    const user = useSelector((store) => store.user);
+    const dispatch = useDispatch();
+
     const cardProps = [
         {
             icon: <CurrencyDollarIcon />,
@@ -22,6 +27,7 @@ function Home() {
 
     const onAllowanceClick = () => {
         console.log('You clicked on the Allowance button!')
+
     }
     const onChoresClick = () => {
         console.log('You clicked on the Chores button!')
@@ -36,7 +42,7 @@ function Home() {
             <div className="bg-white shadow-md rounded-lg px-8 pt-1 pb-8 mb-4" >
                 <div className="text-center">
                     <h1 className="mt-4 text-2xl font-bold leading-tight sm:mt-8 sm:text-3xl lg:text-3xl xl:text-4xl">
-                        Hi Kid!
+                        Hi {user.username}!
                     </h1>
                     <h2 className="mt-6 mb-10 text-lg leading-tight sm:mt-8 sm:text-2xl lg:text-2xl xl:text-3xl">
                         What do you want to do today?
