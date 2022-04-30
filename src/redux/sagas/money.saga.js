@@ -8,9 +8,11 @@ import { put, takeLatest } from 'redux-saga/effects';
 */
 
 function* fetchMoney() {
+    console.log('in fetchMoney!');
     try {
         //yield put({ type: 'UNSET_MONEY' });
         const response = yield axios.get('/api/money');
+        console.log('response is:', response);
         yield put({ type: 'SET_MONEY', payload: response.data });
     } catch (error) {
         console.log('Money GET request failed', error);

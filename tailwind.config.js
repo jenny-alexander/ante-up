@@ -1,12 +1,12 @@
 module.exports = {
-  content: [],
+  // content: [],
   theme: {
-    extend: {
-      fontFamily: {
-        Biryani: ["Biryani"],
-        Valera: ["Valera Round"],
-      }
-    },
+    // extend: {
+    fontFamily: {
+      'money': ['Biryani'],
+      'Valera': ['"Valera Round"'],
+    }
+    // },
   },
   plugins: [],
 }

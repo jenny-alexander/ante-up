@@ -7,6 +7,7 @@ const router = express.Router();
  */
 router.get('/:username', (req, res) => {
   const getMoneyQuery = `SELECT * FROM money where username = ${req.params.username};`;
+  console.log('getMoneyQuery is:', getMoneyQuery);
   pool.query(getMoneyQuery)
     .then((results) => {
       res.send(results.rows)

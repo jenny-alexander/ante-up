@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import PropertyCard from '../PropertyCard/PropertyCard';
 import { CurrencyDollarIcon } from '@heroicons/react/solid';
 import { TrashIcon } from '@heroicons/react/solid';
@@ -8,12 +8,13 @@ import { UserIcon } from '@heroicons/react/solid';
 
 function Home() {
     const user = useSelector((store) => store.user);
+    const history = useHistory();
     const dispatch = useDispatch();
 
     const cardProps = [
         {
             icon: <CurrencyDollarIcon />,
-            text: 'Allowance'
+            text: 'Money'
         },
         {
             icon: <TrashIcon />,
@@ -27,14 +28,15 @@ function Home() {
 
     const onAllowanceClick = () => {
         console.log('You clicked on the Allowance button!')
-
+        //now direct user to the Allowance page - use router
+        history.push('/allowance');
     }
     const onChoresClick = () => {
         console.log('You clicked on the Chores button!')
     }
 
     const onSettingsClick = () => {
-        console.log('You clicked on the Allowance button!')
+        console.log('You clicked on the Settings button!')
     }
 
     return (
@@ -48,16 +50,20 @@ function Home() {
                         What do you want to do today?
                     </h2>
                     <div className="flex flex-row items-center justify-center gap-4 mx-6">
-                        <div className="basis-1/6 bg-green-300 shadow-md rounded-lg px-10 hover:bg-green-400 cursor-pointer" onClick={onAllowanceClick} >
+                        <div className="basis-1/6 bg-green-300 shadow-md rounded-lg px-12 py-3 hover:bg-green-400 cursor-pointer"
+                            onClick={onAllowanceClick}
+                        >
                             <PropertyCard cardProps={cardProps[0]} />
-
                         </div>
-                        <div className="basis-1/6 bg-zinc-300 shadow-md rounded-lg px-12 py-3 hover:bg-zinc-400 cursor-pointer" onClick={onChoresClick}>
+                        <div className="basis-1/6 bg-zinc-300 shadow-md rounded-lg px-12 py-3 hover:bg-zinc-400 cursor-pointer"
+                            onClick={onChoresClick}
+                        >
                             <PropertyCard cardProps={cardProps[1]} />
                         </div>
-                        <div className="basis-1/6 bg-blue-300 shadow-md rounded-lg px-11 py-2 hover:bg-blue-400 cursor-pointer" onClick={onSettingsClick}>
+                        <div className="basis-1/6 bg-blue-300 shadow-md rounded-lg px-11 py-2 hover:bg-blue-400 cursor-pointer"
+                            onClick={onSettingsClick}
+                        >
                             <PropertyCard cardProps={cardProps[2]} />
-
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,7 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 import Navigation from '../Navigation/Navigation';
+import Allowance from '../Allowance/Allowance';
 import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
@@ -46,6 +47,10 @@ function App() {
           >
             <Home />
           </ProtectedRoute>
+
+          <Route exact path="/allowance">
+            {user.id ? <Allowance /> : <LoginPage />}
+          </Route>
 
           <Route
             exact

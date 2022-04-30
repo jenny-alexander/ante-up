@@ -9,7 +9,7 @@ function Navigation(props) {
         <div>
             <div className="flex items-center justify-between border-1 flex-wrap bg-white p-6 shadow-sm">
                 <div className="flex items-center flex-shrink-0 mr-6">
-                    <span className="font-Biryani font-bold text-3xl text-blue-900 tracking-tight">Ante Up</span>
+                    <span className="font-bold text-3xl text-blue-900 tracking-tight">Ante Up</span>
                 </div>
 
                 <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
