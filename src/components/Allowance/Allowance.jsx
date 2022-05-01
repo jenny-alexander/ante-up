@@ -1,67 +1,64 @@
-import { React } from 'react';
+import { React, useState } from 'react';
 
 function Allowance(props) {
 
     return (
-        <div className="flex flex-col">
-            <div className="allowance-table px-24 py-10 ">
-                <table className="min-w-full shadow-lg">
-                    <thead className="border-b">
-                        <tr className="bg-green-100 uppercase">
-                            <th scope="col" className="text-sm font-medium text-gray-900 px-8 py-4 text-left">
-                                Money Bucket
-                            </th>
-                            <th scope="col" className="text-sm font-medium text-gray-900 px-8 py-4 text-left">
-                                Amount
-                            </th>
-                            <th scope="col" className="text-sm font-medium text-gray-900 px-8 py-4 text-left">
-                                Paid
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr className="bg-white border-b">
-                            <td className="text-sm text-gray-900 font-light px-8 py-4 whitespace-nowrap">
-                                Spend
-                            </td>
-                            <td className="text-sm text-gray-900 font-light px-8 py-4 whitespace-nowrap">
-                                $50.00
-                            </td>
-                            <td className="text-sm text-gray-900 font-light px-8 py-4 whitespace-nowrap">
-                                <input type="checkbox"></input>
-                            </td>
-                        </tr>
-                        <tr className="bg-white border-b">
-                            <td className="text-sm text-gray-900 font-light px-8 py-4 whitespace-nowrap">
-                                Save
-                            </td>
-                            <td className="text-sm text-gray-900 font-light px-8 py-4 whitespace-nowrap">
-                                $25.00
-                            </td>
-                            <td className="text-sm text-gray-900 font-light px-8 py-4 whitespace-nowrap">
-                                <input type="checkbox"></input>
-                            </td>
-                        </tr>
-                        <tr className="bg-white border-b">
-                            <td className="text-sm text-gray-900 font-light px-8 py-4 whitespace-nowrap">
-                                Share
-                            </td>
-                            <td className="text-sm text-gray-900 font-light px-8 py-4 whitespace-nowrap">
-                                $5.00
-                            </td>
-                            <td className="text-sm text-gray-900 font-light px-8 py-4 whitespace-nowrap">
-                                <input type="checkbox"></input>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div className="allowance-table pb-8 sm:px-24 md:px-44 lg:px-64 xl:px-96 ">
+            <div className="table-title font-bold text-xl text-center py-4">
+                This week's allowance
             </div>
+            <table className="min-w-full shadow-xl  ">
+                <thead className="border-b">
+                    <tr className="bg-green-700 text-white uppercase text-sm text-left">
+                        <th scope="col" className="pl-8 py-4">
+                            Money Bucket
+                        </th>
+                        <th scope="col" className="px-8 py-4">
+                            Amount
+                        </th>
+                        <th scope="col" className="px-8 py-4">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                {/* TODO: Add config to tailwind config file for button styling */}
+                <tbody>
+                    <tr className="bg-white border-b text-sm text-gray-900">
+                        <td className="px-8 py-4">
+                            Spend
+                        </td>
+                        <td className="px-8 py-4">
+                            $50.00
+                        </td>
+                        <td className="px-8 py-4">
+                            <button className="bg-green-500 hover:bg-green-400 border-b-4 border-green-700 hover:border-green-500 text-white text-center py-2 px-4 rounded">Deposit</button>
+                        </td>
+                    </tr>
+                    <tr className="bg-white border-b text-sm text-gray-900">
+                        <td className="px-8 py-4">
+                            Save
+                        </td>
+                        <td className="px-8 py-4">
+                            $25.00
+                        </td>
+                        <td className="px-8 py-4">
+                            <button className="bg-green-500 hover:bg-green-400 border-b-4 border-green-700 hover:border-green-500 text-white text-center py-2 px-4 rounded">Deposit</button>
+                        </td>
+                    </tr>
+                    <tr className="bg-white border-b text-sm text-gray-900">
+                        <td className="px-8 py-4">
+                            Share
+                        </td>
+                        <td className="px-8 py-4">
+                            $5.00
+                        </td>
+                        <td className="px-8 py-4">
+                            <button className="bg-green-500 hover:bg-green-400 border-b-4 border-green-700 hover:border-green-500 text-white text-center py-2 px-4 rounded">Deposit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-
-
-        // </div >
-
-
     )
 }
 

@@ -27,9 +27,9 @@ function Home() {
     ]
 
     const onAllowanceClick = () => {
-        console.log('You clicked on the Allowance button!')
-        //now direct user to the Allowance page - use router
-        history.push('/allowance');
+        console.log('You clicked on the Money button!')
+        //now direct user to the Money page - use router
+        history.push('/money');
     }
     const onChoresClick = () => {
         console.log('You clicked on the Chores button!')
