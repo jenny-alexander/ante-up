@@ -9,7 +9,7 @@ function Allowance(props) {
             </div>
             <table className="min-w-full shadow-xl  ">
                 <thead className="border-b">
-                    <tr className="bg-green-700 text-white uppercase text-sm text-left">
+                    <tr className="bg-green-600 text-white uppercase text-sm text-left">
                         <th scope="col" className="pl-8 py-4">
                             Money Bucket
                         </th>

@@ -11,7 +11,7 @@ function MoneyPie(props) {
 
     return (
         <div className="money-pie">
-            <div className="chart-title font-bold text-xl text-center pb-4">
+            <div className="chart-title font-bold text-xl text-center py-2 pb-4">
                 My Money At-a-Glance
             </div>
             <VictoryPie
