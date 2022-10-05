@@ -4,9 +4,19 @@ import './Allowance.scss';
 
 function Allowance(props) {
 
+    const getDate = () => {
+        const date = new Date();
+        const day = date.getDate();
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const monthName = months[date.getMonth()];
+        const year = date.getFullYear();
+
+        return monthName + ' ' + day + ', ' + year;
+    }
+
     return (
         <div className="money">
-            <div className='allowance-title'>This Week's Allowance</div>
+            <div className='allowance-title'>This Week's Allowance: {getDate()}</div>
                 <table  className="allowance-table">
                     <thead className="allowance-head">
                         <tr>
@@ -44,6 +54,17 @@ function Allowance(props) {
                             <AllowanceButton/>
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                Share
+                            </td>
+                            <td>
+                                5.00
+                            </td>
+                            <td>
+                            <AllowanceButton/>
+                            </td>
+                        </tr>                        
                     </tbody>
                 </table>
          </div>
