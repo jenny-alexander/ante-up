@@ -24,7 +24,7 @@ function Navigation(props) {
                     </div>
                     <div>
                         <button className="inline-block py-2 mt-4 mr-6 lg:mt-0 leading-none text-blue-700 hover:text-white border border-blue-700 
-                                         hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 
+                                         hover:bg-indigo-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 
                                          text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800"
                             onClick={() => dispatch({ type: 'LOGOUT' })}>Log Out
                         </button>

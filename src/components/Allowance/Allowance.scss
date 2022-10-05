@@ -1,0 +1,42 @@
+.money {
+    display: flex;
+    flex-direction: column;
+    //justify-content: center;
+    align-items: center;
+}
+.allowance-title {
+    //border: 1px solid green;
+    margin-top: 5px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.allowance-table {    
+    margin: 15px;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    //border: 1px solid black;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);    
+    width: 70%;
+    background-color: white;
+    
+    .allowance-head {
+        //border: 2px dashed red;
+        background-color: #00987f;
+        color: #ffffff;
+        text-align: left;
+        font-size:larger;
+    }
+    tr th {
+        padding: 8px;        
+    }
+    tbody tr:hover {background-color: rgb(243, 243, 243);}
+    tr td {
+        padding: 8px;
+        padding-top:12px;
+        padding-bottom:12px;
+
+    }    
+    tr {
+        border-bottom: 1px solid #ddd;
+    }
+}
