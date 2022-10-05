@@ -8,7 +8,8 @@ function Money(props) {
     return (
         <div className="flex flex-col">
             <div className="money-allowance">
-                <Allowance />
+                {/* <Allowance /> */}
+                <Card component={<Allowance />} />
             </div>
 
             {/* <div className="money-chart">

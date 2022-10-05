@@ -1,8 +1,9 @@
 import { React, useState } from 'react';
+import './Card.scss';
 
 function Card(props) {
     return (
-        <div className="card pb-8 bg-white shadow-lg mb-10 sm:mx-24 md:mx-44 lg:mx-64 xl:mx-96  ">
+        <div className="card">
             {props.component}
         </div>
     )
