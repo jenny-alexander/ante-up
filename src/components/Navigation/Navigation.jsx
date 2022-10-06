@@ -2,15 +2,14 @@ import { React } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import './Navigation.scss';
+//import mainLogo from 'images/ante_up.png';
 
 function Navigation(props) {
     const dispatch = useDispatch();
 
     return (
         <div className="navigation">
-            <div className="logo"> Ante Up
-                {/* <span>Ante Up</span> */}
-            </div>
+            <img className="logo" src="images/ante_up.png" ></img>
             <div className="nav-links">
                 <Link className="nav-home" to="/home">
                     Home

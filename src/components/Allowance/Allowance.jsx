@@ -15,7 +15,7 @@ function Allowance(props) {
     }
 
     return (
-        <div className="money">
+        <div className="allowance">
             <div className='allowance-title'>This Week's Allowance: {getDate()}</div>
                 <table  className="allowance-table">
                     <thead className="allowance-head">
