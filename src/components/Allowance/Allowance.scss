@@ -13,15 +13,16 @@
 .allowance-table {    
     margin: 15px;
     font-size: 0.9em;
-    font-family: sans-serif;
-    //border: 1px solid black;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);    
+    // font-family: sans-serif;
+    // box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);    
     width: 70%;
-    background-color: white;
+    // background-color: white;
+    border: solid 2px black;
+    // border-radius: 5px;
     
     .allowance-head {
         //border: 2px dashed red;
-        background-color: #00987f;
+        background-color: #087f6b;
         color: #ffffff;
         text-align: left;
         font-size:larger;

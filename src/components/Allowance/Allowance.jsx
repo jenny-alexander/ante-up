@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import AllowanceButton from '../Common/Button/AllowanceButton';
+import Button from '../Common/Button/Button';
 import './Allowance.scss';
 
 function Allowance(props) {
@@ -40,7 +40,7 @@ function Allowance(props) {
                                 50.00
                             </td>
                             <td>
-                                <AllowanceButton/>
+                                <Button className="allowance-button"/>
                             </td>
                         </tr>
                         <tr>
@@ -51,7 +51,7 @@ function Allowance(props) {
                                 25.00
                             </td>
                             <td>
-                            <AllowanceButton/>
+                            <Button className="allowance-button"/>
                             </td>
                         </tr>
                         <tr>
@@ -62,7 +62,7 @@ function Allowance(props) {
                                 5.00
                             </td>
                             <td>
-                            <AllowanceButton/>
+                            <Button className="allowance-button"/>
                             </td>
                         </tr>                        
                     </tbody>
