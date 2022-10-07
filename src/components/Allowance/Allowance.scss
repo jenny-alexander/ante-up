@@ -7,7 +7,7 @@
 .allowance-title {
     //border: 1px solid green;
     margin-top: 5px;
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: bold;
 }
 .allowance-table {    
@@ -17,7 +17,7 @@
     // box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);    
     width: 70%;
     // background-color: white;
-    border: solid 2px black;
+    border: solid 1px black;
     // border-radius: 5px;
     
     .allowance-head {
@@ -31,6 +31,9 @@
         padding: 8px;        
     }
     tbody tr:hover {background-color: rgb(243, 243, 243);}
+    tbody tr:last-child{
+        border: 1px solid black;
+    }
     tr td {
         padding: 8px;
         padding-top:12px;

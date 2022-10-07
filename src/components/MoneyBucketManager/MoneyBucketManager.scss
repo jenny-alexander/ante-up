@@ -1,0 +1,56 @@
+.bucket-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    //border: 1px solid #bacdd8;
+    padding: 8px;
+    width: 60%;
+    border-radius: 12px;
+    margin: auto;
+    //margin-top: 1em;
+    align-items: center;
+
+    .bucket-title {
+        margin-top: 5px;
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 15px;            
+    }
+
+    .small-bucket {
+        display: flex;
+        flex-direction: row;
+        gap: 2em;
+    
+        .bucket {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 8em;
+            padding: 0.5em;
+            border: 2px solid rgb(217 238 230);
+            background-color: hsl(174deg 44% 96%);
+            border-radius: 5px;
+            box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.13);
+            gap: 0.5em;
+
+            .buttons {
+                display: flex;
+                flex-direction: row;
+                gap: 1em;
+                align-items: center;
+
+                .deposit-button {
+                    height: 40px;
+                    width: 40px;
+                    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                      0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+                      background-color: #54a58d;
+                      border-radius: 15px;
+                      color: white;
+                }
+            }
+        }
+    }
+}
+
