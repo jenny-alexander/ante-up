@@ -1,0 +1,48 @@
+:root {
+    --shadow-color: 0deg 0% 63%;
+}
+.home-main {
+    border: 1px solid grey;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #bacdd8;
+    padding: 8px;
+    border-radius: 12px;
+}
+.home-title {
+    font-size: 2em;
+}
+.home-subtitle {
+    font-size: 1.5em;
+}
+.home-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5em;
+    margin: 2em;
+
+    > div {
+        border: 1px solid black;
+        border-radius: 5px;
+        box-shadow:     
+        0.4px 0.6px 0.8px hsl(var(--shadow-color) / 0.36),
+        1.4px 2.1px 2.8px -0.8px hsl(var(--shadow-color) / 0.36),
+        3.4px 5.3px 7.1px -1.7px hsl(var(--shadow-color) / 0.36),
+        8.4px 12.9px 17.3px -2.5px hsl(var(--shadow-color) / 0.36);
+        &:hover {
+            background-color: rgb(241, 237, 237);
+            transform: scale(1.15)            
+        }
+    }
+    .home-money {
+        padding: 15px 25px;
+    }
+    .home-chores {
+        padding: 12px 20px;
+    }
+    .home-settings {
+        padding: 5px 14px;
+    }
+}

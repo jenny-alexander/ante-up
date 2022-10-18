@@ -1,4 +1,5 @@
 import { React } from 'react';
+import './PropertyCard.scss';
 
 function PropertyCard(props) {
 
@@ -8,10 +9,10 @@ function PropertyCard(props) {
         console.log('cardProps as param are:', props);
     }
     return (
-        <div>
+        <div className="prop-card">
 
             {/* <button onClick={((event) => onCardClick(event))}> */}
-            <button >
+            <button className="prop-card-button">
                 <div>
                     {props.cardProps.icon}
                 </div>

@@ -1,6 +1,7 @@
 .bucket-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     background-color: white;
     //border: 1px solid #bacdd8;
     padding: 8px;
@@ -20,6 +21,8 @@
     .small-bucket {
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
+        //align-items: center;
         gap: 2em;
     
         .bucket {

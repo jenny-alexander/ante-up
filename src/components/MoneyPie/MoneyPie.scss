@@ -2,6 +2,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    & .VictoryContainer {
+        width: 50% !important;
+    }
 }
 .chart-title {
     margin-top: 5px;

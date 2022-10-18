@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import { VictoryPie } from "victory-pie";
-import '../MoneyPie/MoneyPie.scss'
+import '../MoneyPie/MoneyPie.scss' //change this to './MoneyPie.scss';
 
 function MoneyPie(props) {
 
@@ -16,7 +16,7 @@ function MoneyPie(props) {
                 My Money At-a-Glance
             </div>
             <VictoryPie className="victory-pie"
-                width="600"
+                //width="600"
                 labels={({ datum }) => `${datum.x}: $${datum.y}`}
                 //colorScale={["tomato", "gold", "cyan"]}
                 colorScale={["gold","#00d2ff","navy"]}

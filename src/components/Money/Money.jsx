@@ -3,7 +3,7 @@ import MoneyPie from '../MoneyPie/MoneyPie';
 import MoneyBucketManager from '../MoneyBucketManager/MoneyBucketManager';
 import Allowance from '../Allowance/Allowance';
 import Card from '../Common/Card/Card';
-import '../Money/Money.scss';
+import '../Money/Money.scss'; //change this to './Money.scss';
 
 function Money(props) {
 
