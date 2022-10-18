@@ -14,13 +14,13 @@ function Money(props) {
                 <Card component={<Allowance />} />
             </div>
 
-             {/* <div className="money-chart">
+            <div className="money-chart">
                 <Card component={<MoneyPie />} />
             </div>
 
             <div className="money-bank">
                 <Card component={<MoneyBucketManager />} />
-            </div>  */}
+            </div> 
         </div >
     )
 }
