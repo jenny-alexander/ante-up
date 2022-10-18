@@ -41,7 +41,7 @@ function Home() {
     }
 
     return (
-        
+        <div className = "home-top">
         <div className="home-main">
                 {/* <div className="text-center"> */}
                     <h1 className="home-title">
@@ -67,6 +67,7 @@ function Home() {
                             <PropertyCard cardProps={cardProps[2]} />
                         </div>
                     </div>
+             </div>
         </div>
 
     )

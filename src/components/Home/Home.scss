@@ -1,15 +1,20 @@
 :root {
     --shadow-color: 0deg 0% 63%;
 }
-.home-main {
-    border: 1px solid grey;
+.home-top {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.home-main {
+    border: 1px solid grey;
+    text-align: center;
     background-color: white;
     border: 1px solid #bacdd8;
     padding: 8px;
     border-radius: 12px;
+    margin: 2.5em 9em;
+    width: 60%;
 }
 .home-title {
     font-size: 2em;
@@ -20,6 +25,7 @@
 .home-options {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 2.5em;
     margin: 2em;
 
