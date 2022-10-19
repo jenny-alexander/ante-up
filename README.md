@@ -20,7 +20,7 @@
     * User can change font.
     * User can change application from light mode to dark mode.
 
-**Frontend:** Frontend is built using React, Redux, Redux-Saga, JavaScript and HTML. I'm using TailwindCSS for styling.
+**Frontend:** Frontend is built using React, Redux, Redux-Saga, JavaScript, CSS and HTML.
 
 **Backend:** Backend is built using Node.js, Express, Axios and PostgreSQL.
 

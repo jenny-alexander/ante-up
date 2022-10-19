@@ -3,7 +3,6 @@ import '../MoneyBucketManager/MoneyBucketManager.scss';
 
 function MoneyBucketManager(props) {
 
-    // TODO: Add entry in tailwindcss config file for '+' and '-' button css.
     return (
         <div className="bucket-container">
             <div className="bucket-title">

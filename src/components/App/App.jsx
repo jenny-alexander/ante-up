@@ -11,7 +11,8 @@ import Navigation from '../Navigation/Navigation';
 import Dashboard from '../Dashboard/Dashboard';
 import Money from '../Money/Money';
 import Chore from '../Chore/Chore';
-import About from '../About/About';
+// import About from '../About/About';
+import ActivityLog from '../ActivityLog/ActivityLog';
 import Header from '../Header/Header';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
@@ -107,8 +108,8 @@ function App() {
             }
           </Route>
 
-          <Route exact path="/about">
-            { <About />}
+          <Route exact path="/activity">
+            { <ActivityLog />}
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

@@ -29,39 +29,39 @@ function LoginForm() {
   }; // end login
 
   return (
-    <div className="relative flex-col justify-center mx-auto w-full max-w-md pt-10">
-      <form className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4" onSubmit={login}>
+    
+    <div className="login-form">
+      <form onSubmit={login}>
         {/* <p className="font-Biryani text-3xl text-blue-900 pb-6">ANTE UP!</p> */}
-        <p className="pb-0 font-bold text-xl text-left">Sign in</p>
-        <div className="flex pt-1">
-          <p className="text-sm pr-1">Not yet registered?</p>
-          <button className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-            onClick={() => {
+        <p>Sign in</p>
+        <div>
+          <p>Not yet registered?</p>
+          <button onClick={() => {
               history.push('/registration');
             }} >
             Register here.
           </button>
         </div>
-        <div className="mb-4 pt-10">
-          <label className="block text-gray-700 text-sm font-base mb-2" for="username">
+        <div>
+          <label for="username">
             Username
           </label>
-          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Min 8 characters"
+          <input id="username" type="text" placeholder="Min 8 characters"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
             required />
         </div>
-        <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-base mb-2" for="password">
+        <div>
+          <label for="password">
             Password
           </label>
-          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="********"
+          <input id="password" type="password" placeholder="********"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             required />
         </div>
-        <div className="flex flex-col items-center">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-14 rounded">Login</button>
+        <div>
+          <button>Login</button>
         </div>
 
       </form>

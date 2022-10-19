@@ -6,9 +6,9 @@ function Header(props) {
     const user = useSelector((store) => store.user);
     return (
         <div className='header'>
-            <h1 className="home-title">
+            <div className="home-title">
                 Welcome {user.username}!
-            </h1>
+            </div>
         </div>
     )
 }

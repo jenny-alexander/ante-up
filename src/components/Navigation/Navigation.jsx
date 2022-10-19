@@ -13,22 +13,33 @@ function Navigation(props) {
                 <div className="main-links">
                     <img className="logo" src="images/ante_up.png" alt="ante up logo"></img>
                     <div className="action-links">
-                    <Link className="nav-dashboard" to="dashboard">
-                            Dashboard
-                        </Link>
+                        <div>
+                            <Link className="nav-dashboard" to="dashboard">
+                                Dashboard
+                            </Link>
+                        </div>
+                        <div>
                         <Link className="nav-money" to="/money">
                             Money
                         </Link>
-                        <Link className="nav-chore" to="/chore">
-                            Chores
-                        </Link>                  
+                        </div>
+                        <div>
+                            <Link className="nav-chore" to="/chore">
+                                Chores
+                            </Link>
+                        </div>
+                        <div>
+                        <Link className="nav-activity" to="/activity">
+                            Activity Log
+                        </Link>      
+                        </div>                                
                         {/* <Link className="nav-home" to="/home">
                             Home
                         </Link> */}
 
-                        <Link className="nav-about" to="/about">
+                        {/* <Link className="nav-about" to="/about">
                             About
-                        </Link>
+                        </Link> */}
                     </div>
                     <div className="logout">
                         <button className="nav-logout" onClick={() => dispatch( { type: 'LOGOUT' })}>Log Out </button>
