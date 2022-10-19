@@ -5,7 +5,7 @@
     background-color: white;
     //border: 1px solid #bacdd8;
     padding: 8px;
-    width: 60%;
+    //width: 60%;
     border-radius: 12px;
     margin: auto;
     //margin-top: 1em;
@@ -23,7 +23,7 @@
         // flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 2em;
+        gap: 2.5em;
     
         .bucket {
             display: flex;
@@ -51,6 +51,10 @@
                       background-color: #54a58d;
                       border-radius: 15px;
                       color: white;
+                    &:hover {
+                        filter: brightness(0.9);                    
+                        transform: scale(1.15)  
+                    }
                 }
             }
         }

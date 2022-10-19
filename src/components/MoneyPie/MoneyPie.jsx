@@ -19,7 +19,7 @@ function MoneyPie(props) {
                 //width="600"
                 labels={({ datum }) => `${datum.x}: $${datum.y}`}
                 //colorScale={["tomato", "gold", "cyan"]}
-                colorScale={["gold","#00d2ff","navy"]}
+                colorScale={["#006a4e","#00cc99","#a3c1ad"]}
                 data={data}
                 style={{
                     labels: {

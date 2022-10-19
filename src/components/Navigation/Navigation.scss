@@ -1,4 +1,8 @@
 $linkColor: white;
+:root {
+    --color-logout: rgb(39, 95, 88);
+    --hover-brightness: 1.2;
+}
 .navigation {
     display: flex;
    // border: 1px solid red;
@@ -17,7 +21,10 @@ $linkColor: white;
         flex-wrap: wrap;
         gap:30px;
         padding-right: 10em;
-        margin: auto;                        
+        margin: auto;
+        & a {
+            padding: 2px;
+        }                   
         a {
             position: relative;
             color: #000;
@@ -38,11 +45,25 @@ $linkColor: white;
             left: 0;
             background-color: #000;
             transform: scaleX(0);
-            transition: transform 0.3s ease;
+            transition: transform 0.1s ease;
         }
         
         a:hover::before {
             transform: scaleX(1);
+        }
+        & .nav-logout {
+            border: 1px solid var(--color-logout);
+            color: var(--color-logout);
+            border-radius: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+
+            &:hover {
+                cursor: pointer;
+                //filter: brightness(1.05);
+                background: var(--color-logout);
+                color: white;
+            }
         }
     }
 }

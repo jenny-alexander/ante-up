@@ -9,7 +9,7 @@ function Navigation(props) {
 
     return (
         <div className="navigation">
-            <img className="logo" src="images/ante_up.png" ></img>
+            <img className="logo" src="images/ante_up.png" alt="ante up logo"></img>
             <div className="nav-links">
                 <Link className="nav-home" to="/home">
                     Home
