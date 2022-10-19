@@ -1,10 +1,11 @@
 import { React } from 'react';
+import './Chore.scss';
 
 function Chore(props) {
 
     return (
-        <div>
-            I'm the Chore component!
+        <div className="chore">
+            Coming Soon...I'm the Chore component!
         </div>
     )
 }

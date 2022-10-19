@@ -8,22 +8,33 @@ function Navigation(props) {
     const dispatch = useDispatch();
 
     return (
-        <div className="navigation">
-            <img className="logo" src="images/ante_up.png" alt="ante up logo"></img>
-            <div className="nav-links">
-                <Link className="nav-home" to="/home">
-                    Home
-                </Link>
+            <div className="navigation">
+                
+                <div className="main-links">
+                    <img className="logo" src="images/ante_up.png" alt="ante up logo"></img>
+                    <div className="action-links">
+                    <Link className="nav-dashboard" to="dashboard">
+                            Dashboard
+                        </Link>
+                        <Link className="nav-money" to="/money">
+                            Money
+                        </Link>
+                        <Link className="nav-chore" to="/chore">
+                            Chores
+                        </Link>                  
+                        {/* <Link className="nav-home" to="/home">
+                            Home
+                        </Link> */}
 
-                <Link className="nav-about" to="/about">
-                    About
-                </Link>
-
-            {/* <div className="logout"> */}
-            {/* Todo: change to link? */}
-                <button className="nav-logout" onClick={() => dispatch( { type: 'LOGOUT' })}>Log Out </button>
+                        <Link className="nav-about" to="/about">
+                            About
+                        </Link>
+                    </div>
+                    <div className="logout">
+                        <button className="nav-logout" onClick={() => dispatch( { type: 'LOGOUT' })}>Log Out </button>
+                    </div>
+                </div>
             </div>
-        </div>
     )
 }
 

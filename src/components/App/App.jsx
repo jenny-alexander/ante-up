@@ -8,8 +8,11 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 import Navigation from '../Navigation/Navigation';
+import Dashboard from '../Dashboard/Dashboard';
 import Money from '../Money/Money';
-import Footer from '../Footer/Footer';
+import Chore from '../Chore/Chore';
+import About from '../About/About';
+import Header from '../Header/Header';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import LoginPage from '../LoginPage/LoginPage';
@@ -30,8 +33,9 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <div className="application">
         <Navigation />
+        <Header />
 
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -49,8 +53,16 @@ function App() {
             <Home />
           </ProtectedRoute>
 
+          <Route exact path="/dashboard">
+            {user.id ? <Dashboard /> : <LoginPage />}
+          </Route>
+
           <Route exact path="/money">
             {user.id ? <Money /> : <LoginPage />}
+          </Route>
+
+          <Route exact path="/chore">
+            {user.id ? <Chore /> : <LoginPage />}
           </Route>
 
           <Route
@@ -93,6 +105,10 @@ function App() {
               // Otherwise, show the Home page
               <Home />
             }
+          </Route>
+
+          <Route exact path="/about">
+            { <About />}
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

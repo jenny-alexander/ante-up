@@ -41,34 +41,35 @@ function Home() {
     }
 
     return (
-        <div className = "home-top">
-        <div className="home-main">
-                {/* <div className="text-center"> */}
-                    <h1 className="home-title">
-                        Hi {user.username}!
-                    </h1>
-                    <h2 className="home-subtitle">
-                        What do you want to do today?
-                    </h2>                    
-                     <div className="home-options">
-                       <div className="home-money"
-                            onClick={onAllowanceClick}
-                        >
-                            <PropertyCard cardProps={cardProps[0]} />
-                        </div>
-                        <div className="home-chores"
-                            onClick={onChoresClick}
-                        >
-                            <PropertyCard cardProps={cardProps[1]} />
-                        </div>
-                        <div className="home-settings"
-                            onClick={onSettingsClick}
-                        >
-                            <PropertyCard cardProps={cardProps[2]} />
-                        </div>
-                    </div>
-             </div>
-        </div>
+        <div className="main">I'll be the dashboard soon</div>
+        // <div className = "home-top">
+        // <div className="home-main">
+        //         {/* <div className="text-center"> */}
+        //             <h1 className="home-title">
+        //                 Hi {user.username}!
+        //             </h1>
+        //             <h2 className="home-subtitle">
+        //                 What do you want to do today?
+        //             </h2>                    
+        //              <div className="home-options">
+        //                <div className="home-money"
+        //                     onClick={onAllowanceClick}
+        //                 >
+        //                     <PropertyCard cardProps={cardProps[0]} />
+        //                 </div>
+        //                 <div className="home-chores"
+        //                     onClick={onChoresClick}
+        //                 >
+        //                     <PropertyCard cardProps={cardProps[1]} />
+        //                 </div>
+        //                 <div className="home-settings"
+        //                     onClick={onSettingsClick}
+        //                 >
+        //                     <PropertyCard cardProps={cardProps[2]} />
+        //                 </div>
+        //             </div>
+        //      </div>
+        // </div>
 
     )
 }
