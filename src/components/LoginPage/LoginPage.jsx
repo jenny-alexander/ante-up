@@ -1,11 +1,16 @@
 import React from 'react';
 import LoginForm from '../LoginForm/LoginForm';
+import './LoginPage.scss';
+import Card from '../Common/Card/Card';
 
 function LoginPage() {
 
   return (
-    <div>
-      <LoginForm />
+    <div className="login-page">
+      <div>
+        <Card component={<LoginForm />} />
+      </div>
+      {/* <LoginForm /> */}
     </div>
   );
 }

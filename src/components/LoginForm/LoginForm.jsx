@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import './LoginForm.scss';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -33,37 +34,39 @@ function LoginForm() {
     <div className="login-form">
       <form onSubmit={login}>
         {/* <p className="font-Biryani text-3xl text-blue-900 pb-6">ANTE UP!</p> */}
-        <p>Sign in</p>
-        <div>
+        <div className="login-title">Sign in</div>
+
+        <ul className="form-wrapper">
+          <li className="form-row">
+            <label for="username">
+              Username
+            </label>
+            <input id="username" type="text" placeholder="Min 8 characters"
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+              required />
+          </li>
+          <li className="form-row">
+            <label for="password">
+              Password
+            </label>
+            <input id="password" type="password" placeholder="********"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              required />
+          </li>
+          <li className="form-row">
+            <button>Login</button>
+          </li>
+        {/* <div className="not-registered">
           <p>Not yet registered?</p>
           <button onClick={() => {
               history.push('/registration');
             }} >
             Register here.
           </button>
-        </div>
-        <div>
-          <label for="username">
-            Username
-          </label>
-          <input id="username" type="text" placeholder="Min 8 characters"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-            required />
-        </div>
-        <div>
-          <label for="password">
-            Password
-          </label>
-          <input id="password" type="password" placeholder="********"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            required />
-        </div>
-        <div>
-          <button>Login</button>
-        </div>
-
+        </div> */}
+        </ul>
       </form>
     </div>
   );
