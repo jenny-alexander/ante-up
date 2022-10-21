@@ -13,11 +13,12 @@
 .allowance-table {    
     margin: 15px;
     font-size: 0.9em;
+    border-collapse: collapse;
     // font-family: sans-serif;
-    // box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);    
+    //box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);    
     width: 70%;
     // background-color: white;
-    border: solid 1px black;
+    border: solid 1px #bacdd8;
     // border-radius: 5px;
     
     .allowance-head {
@@ -30,10 +31,11 @@
     tr th {
         padding: 8px;        
     }
+    
     tbody tr:hover {background-color: rgb(243, 243, 243);}
-    tbody tr:last-child{
-        border: 1px solid black;
-    }
+    // tbody tr:last-child{
+    //     border: 1px solid black;
+    // }
     tr td {
         padding: 8px;
         padding-top:12px;
@@ -41,6 +43,6 @@
 
     }    
     tr {
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid #bacdd8;
     }
 }

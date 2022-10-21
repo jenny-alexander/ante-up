@@ -5,6 +5,10 @@
 
     & .VictoryContainer {
         width: 50% !important;
+
+        & svg {
+            overflow: visible;
+        }
     }
 }
 .chart-title {
