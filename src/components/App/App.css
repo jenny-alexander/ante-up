@@ -17,14 +17,13 @@ button {
     "navigation main";
 }
 
-@media(max-width: 1200px) {
+/* @media(max-width: 1200px) {
   body {
     width: 80%;
-    align-items: center;
   }
 }
 @media(min-width: 1201px) {
   body {
       width: 100%;
   }
-}
+} */

@@ -8,3 +8,9 @@
     margin-top: 2em;
     padding-bottom: 5em;
 }
+
+@media(max-width: 650px) {
+    .money div {
+        width: 95%;
+    }
+}

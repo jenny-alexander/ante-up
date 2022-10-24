@@ -7,7 +7,7 @@ function LoginPage() {
 
   return (
     <div className="login-page">
-      <div>
+      <div className="login-card">
         <Card component={<LoginForm />} />
       </div>
       {/* <LoginForm /> */}

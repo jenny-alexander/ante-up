@@ -7,4 +7,18 @@
 //     > div {
 //         width: 40%;
 //     }
- }
+
+//   @media(max-width: 650px) {
+//     .login-card {
+//    //width: 60%;
+
+//     border: 1px solid orange;
+//   }
+// }
+ @media(min-width: 651px) {
+    .login-card {
+        width: 40%;
+        //border: 1px dotted pink;
+    }
+  }
+}
