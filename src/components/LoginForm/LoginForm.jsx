@@ -36,17 +36,30 @@ function LoginForm() {
         {/* <p className="font-Biryani text-3xl text-blue-900 pb-6">ANTE UP!</p> */}
         <div className="login-title">Sign in</div>
 
-        <ul className="form-wrapper">
-          <li className="form-row">
-            <label for="username">
-              Username
-            </label>
-            <input id="username" type="text" placeholder="Min 8 characters"
-              value={username}
-              onChange={(event) => setUsername(event.target.value)}
-              required />
-          </li>
-          <li className="form-row">
+        <div className="form-body">
+          <div className="form-row">
+            <div className= "input-group">
+              <label for="username">
+                Username
+              </label>
+              <input id="username" type="text" placeholder="Min 8 characters"
+                value={username}
+                onChange={(event) => setUsername(event.target.value)}
+                required />
+            </div>
+          </div>
+          <div className="form-row">
+            <div className="input-group">
+              <label for="password">
+                Password
+              </label>
+              <input id="password" type="password" placeholder="********"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                required />              
+            </div>
+          </div>
+          {/* <div className="form-row">
             <label for="password">
               Password
             </label>
@@ -54,10 +67,10 @@ function LoginForm() {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               required />
-          </li>
-          <li className="form-row">
-            <button>Login</button>
-          </li>
+          </div> */}
+          <div className="form-row">
+            <button className="green-button login">Login</button>
+          </div>
         {/* <div className="not-registered">
           <p>Not yet registered?</p>
           <button onClick={() => {
@@ -66,7 +79,7 @@ function LoginForm() {
             Register here.
           </button>
         </div> */}
-        </ul>
+        </div>
       </form>
     </div>
   );

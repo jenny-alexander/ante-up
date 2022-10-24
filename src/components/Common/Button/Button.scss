@@ -1,6 +1,7 @@
 // $btnColor: rgb(42, 73, 156);
 //$allowanceBtnColor: rgb(28, 105, 228);
 $allowanceBtnColor: rgb(47, 59, 77);
+$greenButton: rgb(39, 95, 88);
 
 
 .allowance-button{    
@@ -16,4 +17,18 @@ $allowanceBtnColor: rgb(47, 59, 77);
         cursor: pointer;
         background-color: scale-color($allowanceBtnColor, $lightness: -20%);
       }
+}
+.green-button {
+    border-radius: 5px;
+    border: 1px solid $greenButton;
+    background: $greenButton;
+    color: white;
+    // margin-top: 3.5em;
+    padding: 0.5em 1.5em;
+
+    &:hover {
+        cursor: pointer;
+        //filter: brightness(0.9);                    
+        //transform: scale(1.05)        
+    }
 }

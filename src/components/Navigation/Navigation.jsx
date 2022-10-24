@@ -1,11 +1,12 @@
 import { React } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './Navigation.scss';
 //import mainLogo from 'images/ante_up.png';
 
 function Navigation(props) {
     const dispatch = useDispatch();
+    const user = useSelector((store) => store.user);
 
     return (
             <div className="navigation">
@@ -41,9 +42,11 @@ function Navigation(props) {
                             About
                         </Link> */}
                     </div>
-                    <div className="logout">
-                        <button className="nav-logout" onClick={() => dispatch( { type: 'LOGOUT' })}>Log Out </button>
-                    </div>
+                    { Object.entries(user).length === 0 ? '' : 
+                        <div className="logout">
+                            <button className="nav-logout" onClick={() => dispatch( { type: 'LOGOUT' })}>Log Out </button>
+                        </div>
+                    }
                 </div>
             </div>
     )
