@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import '../MoneyBucketManager/MoneyBucketManager.scss';
+import './MoneyBucketManager.scss';
 
 function MoneyBucketManager(props) {
 

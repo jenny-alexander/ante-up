@@ -12,9 +12,6 @@
     padding: 1em;
 }
 .form-row {
-    //border: 1px dotted blue;
-    //gap: 3em;
-    //flex: 1;
     padding-bottom: 0.5em;
 }
 
@@ -22,6 +19,7 @@ input {
     border: 1px solid lightgrey;
     border-radius: 5px;
     padding: 0.25em;
+    font-size: 16px;
 }
 .input-group {
     display: flex;
@@ -32,14 +30,6 @@ input {
     gap: 0.25em;
 }
 
-
-//   @media(min-width: 800px) {
-//     body {
-//         width: 40%;
-//     }
-//  }
-//  @media (min-width: 600px) {
-//     body {
-//     width: 50%;
-//     }
-//   }
+.not-registered {
+    padding-top: 1.5em;
+}

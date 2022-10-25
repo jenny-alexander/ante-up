@@ -24,7 +24,66 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <div>Registration form</div>
+    
+    <div className="registration-form">
+      <form onSubmit={registerUser}>        
+        <div className="login-title">Let's Get Started</div>
+
+        <div className="form-body">
+          <div className="form-row">
+            <div className= "input-group">
+              <label for="username">
+                Username
+              </label>
+              <input id="username" type="text" placeholder="Min 8 characters"
+                value={username}
+                onChange={(event) => setUsername(event.target.value)}
+                required />
+            </div>
+          </div>
+          <div className="form-row">
+            <div className="input-group">
+              <label for="password">
+                Password
+              </label>
+              <input id="password" type="password" placeholder="********"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                required />              
+            </div>
+          </div>
+          <div className="form-row">
+            <button className="green-button login">Login</button>
+          </div>
+          <div className="not-registered">
+            <p>Not yet registered?</p>
+            <button className="white-button register"onClick={() => {
+                history.push('/registration');
+              }} >
+              Register here
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // <div className="relative flex-col justify-center mx-auto w-full max-w-md pt-10">
     //   <form className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4" onSubmit={registerUser}>
     //     {/* <p className="font-Biryani text-3xl text-blue-900 pb-6">ANTE UP!</p> */}

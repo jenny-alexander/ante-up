@@ -59,26 +59,17 @@ function LoginForm() {
                 required />              
             </div>
           </div>
-          {/* <div className="form-row">
-            <label for="password">
-              Password
-            </label>
-            <input id="password" type="password" placeholder="********"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              required />
-          </div> */}
           <div className="form-row">
             <button className="green-button login">Login</button>
           </div>
-        {/* <div className="not-registered">
-          <p>Not yet registered?</p>
-          <button onClick={() => {
-              history.push('/registration');
-            }} >
-            Register here.
-          </button>
-        </div> */}
+          <div className="not-registered">
+            <p>Not yet registered?</p>
+            <button className="white-button register"onClick={() => {
+                history.push('/registration');
+              }} >
+              Register here
+            </button>
+          </div>
         </div>
       </form>
     </div>

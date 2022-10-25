@@ -10,7 +10,6 @@ function LoginPage() {
       <div className="login-card">
         <Card component={<LoginForm />} />
       </div>
-      {/* <LoginForm /> */}
     </div>
   );
 }

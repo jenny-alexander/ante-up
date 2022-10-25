@@ -27,9 +27,11 @@ function App() {
   const dispatch = useDispatch();
 
   const user = useSelector(store => store.user);
+  // const money = useSelector(store => store.money);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: 'FETCH_MONEY', payload: user.id });
   }, [dispatch]);
 
   return (

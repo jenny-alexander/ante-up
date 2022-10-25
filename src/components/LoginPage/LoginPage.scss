@@ -1,9 +1,8 @@
 .login-page {
-    // display: flex;
-    // justify-content: center;
     margin-left: 1em;
     margin-right: 1em;
-
+  display: flex;
+  justify-content: center;
 //     > div {
 //         width: 40%;
 //     }
@@ -17,8 +16,7 @@
 // }
  @media(min-width: 651px) {
     .login-card {
-        width: 40%;
-        //border: 1px dotted pink;
+        width: 50%;
     }
   }
 }

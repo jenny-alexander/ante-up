@@ -1,4 +1,5 @@
-import { React, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import Button from '../Common/Button/Button';
 import './Allowance.scss';
 
@@ -6,12 +7,10 @@ function Allowance(props) {
 
     const getDate = () => {
         const date = new Date();
-        const day = date.getDate();
         const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         const monthName = months[date.getMonth()];
-        const year = date.getFullYear();
 
-        return monthName + ' ' + day + ', ' + year;
+        return monthName + ' ' + date.getDate() + ', ' + date.getFullYear();
     }
 
     return (
@@ -37,7 +36,9 @@ function Allowance(props) {
                                 Spend
                             </td>
                             <td>
-                                50.00
+                                { props.money ? props.money.spend_weekly : '' }
+                                {/* {props.money[0].spend_weekly} */}
+                                {/* 70.00 */}
                             </td>
                             <td>
                                 <Button className="allowance-button"/>
@@ -48,7 +49,7 @@ function Allowance(props) {
                                 Save
                             </td>
                             <td>
-                                25.00
+                                {props.money ? props.money.save_weekly : ''}
                             </td>
                             <td>
                             <Button className="allowance-button"/>
@@ -59,7 +60,7 @@ function Allowance(props) {
                                 Share
                             </td>
                             <td>
-                                5.00
+                                {props.money ? props.money.share_weekly : ''}
                             </td>
                             <td>
                             <Button className="allowance-button"/>

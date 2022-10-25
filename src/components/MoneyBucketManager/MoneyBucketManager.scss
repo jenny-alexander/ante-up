@@ -23,7 +23,14 @@
         // flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 2.5em;
+        gap: 1.0em;
+
+        & .spend-total {
+            text-align: center;
+        }
+        & .spend-title {
+            text-align: center;
+        }
     
         .bucket {
             display: flex;
@@ -42,6 +49,7 @@
                 flex-direction: row;
                 gap: 1em;
                 align-items: center;
+                justify-content: center;
 
                 .deposit-button {
                     height: 40px;

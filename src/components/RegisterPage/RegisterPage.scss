@@ -1,0 +1,10 @@
+.register-page {
+    margin-left: 1em;
+    margin-right: 1em;
+
+ @media(min-width: 651px) {
+    .register-card {
+        width: 40%;
+    }
+  }
+}
