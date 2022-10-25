@@ -9,24 +9,24 @@ import './Money.scss';
 function Money(props) {
 
     const dispatch = useDispatch();
-    const money = useSelector((store) => store.money);
+    //const money = useSelector((store) => store.money);
     const user = useSelector((store) => store.user);
 
     useEffect(()=> {
-        console.log('in useEffect of Money!');
-        //dispatch( { type: 'FETCH_MONEY', payload: user.id});
+        console.log('BOOOO in useEffect of Money!');
+        dispatch( { type: 'FETCH_MONEY', payload: user.id} );
     },[])
 
     return (
         <div className="money">            
             <div className="money-allowance">
                 {/* <Allowance /> */}
-                <Card component={<Allowance money={money[0]} />} />
+                <Card component={<Allowance />} />
             </div>
 
-            <div className="money-chart">
-                <Card component={<MoneyPie money={money[0]} />} />
-            </div>
+            {/* <div className="money-chart">
+                money && <Card component={<MoneyPie money={money[0]} />} />
+            </div> */}
 
             {/* <div className="money-bank">
                 <Card component={<MoneyBucketManager />} />

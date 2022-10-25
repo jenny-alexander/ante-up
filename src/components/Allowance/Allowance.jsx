@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import Button from '../Common/Button/Button';
+//import Button from '../Common/Button/Button';
 import './Allowance.scss';
 
 function Allowance(props) {
-
+    const money = useSelector((store) => store.money);
     const getDate = () => {
         const date = new Date();
         const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         const monthName = months[date.getMonth()];
-
         return monthName + ' ' + date.getDate() + ', ' + date.getFullYear();
+    }
+
+    const deposit = (amount) => {
+        console.log('Deposit amount is:', amount);
+        //DISPATCH Deposit money
     }
 
     return (
@@ -19,53 +23,39 @@ function Allowance(props) {
                 <table className="allowance-table">
                     <thead className="allowance-head">
                         <tr>
-                            <th>
-                                Money Bucket
-                            </th>
-                            <th>
-                                Amount
-                            </th>
-                            <th>
-                                Actions
-                            </th>
+                            <th>Money Bucket</th>
+                            <th>Amount</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
+                            <td>Spend</td>
+                            <td>{ money && money[0] ? money[0].spend_weekly : ''}</td>
                             <td>
-                                Spend
-                            </td>
-                            <td>
-                                { props.money ? props.money.spend_weekly : '' }
-                                {/* {props.money[0].spend_weekly} */}
-                                {/* 70.00 */}
-                            </td>
-                            <td>
-                                <Button className="allowance-button"/>
+                            { money[0] && money[0].spend_weekly_deposited ? <p>Deposited</p> :                                     
+                                    <button className="allowance-button" onClick={() => deposit(money[0].spend_weekly)}>Deposit</button>
+                                } 
                             </td>
                         </tr>
                         <tr>
+                            <td>Save</td>
+                            <td>{ money[0] ? money[0].save_weekly : ''}</td>
                             <td>
-                                Save
-                            </td>
-                            <td>
-                                {props.money ? props.money.save_weekly : ''}
-                            </td>
-                            <td>
-                            <Button className="allowance-button"/>
-                            </td>
+                                { money[0] && money[0].save_weekly_deposited ? <p>Deposited</p> :                                     
+                                    <button className="allowance-button" onClick={() => deposit(money[0].save_weekly)}>Deposit</button>
+                                } 
+                                </td>
                         </tr>
                         <tr>
+                            <td>Share</td>
+                            <td>{ money[0] ? money[0].share_weekly : ''}</td>
                             <td>
-                                Share
-                            </td>
-                            <td>
-                                {props.money ? props.money.share_weekly : ''}
-                            </td>
-                            <td>
-                            <Button className="allowance-button"/>
-                            </td>
-                        </tr>                        
+                                { money[0] && money[0].share_weekly_deposited ? <p>Deposited</p> :                                     
+                                    <button className="allowance-button" onClick={() => deposit(money[0].share_weekly)}>Deposit</button>
+                                } 
+                                </td>
+                        </tr>                      
                     </tbody>
                 </table>
          </div>

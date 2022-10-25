@@ -31,7 +31,7 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
-    dispatch({ type: 'FETCH_MONEY', payload: user.id });
+    // dispatch({ type: 'FETCH_MONEY', payload: user.id });
   }, [dispatch]);
 
   return (
