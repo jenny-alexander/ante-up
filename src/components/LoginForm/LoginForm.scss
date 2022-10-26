@@ -11,6 +11,10 @@ $greenButton: rgb(39, 95, 88);
     display: flex;
     flex-direction: row;
     padding: 1em;
+    
+    & form {
+        width: 250px;
+    }
 }
 .form-row {
     padding-bottom: 0.5em;

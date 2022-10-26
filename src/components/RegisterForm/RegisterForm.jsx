@@ -59,7 +59,7 @@ function RegisterForm() {
           <div className="already-registered">
             <p>Already have an account?</p>
             <button className="white-button register"onClick={() => {
-                history.push('/registration');
+                history.push('/login');
               }} >
               Login
             </button>

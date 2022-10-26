@@ -24,9 +24,9 @@ function Money(props) {
                 <Card component={<Allowance />} />
             </div>
 
-            {/* <div className="money-chart">
-                money && <Card component={<MoneyPie money={money[0]} />} />
-            </div> */}
+            <div className="money-chart">
+                <Card component={<MoneyPie />} />
+            </div>
 
             {/* <div className="money-bank">
                 <Card component={<MoneyBucketManager />} />

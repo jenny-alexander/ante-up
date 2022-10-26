@@ -9,9 +9,12 @@ function MoneyPie(props) {
     // },[props.money])
 
     const [data, setData] = useState([
-        { x: "Spend", y: props.money.spend_total },
-        { x: "Save", y: props.money.save_total },
-        { x: "Share", y: props.money.share_total },        
+        { x: "Spend", y: "$80" },
+        { x: "Save", y: "$130" },
+        { x: "Share", y: "$50" },      
+        // { x: "Spend", y: props.money.spend_total },
+        // { x: "Save", y: props.money.save_total },
+        // { x: "Share", y: props.money.share_total },   
     ]);
 
     return (

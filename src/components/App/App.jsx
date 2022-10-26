@@ -40,7 +40,7 @@ function App() {
       <div className="application">
       { Object.entries(user).length === 0 ?  <Welcome /> : 
        
-        <Navigation /> 
+        <Navigation user={user} /> 
   }
         <Header />
 
