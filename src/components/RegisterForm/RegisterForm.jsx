@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import './RegisterForm.scss';
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -27,7 +28,7 @@ function RegisterForm() {
     
     <div className="registration-form">
       <form onSubmit={registerUser}>        
-        <div className="login-title">Let's Get Started</div>
+        <div className="register-title">Let's Get Started!</div>
 
         <div className="form-body">
           <div className="form-row">
@@ -53,14 +54,14 @@ function RegisterForm() {
             </div>
           </div>
           <div className="form-row">
-            <button className="green-button login">Login</button>
+            <button className="green-button register">Register</button>
           </div>
-          <div className="not-registered">
-            <p>Not yet registered?</p>
+          <div className="already-registered">
+            <p>Already have an account?</p>
             <button className="white-button register"onClick={() => {
                 history.push('/registration');
               }} >
-              Register here
+              Login
             </button>
           </div>
         </div>

@@ -10,44 +10,45 @@ function Navigation(props) {
 
     return (
             <div className="navigation">
-                
-                <div className="main-links">
-                    <img className="logo" src="images/ante_up.png" alt="ante up logo"></img>
-                    <div className="action-links">
-                        <div>
-                            <Link className="nav-dashboard" to="dashboard">
-                                Dashboard
+                {/* { Object.entries(user).length === 0 ? 
+                    <>
+                        <div className="main-links">
+                            <img className="logo" src="images/ante_up.png" alt="ante up logo"></img>
+                        </div> 
+                        <p className="nav-greeting">You're one click away from simplifying family chores and allowances.</p>
+                    </>
+                    :  */}
+                    <div className="main-links">
+                        <img className="logo" src="images/ante_up.png" alt="ante up logo"></img>
+                        <div className="action-links">
+                            <div>
+                                <Link className="nav-dashboard" to="dashboard">
+                                    Dashboard
+                                </Link>
+                            </div>
+                            <div>
+                            <Link className="nav-money" to="/money">
+                                Money
                             </Link>
+                            </div>
+                            <div>
+                                <Link className="nav-chore" to="/chore">
+                                    Chores
+                                </Link>
+                            </div>
+                            <div>
+                            <Link className="nav-activity" to="/activity">
+                                Activity Log
+                            </Link>      
+                            </div>                                
                         </div>
-                        <div>
-                        <Link className="nav-money" to="/money">
-                            Money
-                        </Link>
-                        </div>
-                        <div>
-                            <Link className="nav-chore" to="/chore">
-                                Chores
-                            </Link>
-                        </div>
-                        <div>
-                        <Link className="nav-activity" to="/activity">
-                            Activity Log
-                        </Link>      
-                        </div>                                
-                        {/* <Link className="nav-home" to="/home">
-                            Home
-                        </Link> */}
-
-                        {/* <Link className="nav-about" to="/about">
-                            About
-                        </Link> */}
+                        { Object.entries(user).length === 0 ? '' : 
+                            <div className="logout">
+                                <button className="nav-logout" onClick={() => dispatch( { type: 'LOGOUT' })}>Log Out </button>
+                            </div>
+                        }
                     </div>
-                    { Object.entries(user).length === 0 ? '' : 
-                        <div className="logout">
-                            <button className="nav-logout" onClick={() => dispatch( { type: 'LOGOUT' })}>Log Out </button>
-                        </div>
-                    }
-                </div>
+{/* } */}
             </div>
     )
 }

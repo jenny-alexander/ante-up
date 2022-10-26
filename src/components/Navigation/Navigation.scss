@@ -6,6 +6,15 @@
     border: 1px solid #bacdd8;
     background-color: rgb(216, 232, 229);
     grid-area: navigation;
+    padding: 0.5em;
+
+    & .nav-greeting {
+        text-align: left;
+        font-size: 1.5em;
+        padding: 2em;
+        word-spacing: 0.5em;
+        font-weight:100;
+    }
 
     & .main-links {
         display: flex;

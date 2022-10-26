@@ -19,6 +19,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Home from '../Home/Home';
+import Welcome from '../Welcome/Welcome';
 import Card from '../Common/Card/Card';
 
 import './App.css';
@@ -37,7 +38,10 @@ function App() {
   return (
     <Router>
       <div className="application">
-        <Navigation />
+      { Object.entries(user).length === 0 ?  <Welcome /> : 
+       
+        <Navigation /> 
+  }
         <Header />
 
         <Switch>

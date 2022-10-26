@@ -53,37 +53,28 @@ input {
         outline: 2px solid $greenButton;
         outline-offset: 2px;
     } 
-    &:active {
-        background-color: #ffbf00;
-    }
+    // &:active {
+    //     background-color: #ffbf00;
+    // }
 }
-// .green-button {
-//     text-decoration: none;
-//     color: rgba(255, 255, 255, 0.9);
-//     background: rgb(39, 95, 88);
-//     padding: 15px 40px;
-//     border-radius: 4px;
-//     font-weight: normal;
-//     text-transform: uppercase;
-//     transition: all 0.2s ease-in-out;
-//   }
-  
-//   .green-button:focus {
-//     // color: rgba(255, 255, 255, 1);
-//     // box-shadow: 0 5px 15px rgb(39, 95, 88, .4);
-//     cursor: pointer;
-//   }
 .white-button {
     border-radius: 5px;
-    border: 1px solid $greenButton;
+    //border: 1px solid $greenButton;
+    border: 1px solid rgb(39, 95, 88, 0.5);
     background: white;
     color: rgb(7,10,10,1);
-    font-weight: bold;
+    //font-weight: bold;
     padding: 0.5em 1.5em;
     margin-top: 0.5em;
-    transition: 120ms all ease-in-out;
+    transition: 320ms all ease-in-out;
+    &:focus {
+        outline: 2px solid $greenButton;
+        outline-offset: 2px;
+    }
     &:hover {
         cursor: pointer;
-        transform: scale(1.05)  
-    }
+        border: 1px solid rgb(39, 95, 88, 1);
+        //background-color: rgba(243, 243, 245, 0.75);
+        background-color: rgba(217, 239, 232, 0.75);
+    } 
 }

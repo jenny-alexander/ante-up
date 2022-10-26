@@ -1,0 +1,80 @@
+$greenButton: rgb(39, 95, 88);
+* {
+    margin: 0;
+}
+    .register-title {
+        font-size: 2em;
+        padding-bottom: 0.5em; 
+    }
+
+.registration-form {
+    display: flex;
+    flex-direction: row;
+    padding: 1em;
+}
+.form-row {
+    padding-bottom: 0.5em;
+}
+
+input {
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    padding: 0.25em;
+    font-size: 16px;
+}
+.input-group {
+    display: flex;
+    flex-direction: column;
+    flex-wrap:wrap;
+    //border: 1px solid red;
+    margin-bottom: 0.5em;
+    gap: 0.25em;
+}
+
+.already-registered {
+    padding-top: 1.5em;
+}
+.green-button {
+    border-radius: 5px;
+    border: 1px solid $greenButton;
+    background: $greenButton;
+    color: white;    
+    padding: 0.5em 1.5em;
+    width: 100%;
+    transition: 120ms all ease-in-out;
+    &:hover {
+        cursor: pointer;
+        background-color:#00ad79;
+        transition: 0.5s;
+       //transform: scale(1.10)  
+       //outline: #333 solid 4px;
+    }
+    &:focus {
+        outline: 2px solid $greenButton;
+        outline-offset: 2px;
+    } 
+    // &:active {
+    //     background-color: #ffbf00;
+    // }
+}
+.white-button {
+    border-radius: 5px;
+    //border: 1px solid $greenButton;
+    border: 1px solid rgb(39, 95, 88, 0.5);
+    background: white;
+    color: rgb(7,10,10,1);
+    //font-weight: bold;
+    padding: 0.5em 1.5em;
+    margin-top: 0.5em;
+    transition: 320ms all ease-in-out;
+    &:focus {
+        outline: 2px solid $greenButton;
+        outline-offset: 2px;
+    }
+    &:hover {
+        cursor: pointer;
+        border: 1px solid rgb(39, 95, 88, 1);
+        //background-color: rgba(243, 243, 245, 0.75);
+        background-color: rgba(233, 239, 237, 0.75);
+    } 
+}
