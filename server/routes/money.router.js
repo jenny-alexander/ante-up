@@ -19,6 +19,13 @@ router.get('/:id', (req, res) => {
 });
 
 /**
+ * PUT route template
+ */
+router.put('/', (req, res) => {
+  // PUT route code here
+});
+
+/**
  * POST route template
  */
 router.post('/', (req, res) => {

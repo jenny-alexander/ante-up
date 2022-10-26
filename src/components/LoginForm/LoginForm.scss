@@ -1,3 +1,4 @@
+$greenButton: rgb(39, 95, 88);
 * {
     margin: 0;
 }
@@ -32,4 +33,57 @@ input {
 
 .not-registered {
     padding-top: 1.5em;
+}
+.green-button {
+    border-radius: 5px;
+    border: 1px solid $greenButton;
+    background: $greenButton;
+    color: white;    
+    padding: 0.5em 1.5em;
+    width: 100%;
+    transition: 120ms all ease-in-out;
+    &:hover {
+        cursor: pointer;
+        background-color:#00ad79;
+        transition: 0.5s;
+       //transform: scale(1.10)  
+       //outline: #333 solid 4px;
+    }
+    &:focus {
+        outline: 2px solid $greenButton;
+        outline-offset: 2px;
+    } 
+    &:active {
+        background-color: #ffbf00;
+    }
+}
+// .green-button {
+//     text-decoration: none;
+//     color: rgba(255, 255, 255, 0.9);
+//     background: rgb(39, 95, 88);
+//     padding: 15px 40px;
+//     border-radius: 4px;
+//     font-weight: normal;
+//     text-transform: uppercase;
+//     transition: all 0.2s ease-in-out;
+//   }
+  
+//   .green-button:focus {
+//     // color: rgba(255, 255, 255, 1);
+//     // box-shadow: 0 5px 15px rgb(39, 95, 88, .4);
+//     cursor: pointer;
+//   }
+.white-button {
+    border-radius: 5px;
+    border: 1px solid $greenButton;
+    background: white;
+    color: rgb(7,10,10,1);
+    font-weight: bold;
+    padding: 0.5em 1.5em;
+    margin-top: 0.5em;
+    transition: 120ms all ease-in-out;
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.05)  
+    }
 }

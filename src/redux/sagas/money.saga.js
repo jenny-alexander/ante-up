@@ -20,8 +20,14 @@ function* fetchMoney(action) {
     }
 }
 
+function* depositMoney(action) {
+    console.log('in depositMoney in saga!');
+    console.log('action is:', action);
+}
+
 function* moneySaga() {
     yield takeLatest('FETCH_MONEY', fetchMoney);
+    yield takeLatest('DEPOSIT_MONEY', depositMoney);
 }
 
 export default moneySaga;

@@ -64,7 +64,7 @@ function LoginForm() {
           </div>
           <div className="not-registered">
             <p>Not yet registered?</p>
-            <button className="white-button register"onClick={() => {
+            <button className="white-button register" onClick={() => {
                 history.push('/registration');
               }} >
               Register here
