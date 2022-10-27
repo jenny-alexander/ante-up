@@ -38,6 +38,7 @@ function App() {
   return (
     <Router>
       <div className="application">
+        
       { Object.entries(user).length === 0 ?  <Welcome /> : 
        
         <Navigation user={user} /> 
@@ -124,6 +125,7 @@ function App() {
           </Route>
         </Switch>
         {/* <Footer /> */}
+
       </div>
     </Router>
   );

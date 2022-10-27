@@ -34,7 +34,7 @@ function LoginForm() {
     <div className="login-form">
       <form onSubmit={login}>
         {/* <p className="font-Biryani text-3xl text-blue-900 pb-6">ANTE UP!</p> */}
-        <div className="login-title">Sign in</div>
+        <div className="login-title">Log in to AnteUp</div>
 
         <div className="form-body">
           <div className="form-row">

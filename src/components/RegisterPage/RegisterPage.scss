@@ -2,10 +2,10 @@
   margin-left: 1em;
   margin-right: 1em;
   display: flex;
-  //justify-content: center;
-  @media(min-width: 651px) {
-    .register-card {
-        width: 50%;
-    }
-  }
+  justify-content: center;
+  // @media(min-width: 651px) {
+  //   .register-card {
+  //       width: 50%;
+  //   }
+  // }
 }
