@@ -21,8 +21,19 @@ router.get('/:id', (req, res) => {
 /**
  * PUT route template
  */
-router.put('/', (req, res) => {
+router.put('/deposit', (req, res) => {
   // PUT route code here
+  console.log('req in deposit router is:', req.body);
+  const updateMoneyQuery = `UPDATE money set ${req.body.toAccount} = ${req.body.toAccount} + ${req.body.amount},
+                              ${req.body.depositFlag} = TRUE;`
+  console.log('updateMoneyQuery is:', updateMoneyQuery);
+
+  pool.query(updateMoneyQuery)
+    .then((result) => {
+    }).catch((error) => {
+      console.log('Deposit money error is:', error);
+      res.sendStatus(500);
+    })
 });
 
 /**

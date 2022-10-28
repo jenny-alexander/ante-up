@@ -23,6 +23,12 @@ function* fetchMoney(action) {
 function* depositMoney(action) {
     console.log('in depositMoney in saga!');
     console.log('action is:', action);
+    try {
+        const response = yield axios.put(`/api/money/deposit`, action.payload);
+        //yield put({ type: 'FETCH_MONEY', payload: response.data });
+    } catch (error) {
+        console.log('Money PUT (deposit) failed with:', error);
+    }
 }
 
 function* moneySaga() {
