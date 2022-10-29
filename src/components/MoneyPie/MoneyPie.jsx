@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { VictoryPie } from "victory-pie";
+import { VictoryTooltip } from "victory-tooltip";
 import './MoneyPie.scss' //change this to './MoneyPie.scss';
 
 function MoneyPie(props) {
 
-    // useEffect(() => {
-    //     console.log('MoneyPie useEffect!!!');
-    // },[props.money])
+    useEffect(() => {
+        setPieData();
+    },[props.money])
 
-    const [data, setData] = useState([
-        // { x: "Spend", y: "80" },
-        // { x: "Save", y: "130" },
-        // { x: "Share", y: "50" },
-        //using optional chaining  
-        { x: "Spend", y: props.money[0]?.spend_total },
-        { x: "Save", y: props.money[0]?.save_total },
-        { x: "Share", y: props.money[0]?.share_total },   
-    ]);
+    const [data, setData] = useState([]);
+
+    const setPieData = () => {
+        console.log('in setPieData');
+        setData([
+            { x: "Spend", y: parseInt(props.money[0]?.spend_total) },
+            { x: "Save", y: parseInt(props.money[0]?.save_total) },
+            { x: "Share", y: parseInt(props.money[0]?.share_total) },              
+        ])
+    }
 
     return (
         <div className="money-pie">
@@ -24,16 +26,25 @@ function MoneyPie(props) {
                 My Money At-a-Glance
             </div>
             <VictoryPie className="victory-pie"
-                //width="600"
                 labels={({ datum }) => `${datum.x}: $${datum.y}`}
-                colorScale={["#006a4e","#00cc99","#a3c1ad"]}
+                //colorScale={["#006a4e","#00cc99","#a3c1ad"]}
+                colorScale="qualitative"
+                radius={140}
                 data={data}
-                style={{
+                labelPlacement="vertical"
+                labelComponent={
+                    <VictoryTooltip 
+                            flyoutStyle={{ stroke: "green", strokeWidth: 2 }} 
+                            active 
+                            pointerLength={15}
+                    />}
+                    style={{
                     labels: {
-                        fontSize: 28
+                        fontSize: 36
                     }
                 }}
             />
+            
         </div>
     )
 }
