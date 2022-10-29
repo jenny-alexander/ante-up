@@ -29,7 +29,7 @@ function MoneyPie(props) {
                 labels={({ datum }) => `${datum.x}: $${datum.y}`}
                 //colorScale={["#006a4e","#00cc99","#a3c1ad"]}
                 colorScale="qualitative"
-                radius={140}
+                // radius={140}
                 data={data}
                 labelPlacement="vertical"
                 labelComponent={

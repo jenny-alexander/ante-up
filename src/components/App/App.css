@@ -9,7 +9,7 @@ button {
 
 .application {  
   
-  /* height: 100vh; */
+  height: 100vh;
   display: grid;
   /* grid-template-columns: 150px 1fr; */
   grid-template-columns: 0.75fr 1fr;
@@ -17,18 +17,10 @@ button {
   grid-template-areas: 
     "navigation header"
     "navigation main";
-
-    /* display: flex;
-    flex-direction: column; */
-    margin: 4em;
-    /* margin: 0;
-    margin-top: 1em; */
+    /* margin: 4em;
     background-color: white;
     border: 1px solid #bacdd8;
-    /* border-radius: 12px; */
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
-
-
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px; */
 }
 
 /* @media(max-width: 1200px) {
