@@ -14,7 +14,9 @@ function MoneyBucketManager(props) {
                         Spend
                     </div>
                     <div className="spend-total">
-                        $130.00
+                        {
+                            props.money && props.money[0] ? `$${props.money[0].spend_total}` : ''
+                        }
                     </div>
                     <div className="buttons">
                         <button className="deposit-button">+</button>
@@ -26,7 +28,9 @@ function MoneyBucketManager(props) {
                         Share
                     </div>
                     <div className="spend-total">
-                        $70.00
+                    {
+                            props.money && props.money[0] ? `$${props.money[0].share_total}` : ''
+                        }
                     </div>
                     <div className="buttons">
                         <button className="deposit-button">+</button>
@@ -38,7 +42,9 @@ function MoneyBucketManager(props) {
                         Save
                     </div>
                     <div className="spend-total">
-                        $180.00
+                    {
+                            props.money && props.money[0] ? `$${props.money[0].save_total}` : ''
+                        }
                     </div>
                     <div className="buttons">
                         <button className="deposit-button">+</button>

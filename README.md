@@ -1,5 +1,5 @@
 
-# Ante Up![image of money bag](./public/images/money-bag_24.png)
+# ![image of ante-up logo](./public/images/ante_up_welcome.png)
 
 ## Description
 

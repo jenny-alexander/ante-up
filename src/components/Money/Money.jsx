@@ -27,9 +27,9 @@ function Money(props) {
                 <Card component={<MoneyPie money={money}/>} />
             </div>
 
-            {/* <div className="money-bank">
-                <Card component={<MoneyBucketManager />} />
-            </div>  */}
+            <div className="money-bank">
+                <Card component={<MoneyBucketManager money={money} />} />
+            </div> 
         </div >
     )
 }
