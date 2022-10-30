@@ -6,10 +6,6 @@ function Header(props) {
     const user = useSelector((store) => store.user);
     //console.log('user is:', user);
 
-    useEffect(() => {
-        console.log('===> in useEffect of Header')
-    },[props.user]);
-
     return (
         <div className='header'>
             { Object.entries(user).length === 0 ? 

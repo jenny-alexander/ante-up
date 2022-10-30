@@ -14,9 +14,9 @@ function MoneyPie(props) {
     const setPieData = () => {
         console.log('in setPieData');
         setData([
-            { x: "Spend", y: parseInt(props.money[0]?.spend_total) },
-            { x: "Save", y: parseInt(props.money[0]?.save_total) },
-            { x: "Share", y: parseInt(props.money[0]?.share_total) },              
+            { x: "Spend", y: parseFloat(props.money[0]?.spend_total) },
+            { x: "Save", y: parseFloat(props.money[0]?.save_total) },
+            { x: "Share", y: parseFloat(props.money[0]?.share_total) },              
         ])
     }
 

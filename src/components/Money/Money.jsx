@@ -13,6 +13,7 @@ function Money(props) {
     const user = useSelector((store) => store.user);
 
     useEffect(()=> {
+        console.log('in Money useEffect');
         dispatch( { type: 'FETCH_MONEY', payload: user.id} );
     },[])
 
