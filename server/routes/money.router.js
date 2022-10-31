@@ -12,7 +12,7 @@ router.get('/:id', (req, res) => {
   pool.query(getMoneyQuery)
     .then((results) => {
       console.log('results from get money is:', results);
-      res.send(results.rows)
+      res.send(results.rows[0])
     }).catch((error) => {
       console.log('GET money records from server error is:', error);
     })

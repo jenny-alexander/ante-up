@@ -10,7 +10,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* fetchMoney(action) {
     console.log('in fetchMoney saga!');
     try {
-        //yield put({ type: 'UNSET_MONEY' });
+        yield put({ type: 'UNSET_MONEY' });
         console.log('in fetch money & action payload is:', action.payload);
         const response = yield axios.get(`/api/money/${action.payload}`);
         console.log('==> fetchMoney response is:', response);

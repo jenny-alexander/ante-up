@@ -18,14 +18,14 @@ function Allowance(props) {
         return monthName + ' ' + date.getDate() + ', ' + date.getFullYear();
     }
 
-    // useEffect(() => {
-    //     console.log('MEOW in useEffect of Allowance!!!')
-    //     console.log('PROPS of allowance are:', props.money[0]);
-    //     // dispatch({
-    //     //     type: 'FETCH_MONEY',
-    //     //     payload: user.id,
-    //     // })
-    // },[props.money])
+    useEffect(() => {
+        console.log('MEOW in useEffect of Allowance!!!')
+        console.log('PROPS of allowance are:', props.money);
+        // dispatch({
+        //     type: 'FETCH_MONEY',
+        //     payload: user.id,
+        // })
+    },[props.money])
 
     const deposit = (amount, toAccount, flagAccount) => {
         // console.log('Deposit amount is:', amount);
