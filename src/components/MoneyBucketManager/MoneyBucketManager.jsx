@@ -1,5 +1,6 @@
 import { React, useState } from 'react';
 import './MoneyBucketManager.scss';
+import * as Constants from '../../constants/index';
 
 function MoneyBucketManager(props) {
 
@@ -15,7 +16,7 @@ function MoneyBucketManager(props) {
                     </div>
                     <div className="spend-total">
                         {
-                            props.money && props.money[0] ? `$${props.money[0].spend_total}` : ''
+                            props.money && props.money[0] ? `${Constants.dollarUS.format(props.money[0].spend_total)}` : ''
                         }
                     </div>
                     <div className="buttons">
@@ -29,7 +30,7 @@ function MoneyBucketManager(props) {
                     </div>
                     <div className="spend-total">
                     {
-                            props.money && props.money[0] ? `$${props.money[0].share_total}` : ''
+                            props.money && props.money[0] ? `${Constants.dollarUS.format(props.money[0].share_total)}` : ''
                         }
                     </div>
                     <div className="buttons">
@@ -43,7 +44,7 @@ function MoneyBucketManager(props) {
                     </div>
                     <div className="spend-total">
                     {
-                            props.money && props.money[0] ? `$${props.money[0].save_total}` : ''
+                            props.money && props.money[0] ? `${Constants.dollarUS.format(props.money[0].save_total)}` : ''
                         }
                     </div>
                     <div className="buttons">

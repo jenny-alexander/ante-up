@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { VictoryPie } from "victory-pie";
 import { VictoryTooltip } from "victory-tooltip";
 import './MoneyPie.scss' //change this to './MoneyPie.scss';
+import * as Constants from '../../constants/index';
 
 function MoneyPie(props) {
 
@@ -13,10 +14,10 @@ function MoneyPie(props) {
 
     const setPieData = () => {
         console.log('in setPieData');
-        setData([
-            { x: "Spend", y: parseFloat(props.money[0]?.spend_total) },
-            { x: "Save", y: parseFloat(props.money[0]?.save_total) },
-            { x: "Share", y: parseFloat(props.money[0]?.share_total) },              
+        setData([           
+            { x: "Spend", y: Constants.dollarUS.format(props.money[0]?.spend_total) },
+            { x: "Save", y: Constants.dollarUS.format(props.money[0]?.save_total) },
+            { x: "Share", y: Constants.dollarUS.format(props.money[0]?.share_total) },        
         ])
     }
 
@@ -26,7 +27,7 @@ function MoneyPie(props) {
                 My Money At-a-Glance
             </div>
             <VictoryPie className="victory-pie"
-                labels={({ datum }) => `${datum.x}: $${datum.y}`}
+                labels={({ datum }) => `${datum.x}: ${datum.y}`}
                 //colorScale={["#006a4e","#00cc99","#a3c1ad"]}
                 colorScale="qualitative"
                 // radius={140}
@@ -36,7 +37,7 @@ function MoneyPie(props) {
                     <VictoryTooltip 
                             flyoutStyle={{ stroke: "green", strokeWidth: 2 }} 
                             active 
-                            pointerLength={15}
+                            pointerLength={30}
                     />}
                     style={{
                     labels: {

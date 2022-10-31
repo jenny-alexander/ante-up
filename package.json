@@ -13,6 +13,7 @@
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.2.2",
     "cookie-session": "^2.0.0",
+    "currency": "^4.1.0",
     "dotenv": "^8.6.0",
     "express": "^4.17.1",
     "passport": "^0.4.1",

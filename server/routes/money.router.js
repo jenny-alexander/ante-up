@@ -11,7 +11,7 @@ router.get('/:id', (req, res) => {
   console.log('getMoneyQuery is:', getMoneyQuery);
   pool.query(getMoneyQuery)
     .then((results) => {
-      console.log('results from get money is:', results);
+      console.log('results from get money is:', results.rows[0]);
       res.send(results.rows[0])
     }).catch((error) => {
       console.log('GET money records from server error is:', error);

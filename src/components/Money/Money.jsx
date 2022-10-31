@@ -21,7 +21,7 @@ function Money(props) {
         <div className="money">            
             <div className="money-allowance">
                 {/* <Allowance /> */}
-                <Card component={<Allowance money={money} />} />
+                <Card component={<Allowance money={money[0]} />} />
             </div>
 
             <div className="money-chart">
