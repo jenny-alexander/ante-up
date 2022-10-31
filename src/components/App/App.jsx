@@ -22,7 +22,7 @@ import Home from '../Home/Home';
 import Welcome from '../Welcome/Welcome';
 import Card from '../Common/Card/Card';
 
-import './App.css';
+import './App.scss';
 
 function App() {
   const dispatch = useDispatch();
@@ -37,8 +37,14 @@ function App() {
 
   return (
     <Router>
-      <div className="application">
-        
+      {/* <div className="application"> */}
+
+      <div className=
+        {
+         Object.entries(user).length === 0 ? 'application large' : 'application small' 
+        }>
+
+      {/* <Navigation user={user} />  */}
       { Object.entries(user).length === 0 ?  <Welcome /> : 
        
         <Navigation user={user} /> 
@@ -124,7 +130,6 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
-        {/* <Footer /> */}
 
       </div>
     </Router>

@@ -2,6 +2,9 @@ import { React } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './Navigation.scss';
+import PaidOutlineIcon from '@mui/icons-material/PaidOutlined';
+import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
+import HistoryIcon from '@mui/icons-material/History';
 //import mainLogo from 'images/ante_up.png';
 
 function Navigation(props) {
@@ -49,7 +52,8 @@ function Navigation(props) {
                         }
                     </div>
 {/* } */}
-            </div>
+            </div>  
+
     )
 }
 

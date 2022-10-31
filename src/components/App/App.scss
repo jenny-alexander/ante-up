@@ -11,8 +11,8 @@ button {
   
   height: 100vh;
   display: grid;
-  /* grid-template-columns: 150px 1fr; */
-  grid-template-columns: 0.75fr 1fr;
+  // grid-template-columns: 150px 1fr;
+  /* grid-template-columns: 0.75fr 1fr; */
   grid-template-rows: 60px 1fr;
   grid-template-areas: 
     "navigation header"
@@ -21,15 +21,11 @@ button {
     background-color: white;
     border: 1px solid #bacdd8;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px; */
-}
 
-/* @media(max-width: 1200px) {
-  body {
-    width: 80%;
+  &.large {
+    grid-template-columns: 0.75fr 1fr;
+  }
+  &.small {
+    grid-template-columns: 0.25fr 1fr;
   }
 }
-@media(min-width: 1201px) {
-  body {
-      width: 100%;
-  }
-} */
