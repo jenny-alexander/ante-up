@@ -60,11 +60,11 @@ function LoginForm() {
             </div>
           </div>
           <div className="form-row">
-            <button className="green-button login">Login</button>
+            <button type="submit" className="green-button login">Login</button>
           </div>
           <div className="not-registered">
             <p>Not yet registered?</p>
-            <button className="white-button register" onClick={() => {
+            <button type="button" className="white-button register" onClick={() => {
                 history.push('/registration');
               }} >
               Register here
