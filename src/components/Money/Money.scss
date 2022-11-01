@@ -2,15 +2,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    // > div {
-    //     width: 60%;
-    // }
     margin-top: 2em;
-    //padding-bottom: 1em;
+
+    & [class*="money-"] {
+        width:60%;
+    }
 }
 
-// @media(max-width: 650px) {
-//     .money div {
-//         width: 95%;
-//     }
-// }
+@media(max-width: 650px) {
+    .money {
+        & [class*="money-"] {
+
+            width:100%;
+        }
+    }
+}

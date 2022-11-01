@@ -22,7 +22,7 @@ function MoneyPie(props) {
     }
 
     return (
-        <div className="money-pie">
+        <div className="pie">
             <div className="chart-title">
                 My Money At-a-Glance
             </div>
@@ -41,7 +41,7 @@ function MoneyPie(props) {
                     />}
                     style={{
                     labels: {
-                        fontSize: 36
+                        fontSize: 20
                     }
                 }}
             />
