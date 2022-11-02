@@ -30,7 +30,8 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className={Object.entries(user).length === 0 ? 'application large' : 'application small'}>
+    // <div className={Object.entries(user).length === 0 ? 'application large' : 'application small'}>
+    <div className='application'>
       { Object.entries(user).length === 0 ?  <Welcome /> : <Navigation user={user} /> }
       <Header />
 

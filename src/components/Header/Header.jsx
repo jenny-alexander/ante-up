@@ -1,5 +1,7 @@
 import React, {useEffect} from 'react';
 import {  useSelector } from 'react-redux';
+import MenuIcon from '@mui/icons-material/Menu';
+import { IconButton } from '@mui/material';
 import './Header.scss';
 
 function Header(props) {
@@ -11,6 +13,9 @@ function Header(props) {
                 <div className="no-header"></div>
              :
             <div class="header-container">
+                <IconButton className="menu-icon">
+                    <MenuIcon></MenuIcon>
+                </IconButton>
                 <div class="image">
                     <img className="logo" src="images/ante_up.png" alt="ante up logo"></img>
                 </div>

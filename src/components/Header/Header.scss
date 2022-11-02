@@ -1,9 +1,10 @@
 .header-container {
     display: flex;
     align-items: center;
-    justify-content: center;
+    //justify-content: center;
+    justify-content: space-around;
+    //justify-content: space-evenly;
     flex-wrap:wrap;
-    //font-size:3rem;
     & img {
         max-width: 100%
       }
@@ -27,11 +28,9 @@
         }
       }
   }
-  
 
-
-//   @media(max-width: 650px) {
-//     .welcome {
-//         font-size: smaller;
-//     }
-// }
+  @media(min-width: 651px) {
+    .menu-icon {
+        visibility: hidden;
+    }
+}
