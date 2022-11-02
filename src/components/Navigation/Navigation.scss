@@ -20,11 +20,13 @@
         display: flex;
         flex-direction: column;
         // justify-content: center;
+        white-space: nowrap;
         align-items: center;
         
         & .logo {
             margin-top: 1em;
             margin-bottom: 2em;
+            //visibility: hidden;
         }
         & .action-links{
             display: flex;
@@ -104,4 +106,9 @@
         //     color: red;
         //   }
     }
+    // @media(max-width: 650px) {
+    //     .logo {
+    //         visibility:hidden;
+    //     }
+    // }
 }

@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 2em;
+    //margin-top: 2em;
 
     & [class*="money-"] {
         width:60%;
@@ -13,7 +13,7 @@
     .money {
         & [class*="money-"] {
 
-            width:100%;
+            width:90%;
         }
     }
 }

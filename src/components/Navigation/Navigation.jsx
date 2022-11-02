@@ -1,4 +1,4 @@
-import { React } from 'react';
+import React, {useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './Navigation.scss';
@@ -6,6 +6,7 @@ import './Navigation.scss';
 function Navigation(props) {
     const dispatch = useDispatch();
     const user = useSelector((store) => store.user);
+    const[isActive, setIsActive] = useState(false);
 
     return (
         <div className="navigation">
