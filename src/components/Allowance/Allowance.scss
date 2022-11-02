@@ -1,11 +1,14 @@
-$allowanceBtnColor: rgb(47, 59, 77);
+//$allowanceBtnColor: rgb(47, 59, 77);
+$allowanceBtnColor: rgb(100 107 101);
 $greenButton: rgb(39, 95, 88);
 
 .allowance-button {
-    border: px solid black;
+    //border: 1px solid black;
+    border: 1px solid $allowanceBtnColor;
     padding: 5px 10px;
     border-radius: 4px;
     background-color: $allowanceBtnColor;
+    box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.13);
     color: white;
 
     transition: 220ms all ease-in-out;

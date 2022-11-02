@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import {
-  HashRouter as Router,
-  Redirect,
   Route,
-  Switch,
+  Routes,
 } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,9 +16,7 @@ import Header from '../Header/Header';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import Home from '../Home/Home';
 import Welcome from '../Welcome/Welcome';
-import Card from '../Common/Card/Card';
 
 import './App.scss';
 
@@ -28,112 +24,64 @@ function App() {
   const dispatch = useDispatch();
 
   const user = useSelector(store => store.user);
-  // const money = useSelector(store => store.money);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
-    // dispatch({ type: 'FETCH_MONEY', payload: user.id });
   }, [dispatch]);
 
   return (
-    <Router>
-      {/* <div className="application"> */}
+    <div className={Object.entries(user).length === 0 ? 'application large' : 'application small'}>
+      { Object.entries(user).length === 0 ?  <Welcome /> : <Navigation user={user} /> }
+      <Header />
 
-      <div className=
-        {
-         Object.entries(user).length === 0 ? 'application large' : 'application small' 
-        }>
+      <Routes>
+        <Route path="/" element={user.id ? (<Dashboard />) : (<LoginPage />)} />
+        <Route path="/login" element={user.id ? (<Dashboard />) : (<LoginPage />)} />
+        <Route path="/registration" element={user.id ? (<Dashboard />) : (<RegisterPage />)} />
+        <Route path="/dashboard" element={user.id ? (<Dashboard />) : (<LoginPage />)} />
+        <Route path="/money" element={user.id ? (<Money />) : (<LoginPage />)} />
+        <Route path="/chore" element={user.id ? (<Chore />) : (<LoginPage />)} />
+        <Route path="/activity" element={user.id ? (<ActivityLog />) : (<LoginPage />)} />
+        {/* <Route>
+          <h1>404</h1>
+        </Route> */}
+      </Routes>
+    {/* </BrowserRouter> */}
+    </div>
 
-      {/* <Navigation user={user} />  */}
-      { Object.entries(user).length === 0 ?  <Welcome /> : 
-       
-        <Navigation user={user} /> 
-  }
-        <Header />
 
-        <Switch>
-          {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-          <Redirect exact from="/" to="/home" />
+//TODO: Check protected route and check 404
 
-          {/* For protected routes, the view could show one of several things on the same route.
-            Visiting localhost:3000/user will show the Home page if the user is logged in.
-            If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
-            Even though it seems like they are different pages, the user is always on localhost:3000/user */}
-          <ProtectedRoute
-            // logged in shows Home page else shows LoginPage
-            exact
-            path="/user"
-          >
-            <Home />
-          </ProtectedRoute>
+    //react-router-dom v5
+    // <Router>
+    //   <div>
 
-          <Route exact path="/dashboard">
-            {user.id ? <Dashboard /> : <LoginPage />}
-          </Route>
+    //     <Switch>
+    //       {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
+    //       <Redirect exact from="/" to="/home" />
 
-          <Route exact path="/money">
-            {user.id ? <Money /> : <LoginPage />}
-          </Route>
+    //       {/* For protected routes, the view could show one of several things on the same route.
+    //         Visiting localhost:3000/user will show the Home page if the user is logged in.
+    //         If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
+    //         Even though it seems like they are different pages, the user is always on localhost:3000/user */}
+    //       <ProtectedRoute
+    //         // logged in shows Home page else shows LoginPage
+    //         exact
+    //         path="/user"
+    //       >
+    //         <Home />
+    //       </ProtectedRoute>
 
-          <Route exact path="/chore">
-            {user.id ? <Chore /> : <LoginPage />}
-          </Route>
 
-          <Route
-            exact
-            path="/login"
-          >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect to the /user page
-              <Redirect to="/user" />
-              :
-              // Otherwise, show the login page
-              <LoginPage />
-            }
-          </Route>
+    //       {/* If none of the other routes matched, we will show a 404. */}
+    //       <Route>
+    //         <h1>404</h1>
+    //       </Route>
+    //     </Switch>
 
-          <Route
-            exact
-            path="/registration"
-          >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
-              <Redirect to="/user" />
-              :
-              // Otherwise, show the registration page
-              <RegisterPage />
-            }
-          </Route>
-
-          <Route
-            exact
-            path="/home"
-          >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
-              <Redirect to="/user" />
-              :
-              // Otherwise, show the Home page
-              <Home />
-            }
-          </Route>
-
-          <Route exact path="/activity">
-            { <ActivityLog />}
-          </Route>
-
-          {/* If none of the other routes matched, we will show a 404. */}
-          <Route>
-            <h1>404</h1>
-          </Route>
-        </Switch>
-
-      </div>
-    </Router>
-  );
+    //   </div>
+    // </Router>
+  )
 }
 
 export default App;

@@ -1,59 +1,60 @@
 import { React } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './Navigation.scss';
-import PaidOutlineIcon from '@mui/icons-material/PaidOutlined';
-import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
-import HistoryIcon from '@mui/icons-material/History';
-//import mainLogo from 'images/ante_up.png';
 
 function Navigation(props) {
     const dispatch = useDispatch();
     const user = useSelector((store) => store.user);
 
     return (
-            <div className="navigation">
-                {/* { Object.entries(user).length === 0 ? 
-                    <>
-                        <div className="main-links">
-                            <img className="logo" src="images/ante_up.png" alt="ante up logo"></img>
-                        </div> 
-                        <p className="nav-greeting">You're one click away from simplifying family chores and allowances.</p>
-                    </>
-                    :  */}
-                    <div className="main-links">
-                        <img className="logo" src="images/ante_up.png" alt="ante up logo"></img>
-                        <div className="action-links">
-                            <div>
-                                <Link className="nav-dashboard" to="dashboard">
+        <div className="navigation">
+                <div className="main-links">
+                    <img className="logo" src="images/ante_up.png" alt="ante up logo"></img>
+                    <div className="action-links">
+                            {/* <div> */}
+                                {/* <NavLink className={`nav-dashboard ${isActive ? "isActive" : "" }`} to="/dashboard"> */}
+                                {/* <NavLink className="nav-dashboard" to="/dashboard">
                                     Dashboard
-                                </Link>
-                            </div>
-                            <div>
-                            <Link className="nav-money" to="/money">
-                                Money
-                            </Link>
-                            </div>
-                            <div>
-                                <Link className="nav-chore" to="/chore">
-                                    Chores
-                                </Link>
-                            </div>
-                            <div>
-                            <Link className="nav-activity" to="/activity">
-                                Activity Log
-                            </Link>      
-                            </div>                                
+                                </NavLink> */}
+                            {/* </div> */}
+                        <div>
+                            <NavLink 
+                            //className={`nav-dashboard ${({ isActive }) => isActive ? activeClassName : ''}`}
+                                className={({ isActive }) => (isActive ? 'nav-dashboard isActive' : 'nav-dashboard')}
+                                to="/dashboard">
+                                Dashboard
+                            </NavLink>
+                        </div>                            
+                        <div>
+                            <NavLink 
+                                    className={({ isActive }) => (isActive ? 'nav-money isActive' : 'nav-money')}
+                                    to="/money">
+                                    Money
+                            </NavLink>
                         </div>
-                        { Object.entries(user).length === 0 ? '' : 
-                            <div className="logout">
-                                <button className="nav-logout" onClick={() => dispatch( { type: 'LOGOUT' })}>Log Out </button>
-                            </div>
-                        }
-                    </div>
-{/* } */}
+                        <div>
+                            <NavLink 
+                                className={({ isActive }) => (isActive ? 'nav-chore isActive' : 'nav-chore')}
+                                to="/chore">
+                                Chores
+                            </NavLink>
+                        </div>
+                        <div>
+                            <NavLink 
+                                className={({ isActive }) => (isActive ? 'nav-activity isActive' : 'nav-activity')}
+                                to="/activity">
+                                Activity Log
+                            </NavLink>
+                        </div>                        
+                        </div>
+                    { Object.entries(user).length === 0 ? '' : 
+                        <div className="logout">
+                            <button className="nav-logout" onClick={() => dispatch( { type: 'LOGOUT' })}>Log Out </button>
+                        </div>
+                    }
+                </div>
             </div>  
-
     )
 }
 

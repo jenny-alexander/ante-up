@@ -41,7 +41,7 @@ function MoneyPie(props) {
                     />}
                     style={{
                     labels: {
-                        fontSize: 20
+                        fontSize: 24
                     }
                 }}
             />

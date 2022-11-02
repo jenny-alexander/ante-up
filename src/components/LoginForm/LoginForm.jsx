@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+//import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './LoginForm.scss';
 
 function LoginForm() {
@@ -9,7 +10,8 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
   const dispatch = useDispatch();
-  const history = useHistory();
+  //const history = useHistory();
+  const navigate = useNavigate();
 
   const login = (event) => {
     event.preventDefault();
@@ -65,7 +67,8 @@ function LoginForm() {
           <div className="not-registered">
             <p>Not yet registered?</p>
             <button type="button" className="white-button register" onClick={() => {
-                history.push('/registration');
+                //history.push('/registration');
+                navigate('/registration');
               }} >
               Register here
             </button>

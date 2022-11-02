@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+//import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PropertyCard from '../PropertyCard/PropertyCard';
 import { CurrencyDollarIcon } from '@heroicons/react/solid';
 import { TrashIcon } from '@heroicons/react/solid';
@@ -9,7 +10,8 @@ import './Home.scss'
 
 function Home() {
     const user = useSelector((store) => store.user);
-    const history = useHistory();
+    //const history = useHistory();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const cardProps = [
@@ -30,7 +32,8 @@ function Home() {
     const onAllowanceClick = () => {
         console.log('You clicked on the Money button!')
         //now direct user to the Money page - use router
-        history.push('/money');
+        //history.push('/money');
+        navigate('/money');
     }
     const onChoresClick = () => {
         console.log('You clicked on the Chores button!')
