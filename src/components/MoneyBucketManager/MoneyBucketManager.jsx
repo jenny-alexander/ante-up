@@ -1,11 +1,25 @@
 import { React, useState } from 'react';
 import './MoneyBucketManager.scss';
 import * as Constants from '../../constants/index';
+import Modal from '../Common/Modal/Modal';
 
 function MoneyBucketManager(props) {
+    const[showModal, setShowModal] = useState(false);
+
+    const closeModal = () => {
+        console.log('in closeModal')
+        setShowModal(false);
+    }
 
     return (
         <div className="bucket-container">
+            <Modal title='Testing'
+                   show={showModal}
+                   close={closeModal}
+            />  
+
+
+
             <div className="bucket-title">
                 Money Bucket Manager
             </div>

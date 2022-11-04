@@ -5,7 +5,6 @@ import MoneyBucketManager from '../MoneyBucketManager/MoneyBucketManager';
 import Allowance from '../Allowance/Allowance';
 import Card from '../Common/Card/Card';
 import Modal from '../Common/Modal/Modal';
-import PropTypes from 'prop-types';
 import './Money.scss';
 
 function Money(props) {
@@ -32,7 +31,8 @@ function Money(props) {
     return (
         <div className="money">
             <button onClick={openModal}>Toggle modal</button>
-            <Modal show={showModal}
+            <Modal title='Testing'
+                   show={showModal}
                    close={() => {closeModal()}}
             />     
             <div className="money-allowance">
