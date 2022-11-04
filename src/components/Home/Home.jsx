@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 //import { useHistory } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import PropertyCard from '../PropertyCard/PropertyCard';
-import { CurrencyDollarIcon } from '@heroicons/react/solid';
-import { TrashIcon } from '@heroicons/react/solid';
-import { UserIcon } from '@heroicons/react/solid';
+// import { CurrencyDollarIcon } from '@heroicons/react/solid';
+// import { TrashIcon } from '@heroicons/react/solid';
+// import { UserIcon } from '@heroicons/react/solid';
 import './Home.scss'
 
 function Home() {
@@ -14,20 +14,20 @@ function Home() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const cardProps = [
-        {
-            icon: <CurrencyDollarIcon />,
-            text: 'Money'
-        },
-        {
-            icon: <TrashIcon />,
-            text: 'Chores'
-        },
-        {
-            icon: <UserIcon />,
-            text: 'Settings'
-        },
-    ]
+    // const cardProps = [
+    //     {
+    //         icon: <CurrencyDollarIcon />,
+    //         text: 'Money'
+    //     },
+    //     {
+    //         icon: <TrashIcon />,
+    //         text: 'Chores'
+    //     },
+    //     {
+    //         icon: <UserIcon />,
+    //         text: 'Settings'
+    //     },
+    // ]
 
     const onAllowanceClick = () => {
         console.log('You clicked on the Money button!')

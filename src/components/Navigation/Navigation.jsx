@@ -6,22 +6,15 @@ import './Navigation.scss';
 function Navigation(props) {
     const dispatch = useDispatch();
     const user = useSelector((store) => store.user);
-    const[isActive, setIsActive] = useState(false);
+    //const[isActive, setIsActive] = useState(false);
 
     return (
         <div className="navigation">
                 <div className="main-links">
                     <img className="logo" src="images/ante_up.png" alt="ante up logo"></img>
                     <div className="action-links">
-                            {/* <div> */}
-                                {/* <NavLink className={`nav-dashboard ${isActive ? "isActive" : "" }`} to="/dashboard"> */}
-                                {/* <NavLink className="nav-dashboard" to="/dashboard">
-                                    Dashboard
-                                </NavLink> */}
-                            {/* </div> */}
                         <div>
                             <NavLink 
-                            //className={`nav-dashboard ${({ isActive }) => isActive ? activeClassName : ''}`}
                                 className={({ isActive }) => (isActive ? 'nav-dashboard isActive' : 'nav-dashboard')}
                                 to="/dashboard">
                                 Dashboard
