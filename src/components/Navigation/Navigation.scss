@@ -36,6 +36,12 @@
                 text-decoration: underline wavy #f8c348 0.15rem;
                 text-underline-offset: 0.5rem;
             }
+            & [class*="nav-"]:hover {
+                background-color: rgba(39, 95, 88, 0.2);
+                border-radius: 5px;
+                
+            }
+
         }
 
          a {
