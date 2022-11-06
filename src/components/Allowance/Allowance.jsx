@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as Constants from '../../constants/index';
-//import Button from '../Common/Button/Button';
+// import ModalService from '../../modules/modals/services/ModalService';
+// import AllowanceModal from './AllowanceModal';
+import Modal from '../Common/Modal/Modal';
 import './Allowance.scss';
 
 function Allowance(props) {
     //const money = useSelector((store) => store.money);
     const user = useSelector((store) => store.user);
     const dispatch = useDispatch();
+    const[showModal, setShowModal] = useState(false);
     //const[ deposited, setDeposited ] = useState(props.money[0].spend_weekly_deposited);
     
 
@@ -18,14 +21,9 @@ function Allowance(props) {
         return monthName + ' ' + date.getDate() + ', ' + date.getFullYear();
     }
 
-    useEffect(() => {
-        console.log('MEOW in useEffect of Allowance!!!')
-        console.log('PROPS of allowance are:', props.money);
-        // dispatch({
-        //     type: 'FETCH_MONEY',
-        //     payload: user.id,
-        // })
-    },[props.money])
+    const addModal = () => {
+        ModalService.open(AllowanceModal);
+      };
 
     const deposit = (amount, toAccount, flagAccount) => {
         // console.log('Deposit amount is:', amount);
@@ -46,9 +44,23 @@ function Allowance(props) {
             payload: user.id,
           })
     }
+    const closeModal = () => {
+        console.log('closing modal');
+        setShowModal(false);
+    }
+
+    const openModal = () => {
+        setShowModal(!showModal);
+    }
 
     return (
         <div className="allowance">
+            <button onClick={openModal}>Toggle modal</button>
+            <Modal title='Deposit Allowance'
+                   show={showModal}
+                   close={() => {closeModal()}}
+                   actions = {[ { name:'Confirm', method: () => closeModal()   }]}
+            />     
             {/* <p>Deposited is:{JSON.stringify(deposited)}</p> */}
             <div className='allowance-title'>This Week's Allowance: {getDate()}</div>
                 <table className="allowance-table">

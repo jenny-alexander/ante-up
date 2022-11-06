@@ -12,9 +12,19 @@ function Modal(props) {
                 <div className="modal-content">
                     I'll be the content
                 </div>
+                
                 <div className="modal-actions">                    
                     <div className="action-buttons">
+                        {/* Always provide ability to close the modal. */}
                         <button onClick={props.close}>Close</button>
+                        {/* Loop through any other actions */}
+                        {
+                            props.actions.map(action => {
+                                return (
+                                    <button onClick={action.method}>{action.name}</button>
+                                )
+                            })
+                        }
                     </div>
                 </div>
 
@@ -30,5 +40,6 @@ Modal.PropTypes = {
     title: PropTypes.string,
     close: PropTypes.func.isRequired,
     show: PropTypes.bool.isRequired,
+    actions: PropTypes.array,
 }
 export default Modal;

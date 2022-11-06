@@ -18,12 +18,19 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Welcome from '../Welcome/Welcome';
 
+// import ModalService from '../../modules/modals/services/ModalService';
+// import TestModal from '../Modal/TestModal';
 import './App.scss';
+
 
 function App() {
   const dispatch = useDispatch();
 
   const user = useSelector(store => store.user);
+
+  // const addModal = () => {
+  //   ModalService.open(TestModal);
+  // };
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
@@ -32,6 +39,8 @@ function App() {
   return (
     // <div className={Object.entries(user).length === 0 ? 'application large' : 'application small'}>
     <div className='application'>
+      {/* <ModalRoot /> */}
+      {/* <button onClick={ addModal } className="btn btn-primary-m4">Open modal</button> */}
       { Object.entries(user).length === 0 ?  <Welcome /> : <Navigation user={user} /> }
       <Header />
 

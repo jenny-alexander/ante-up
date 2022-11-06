@@ -4,37 +4,39 @@ import MoneyPie from '../MoneyPie/MoneyPie';
 import MoneyBucketManager from '../MoneyBucketManager/MoneyBucketManager';
 import Allowance from '../Allowance/Allowance';
 import Card from '../Common/Card/Card';
-import Modal from '../Common/Modal/Modal';
+
 import './Money.scss';
 
 function Money(props) {
-
     const dispatch = useDispatch();
     const money = useSelector((store) => store.money);
     const user = useSelector((store) => store.user);
-    const[showModal, setShowModal] = useState(false);
+    //const[showModal, setShowModal] = useState(false);
 
     useEffect(()=> {
         console.log('in Money useEffect');
         dispatch( { type: 'FETCH_MONEY', payload: user.id} );
     },[])
 
-    const closeModal = () => {
-        console.log('closing modal');
-        setShowModal(false);
-    }
 
-    const openModal = () => {
-        setShowModal(!showModal);
-    }
+
+    // const closeModal = () => {
+    //     console.log('closing modal');
+    //     setShowModal(false);
+    // }
+
+    // const openModal = () => {
+    //     setShowModal(!showModal);
+    // }
 
     return (
         <div className="money">
-            <button onClick={openModal}>Toggle modal</button>
-            <Modal title='Testing'
+            {/* <button onClick={ addModal } className="btn btn-primary-m4">Open modal</button> */}
+            {/* <button onClick={openModal}>Toggle modal</button> */}
+            {/* <Modal title='Testing'
                    show={showModal}
                    close={() => {closeModal()}}
-            />     
+            />      */}
             <div className="money-allowance">
                 {/* <Allowance /> */}
                 <Card component={<Allowance money={money[0]} />} />
