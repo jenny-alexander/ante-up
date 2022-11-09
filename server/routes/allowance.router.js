@@ -7,14 +7,14 @@ const router = express.Router();
  */
 router.get('/:id', (req, res) => {
   console.log('id passed is:', req.params.id);
-  const getMoneyQuery = `SELECT * FROM money where id = ${req.params.id};`;
-  console.log('getMoneyQuery is:', getMoneyQuery);
-  pool.query(getMoneyQuery)
+  const getAllowanceQuery = `SELECT * FROM allowance where id = ${req.params.id};`;
+  console.log('getAllowanceQuery is:', getAllowanceQuery);
+  pool.query(getAllowanceQuery)
     .then((results) => {
-      console.log('results from get money is:', results.rows[0]);
+      console.log('results from get allowance is:', results.rows[0]);
       res.send(results.rows[0])
     }).catch((error) => {
-      console.log('GET money records from server error is:', error);
+      console.log('GET allowance records from server error is:', error);
     })
 });
 
@@ -24,14 +24,14 @@ router.get('/:id', (req, res) => {
 router.put('/deposit', (req, res) => {
   // PUT route code here
   console.log('req in deposit router is:', req.body);
-  const updateMoneyQuery = `UPDATE money set ${req.body.toAccount} = ${req.body.toAccount} + ${req.body.amount},
+  const updateAllowanceQuery = `UPDATE allowance set ${req.body.toAccount} = ${req.body.toAccount} + ${req.body.amount},
                               ${req.body.depositFlag} = TRUE;`
-  console.log('updateMoneyQuery is:', updateMoneyQuery);
+  console.log('updateAllowanceQuery is:', updateAllowanceQuery);
 
-  pool.query(updateMoneyQuery)
+  pool.query(updateAllowanceQuery)
     .then((result) => {
     }).catch((error) => {
-      console.log('Deposit money error is:', error);
+      console.log('Deposit allowance error is:', error);
       res.sendStatus(500);
     })
 });

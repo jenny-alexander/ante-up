@@ -21,7 +21,7 @@ function Modal(props) {
                         {
                             props.actions.map(action => {
                                 return (
-                                    <button onClick={action.method}>{action.name}</button>
+                                    <button key="modal-action" onClick={action.method}>{action.name}</button>
                                 )
                             })
                         }

@@ -9,13 +9,15 @@ import './Money.scss';
 
 function Money(props) {
     const dispatch = useDispatch();
-    const money = useSelector((store) => store.money);
+    const allowance = useSelector((store) => store.allowance);
+    const bank = useSelector((store) => store.bank );
     const user = useSelector((store) => store.user);
     //const[showModal, setShowModal] = useState(false);
 
     useEffect(()=> {
         console.log('in Money useEffect');
-        dispatch( { type: 'FETCH_MONEY', payload: user.id} );
+        dispatch( { type: 'FETCH_ALLOWANCE', payload: user.id} );
+        dispatch( { type: 'FETCH_BANK', payload: user.id })
     },[])
 
 
@@ -39,15 +41,15 @@ function Money(props) {
             />      */}
             <div className="money-allowance">
                 {/* <Allowance /> */}
-                <Card component={<Allowance money={money[0]} />} />
+                <Card component={<Allowance allowance={allowance[0]} />} />
             </div>
 
-            <div className="money-chart">
-                <Card component={<MoneyPie money={money}/>} />
+            <div className="money-bank-chart">
+                <Card component={<MoneyPie bank={bank}/>} />
             </div>
 
             <div className="money-bank">
-                <Card component={<MoneyBucketManager money={money} />} />
+                <Card component={<MoneyBucketManager bank={bank} />} />
             </div> 
         </div >
     )

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as Constants from '../../constants/index';
-// import ModalService from '../../modules/modals/services/ModalService';
-// import AllowanceModal from './AllowanceModal';
 import Modal from '../Common/Modal/Modal';
 import './Allowance.scss';
 
@@ -11,6 +9,9 @@ function Allowance(props) {
     const user = useSelector((store) => store.user);
     const dispatch = useDispatch();
     const[showModal, setShowModal] = useState(false);
+    const[spend, setSpend] = useState((props.allowance?.spend_weekly));
+    const[save, setSave] = useState((props.allowance?.save_weekly));
+    const[share, setShare] = useState((props.allowance?.share_weekly));
     //const[ deposited, setDeposited ] = useState(props.money[0].spend_weekly_deposited);
     
 
@@ -21,17 +22,13 @@ function Allowance(props) {
         return monthName + ' ' + date.getDate() + ', ' + date.getFullYear();
     }
 
-    const addModal = () => {
-        ModalService.open(AllowanceModal);
-      };
-
     const deposit = (amount, toAccount, flagAccount) => {
         // console.log('Deposit amount is:', amount);
         // console.log('toAccount is:', toAccount);
         // console.log('flagAccount is:', flagAccount);
 
         dispatch({
-            type: 'DEPOSIT_MONEY',
+            type: 'DEPOSIT_ALLOWANCE',
             payload: {
                 amount: amount,
                 toAccount: toAccount,
@@ -40,7 +37,7 @@ function Allowance(props) {
         });
 
         dispatch({
-            type: 'FETCH_MONEY',
+            type: 'FETCH_ALLOWANCE',
             payload: user.id,
           })
     }
@@ -59,7 +56,7 @@ function Allowance(props) {
             <Modal title='Deposit Allowance'
                    show={showModal}
                    close={() => {closeModal()}}
-                   actions = {[ { name:'Confirm', method: () => closeModal()   }]}
+                   actions = {[ { name:'Confirm', method: () => deposit(spend, save, share)   }]}
             />     
             {/* <p>Deposited is:{JSON.stringify(deposited)}</p> */}
             <div className='allowance-title'>This Week's Allowance: {getDate()}</div>
@@ -74,36 +71,36 @@ function Allowance(props) {
                     <tbody>
                         <tr>
                             <td>Spend</td>
-                            <td>{ props.money ? Constants.dollarUS.format(props.money?.spend_weekly) : ''}</td>
+                            <td>{ props.allowance ? Constants.dollarUS.format(props.allowance?.spend_weekly) : ''}</td>
                             <td>
                             {     
-                               props.money && props.money?.spend_weekly_deposited ? <p>Deposited</p> :                               
+                               props.allowance && props.allowance?.spend_weekly_deposited ? <p>Deposited</p> :                               
                                     <button className="allowance-button" 
-                                            onClick={() => deposit(props.money.spend_weekly,'spend_total', 'spend_weekly_deposited')}
+                                            onClick={() => deposit(props.allowance.spend_weekly,'spend_total', 'spend_weekly_deposited')}
                                     > Deposit</button>
                                 } 
                             </td>
                         </tr>
                         <tr>
                             <td>Save</td>
-                            <td>{ props.money ? Constants.dollarUS.format(props.money?.save_weekly) : ''}</td>
+                            <td>{ props.allowance ? Constants.dollarUS.format(props.allowance?.save_weekly) : ''}</td>
                             <td>
                             {     
-                               props.money && props.money?.save_weekly_deposited ? <p>Deposited</p> :                               
+                               props.allowance && props.allowance?.save_weekly_deposited ? <p>Deposited</p> :                               
                                     <button className="allowance-button" 
-                                            onClick={() => deposit(props.money.save_weekly,'save_total', 'save_weekly_deposited')}
+                                            onClick={() => deposit(props.allowance.save_weekly,'save_total', 'save_weekly_deposited')}
                                     > Deposit</button>
                                 } 
                             </td>
                         </tr>
                         <tr>
                             <td>Share</td>
-                            <td>{ props.money ? Constants.dollarUS.format(props.money?.share_weekly) : ''}</td>
+                            <td>{ props.allowance ? Constants.dollarUS.format(props.allowance?.share_weekly) : ''}</td>
                             <td>
                             {     
-                               props.money && props.money?.share_weekly_deposited ? <p>Deposited</p> :                               
+                               props.allowance && props.allowance?.share_weekly_deposited ? <p>Deposited</p> :                               
                                     <button className="allowance-button" 
-                                            onClick={() => deposit(props.money.share_weekly,'share_total', 'share_weekly_deposited')}
+                                            onClick={() => deposit(props.allowance.share_weekly,'share_total', 'share_weekly_deposited')}
                                     > Deposit</button>
                                 } 
                             </td>

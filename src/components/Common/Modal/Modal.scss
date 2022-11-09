@@ -43,9 +43,12 @@
       padding: 0.5rem 1rem;
 
       .action-buttons {
+        display:flex;
+        gap: 2em;
         padding-top: 1em;
         border: 0;
         //background: #78f89f;
+        
         border-radius: 5px;
         
         

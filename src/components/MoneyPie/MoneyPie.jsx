@@ -15,9 +15,9 @@ function MoneyPie(props) {
     const setPieData = () => {
         console.log('in setPieData');
         setData([           
-            { x: "Spend", y: Constants.dollarUS.format(props.money[0]?.spend_total) },
-            { x: "Save", y: Constants.dollarUS.format(props.money[0]?.save_total) },
-            { x: "Share", y: Constants.dollarUS.format(props.money[0]?.share_total) },        
+            { x: "Spend", y: Constants.dollarUS.format(props.bank[0]?.spend) },
+            { x: "Save", y: Constants.dollarUS.format(props.bank[0]?.save) },
+            { x: "Share", y: Constants.dollarUS.format(props.bank[0]?.share) },        
         ])
     }
 
@@ -41,7 +41,7 @@ function MoneyPie(props) {
                     />}
                     style={{
                     labels: {
-                        fontSize: 24
+                        fontSize: 26
                     }
                 }}
             />
