@@ -7,6 +7,18 @@ import { put, takeLatest } from 'redux-saga/effects';
 - update boolean deposited values (to determine whether $ was paid to user)
 */
 
+function* fetchLatestAllowance(action) {
+    console.log('in fetchLatestAllowance saga!');
+    try {
+        yield put({ type: 'UNSET_LATEST_ALLOWANCE' });
+        const response = yield axios.get(`/api/allowance/latest/${action.payload}`);
+        console.log('==> fetchLatestAllowance response is:', response);
+        yield put({ type: 'SET_LATEST_ALLOWANCE', payload: response.data });
+    } catch (error) {
+        console.log('Allowance GET LATEST request failed', error);
+    }
+}
+
 function* fetchAllowance(action) {
     console.log('in fetchAllowance saga!');
     try {
@@ -20,20 +32,21 @@ function* fetchAllowance(action) {
     }
 }
 
-function* depositAllowance(action) {
-    console.log('in depositAllowance in saga!');
-    console.log('action is:', action);
-    try {
-        const response = yield axios.put(`/api/allowance/deposit`, action.payload);
-        //yield put({ type: 'FETCH_MONEY', payload: response.data });
-    } catch (error) {
-        console.log('Allowance PUT (deposit) failed with:', error);
-    }
-}
+// function* depositAllowance(action) {
+//     console.log('in depositAllowance in saga!');
+//     console.log('action is:', action);
+//     try {
+//         const response = yield axios.put(`/api/allowance/deposit`, action.payload);
+//         //yield put({ type: 'FETCH_MONEY', payload: response.data });
+//     } catch (error) {
+//         console.log('Allowance PUT (deposit) failed with:', error);
+//     }
+// }
 
 function* allowanceSaga() {
     yield takeLatest('FETCH_ALLOWANCE', fetchAllowance);
-    yield takeLatest('DEPOSIT_ALLOWANCE', depositAllowance);
+    //yield takeLatest('DEPOSIT_ALLOWANCE', depositAllowance);
+    yield takeLatest('FETCH_LATEST_ALLOWANCE', fetchLatestAllowance);
 }
 
 export default allowanceSaga;

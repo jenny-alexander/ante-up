@@ -13,7 +13,7 @@ import bank from './bank.reducer';
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
-  allowance,
+  allowance, //contains allowance and latestAllowance
   bank,
 });
 

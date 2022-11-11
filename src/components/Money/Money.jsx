@@ -10,17 +10,17 @@ import './Money.scss';
 function Money(props) {
     const dispatch = useDispatch();
     const allowance = useSelector((store) => store.allowance);
-    const bank = useSelector((store) => store.bank );
+    const bank = useSelector((store) => store.bank.bank );
     const user = useSelector((store) => store.user);
     //const[showModal, setShowModal] = useState(false);
 
     useEffect(()=> {
         console.log('in Money useEffect');
         dispatch( { type: 'FETCH_ALLOWANCE', payload: user.id} );
-        dispatch( { type: 'FETCH_BANK', payload: user.id })
+        dispatch( { type: 'FETCH_LATEST_ALLOWANCE', payload: user.id });
+        //dispatch( { type: 'FETCH_BANK', payload: user.id })
+         dispatch( {type: "GET_BANK_REQUESTED", payload: user.id})
     },[])
-
-
 
     // const closeModal = () => {
     //     console.log('closing modal');
@@ -41,7 +41,7 @@ function Money(props) {
             />      */}
             <div className="money-allowance">
                 {/* <Allowance /> */}
-                <Card component={<Allowance allowance={allowance[0]} />} />
+                <Card component={<Allowance allowance={allowance} />} />
             </div>
 
             <div className="money-bank-chart">
