@@ -9,9 +9,9 @@ function Allowance(props) {
     const user = useSelector((store) => store.user);
     const dispatch = useDispatch();
     const[showModal, setShowModal] = useState(false);
-    const[spend, setSpend] = useState((props.allowance?.spend_weekly));
-    const[save, setSave] = useState((props.allowance?.save_weekly));
-    const[share, setShare] = useState((props.allowance?.share_weekly));
+    // const[spend, setSpend] = useState((props.allowance?.spend_weekly));
+    // const[save, setSave] = useState((props.allowance?.save_weekly));
+    // const[share, setShare] = useState((props.allowance?.share_weekly));
     //const[ deposited, setDeposited ] = useState(props.money[0].spend_weekly_deposited);
     
 
@@ -22,17 +22,12 @@ function Allowance(props) {
         return monthName + ' ' + date.getDate() + ', ' + date.getFullYear();
     }
 
-    const delay = ms => new Promise(res => setTimeout(res, ms));
-
-
-
     const deposit = (amount, toAccount, flagAccount) => {
         console.log('Deposit amount is:', amount);
         console.log('toAccount is:', toAccount);
         console.log('flagAccount is:', flagAccount);
 
         dispatch({
-            //type: 'DEPOSIT_ALLOWANCE',
             type: 'DEPOSIT_BANK',
             payload: {
                 userID: user.id,
@@ -41,15 +36,6 @@ function Allowance(props) {
                 depositFlag: flagAccount,
             },
         });
-
-        
-        // await delay(200);
-
-        // dispatch({
-        //     //type: 'FETCH_BANK',
-        //     type: 'GET_BANK_REQUESTED',
-        //     payload: user.id,
-        //   })
     }
     const closeModal = () => {
         console.log('closing modal');
@@ -98,7 +84,7 @@ function Allowance(props) {
                             {     
                                props.allowance && props.allowance?.save_deposited ? <p>Deposited</p> :                               
                                     <button className="allowance-button" 
-                                            onClick={() => deposit(props.allowance.latestAllowance.save,'save_total', 'save_weekly_deposited')}
+                                            onClick={() => deposit(props.allowance.latestAllowance.save,'save', 'save_weekly_deposited')}
                                     > Deposit</button>
                                 } 
                             </td>
@@ -110,7 +96,7 @@ function Allowance(props) {
                             {     
                                props.allowance && props.allowance?.share_deposited ? <p>Deposited</p> :                               
                                     <button className="allowance-button" 
-                                            onClick={() => deposit(props.allowance.latestAllowance.share,'share_total', 'share_weekly_deposited')}
+                                            onClick={() => deposit(props.allowance.latestAllowance.share,'share', 'share_weekly_deposited')}
                                     > Deposit</button>
                                 } 
                             </td>
