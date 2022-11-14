@@ -10,7 +10,8 @@ import './Money.scss';
 function Money(props) {
     const dispatch = useDispatch();
     const allowance = useSelector((store) => store.allowance);
-    const bank = useSelector((store) => store.bank.bank );
+    // const bank = useSelector((store) => store.bank.bank );
+    const bank = useSelector((store) => store.bank );
     const user = useSelector((store) => store.user);
     //const[showModal, setShowModal] = useState(false);
 
@@ -41,15 +42,16 @@ function Money(props) {
             />      */}
             <div className="money-allowance">
                 {/* <Allowance /> */}
-                <Card component={<Allowance allowance={allowance} />} />
+                <Card component={<Allowance allowance={allowance}
+                                            bankError={bank.error} />} />
             </div>
 
             <div className="money-bank-chart">
-                <Card component={<MoneyPie bank={bank}/>} />
+                <Card component={<MoneyPie bank={bank.bank}/>} />
             </div>
 
             <div className="money-bank">
-                <Card component={<MoneyBucketManager bank={bank} />} />
+                <Card component={<MoneyBucketManager bank={bank.bank} />} />
             </div> 
         </div >
     )

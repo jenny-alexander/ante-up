@@ -32,7 +32,7 @@ function MoneyBucketManager(props) {
                     </div>
                     <div className="spend-total">
                         {
-                            props.bank && props.bank[0] ? `${Constants.dollarUS.format(props.bank[0].spend)}` : ''
+                            props.bank && props.bank ? `${Constants.dollarUS.format(props.bank.spend)}` : ''
                         }
                     </div>
                     <div className="buttons">
@@ -46,7 +46,7 @@ function MoneyBucketManager(props) {
                     </div>
                     <div className="spend-total">
                     {
-                            props.bank && props.bank[0] ? `${Constants.dollarUS.format(props.bank[0].share)}` : ''
+                            props.bank && props.bank ? `${Constants.dollarUS.format(props.bank.share)}` : ''
                         }
                     </div>
                     <div className="buttons">
@@ -54,13 +54,13 @@ function MoneyBucketManager(props) {
                         <button className="deposit-button">-</button>
                     </div>
                 </div>
-                <div className="bucket share">
+                <div className="bucket save">
                     <div className="spend-title">
                         Save
                     </div>
                     <div className="spend-total">
                     {
-                            props.bank && props.bank[0] ? `${Constants.dollarUS.format(props.bank[0].save)}` : ''
+                            props.bank && props.bank ? `${Constants.dollarUS.format(props.bank.save)}` : ''
                         }
                     </div>
                     <div className="buttons">

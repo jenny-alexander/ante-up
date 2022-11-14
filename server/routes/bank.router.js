@@ -22,21 +22,14 @@ router.get('/:id', (req, res) => {
  * PUT route template
  */
 router.put('/deposit', (req, res) => {
-    // PUT route code here
-    console.log('req in deposit to bank router is:', req.body);
-    // const updateBankQuery = `UPDATE bank set ${req.body.toAccount} = ${req.body.toAccount} + ${req.body.amount},
-    //                             ${req.body.depositFlag} = TRUE;`
-    const updateBankQuery = `UPDATE bank set ${req.body.toAccount} = ${req.body.toAccount} + ${req.body.amount}
+    const updateBankQuery = `UPDATE bank set ${req.body.depositDetails.toAccount} = ${req.body.depositDetails.toAccount} + ${req.body.depositDetails.amount}
                              WHERE user_id = ${req.body.userID};`
-
     console.log('updateBankQuery is:', updateBankQuery);
-
     pool.query(updateBankQuery)
         .then((result) => {
             const getBankQuery = `SELECT * FROM bank where user_id = ${req.body.userID};`;
             pool.query(getBankQuery)
                 .then((results) => {
-                    console.log('results from get bank is:', results.rows[0]);
                     res.send(results.rows[0])
                 }).catch((error) => {
                     console.log('GET bank records from server error is:', error.message);

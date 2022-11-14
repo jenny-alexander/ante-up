@@ -11,6 +11,7 @@ function* fetchBank(action) {
         yield put({ type: 'GET_BANK_SUCCESS', payload: response.data });
     } catch (error) {
         console.log('Bank GET request failed', error);
+        yield put({ type: 'GET_BANK_FAILED', payload: error })
     }
 }
 
@@ -24,6 +25,8 @@ function* depositBank(action) {
         //const response = yield call(axios.put(`/api/bank/deposit`), action.payload);
     } catch (error) {
         console.log('Bank PUT (deposit) failed with:', error);
+        yield put({ type: 'GET_BANK_FAILED', payload: error })
+
     }
 }
 

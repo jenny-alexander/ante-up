@@ -11,9 +11,10 @@ const bankReducer = (state = initialState, action) => {
             return { ...state, loading: true }
         case 'GET_BANK_SUCCESS':
             console.log('MOOOOO')
-            return { ...state, loading: false, bank: action.payload }
+            return { ...state, loading: false, bank: action.payload, error: null }
         case 'GET_BANK_FAILED':
-            return { ...state, loading: false, error: action.message }
+            return { ...state, loading: false, error: action.payload }
+
         // case 'SET_BANK':
         //     console.log('in bankReducer and action payload is:', action.payload)
         //     return [...state, action.payload];
