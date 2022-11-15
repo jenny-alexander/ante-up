@@ -43,7 +43,10 @@ function Money(props) {
             <div className="money-allowance">
                 {/* <Allowance /> */}
                 <Card component={<Allowance allowance={allowance}
-                                            bankError={bank.error} />} />
+                                            bank={bank}
+                                            // bankError={bank.error} 
+                                            // depositSucess={bank.depositSucess}
+                                            />} />
             </div>
 
             <div className="money-bank-chart">

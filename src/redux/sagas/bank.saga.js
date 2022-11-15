@@ -18,11 +18,12 @@ function* fetchBank(action) {
 function* depositBank(action) {
     console.log('in depositBank in saga!');
     console.log('action is:', action);
+    yield put({ type: 'CLEAR_DEPOSIT_SUCCESS' }); //clear successul deposit flag
     try {
         const response = yield axios.put(`/api/bank/deposit`, action.payload);
         console.log('==> fetchBank response is:', response);
-        yield put({ type: 'GET_BANK_SUCCESS', payload: response.data });
-        //const response = yield call(axios.put(`/api/bank/deposit`), action.payload);
+        //yield put({ type: 'GET_BANK_SUCCESS', payload: response.data });
+        yield put({ type: 'DEPOSIT_SUCCESS', payload: response.data });
     } catch (error) {
         console.log('Bank PUT (deposit) failed with:', error);
         yield put({ type: 'GET_BANK_FAILED', payload: error })

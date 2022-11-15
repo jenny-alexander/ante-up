@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+
 const allowance = (state = [], action) => {
     switch (action.type) {
         case 'SET_ALLOWANCE':
