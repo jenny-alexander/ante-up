@@ -10,7 +10,7 @@ const latestAllowanceInitState = {
 const allowance = (state = [], action) => {
     switch (action.type) {
         case 'SET_ALLOWANCE':
-            console.log('in allowanceReducer and action payload is:', action.payload)
+            // console.log('in allowanceReducer and action payload is:', action.payload)
             return [...state, action.payload];
         case 'UNSET_ALLOWANCE':
             return [];
@@ -20,13 +20,20 @@ const allowance = (state = [], action) => {
 }
 
 const latestAllowance = (state = {}, action) => {
+    console.log('in latestAllowance reducer and action payload is:', action.payload);
     switch (action.type) {
         case 'SET_LATEST_ALLOWANCE':
-            console.log('in set latestAllowanceReducer and action payload is:', action.payload);
+            // console.log('in set latestAllowanceReducer and action payload is:', action.payload);
             //return { ...state, state: action.payload };
             return action.payload;
         case 'UNSET_LATEST_ALLOWANCE':
             return {};
+        case 'UPDATE_SPEND_FLAG':
+            // return { ...state, spend_deposited: true }
+            return {
+                ...state,
+                [action.payload]: true,
+            }
         default:
             return state;
     }

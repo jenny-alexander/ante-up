@@ -37,8 +37,8 @@ function* updateAllowance(action) {
     try {
         yield axios.put('/api/allowance/update-deposit-flag', action.payload);
         yield put({ type: 'UNSET_ALLOWANCE' });
-        yield put({ type: 'SET_LATEST_ALLOWANCE', payload: action.payload.updatedLatestAllowance });
-        // yield put({ type: 'UPDATE_SPEND_FLAG' });
+        //yield put({ type: 'SET_LATEST_ALLOWANCE', payload: action.payload.updatedLatestAllowance });
+        yield put({ type: 'UPDATE_SPEND_FLAG', payload: action.payload.depositedFlagColumn });
     } catch (error) {
         console.log('set deposit flag error is:', error);
     }
