@@ -22,12 +22,11 @@ function* depositBank(action) {
     try {
         const response = yield axios.put(`/api/bank/deposit`, action.payload);
         console.log('==> fetchBank response is:', response);
-        //yield put({ type: 'GET_BANK_SUCCESS', payload: response.data });
+        //yield put({ type: 'UPDATE_ALLOWANCE', payload: action.payload })
         yield put({ type: 'DEPOSIT_SUCCESS', payload: response.data });
     } catch (error) {
         console.log('Bank PUT (deposit) failed with:', error);
         yield put({ type: 'GET_BANK_FAILED', payload: error })
-
     }
 }
 

@@ -32,21 +32,23 @@ function* fetchAllowance(action) {
     }
 }
 
-// function* depositAllowance(action) {
-//     console.log('in depositAllowance in saga!');
-//     console.log('action is:', action);
-//     try {
-//         const response = yield axios.put(`/api/allowance/deposit`, action.payload);
-//         //yield put({ type: 'FETCH_MONEY', payload: response.data });
-//     } catch (error) {
-//         console.log('Allowance PUT (deposit) failed with:', error);
-//     }
-// }
+function* updateAllowance(action) {
+    console.log('in depositFlagSetToFalse & action is:', action);
+    try {
+        yield axios.put('/api/allowance/update-deposit-flag', action.payload);
+        yield put({ type: 'UNSET_ALLOWANCE' });
+        yield put({ type: 'SET_LATEST_ALLOWANCE', payload: action.payload.updatedLatestAllowance });
+        // yield put({ type: 'UPDATE_SPEND_FLAG' });
+    } catch (error) {
+        console.log('set deposit flag error is:', error);
+    }
+}
 
 function* allowanceSaga() {
     yield takeLatest('FETCH_ALLOWANCE', fetchAllowance);
     //yield takeLatest('DEPOSIT_ALLOWANCE', depositAllowance);
     yield takeLatest('FETCH_LATEST_ALLOWANCE', fetchLatestAllowance);
+    yield takeLatest('UPDATE_ALLOWANCE', updateAllowance);
 }
 
 export default allowanceSaga;

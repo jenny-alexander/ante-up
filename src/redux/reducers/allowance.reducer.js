@@ -1,5 +1,11 @@
 import { combineReducers } from 'redux';
 
+const latestAllowanceInitState = {
+    data: {},
+    loading: false,
+    error: null,
+    success: false,
+}
 
 const allowance = (state = [], action) => {
     switch (action.type) {

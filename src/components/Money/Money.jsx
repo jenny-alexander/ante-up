@@ -23,30 +23,19 @@ function Money(props) {
          dispatch( {type: "GET_BANK_REQUESTED", payload: user.id})
     },[])
 
-    // const closeModal = () => {
-    //     console.log('closing modal');
-    //     setShowModal(false);
-    // }
+    // useEffect(() => {
+    //     console.log('allowance changed! it is now:', allowance)
+    // },[allowance])
 
-    // const openModal = () => {
-    //     setShowModal(!showModal);
-    // }
+    useEffect(() => {
+        console.log('latest allowance changed! it is now:', allowance.latestAllowance)
+    },[allowance.latestAllowance])
 
     return (
         <div className="money">
-            {/* <button onClick={ addModal } className="btn btn-primary-m4">Open modal</button> */}
-            {/* <button onClick={openModal}>Toggle modal</button> */}
-            {/* <Modal title='Testing'
-                   show={showModal}
-                   close={() => {closeModal()}}
-            />      */}
             <div className="money-allowance">
-                {/* <Allowance /> */}
-                <Card component={<Allowance allowance={allowance}
-                                            bank={bank}
-                                            // bankError={bank.error} 
-                                            // depositSucess={bank.depositSucess}
-                                            />} />
+                <Card component={<Allowance allowance={allowance} bank={bank} />}
+                />
             </div>
 
             <div className="money-bank-chart">

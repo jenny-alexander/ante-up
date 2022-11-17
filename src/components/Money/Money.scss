@@ -4,6 +4,10 @@
     align-items: center;
     //margin-top: 2em;
 
+    & .money-bank {
+        margin-bottom: 2em;
+    }
+
     & [class*="money-"] {
         width:60%;
     }
