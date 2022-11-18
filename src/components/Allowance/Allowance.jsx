@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as Constants from '../../constants/index';
-import Modal from '../Common/Modal/Modal';
 import './Allowance.scss';
-// import Swal from 'sweetalert2/dist/sweetalert2.js';
 import Swal from 'sweetalert2';
-// import Swal from 'sweetalert2/dist/sweetalert2.js';
-// import 'sweetalert/src/sweetalert.css';
 
 function Allowance(props) {
     const user = useSelector((store) => store.user);
     const dispatch = useDispatch();
     const[spend, setSpend] = useState(props.allowance?.latestAllowance.spend);
     const[save, setSave] = useState(props.allowance?.latestAllowance.save_weekly);
-    const[share, setShare] = useState(props.allowance?.latestAllowance.share_weekly);
-    // const[spendDeposited, setSpendDeposited] = useState(props.allowance?.latestAllowance.spend_deposited)
+    const[share, setShare] = useState(props.allowance?.latestAllowance.share_weekly);    
     const[lastDeposited, setLastDeposited] = useState('');
     const[updatedLatestAllowance, setUpdatedLatestAllowance] = useState({});
 
@@ -24,21 +19,17 @@ function Allowance(props) {
         //TODO: Look at latestAllowance instead?
         setSpend(props.allowance.latestAllowance.spend);
         setSave(props.allowance.latestAllowance.save);
-        setShare(props.allowance.latestAllowance.share);
-        // setSpendDeposited(props.allowance.latestAllowance.spend_deposited);
+        setShare(props.allowance.latestAllowance.share);        
     },[props.allowance.latestAllowance])
 
 
     useEffect(() => {
-        if ( props.bank.error != null) {
-            // console.log('props.bank.error are:', props.bank.error)
+        if ( props.bank.error != null) {            
             showErrorModal();
         }
     },[props.bank.error])
 
-    useEffect(() => {
-        // console.log('in the useEffect for depositSuccess and udpatedLatestAllowance is:', updatedLatestAllowance)
-        // console.log('in the useEffect for depositSuccess, props.allowance.latestAllowance is:',props.allowance.latestAllowance)
+    useEffect(() => { 
         if (props.bank.depositSuccess === true) {
             dispatch( {
                 type: 'UPDATE_ALLOWANCE',
@@ -97,8 +88,6 @@ function Allowance(props) {
             },
         }).then((result) => {
             if (result.isConfirmed) {
-            //   Swal.fire('Saved!', '', 'success')
-            // console.log('user is confirming deposit');
             deposit(amount, toAccount, dbAccountName);
             } 
           })              
@@ -124,9 +113,7 @@ function Allowance(props) {
     }
     return (
         <div className="allowance">
-            <h2>spend_deposited is:
-                {JSON.stringify(updatedLatestAllowance.spend_deposited)}
-            </h2>
+
             {/* <button onClick={launchToast}>Launch toast</button> */}
             <div className='allowance-title'>This Week's Allowance: {getDate()}</div>
                 <table className="allowance-table">
@@ -140,17 +127,14 @@ function Allowance(props) {
                     <tbody>
                         <tr>
                             <td>Spend</td>
-                            <td>{ props.allowance ? Constants.dollarUS.format(props.allowance?.latestAllowance.spend) : ''}</td>
+                            <td>{ props.allowance?.latestAllowance ? Constants.dollarUS.format(props.allowance?.latestAllowance.spend) : ''}</td>
                             <td>
-                                {/* { !spendDeposited ?                                     <button className="allowance-button" 
-                                            onClick={ () => openAllowanceModal(props.allowance.latestAllowance.spend,'spend', 'Spend','spend_deposited')}
-                                    > Deposit</button> : 'DEPOSITED'} */}
-                            {     
+                                {
                                props.allowance && props.allowance?.latestAllowance.spend_deposited ? <p>Deposited</p> :                               
                                     <button className="allowance-button" 
                                             onClick={ () => openAllowanceModal(props.allowance.latestAllowance.spend,'spend', 'Spend','spend_deposited')}
                                     > Deposit</button>
-                                } 
+                                }
                             </td>
                         </tr>
                         <tr>

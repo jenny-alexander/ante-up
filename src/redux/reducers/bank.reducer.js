@@ -13,6 +13,7 @@ const bankReducer = (state = initialState, action) => {
         case 'GET_BANK_SUCCESS':
             console.log('MOOOOO')
             return { ...state, loading: false, bank: action.payload, error: null, depositSuccess: false }
+
         case 'GET_BANK_FAILED':
             return { ...state, loading: false, error: action.payload, depositSuccess: false }
         case 'DEPOSIT_SUCCESS':

@@ -15,6 +15,17 @@ function* fetchBank(action) {
     }
 }
 
+// function* fetchTotalBank(action) {
+//     console.log('in fetchTotalBank and action is:', action);
+//     try {
+//         const response = yield axios.get(`/api/bank/total/${action.payload}`);
+//         console.log('==> fetchTotalBank response is:', response);
+//         yield put({ type: 'GET_TOTAL_BANK_SUCCESS', payload: response.data });
+//     } catch (error) {
+//         console.log('in bank saga and fetch total bank error is:', error);
+//     }
+// }
+
 function* depositBank(action) {
     console.log('in depositBank in saga!');
     console.log('action is:', action);
@@ -33,7 +44,8 @@ function* depositBank(action) {
 function* bankSaga() {
     yield takeLatest('FETCH_BANK', fetchBank);
     yield takeLatest('DEPOSIT_BANK', depositBank);
-    yield takeLatest("GET_BANK_REQUESTED", fetchBank)
+    yield takeLatest('GET_BANK_REQUESTED', fetchBank);
+    // yield takeLatest('GET_TOTAL_BANK', fetchTotalBank);
 }
 
 export default bankSaga;

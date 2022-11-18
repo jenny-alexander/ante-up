@@ -14,24 +14,23 @@ function MoneyPie(props) {
     const [data, setData] = useState([]);
 
     const setPieData = () => {
-        console.log('in setPieData and props are:', props.bank);
+        console.log('in setPieData and props are:', props.bank);        
         setData([           
-            { x: "Spend", y: Constants.dollarUS.format(props.bank?.spend) },
-            { x: "Save", y: Constants.dollarUS.format(props.bank?.save) },
-            { x: "Share", y: Constants.dollarUS.format(props.bank?.share) },        
+            { x: "Spend", y: ( props.bank?.spend / props.bank?.total), z: Constants.dollarUS.format(props.bank?.spend) },
+            { x: "Save", y: ( props.bank?.save / props.bank?.total ), z: Constants.dollarUS.format(props.bank?.save) },
+            { x: "Share", y: ( props.bank?.share / props.bank?.total ), z: Constants.dollarUS.format(props.bank?.share) },     
         ])
     }
 
     return (
         <div className="pie">
+
             <div className="chart-title">
                 My Money At-a-Glance
             </div>
             <VictoryPie className="victory-pie"
-                labels={({ datum }) => `${datum.x}: ${datum.y}`}
-                //colorScale={["#006a4e","#00cc99","#a3c1ad"]}
+                labels={({ datum }) => `${datum.x}: ${datum.z}`}
                 colorScale="qualitative"
-                // radius={140}
                 data={data}
                 labelPlacement="vertical"
                 labelComponent={
@@ -46,7 +45,6 @@ function MoneyPie(props) {
                     }
                 }}
             />
-            
         </div>
     )
 }
