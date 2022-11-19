@@ -45,6 +45,10 @@
             box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.13);
             gap: 0.5em;
 
+            // #amount{
+                
+            // }
+
             .buttons {
                 display: flex;
                 flex-direction: row;
@@ -71,4 +75,8 @@
         }
     }
 }
-
+//Hide scrolling on number input
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+}

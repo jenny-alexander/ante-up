@@ -90,7 +90,7 @@ function Allowance(props) {
             if (result.isConfirmed) {
             deposit(amount, toAccount, dbAccountName);
             } 
-          })              
+        })              
     }
     const launchSuccessToast = () => {
         const Toast = Swal.mixin({

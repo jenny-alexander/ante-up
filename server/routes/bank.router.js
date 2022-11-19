@@ -46,7 +46,7 @@ router.put('/deposit', (req, res) => {
     console.log('updateBankQuery is:', updateBankQuery);
     pool.query(updateBankQuery)
         .then((result) => {
-            const getBankQuery = `SELECT * FROM bank where user_id = ${req.body.userID};`;
+            const getBankQuery = `SELECT *, (spend + save + share) as TOTAL FROM bank where user_id = ${req.body.userID};`;
             pool.query(getBankQuery)
                 .then((results) => {
                     res.send(results.rows[0])
