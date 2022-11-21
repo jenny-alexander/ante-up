@@ -13,14 +13,15 @@ function MoneyBucketManager(props) {
     // }
     const MySwal = withReactContent(Swal);
     const[amountValue, setAmountValue] = useState();
+    const[transactionType, setTransactionType] = useState();
 
     useEffect(() => {
         console.log('bank props are:', props.bank)
     },[props.bank]);
 
-    const changeAmountSWAL = {
+    const changeAmountSWAL =  {
         //console.log('in changeBucketAmount and params are:', bucketType, changeType);
-        title: 'Enter amount to withdraw',
+        title: `Enter amount to withdraw`,
         focusConfirm: false,
         html: '<duet-number-input id="amount" value="0" min="-999999" step="1" unit="€" />',
         html: `

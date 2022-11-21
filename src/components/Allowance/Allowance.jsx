@@ -70,6 +70,15 @@ function Allowance(props) {
                 }
             },
         });
+        dispatch({
+            type: 'ADD_BANK_TRANSACTION',
+            payload: {
+                userId: user.id,
+                type: 'deposit',
+                timestamp: new Date().toISOString(),
+                amount: amount,
+            }
+        })
     }
 
     const openAllowanceModal = (amount, toAccount, accountName, dbAccountName) => {

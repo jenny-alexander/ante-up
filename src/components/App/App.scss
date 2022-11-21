@@ -7,6 +7,10 @@ button {
   letter-spacing: 0.1em;
 }
 
+[class*="swal2-"]{
+  font-family: 'Josefin Sans', sans-serif;
+}
+
 .swal2-title {
   font-size: 1.25em !important;
 }

@@ -32,7 +32,7 @@ function* depositBank(action) {
     yield put({ type: 'CLEAR_DEPOSIT_SUCCESS' }); //clear successul deposit flag
     try {
         const response = yield axios.put(`/api/bank/deposit`, action.payload);
-        console.log('==> fetchBank response is:', response);
+        console.log('==> depositBank response is:', response);
         //yield put({ type: 'UPDATE_ALLOWANCE', payload: action.payload })
         yield put({ type: 'DEPOSIT_SUCCESS', payload: response.data });
     } catch (error) {
@@ -41,10 +41,23 @@ function* depositBank(action) {
     }
 }
 
+function* addBankTransaction(action) {
+    console.log('in updateBankTransaction in saga!');
+    console.log('action is:', action);
+    try {
+        const response = yield axios.post(`/api/bank/add-transaction`, action.payload);
+        console.log('==> addBankTxn response is:', response);
+    } catch (error) {
+        console.log('Bank POST new transaction failed with error:', error);
+
+    }
+}
+
 function* bankSaga() {
     yield takeLatest('FETCH_BANK', fetchBank);
     yield takeLatest('DEPOSIT_BANK', depositBank);
     yield takeLatest('GET_BANK_REQUESTED', fetchBank);
+    yield takeLatest('ADD_BANK_TRANSACTION', addBankTransaction);
     // yield takeLatest('GET_TOTAL_BANK', fetchTotalBank);
 }
 
