@@ -60,13 +60,14 @@ function Allowance(props) {
     const deposit = (amount, toAccount, dbAccountName) => {
         setLastDeposited(dbAccountName);
         dispatch({
-            type: 'DEPOSIT_BANK',
+            type: 'CHANGE_BANK',
             payload: {
                 userID: user.id,
                 allowanceDeposit: true,
                 depositDetails: { 
+                    bankChangeType: 'deposit', //+ for deposit, - for withdrawal
                     amount : amount,
-                     toAccount: toAccount,
+                    toAccount: toAccount,
                 }
             },
         });
