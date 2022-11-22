@@ -87,6 +87,16 @@ function MoneyBucketManager(props) {
                             }
                         },
                     });
+                    dispatch({
+                        type: 'ADD_BANK_TRANSACTION',
+                        payload: {
+                            userId: user.id,
+                            type: changeType,
+                            timestamp: new Date().toISOString(),
+                            amount: v.amountValue,
+                            notes: v.comments,
+                        }
+                    })
                 }
             } else {
               await MySwal.fire({ 

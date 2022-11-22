@@ -78,6 +78,7 @@ function Allowance(props) {
                 type: 'deposit',
                 timestamp: new Date().toISOString(),
                 amount: amount,
+                notes: 'Allowance deposit',
             }
         })
     }
