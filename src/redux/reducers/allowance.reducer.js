@@ -4,7 +4,7 @@ const latestAllowanceInitState = {
     data: {},
     loading: false,
     error: null,
-    success: false,
+    allowanceDepositSuccess: false,
 }
 
 const allowance = (state = [], action) => {
@@ -28,8 +28,7 @@ const latestAllowance = (state = {}, action) => {
             return action.payload;
         case 'UNSET_LATEST_ALLOWANCE':
             return {};
-        case 'UPDATE_SPEND_FLAG':
-            // return { ...state, spend_deposited: true }
+        case 'UPDATE_ALLOWANCE_FLAG':
             return {
                 ...state,
                 [action.payload]: true,

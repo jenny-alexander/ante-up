@@ -43,7 +43,7 @@ function Money(props) {
             </div>
 
             <div className="money-bank">
-                <Card component={<MoneyBucketManager bank={bank.bank} />} />
+                <Card component={<MoneyBucketManager bank={bank} />} />
             </div> 
         </div >
     )

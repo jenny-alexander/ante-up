@@ -34,7 +34,12 @@ function* depositBank(action) {
         const response = yield axios.put(`/api/bank/deposit`, action.payload);
         console.log('==> depositBank response is:', response);
         //yield put({ type: 'UPDATE_ALLOWANCE', payload: action.payload })
-        yield put({ type: 'DEPOSIT_SUCCESS', payload: response.data });
+        if (action.payload.allowanceDeposit) {
+            yield put({ type: 'ALLOWANCE_DEPOSIT_SUCCESS', payload: response.data });
+        } else {
+            yield put({ type: 'DEPOSIT_SUCCESS', payload: response.data });
+        }
+
     } catch (error) {
         console.log('Bank PUT (deposit) failed with:', error);
         yield put({ type: 'GET_BANK_FAILED', payload: error })

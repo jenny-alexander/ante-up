@@ -30,7 +30,7 @@ function Allowance(props) {
     },[props.bank.error])
 
     useEffect(() => { 
-        if (props.bank.depositSuccess === true) {
+            if (props.bank.allowanceDepositSuccess === true) {
             dispatch( {
                 type: 'UPDATE_ALLOWANCE',
                 payload: {
@@ -42,7 +42,7 @@ function Allowance(props) {
             })
             launchSuccessToast();
         }
-    }, [props.bank.depositSuccess])
+}, [props.bank.allowanceDepositSuccess, props.bank])
 
     const getDate = () => {
         const date = new Date();
@@ -63,10 +63,10 @@ function Allowance(props) {
             type: 'DEPOSIT_BANK',
             payload: {
                 userID: user.id,
+                allowanceDeposit: true,
                 depositDetails: { 
                     amount : amount,
                      toAccount: toAccount,
-                     dbAccountName: dbAccountName,
                 }
             },
         });
@@ -80,8 +80,7 @@ function Allowance(props) {
             }
         })
     }
-
-    const openAllowanceModal = (amount, toAccount, accountName, dbAccountName) => {
+        const openAllowanceModal = (amount, toAccount, accountName, dbAccountName) => {
         // console.log('in openSWAL and props are:', amount, toAccount, accountName, dbAccountName);
         Swal.fire({
             title: `Deposit ${accountName} Allowance?`,
@@ -98,6 +97,7 @@ function Allowance(props) {
         }).then((result) => {
             if (result.isConfirmed) {
             deposit(amount, toAccount, dbAccountName);
+            // deposit(amount, toAccount);
             } 
         })              
     }

@@ -75,6 +75,11 @@
         }
     }
 }
+
+label {
+    width: 200px;
+    display: inline-block;
+}
 //Hide scrolling on number input
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
