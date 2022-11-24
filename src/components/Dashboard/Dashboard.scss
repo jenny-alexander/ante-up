@@ -1,3 +1,12 @@
 .dashboard {
+    display: grid;
+    // grid-template-columns: 150px 1fr;
+    /* grid-template-columns: 0.75fr 1fr; */
+    grid-template-columns: minmax(auto, 50%) 1fr;
+    grid-template-rows: minmax(auto, 25%) 25%;
+    grid-template-areas: 
+      "money calendar"
+      "chore calendar";
     margin-top: 1em;
+
 }
