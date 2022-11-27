@@ -33,6 +33,7 @@ function Money(props) {
 
     return (
         <div className="money">
+            <h1 className="money-title">Money</h1>
             <div className="money-allowance">
                 <Card component={<Allowance allowance={allowance} bank={bank} />}
                 />

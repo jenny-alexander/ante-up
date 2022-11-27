@@ -1,4 +1,3 @@
-const { keyframes } = require('@emotion/react');
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
@@ -54,18 +53,18 @@ router.put('/deposit', (req, res) => {
         })
 });
 
-router.post('/add-transaction', (req, res) => {
-    console.log(' in add bank transaction history router & req is:', req.body);
-    const createBankTxnQuery = `INSERT INTO bank_transaction_history ("type", "date", "amount", "user_id", "notes")
-                                VALUES($1,$2,$3,$4,$5)`;
-    pool.query(createBankTxnQuery, [req.body.type, req.body.timestamp, req.body.amount, req.body.userId, req.body.notes])
-        .then((results) => {
-            res.sendStatus(201);
-        })
-        .catch((error) => {
-            console.log('add transaction table error:', error);
-            res.sendStatus(500);
-        })
-})
+// router.post('/add-transaction', (req, res) => {
+//     console.log(' in add bank transaction history router & req is:', req.body);
+//     const createBankTxnQuery = `INSERT INTO bank_transaction_history ("type", "date", "amount", "user_id", "notes")
+//                                 VALUES($1,$2,$3,$4,$5)`;
+//     pool.query(createBankTxnQuery, [req.body.type, req.body.timestamp, req.body.amount, req.body.userId, req.body.notes])
+//         .then((results) => {
+//             res.sendStatus(201);
+//         })
+//         .catch((error) => {
+//             console.log('add transaction table error:', error);
+//             res.sendStatus(500);
+//         })
+// })
 
 module.exports = router;

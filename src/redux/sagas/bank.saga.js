@@ -62,7 +62,7 @@ function* bankSaga() {
     yield takeLatest('FETCH_BANK', fetchBank);
     yield takeLatest('CHANGE_BANK', depositBank);
     yield takeLatest('GET_BANK_REQUESTED', fetchBank);
-    yield takeLatest('ADD_BANK_TRANSACTION', addBankTransaction);
+    //yield takeLatest('ADD_BANK_TRANSACTION', addBankTransaction);
     // yield takeLatest('GET_TOTAL_BANK', fetchTotalBank);
 }
 

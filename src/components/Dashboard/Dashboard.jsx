@@ -8,12 +8,13 @@ function Dashboard(props) {
 
 
     return (
-        <div className="dashboard">                                   
-            <DashboardCalendar />
-            <DashboardMoney />
-            <DashboardChore />            
-
-            
+        <div className="dashboard">
+            <h1 className="dashboard-title">Dashboard</h1>
+            <div className="dashboard-main">                                         
+                <DashboardCalendar />
+                <DashboardMoney user={props.user} />
+                <DashboardChore />                        
+            </div>
         </div>
     )
 }

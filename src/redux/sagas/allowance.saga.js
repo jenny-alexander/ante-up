@@ -32,6 +32,17 @@ function* fetchAllowance(action) {
     }
 }
 
+function* fetchNextAllowanceInfo(action) {
+    console.log('in getNextAllowanceInfo');
+    try {
+        const response = yield axios.get(`/api/allowance/next/${action.payload}`);
+        console.log('===> fetchNextAllowanceInfo response is:', response);
+        yield put({ type: 'SET_NEXT_ALLOWANCE_INFO', payload: response.date });
+    } catch (error) {
+        console.log('Allowance GET NEXT ALLOWANCE INFO request failed', error);
+    }
+}
+
 function* updateAllowance(action) {
     console.log('in depositFlagSetToFalse & action is:', action);
     try {
@@ -46,7 +57,7 @@ function* updateAllowance(action) {
 
 function* allowanceSaga() {
     yield takeLatest('FETCH_ALLOWANCE', fetchAllowance);
-    //yield takeLatest('DEPOSIT_ALLOWANCE', depositAllowance);
+    yield takeLatest('GET_NEXT_ALLOWANCE_INFO', fetchNextAllowanceInfo);
     yield takeLatest('FETCH_LATEST_ALLOWANCE', fetchLatestAllowance);
     yield takeLatest('UPDATE_ALLOWANCE', updateAllowance);
 }

@@ -10,6 +10,7 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 const allowanceRouter = require('./routes/allowance.router');
+const bankTransactionRouter = require('./routes/bank.transaction.router.js');
 const choreRouter = require('./routes/chore.router');
 const bankRouter = require('./routes/bank.router');
 
@@ -27,6 +28,7 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/allowance', allowanceRouter);
+app.use('/api/bank/transaction', bankTransactionRouter);
 app.use('/api/bank', bankRouter);
 app.use('/api/chore', choreRouter);
 

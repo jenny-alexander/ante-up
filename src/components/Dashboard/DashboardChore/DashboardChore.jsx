@@ -3,7 +3,9 @@ import './DashboardChore.scss';
 
 function DashboardChore(props) {
     return (
-        <div className="dashboard-chore">I will show chore stuff</div>
+        <div className="dashboard-chore">
+            <h3>I will show chore stuff</h3>
+        </div>
     )
 }
 export default DashboardChore;

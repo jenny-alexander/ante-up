@@ -12,6 +12,7 @@ import Chore from '../Chore/Chore';
 // import About from '../About/About';
 import ActivityLog from '../ActivityLog/ActivityLog';
 import Header from '../Header/Header';
+import RightBorder from '../RightBorder/RightBorder';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import LoginPage from '../LoginPage/LoginPage';
@@ -45,10 +46,10 @@ function App() {
       <Header />
 
       <Routes>
-        <Route path="/" element={user.id ? (<Dashboard />) : (<LoginPage />)} />
-        <Route path="/login" element={user.id ? (<Dashboard />) : (<LoginPage />)} />
-        <Route path="/registration" element={user.id ? (<Dashboard />) : (<RegisterPage />)} />
-        <Route path="/dashboard" element={user.id ? (<Dashboard />) : (<LoginPage />)} />
+        <Route path="/" element={user.id ? (<Dashboard user={user} />) : (<LoginPage />)} />
+        <Route path="/login" element={user.id ? (<Dashboard user={user}/>) : (<LoginPage />)} />
+        <Route path="/registration" element={user.id ? (<Dashboard user={user}/>) : (<RegisterPage />)} />
+        <Route path="/dashboard" element={user.id ? (<Dashboard user={user}/>) : (<LoginPage />)} />
         <Route path="/money" element={user.id ? (<Money />) : (<LoginPage />)} />
         <Route path="/chore" element={user.id ? (<Chore />) : (<LoginPage />)} />
         <Route path="/activity" element={user.id ? (<ActivityLog />) : (<LoginPage />)} />
@@ -57,40 +58,9 @@ function App() {
         </Route> */}
       </Routes>
     {/* </BrowserRouter> */}
+    {/* <RightBorder /> */}
     </div>
 
-
-//TODO: Check protected route and check 404
-
-    //react-router-dom v5
-    // <Router>
-    //   <div>
-
-    //     <Switch>
-    //       {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-    //       <Redirect exact from="/" to="/home" />
-
-    //       {/* For protected routes, the view could show one of several things on the same route.
-    //         Visiting localhost:3000/user will show the Home page if the user is logged in.
-    //         If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
-    //         Even though it seems like they are different pages, the user is always on localhost:3000/user */}
-    //       <ProtectedRoute
-    //         // logged in shows Home page else shows LoginPage
-    //         exact
-    //         path="/user"
-    //       >
-    //         <Home />
-    //       </ProtectedRoute>
-
-
-    //       {/* If none of the other routes matched, we will show a 404. */}
-    //       <Route>
-    //         <h1>404</h1>
-    //       </Route>
-    //     </Switch>
-
-    //   </div>
-    // </Router>
   )
 }
 
