@@ -7,14 +7,14 @@ import * as Constants from '../../constants/index';
 function MoneyPie(props) {
 
     useEffect(() => {
-        console.log('in useEffect of MoneyPie');
+        //console.log('in useEffect of MoneyPie');
         setPieData();
     },[props.bank])
 
     const [data, setData] = useState([]);
 
     const setPieData = () => {
-        console.log('in setPieData and props are:', props.bank);        
+        //console.log('in setPieData and props are:', props.bank);        
         setData([           
             { x: "Spend", y: ( props.bank?.spend / props.bank?.total), z: Constants.dollarUS.format(props.bank?.spend) },
             { x: "Save", y: ( props.bank?.save / props.bank?.total ), z: Constants.dollarUS.format(props.bank?.save) },

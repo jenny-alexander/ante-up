@@ -5,8 +5,8 @@ function PropertyCard(props) {
 
     //check prop that will pass either 'allowance', 'chores', or 'settings'
     const onCardClick = () => {
-        console.log('in onClick of PropertyCard!');
-        console.log('cardProps as param are:', props);
+        //console.log('in onClick of PropertyCard!');
+        //console.log('cardProps as param are:', props);
     }
     return (
         <div className="prop-card">

@@ -22,7 +22,6 @@ function Allowance(props) {
         setShare(props.allowance.latestAllowance.share);        
     },[props.allowance.latestAllowance])
 
-
     useEffect(() => {
         if ( props.bank.error != null) {            
             showErrorModal();
@@ -42,7 +41,7 @@ function Allowance(props) {
             })
             launchSuccessToast();
         }
-}, [props.bank.allowanceDepositSuccess, props.bank])
+    }, [props.bank.allowanceDepositSuccess, props.bank])
 
 
     const getDate = () => {
@@ -100,7 +99,6 @@ function Allowance(props) {
         }).then((result) => {
             if (result.isConfirmed) {
             deposit(amount, toAccount, dbAccountName);
-            // deposit(amount, toAccount);
             } 
         })              
     }
@@ -112,10 +110,6 @@ function Allowance(props) {
             showConfirmButton: false,
             timer: 2000,
             timerProgressBar: true,
-            // didOpen: (toast) => {
-            //   toast.addEventListener('mouseenter', Swal.stopTimer)
-            //   toast.addEventListener('mouseleave', Swal.resumeTimer)
-            // }
           })
           
           Toast.fire({
@@ -127,7 +121,7 @@ function Allowance(props) {
         <div className="allowance">
 
             {/* <button onClick={launchToast}>Launch toast</button> */}
-            <div className='allowance-title'>This Week's Allowance: {getDate()}</div>
+            <div className='allowance-title'>Latest Allowance: {getDate()}</div>
                 <table className="allowance-table">
                     <thead className="allowance-head">
                         <tr>

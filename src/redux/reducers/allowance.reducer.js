@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux';
 
-const latestAllowanceInitState = {
-    data: {},
+const initialState = {
+    data: [],
     loading: false,
     error: null,
-    allowanceDepositSuccess: false,
 }
 
 const allowance = (state = [], action) => {
@@ -14,6 +13,14 @@ const allowance = (state = [], action) => {
             return [...state, action.payload];
         case 'UNSET_ALLOWANCE':
             return [];
+        case 'GET_BANK_REQUESTED':
+            console.log('OINK')
+            return { ...state, loading: true, changeSuccess: false }
+        case 'GET_BANK_SUCCESS':
+            console.log('MOOOOO')
+            return { ...state, loading: false, bank: action.payload, error: null, changeSuccess: false }
+        case 'GET_BANK_FAILED':
+            return { ...state, loading: false, error: action.payload, changeSuccess: false }
         default:
             return state;
     }

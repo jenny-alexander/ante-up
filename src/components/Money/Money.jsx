@@ -16,7 +16,7 @@ function Money(props) {
     //const[showModal, setShowModal] = useState(false);
 
     useEffect(()=> {
-        console.log('in Money useEffect');
+        //console.log('in Money useEffect');
         dispatch( { type: 'FETCH_ALLOWANCE', payload: user.id} );
         dispatch( { type: 'FETCH_LATEST_ALLOWANCE', payload: user.id });
         //dispatch( { type: 'FETCH_BANK', payload: user.id })
@@ -28,7 +28,7 @@ function Money(props) {
     // },[allowance])
 
     useEffect(() => {
-        console.log('latest allowance changed! it is now:', allowance.latestAllowance)
+        //console.log('latest allowance changed! it is now:', allowance.latestAllowance)
     },[allowance.latestAllowance])
 
     return (

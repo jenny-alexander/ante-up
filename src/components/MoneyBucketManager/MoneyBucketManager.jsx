@@ -12,7 +12,7 @@ function MoneyBucketManager(props) {
     const [changeType, setChangeType] = useState('');
 
     useEffect(() => { 
-        console.log('in useEffect for bank changes and props.bank are:', props.bank)
+        //console.log('in useEffect for bank changes and props.bank are:', props.bank)
         if (props.bank.changeSuccess === true) {
             launchSuccessToast();
         }
@@ -66,11 +66,11 @@ function MoneyBucketManager(props) {
     
     const handleChangeBankAmount = async (bucketType, changeType) => {
 
-        console.log('in handleChangeBankAmount with bucketType:', bucketType, 'and changeType', changeType);
+        //console.log('in handleChangeBankAmount with bucketType:', bucketType, 'and changeType', changeType);
         const changeBankAmount = async () => {
             const swalval = await MySwal.fire(changeAmount(changeType));
             let v = swalval && swalval.value || swalval.dismiss;
-            console.log('v is:', v);
+            //console.log('v is:', v);
             if (v && v.amountValue  || v === 'cancel') {
                 if (v !== 'cancel') {
                     //setformdata(swalval);

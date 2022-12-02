@@ -7,7 +7,7 @@ function DashboardMoney(props) {
     //const bankTransaction = useSelector((store) => store.bankTransaction);
 
     useEffect(() => {
-        console.log('in useEffect of DashboardMoney');
+        //console.log('in useEffect of DashboardMoney');
         // dispatch({ type: 'GET_LAST_BANK_TRANSACTION', 
         //             payload: props.user.id,
         //             })

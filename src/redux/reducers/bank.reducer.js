@@ -38,14 +38,6 @@ const bankReducer = (state = initialState, action) => {
             }
         case 'CLEAR_DEPOSIT_SUCCESS':
             return { ...state, changeSuccess: false }
-        // case 'DEPOSIT_SUCCESS':
-        //     console.log('DEPOSIT_SUCCESS')
-        //     return { ...state, loading: false, bank: action.payload, error: null, changeSuccess: true }
-        // case 'SET_BANK':
-        //     console.log('in bankReducer and action payload is:', action.payload)
-        //     return [...state, action.payload];
-        // case 'UNSET_BANK':
-        //     return [];
         default:
             return state;
     }
