@@ -20,6 +20,31 @@ router.get('/latest/:id', (req, res) => {
 });
 
 /**
+ * GET next allowance info
+ */
+router.get('/next/:id', (req, res) => {
+  console.log('user id passed is:', req.params.id);
+
+  //Need to figure out which date to use.
+  const todayDate = new Date();
+  const dateCopy = new Date(todayDate.getTime());
+  const nextAllowanceDate = new Date(dateCopy.setDate(dateCopy.getDate() + ((7 - dateCopy.getDay() + 4) % 7 || 7)));
+  const dateForQuery = nextAllowanceDate.toLocaleDateString();
+  console.log('nextAllowanceDate is:', dateForQuery);
+
+  const getNextAllowanceQuery = `SELECT * FROM allowance where user_id = ${req.params.id}
+                                 AND allowance_date = '${dateForQuery}';`;
+  console.log('getNextAllowanceQuery is:', getNextAllowanceQuery);
+  pool.query(getNextAllowanceQuery)
+    .then((results) => {
+      console.log('results from get next allowance is:', results.rows[0]);
+      res.send(results.rows[0])
+    }).catch((error) => {
+      console.log('GET NEXT allowance record from server error is:', error);
+    })
+});
+
+/**
  * GET "old" allowances where deposits = FALSE
  */
 router.get('/:id', (req, res) => {

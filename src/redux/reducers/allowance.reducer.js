@@ -45,10 +45,22 @@ const latestAllowance = (state = {}, action) => {
     }
 }
 
+const nextAllowance = (state = {}, action) => {
+    console.log('in nextAllowance reducer and action payload is:', action.payload);
+    switch (action.type) {
+        case 'SET_NEXT_ALLOWANCE':
+            return action.payload;
+        case 'UNSET_NEXT_ALLOWANCE':
+            return {};
+        default:
+            return state;
+    }
+}
 // make one object that has keys allowance and latestAllowance\
 // these will be on the redux state at:
 // state.allowance.allowance and state.allowance.latestAllowance
 export default combineReducers({
     allowance,
     latestAllowance,
+    nextAllowance,
 });

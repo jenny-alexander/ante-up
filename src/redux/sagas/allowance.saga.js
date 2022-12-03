@@ -37,7 +37,7 @@ function* fetchNextAllowanceInfo(action) {
     try {
         const response = yield axios.get(`/api/allowance/next/${action.payload}`);
         console.log('===> fetchNextAllowanceInfo response is:', response);
-        yield put({ type: 'SET_NEXT_ALLOWANCE_INFO', payload: response.date });
+        yield put({ type: 'SET_NEXT_ALLOWANCE', payload: response.data });
     } catch (error) {
         console.log('Allowance GET NEXT ALLOWANCE INFO request failed', error);
     }

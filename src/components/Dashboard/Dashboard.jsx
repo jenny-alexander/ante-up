@@ -11,7 +11,7 @@ function Dashboard(props) {
         <div className="dashboard">
             <h1 className="dashboard-title">Dashboard</h1>
             <div className="dashboard-main">                                         
-                <DashboardCalendar />
+                <DashboardCalendar user={props.user}/>
                 <DashboardMoney user={props.user} />
                 <DashboardChore />                        
             </div>
