@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as Constants from '../../constants/index';
 import './Allowance.scss';
 import Swal from 'sweetalert2';
+import { Day } from 'react-day-picker';
 
 function Allowance(props) {
     const user = useSelector((store) => store.user);
@@ -12,14 +13,18 @@ function Allowance(props) {
     const[share, setShare] = useState(props.allowance?.latestAllowance.share_weekly);    
     const[lastDeposited, setLastDeposited] = useState('');
     const[updatedLatestAllowance, setUpdatedLatestAllowance] = useState({});
+    const[allowanceDay, setAllowanceDay] = useState('');
+
+    const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
     useEffect(()=> {
          console.log('ARF in Allowance useEffect & props are:', props.allowance)
-        setUpdatedLatestAllowance(props.allowance?.latestAllowance);
+        setUpdatedLatestAllowance(props.allowance.latestAllowance);
         //TODO: Look at latestAllowance instead?
         setSpend(props.allowance.latestAllowance.spend);
         setSave(props.allowance.latestAllowance.save);
-        setShare(props.allowance.latestAllowance.share);        
+        setShare(props.allowance.latestAllowance.share);
+        setAllowanceDay(getDayOfWeek(props.allowance.latestAllowance.allowance_date)); 
     },[props.allowance.latestAllowance])
 
     useEffect(() => {
@@ -42,14 +47,7 @@ function Allowance(props) {
             launchSuccessToast();
         }
     }, [props.bank.allowanceDepositSuccess, props.bank])
-
-
-    const getDate = () => {
-        const date = new Date();
-        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        const monthName = months[date.getMonth()];
-        return monthName + ' ' + date.getDate() + ', ' + date.getFullYear();
-    }
+    
     const showErrorModal = () => {
         Swal.fire({
             icon: 'error',
@@ -117,11 +115,18 @@ function Allowance(props) {
             title: 'Deposited Successfully!'
           })
     }
+    const getDayOfWeek = (date) => {
+        const datum = new Date(date);
+        const dayOfWeek = weekday[datum.getDay()];
+        //const dayOfWeek = weekday[date.getDay()];
+        return dayOfWeek;
+    }
     return (
         <div className="allowance">
-
-            {/* <button onClick={launchToast}>Launch toast</button> */}
-            <div className='allowance-title'>Latest Allowance: {getDate()}</div>
+            <div className='allowance-title'>
+                Latest Allowance: {allowanceDay ? allowanceDay : null},
+                { updatedLatestAllowance.allowance_date ? ' ' + updatedLatestAllowance.allowance_date.slice(0,10) : null }
+            </div>
                 <table className="allowance-table">
                     <thead className="allowance-head">
                         <tr>

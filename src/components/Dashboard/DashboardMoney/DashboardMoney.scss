@@ -6,6 +6,11 @@
     padding: 1.0em 0.5em;
 
     & .next-allowance-date {
+        display: flex;
+        flex-wrap: wrap;
+        font-size: larger;
+        justify-content: center;
+        gap: 0.25em;
         padding-top: 1em;
         padding-bottom: 1em;
     }
@@ -18,11 +23,11 @@
     }
     .res-circle {
         //width: 20%;
-        width: 100px;
-        height: 100px;
+         width: 90px;
+         height: 90px;
         border-radius: 50%;
         background-color: #bcd6ff;
-        line-height: 0;
+        //line-height: 0;
         position:relative;
     }
     .res-circle::after {
@@ -32,10 +37,14 @@
     }
 
     .circle-text {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
         text-align: center;
-        position: absolute;
+        //position: absolute;
         bottom: 50%;
         width: 100%;
+        padding-top: 1.85em;
     }
-
 }

@@ -21,19 +21,30 @@ function DashboardMoney(props) {
 
     return (
         <div className="dashboard-money">            
-            <h3>Next allowance is:</h3>            
-            <div className="next-allowance-date">
-                 {nextAllowance ? nextAllowance.slice(0,10) : null}
+            <div className="next-allowance-date">Next allowance is:          
+                <div>{nextAllowance ? nextAllowance.slice(0,10) : null}</div>
             </div>
             <div className="allowance-circles">
                 <div className="res-circle">
-                    <div className="circle-text">Spend: ${allowance.nextAllowance ? allowance.nextAllowance.spend : null}</div>
+                    {/* <div className="circle-text">Spend: ${allowance.nextAllowance ? allowance.nextAllowance.spend : null}</div> */}
+                    <div className="circle-text">
+                        <div className="title">Spend:</div>
+                        <div className="amount">${allowance.nextAllowance ? allowance.nextAllowance.spend : null}</div>
+                    </div>
+                    
+                    
                 </div>
                 <div className="res-circle">
-                    <div className="circle-text">Save: ${allowance.nextAllowance ? allowance.nextAllowance.save : null}</div>
+                <div className="circle-text">
+                        <div className="title">Save:</div>
+                        <div className="amount">${allowance.nextAllowance ? allowance.nextAllowance.save : null}</div>
+                    </div>
                 </div>
                 <div className="res-circle">
-                    <div className="circle-text">Share: ${allowance.nextAllowance ? allowance.nextAllowance.share : null}</div>
+                <div className="circle-text">
+                        <div className="title">Share:</div>
+                        <div className="amount">${allowance.nextAllowance ? allowance.nextAllowance.share : null}</div>
+                    </div>
                 </div>
             </div>
 
