@@ -127,53 +127,53 @@ function Allowance(props) {
                 Latest Allowance: {allowanceDay ? allowanceDay : null},
                 { updatedLatestAllowance.allowance_date ? ' ' + updatedLatestAllowance.allowance_date.slice(0,10) : null }
             </div>
-                <table className="allowance-table">
-                    <thead className="allowance-head">
-                        <tr>
-                            <th>Money Bucket</th>
-                            <th>Amount</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Spend</td>
-                            <td>{ props.allowance?.latestAllowance ? Constants.dollarUS.format(props.allowance?.latestAllowance.spend) : ''}</td>
-                            <td>
-                                {
-                               props.allowance && props.allowance?.latestAllowance.spend_deposited ? <p>Deposited</p> :                               
-                                    <button className="allowance-button" 
-                                            onClick={ () => openAllowanceModal(props.allowance.latestAllowance.spend,'spend', 'Spend','spend_deposited')}
-                                    > Deposit</button>
-                                }
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Save</td>
-                            <td>{ props.allowance ? Constants.dollarUS.format(props.allowance?.latestAllowance.save) : ''}</td>
-                            <td>
-                            {     
-                               props.allowance && props.allowance?.latestAllowance.save_deposited ? <p>Deposited</p> :                               
-                                    <button className="allowance-button" 
-                                            onClick={ () => openAllowanceModal(props.allowance.latestAllowance.save,'save','Save','save_deposited')}
-                                    > Deposit</button>
-                                } 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Share</td>
-                            <td>{ props.allowance ? Constants.dollarUS.format(props.allowance?.latestAllowance.share) : ''}</td>
-                            <td>
-                            {     
-                               props.allowance && props.allowance.latestAllowance?.share_deposited ? <p>Deposited</p> :                               
-                                    <button className="allowance-button" 
-                                            onClick={ () => openAllowanceModal(props.allowance.latestAllowance.share,'share','Share','share_deposited')}
-                                    > Deposit</button>
-                                } 
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <table className="allowance-table">
+                <thead className="allowance-head">
+                    <tr>
+                        <th>Money Bucket</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Spend</td>
+                        <td>{ props.allowance?.latestAllowance ? Constants.dollarUS.format(props.allowance?.latestAllowance.spend) : ''}</td>
+                        <td>
+                            {
+                            props.allowance && props.allowance?.latestAllowance.spend_deposited ? <p>Deposited</p> :                               
+                                <button className="allowance-button" 
+                                        onClick={ () => openAllowanceModal(props.allowance.latestAllowance.spend,'spend', 'Spend','spend_deposited')}
+                                > Deposit</button>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Save</td>
+                        <td>{ props.allowance ? Constants.dollarUS.format(props.allowance?.latestAllowance.save) : ''}</td>
+                        <td>
+                        {     
+                            props.allowance && props.allowance?.latestAllowance.save_deposited ? <p>Deposited</p> :                               
+                                <button className="allowance-button" 
+                                        onClick={ () => openAllowanceModal(props.allowance.latestAllowance.save,'save','Save','save_deposited')}
+                                > Deposit</button>
+                            } 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Share</td>
+                        <td>{ props.allowance ? Constants.dollarUS.format(props.allowance?.latestAllowance.share) : ''}</td>
+                        <td>
+                        {     
+                            props.allowance && props.allowance.latestAllowance?.share_deposited ? <p>Deposited</p> :                               
+                                <button className="allowance-button" 
+                                        onClick={ () => openAllowanceModal(props.allowance.latestAllowance.share,'share','Share','share_deposited')}
+                                > Deposit</button>
+                            } 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
          </div>
     )
 }

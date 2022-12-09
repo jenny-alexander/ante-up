@@ -1,15 +1,17 @@
 .dashboard-money {
     border: #dee0e2 1px solid;
     border-radius: 5px;
-    //margin:0.5em;
     grid-area: money;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
     padding: 1.0em 0.5em;
 
     & .next-allowance-date {
         display: flex;
         flex-wrap: wrap;
         font-size: larger;
-        justify-content: center;
         gap: 0.25em;
         padding-top: 1em;
         padding-bottom: 1em;
@@ -18,7 +20,6 @@
     .allowance-circles {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
         gap: 1em;
     }
     .res-circle {
@@ -46,5 +47,19 @@
         bottom: 50%;
         width: 100%;
         padding-top: 1.85em;
+    }
+    & .saving-for {
+        padding-top: 2em;
+        font-size: larger;
+    }
+}
+@media(max-width: 900px) {
+    .allowance-circles {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+        gap: 1em;
     }
 }

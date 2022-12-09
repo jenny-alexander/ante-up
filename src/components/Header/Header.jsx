@@ -19,7 +19,7 @@ function Header(props) {
                 <div class="image">
                     <img className="logo" src="images/ante_up.png" alt="ante up logo"></img>
                 </div>
-                <div class="text">
+                <div class="welcome-text">
                     <div>Welcome {user.username}!</div>
                 </div>
           </div>

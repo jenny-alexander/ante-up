@@ -16,12 +16,7 @@ $greenButton: rgb(39, 95, 88);
     padding-bottom: 0.5em;
 }
 
-input {
-    border: 1px solid lightgrey;
-    border-radius: 5px;
-    padding: 0.55em;
-    font-size: 16px;
-}
+
 .input-group {
     display: flex;
     flex-direction: column;
@@ -29,6 +24,13 @@ input {
     //border: 1px solid red;
     margin-bottom: 0.5em;
     gap: 0.25em;
+
+    input {
+        border: 1px solid lightgrey;
+        border-radius: 5px;
+        padding: 0.55em;
+        font-size: 16px;
+    }
 }
 
 .already-registered {

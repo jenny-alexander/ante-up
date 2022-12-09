@@ -26,7 +26,6 @@ function DashboardMoney(props) {
             </div>
             <div className="allowance-circles">
                 <div className="res-circle">
-                    {/* <div className="circle-text">Spend: ${allowance.nextAllowance ? allowance.nextAllowance.spend : null}</div> */}
                     <div className="circle-text">
                         <div className="title">Spend:</div>
                         <div className="amount">${allowance.nextAllowance ? allowance.nextAllowance.spend : null}</div>
@@ -35,19 +34,21 @@ function DashboardMoney(props) {
                     
                 </div>
                 <div className="res-circle">
-                <div className="circle-text">
+                    <div className="circle-text">
                         <div className="title">Save:</div>
                         <div className="amount">${allowance.nextAllowance ? allowance.nextAllowance.save : null}</div>
                     </div>
                 </div>
                 <div className="res-circle">
-                <div className="circle-text">
+                    <div className="circle-text">
                         <div className="title">Share:</div>
                         <div className="amount">${allowance.nextAllowance ? allowance.nextAllowance.share : null}</div>
                     </div>
                 </div>
+                
             </div>
-
+            <div className="saving-for">You're saving for: Trip to Florida</div>
+            
         </div>
     )
 }

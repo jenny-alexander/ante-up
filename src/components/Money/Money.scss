@@ -1,12 +1,67 @@
+:root {
+    --color-button: rgb(39, 95, 88);
+    --hover-brightness: 1.2;
+}
 .money {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #f9f9f6;
     //margin-top: 2em;
+
+    .money-saving {
+        width: 60%;
+        display: flex;
+        flex-direction: row;
+        align-items: end;
+        padding-bottom: 0.2em;
+        // background-color: white;
+        // border-radius: 8px;
+        // //padding: 0.75em;
+         margin-top: 1em;
+        // margin-bottom: 1em;
+        // border: 1px solid #dee0e2;
+        // padding-bottom: 0.5em;
+        // padding-top: 0.5em;
+        .saving-for-label {
+            padding-left: 0.5em;
+            
+        }
+        .saving-for-input {
+            width: 100%;
+            border: 1px solid lightgrey;
+            border-radius: 5px;
+            padding: 0.5em;
+            font-size: 16px;
+        }
+        .btn-saving-for{
+            //font-size: 1.2em;
+            margin-left: 0.5em;
+            margin-right: 0.5em;
+            border-radius: 5px;
+            border: 1px solid var(--color-logout);
+            background: var(--color-logout);
+            color: white;
+            //margin-top: 3.5em;
+            padding: 0.5em 0.75em;
+            transition: 120ms all ease-in-out;
+            &:hover {
+                cursor: pointer;
+                //filter: brightness(0.9);                    
+                transform: scale(1.05)        
+            }
+
+        }
+        & .fa-edit{
+            // position: absolute;
+            font-size: 1.5em;
+        }
+    }
+
 
     & .money-title {
         text-align: center;
-        padding-top: 1em;
+        padding-top: 0.5em;
     }
 
     & .money-bank {

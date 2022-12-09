@@ -17,8 +17,9 @@
         grid-template-rows: auto;
         grid-template-areas: 
           "money calendar"
-          "chore calendar";
-        margin-top: 3em;
+        //   "chore calendar";
+        "chore chore";
+        margin-top: 1em;
         margin-left: 2em;
         margin-right: 2em;
     }
@@ -26,11 +27,11 @@
     & .dashboard-title {
         //padding-left: 0.25em;        
         text-align: center;
-        padding-top: 1em;
+        padding-top: 0.5em;
     }
 
 }
-@media(min-width: 1250px) {
+@media(min-width: 1340px) {
     .dashboard {
         width: 80%;
         margin-left: auto;

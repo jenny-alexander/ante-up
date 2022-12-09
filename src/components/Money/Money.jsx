@@ -4,6 +4,8 @@ import MoneyPie from '../MoneyPie/MoneyPie';
 import MoneyBucketManager from '../MoneyBucketManager/MoneyBucketManager';
 import Allowance from '../Allowance/Allowance';
 import Card from '../Common/Card/Card';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
 import './Money.scss';
 
@@ -13,7 +15,7 @@ function Money(props) {
     // const bank = useSelector((store) => store.bank.bank );
     const bank = useSelector((store) => store.bank );
     const user = useSelector((store) => store.user);
-    //const[showModal, setShowModal] = useState(false);
+    const[editSaveFor, setEditSaveFor] = useState(false);
 
     useEffect(()=> {
         //console.log('in Money useEffect');
@@ -34,6 +36,14 @@ function Money(props) {
     return (
         <div className="money">
             <h1 className="money-title">Money</h1>
+            <div className="money-saving">
+                {/* <label className="saving-for-label">Saving for:</label> */}
+                <input className="saving-for-input" type="text" placeholder="What are you saving for?"/>
+                <button className="btn-saving-for">
+                    <FontAwesomeIcon className="fa-edit" icon={faEdit} />
+                </button>
+                
+            </div>
             <div className="money-allowance">
                 <Card component={<Allowance allowance={allowance} bank={bank} />}
                 />
