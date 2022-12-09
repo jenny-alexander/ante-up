@@ -36,13 +36,13 @@ function Money(props) {
     return (
         <div className="money">
             <h1 className="money-title">Money</h1>
-            <div className="money-saving">
-                {/* <label className="saving-for-label">Saving for:</label> */}
-                <input className="saving-for-input" type="text" placeholder="What are you saving for?"/>
-                <button className="btn-saving-for">
-                    <FontAwesomeIcon className="fa-edit" icon={faEdit} />
-                </button>
-                
+            <div className="money-saving">                
+                <input type="text" placeholder="What are you saving for?"/> 
+                <div>
+                    <button className="btn-saving-for">
+                        <FontAwesomeIcon className="fa-edit" icon={faEdit} />
+                    </button>
+                </div>
             </div>
             <div className="money-allowance">
                 <Card component={<Allowance allowance={allowance} bank={bank} />}
