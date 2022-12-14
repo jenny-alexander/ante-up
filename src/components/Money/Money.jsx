@@ -16,6 +16,7 @@ function Money(props) {
     const bank = useSelector((store) => store.bank );
     const user = useSelector((store) => store.user);
     const[editSaveFor, setEditSaveFor] = useState(false);
+    const[savingFor, setSavingFor] = useState('');
 
     useEffect(()=> {
         //console.log('in Money useEffect');
@@ -29,21 +30,36 @@ function Money(props) {
     //     console.log('allowance changed! it is now:', allowance)
     // },[allowance])
 
+    const updateSavingFor = (e) => {
+        setSavingFor(e.target.value);
+    }
+
     useEffect(() => {
-        //console.log('latest allowance changed! it is now:', allowance.latestAllowance)
+        console.log('latest allowance changed! it is now:', allowance.latestAllowance)
     },[allowance.latestAllowance])
 
     return (
         <div className="money">
             <h1 className="money-title">Money</h1>
-            <div className="money-saving">                
-                <input type="text" placeholder="What are you saving for?"/> 
+            {/* <div className="money-saving"> 
+                <input className="saving-for" type="text" placeholder="What are you saving for?"/> 
                 <div>
                     <button className="btn-saving-for">
                         <FontAwesomeIcon className="fa-edit" icon={faEdit} />
                     </button>
                 </div>
+            </div> */}
+            <div className="money-saving"> 
+                <div className="money-input-group">
+                    <input className={savingFor.length === 0 ? '' : 'has-value'} 
+                           type="text" 
+                           onChange={(e) => updateSavingFor(e)}
+                    />
+                    <label>Saving Goal</label>
+                </div>
             </div>
+
+
             <div className="money-allowance">
                 <Card component={<Allowance allowance={allowance} bank={bank} />}
                 />
