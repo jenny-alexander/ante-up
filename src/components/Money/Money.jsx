@@ -50,12 +50,16 @@ function Money(props) {
                 </div>
             </div> */}
             <div className="money-saving"> 
+                <div className="saving-title">Saving Goal:</div>
                 <div className="money-input-group">
-                    <input className={savingFor.length === 0 ? '' : 'has-value'} 
-                           type="text" 
-                           onChange={(e) => updateSavingFor(e)}
-                    />
-                    <label>Saving Goal</label>
+                    <div className="saving-goal-desc">
+                        <label for="saving-goal">Description:</label>
+                        <input type="text"/>
+                    </div>
+                    <div className="saving-goal-amount">
+                        <label for="saving-goal">Amount:</label>
+                        <input type="text"/>
+                    </div>
                 </div>
             </div>
 

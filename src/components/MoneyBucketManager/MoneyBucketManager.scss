@@ -11,6 +11,10 @@
     //margin-top: 1em;
     align-items: center;
     margin-bottom: 1.5em;
+    label {
+        width: 200px;
+        display: inline-block;
+    }
 
     .bucket-title {
         margin-top: 5px;
@@ -76,10 +80,7 @@
     }
 }
 
-label {
-    width: 200px;
-    display: inline-block;
-}
+
 //Hide scrolling on number input
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
