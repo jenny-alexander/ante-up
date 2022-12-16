@@ -34,13 +34,13 @@ function MoneyBucketManager(props) {
           })
     }
 
-    const changeAmount = (changeType) => {
+    const changeAmount = (changeType, bucketType) => {
         setChangeType(changeType)
         const changeAmountSWAL =  {
             //console.log('in changeBucketAmount and params are:', bucketType, changeType);
-            title: `Enter amount to ${changeType}`,
+            title: `${bucketType}: Enter amount to ${changeType}`,
             focusConfirm: false,
-            html: `<input class="swal2-input" id="amount" type="number" placeholder="$0.00" />
+            html: `<input class="swal2-input" id="amount" type="number" placeholder="0.00" />
                    <br />
                    <textarea class="swal2-textarea" id="bucket-comments" placeholder="Enter comments here..."></textarea>`,
             iconHtml: '<img src="images/ante_up.png" alt="ante up logo">',
@@ -66,9 +66,9 @@ function MoneyBucketManager(props) {
     
     const handleChangeBankAmount = async (bucketType, changeType) => {
 
-        //console.log('in handleChangeBankAmount with bucketType:', bucketType, 'and changeType', changeType);
+        console.log('in handleChangeBankAmount with bucketType:', bucketType, 'and changeType', changeType);
         const changeBankAmount = async () => {
-            const swalval = await MySwal.fire(changeAmount(changeType));
+            const swalval = await MySwal.fire(changeAmount(changeType, bucketType));
             let v = swalval && swalval.value || swalval.dismiss;
             //console.log('v is:', v);
             if (v && v.amountValue  || v === 'cancel') {

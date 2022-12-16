@@ -9,6 +9,19 @@
     background-color: #f9f9f6;
     //margin-top: 2em;
 
+
+    hr {
+        border: 1px solid #087f6b;
+        width: 96%;
+        color: #087f6b;
+    }
+    
+    
+    #line {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        width: 100%;
+    }
     .money-saving {
         // width: 100%;
         display: flex;
@@ -31,30 +44,39 @@
         }
         & .money-input-group {    
             display: flex;
+            //flex-direction: column;
             flex-wrap: wrap;
             justify-content: center;
-            width: 100%;
-            row-gap: 0.3em;
+            align-items: center;
+            //width: 100%;
+            //row-gap: 0.3em;
 
             & input {
-                border: 1px solid lightgrey;
-                border-radius: 5px;
-                padding: 0.55em;
-                font-size: 16px;
+                // border: 1px solid lightgrey;
+                //border: 1px solid #f8c348;
+                // border-radius: 5px;
+                border: none;
+                padding: 0.25em;
+                font-size: 1.2em;
                 width: 100%;          
             }
 
             & [class*="saving-goal-"] {
                 display: flex;
                 align-items: center;
-                justify-content: center;
-                width: 100%;
-                column-gap: 1em;
-                padding-left: 1em;
-                padding-right: 1em;
+                // justify-content: center;
+                // //width: 100%;
+                // column-gap: 1em;
+                // padding-left: 1em;
+                // padding-right: 1em;
+                width:70%;
+                column-gap: 0.2em;
 
-                & label {
-                    width: 30%;
+                // & label {
+                //     width: 30%;
+                // }
+                & #goal-amount {
+                    font-size: 1.2em;
                 }
           }
         }
@@ -70,7 +92,7 @@
     }
 
     & [class*="money-"] {
-        width:60%;
+        width: 70%;
     }
 }
 

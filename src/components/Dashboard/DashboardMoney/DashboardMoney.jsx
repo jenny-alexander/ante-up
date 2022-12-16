@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { usePopper } from 'react-popper';
 import './DashboardMoney.scss';
 
 function DashboardMoney(props) {
