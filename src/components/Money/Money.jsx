@@ -53,22 +53,14 @@ function Money(props) {
                 <div className="saving-title">Saving Goal:</div>
                 <div className="money-input-group">
                     <div className="saving-goal-amount">
-                        <label id="goal-amount" for="saving-goal">$</label>
-                        <input type="text"/>
-                        
+                        <label id="goal-amount-label" for="saving-goal">Amount:</label>
+                        <input id="goal-amount-input" type="text"/>
                     </div>
-                    <div id="line"><hr /></div>
-                    <div className="saving-goal-for">
-                        <label id="goal-amount" for="saving-goal">What:</label>
-                        <input type="text" placeholder="Saving for..."/>
-                        
+                    {/* <div id="line"><hr /></div> */}
+                    <div className="saving-goal-desc">
+                        <label id="goal-desc-label" for="saving-goal">Description:</label>
+                        <input id="goal-desc-input" type="text" />
                     </div>
-
-                    
-                    {/* <div className="saving-goal-amount">
-                        <label for="saving-goal">Amount:</label>
-                        <input type="text"/>
-                    </div> */}
                 </div>
 
             </div>
