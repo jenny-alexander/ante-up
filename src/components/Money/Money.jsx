@@ -33,8 +33,8 @@ function Money(props) {
     //     console.log('allowance changed! it is now:', allowance)
     // },[allowance])
 
-    const updateSavingFor = (e) => {
-        setSavingFor(e.target.value);
+    const saveGoalChanges = () => {
+        console.log('in saveGoalChanges')
     }
 
     useEffect(() => {
@@ -49,16 +49,10 @@ function Money(props) {
             <div className="money-saving"> 
                 <div className="saving-title-section">
                     <div className="saving-title">Saving Goal</div>
-                    
-                <FontAwesomeIcon id="info-snippet" className="saving-info-icon" icon={faCircleInfo} />
-                <Tooltip anchorId="info-snippet" place={'right'} content="Saving for a specific goal can keep you motivitated!"/>
+                    <FontAwesomeIcon id="info-snippet" className="saving-info-icon" icon={faCircleInfo} />
+                    <Tooltip anchorId="info-snippet" place={'right'} content="Saving for a specific goal can keep you motivitated!"/>
                 </div>
-                <div>
-                    {/* <FontAwesomeIcon icon="fa-solid fa-circle-info" /> */}
-                    
-                   
-                   
-                </div>
+
                 <div className="money-input-group">
                     <div className="saving-goal-amount">
                         <label id="goal-amount-label" for="saving-goal">Amount:</label>
@@ -72,9 +66,17 @@ function Money(props) {
 
                 </div>
                 <div className="saving-goal-buttons">
-                        
-                        <button>Save</button>
-                        <button>Cancel</button>
+                        {
+                            editSaveFor ? 
+                                (<>
+                                    <button onClick={()=>{saveGoalChanges()}}>Save</button>
+                                    <button onClick={()=>{setEditSaveFor(false)}}>Cancel</button>
+                                </>)
+                            : 
+                                ( <button onClick={() => {
+                                    setEditSaveFor(true)
+                                } }>Edit</button>)
+                        }
                     </div>
             </div>
 

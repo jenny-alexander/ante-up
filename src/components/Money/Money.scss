@@ -54,7 +54,7 @@
         & .saving-goal-buttons{
             display:flex;
             justify-content: center;
-            gap: 1em;
+            gap: 0.8em;
             
             & button {
                 min-width: 7em;
@@ -66,7 +66,8 @@
                 border: 1px solid #ccc;
                 border-radius: 20px;
                 &:hover {
-                    cursor: pointer;     
+                    cursor: pointer;
+                    filter: brightness(95%)
                 }
             }
         }
@@ -88,6 +89,7 @@
 
             & .saving-goal-amount {
                 width: 30%;
+                justify-content: right;
             }
             & .saving-goal-desc {
                 width: 60%;

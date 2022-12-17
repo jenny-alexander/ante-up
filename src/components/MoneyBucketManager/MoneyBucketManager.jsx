@@ -47,6 +47,11 @@ function MoneyBucketManager(props) {
             customClass: {
               icon: 'no-border'
             },
+            showClass: {
+                backdrop: 'swal2-noanimation', // disable backdrop animation
+                popup: '',                     // disable popup animation
+                icon: ''                       // disable icon animation
+              },
             showCancelButton: true,
             cancelButtonColor: 'grey',
             confirmButtonColor: '#007E58',

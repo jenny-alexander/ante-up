@@ -4,7 +4,7 @@ import './DashboardChore.scss';
 function DashboardChore(props) {
     return (
         <div className="dashboard-chore">
-            <h3>I will show chore stuff</h3>
+            <h3>Coming Soon...I will show chore info</h3>
         </div>
     )
 }
