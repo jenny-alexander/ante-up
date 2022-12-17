@@ -8,8 +8,7 @@ import { Tooltip } from 'react-tooltip';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
-
-
+import 'react-tooltip/dist/react-tooltip.css';
 
 import './Money.scss';
 
@@ -42,15 +41,22 @@ function Money(props) {
         console.log('latest allowance changed! it is now:', allowance.latestAllowance)
     },[allowance.latestAllowance])
 
+
     return (
         <div className="money">
             <h1 className="money-title">Money</h1>
             
             <div className="money-saving"> 
-                <div className="saving-title">Saving Goal</div>
+                <div className="saving-title-section">
+                    <div className="saving-title">Saving Goal</div>
+                    
+                <FontAwesomeIcon id="info-snippet" className="saving-info-icon" icon={faCircleInfo} />
+                <Tooltip anchorId="info-snippet" place={'right'} content="Saving for a specific goal can keep you motivitated!"/>
+                </div>
                 <div>
                     {/* <FontAwesomeIcon icon="fa-solid fa-circle-info" /> */}
-                    <FontAwesomeIcon icon={faCircleInfo} />
+                    
+                   
                    
                 </div>
                 <div className="money-input-group">

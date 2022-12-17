@@ -38,10 +38,19 @@
             font-size: 1em;
             font-family: inherit;
         }
-        & .saving-title {
-            font-size: 1.2em;
-            margin-bottom: 0.5em;
+        & .saving-title-section {
+            display: flex;
+            column-gap: 0.5em;
+            margin-top: 0.5em;
+            & .saving-title {
+                font-size: 1.2em;
+                //margin-bottom: 0.5em;
+                & .saving-info-icon {
+                    font-size: 1em;
+                }
+            }
         }
+
         & .saving-goal-buttons{
             display:flex;
             justify-content: center;
