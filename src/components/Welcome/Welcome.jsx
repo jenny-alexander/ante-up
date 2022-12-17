@@ -14,15 +14,15 @@ function Welcome(props) {
                     <div>Allowance and chores simplified!</div>
                 </div> */}
                 <div className="about">
-                    <div className="money">
+                    <div className="about-money">
                         <PaidOutlineIcon className="icon"/>
                         <div className="about-blurb">Make allowance payments</div>
                     </div>
-                    <div className="chores">
+                    <div className="about-chores">
                         <CleaningServicesIcon className="icon"/>
                         <div className="about-blurb">Delegate chores</div>
                     </div>
-                    <div className="history">
+                    <div className="about-history">
                         <HistoryIcon className="icon"/>
                         <div className="about-blurb">View chore & payment history</div>
                     </div>

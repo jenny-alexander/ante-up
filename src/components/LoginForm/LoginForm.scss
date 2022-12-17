@@ -47,8 +47,6 @@ $greenButton: rgb(39, 95, 88);
             cursor: pointer;
             background-color:#00ad79;
             transition: 0.5s;
-        //transform: scale(1.10)  
-        //outline: #333 solid 4px;
         }
         &:focus {
             outline: 2px solid $greenButton;

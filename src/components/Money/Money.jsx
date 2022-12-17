@@ -4,8 +4,12 @@ import MoneyPie from '../MoneyPie/MoneyPie';
 import MoneyBucketManager from '../MoneyBucketManager/MoneyBucketManager';
 import Allowance from '../Allowance/Allowance';
 import Card from '../Common/Card/Card';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { Tooltip } from 'react-tooltip';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+
+
 
 import './Money.scss';
 
@@ -41,16 +45,14 @@ function Money(props) {
     return (
         <div className="money">
             <h1 className="money-title">Money</h1>
-            {/* <div className="money-saving"> 
-                <input className="saving-for" type="text" placeholder="What are you saving for?"/> 
-                <div>
-                    <button className="btn-saving-for">
-                        <FontAwesomeIcon className="fa-edit" icon={faEdit} />
-                    </button>
-                </div>
-            </div> */}
+            
             <div className="money-saving"> 
-                <div className="saving-title">Saving Goal:</div>
+                <div className="saving-title">Saving Goal</div>
+                <div>
+                    {/* <FontAwesomeIcon icon="fa-solid fa-circle-info" /> */}
+                    <FontAwesomeIcon icon={faCircleInfo} />
+                   
+                </div>
                 <div className="money-input-group">
                     <div className="saving-goal-amount">
                         <label id="goal-amount-label" for="saving-goal">Amount:</label>
@@ -61,8 +63,13 @@ function Money(props) {
                         <label id="goal-desc-label" for="saving-goal">Description:</label>
                         <input id="goal-desc-input" type="text" />
                     </div>
-                </div>
 
+                </div>
+                <div className="saving-goal-buttons">
+                        
+                        <button>Save</button>
+                        <button>Cancel</button>
+                    </div>
             </div>
 
 
