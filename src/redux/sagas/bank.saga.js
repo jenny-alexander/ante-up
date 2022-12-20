@@ -58,10 +58,20 @@ function* addBankTransaction(action) {
     }
 }
 
+function* saveBankGoal(action) {
+    console.log('in saveBankGoal in bank.saga.js & action is:', action);
+    try {
+        const response = yield axios.post(`api/bank/save-goal`, action.payload);
+    } catch (error) {
+        console.log('UPDATE for BankGoal failed');
+    }
+}
+
 function* bankSaga() {
     yield takeLatest('FETCH_BANK', fetchBank);
     yield takeLatest('CHANGE_BANK', depositBank);
     yield takeLatest('GET_BANK_REQUESTED', fetchBank);
+    yield takeLatest('SAVE_BANK_GOAL', saveBankGoal);
     //yield takeLatest('ADD_BANK_TRANSACTION', addBankTransaction);
     // yield takeLatest('GET_TOTAL_BANK', fetchTotalBank);
 }

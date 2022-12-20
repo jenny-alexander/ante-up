@@ -19,7 +19,7 @@ function Money(props) {
     const bank = useSelector((store) => store.bank );
     const user = useSelector((store) => store.user);
     const[editSaveFor, setEditSaveFor] = useState(false);
-    const[savingFor, setSavingFor] = useState('');
+    const[savingFor, setSavingFor] = useState({});
 
     useEffect(()=> {
         //console.log('in Money useEffect');
@@ -34,7 +34,7 @@ function Money(props) {
     // },[allowance])
 
     const saveGoalChanges = () => {
-        console.log('in saveGoalChanges')
+        console.log('in saveGoalChanges and goal is:', savingFor);
     }
 
     useEffect(() => {
@@ -61,7 +61,7 @@ function Money(props) {
                     {/* <div id="line"><hr /></div> */}
                     <div className="saving-goal-desc">
                         <label id="goal-desc-label" for="saving-goal">Description:</label>
-                        <input id="goal-desc-input" type="text" />
+                        <input id="goal-desc-input" type="text" onChange={(e) => {setSavingFor(e.target.value)}}/>
                     </div>
 
                 </div>

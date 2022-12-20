@@ -21,7 +21,6 @@
     }
 
     .money-saving {
-        // width: 100%;
         background-color: rgb(216, 232, 229);
         display: flex;
         flex-direction:column;
@@ -30,7 +29,6 @@
         margin-top: 1em;
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
-        //background-color: white;
         border-radius: 0.5rem;
         border: 1px solid #dee0e2;
         row-gap: 1em;
@@ -44,7 +42,6 @@
             margin-top: 0.5em;
             & .saving-title {
                 font-size: 1.2em;
-                //margin-bottom: 0.5em;
                 & .saving-info-icon {
                     font-size: 1em;
                 }
@@ -58,11 +55,7 @@
             
             & button {
                 min-width: 7em;
-                // border-radius: 5px;
-                // border: 1px solid gray;
-                //padding: 0.5em;
                 padding: 0.5em 1.5em;
-
                 border: 1px solid #ccc;
                 border-radius: 20px;
                 &:hover {
@@ -76,7 +69,6 @@
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;            
-            //gap: 1em;
             width: 100%;
             row-gap: 0.5em;
 
@@ -84,7 +76,6 @@
                 display: flex;
                 flex-direction: column;
                 align-items: initial;
-                //margin-right: 1em;
             }
 
             & .saving-goal-amount {
@@ -100,22 +91,18 @@
             & [class*="saving-goal-"] {
                 display: flex;
                 align-items: center;
-                //width: 100%;
                 column-gap: 0.2em;
                 @media(max-width: 890px ) {
                     width: 100%;
                 }
                 & label {
-                    //width: 30%;
                     padding-left: 1em;
-                    //min-width: 30%;
                     display: flex;
                     justify-content: right;
                     margin-right: 0.5em;
                     @media(max-width: 890px ){
                         width: 40%;
-                        padding-left:0;
-                        //justify-content: left;                        
+                        padding-left:0;                    
                     }
                 }
                 & input {
@@ -128,11 +115,9 @@
      
                      &#goal-amount-input {
                          max-width: 6em;
-                         //margin-right: 1em;
                          @media(max-width: 890px ) {
                              max-width: unset;
                              margin-right: 1em;
-                             //max-width: 30%
                          }
                      }
                  }
@@ -164,21 +149,6 @@
         width: 70%;
     }
 }
-// @media(max-width: 890px )
-// {   
-//     .money {
-//         //background-color: lightblue;
-//         .money-saving {
-//             & [class*="money-input-"] {
-//                 //background-color: pink;
-//                 display: flex;
-//                 flex-direction: column;
-//                 align-items: initial;
-//             }
-//         }
-//     }
-    
-// }
 @media(max-width: 650px) {
     .money {
         & [class*="money-"] {
