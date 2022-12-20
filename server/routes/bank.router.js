@@ -58,8 +58,8 @@ router.put('/deposit', (req, res) => {
  */
 router.put('/save-goal', (req, res) => {
     console.log('OINK req.body is:', req.body);
-    const saveGoalQuery = `UPDATE bank set goal_amount = ${req.body.goalAmount}
-                                           goal_desc = ${req.body.goalDescription};`;
+    const saveGoalQuery = `UPDATE bank set goal_amount = ${req.body.amount},
+                                           goal_desc = '${req.body.description}';`;
     console.log('saveGoalQuery is:', saveGoalQuery);
     pool.query(saveGoalQuery)
         .then((results) => {

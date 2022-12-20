@@ -88,7 +88,6 @@ function MoneyBucketManager(props) {
                                 bankChangeType: changeType,
                                 amount : v.amountValue,
                                 toAccount: bucketType,
-    
                             }
                         },
                     });

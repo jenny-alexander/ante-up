@@ -18,7 +18,7 @@ function Money(props) {
     // const bank = useSelector((store) => store.bank.bank );
     const bank = useSelector((store) => store.bank );
     const user = useSelector((store) => store.user);
-    const[editSaveFor, setEditSaveFor] = useState(false);
+    const[editSavingFor, setEditSavingFor] = useState(false);
     const[savingFor, setSavingFor] = useState({});
 
     useEffect(()=> {
@@ -34,12 +34,17 @@ function Money(props) {
     // },[allowance])
 
     const saveGoalChanges = () => {
-        console.log('in saveGoalChanges and goal is:', savingFor);
+        console.log('in saveGoalChanges and goals are:', savingFor.amount, 'and', savingFor.description);
+        dispatch( { type: 'SAVE_BANK_GOAL', payload: { amount: savingFor.amount, description: savingFor.description}})
     }
 
     useEffect(() => {
         console.log('latest allowance changed! it is now:', allowance.latestAllowance)
     },[allowance.latestAllowance])
+
+    useEffect(() => {
+        setSavingFor({...savingFor,amount: bank.bank.goal_amount, description: bank.bank.goal_desc})
+    },[bank.bank])
 
 
     return (
@@ -56,27 +61,33 @@ function Money(props) {
                 <div className="money-input-group">
                     <div className="saving-goal-amount">
                         <label id="goal-amount-label" for="saving-goal">Amount:</label>
-                        <input id="goal-amount-input" type="text"/>
+                        <input id="goal-amount-input" 
+                               type="text" 
+                               disabled={!editSavingFor}
+                               placeholder={savingFor.amount}
+                               onChange={(e) => {setSavingFor({...savingFor, amount: e.target.value})}}/>
                     </div>
                     {/* <div id="line"><hr /></div> */}
                     <div className="saving-goal-desc">
                         <label id="goal-desc-label" for="saving-goal">Description:</label>
-                        <input id="goal-desc-input" type="text" onChange={(e) => {setSavingFor(e.target.value)}}/>
+                        <input id="goal-desc-input" 
+                            type="text" 
+                            disabled={!editSavingFor} 
+                            placeholder={savingFor.description}
+                            onChange={(e) => {setSavingFor({...savingFor, description: e.target.value})}}/>
                     </div>
 
                 </div>
                 <div className="saving-goal-buttons">
-                        {
-                            editSaveFor ? 
+                        { editSavingFor ? 
                                 (<>
                                     <button onClick={()=>{saveGoalChanges()}}>Save</button>
-                                    <button onClick={()=>{setEditSaveFor(false)}}>Cancel</button>
+                                    <button onClick={()=>{setEditSavingFor(false)}}>Cancel</button>
                                 </>)
                             : 
                                 ( <button onClick={() => {
-                                    setEditSaveFor(true)
-                                } }>Edit</button>)
-                        }
+                                    setEditSavingFor(true)
+                                } }>Edit</button>)}
                     </div>
             </div>
 

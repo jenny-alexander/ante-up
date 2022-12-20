@@ -61,7 +61,7 @@ function* addBankTransaction(action) {
 function* saveBankGoal(action) {
     console.log('in saveBankGoal in bank.saga.js & action is:', action);
     try {
-        const response = yield axios.post(`api/bank/save-goal`, action.payload);
+        const response = yield axios.put(`api/bank/save-goal`, action.payload);
     } catch (error) {
         console.log('UPDATE for BankGoal failed');
     }
