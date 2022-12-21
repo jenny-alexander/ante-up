@@ -16,8 +16,6 @@ function LoginForm() {
   const login = (event) => {
     event.preventDefault();
 
-    console.log('in login with:', username, password);
-
     if (username && password) {
       dispatch({
         type: 'LOGIN',
@@ -29,7 +27,7 @@ function LoginForm() {
     } else {
       dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }
-  }; // end login
+  };
 
   return (
     

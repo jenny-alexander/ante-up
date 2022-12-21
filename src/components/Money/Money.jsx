@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import MoneyPie from '../MoneyPie/MoneyPie';
-import MoneyBucketManager from '../MoneyBucketManager/MoneyBucketManager';
-import Allowance from '../Allowance/Allowance';
+import MoneyPie from '../Money/MoneyPie/MoneyPie';
+import MoneyBucketManager from '../Money/MoneyBucketManager/MoneyBucketManager';
+//import Allowance from '../Allowance/Allowance';
+import Allowance from '../Money/Allowance/Allowance';
 import Card from '../Common/Card/Card';
 import { Tooltip } from 'react-tooltip';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -35,7 +36,9 @@ function Money(props) {
 
     const saveGoalChanges = () => {
         console.log('in saveGoalChanges and goals are:', savingFor.amount, 'and', savingFor.description);
-        dispatch( { type: 'SAVE_BANK_GOAL', payload: { amount: savingFor.amount, description: savingFor.description}})
+        dispatch( { type: 'SAVE_BANK_GOAL', payload: { amount: savingFor.amount, 
+                                            description: savingFor.description,
+                                            userID: user.id}})
     }
 
     useEffect(() => {
@@ -63,8 +66,8 @@ function Money(props) {
                         <label id="goal-amount-label" for="saving-goal">Amount:</label>
                         <input id="goal-amount-input" 
                                type="text" 
-                               disabled={!editSavingFor}
-                               placeholder={savingFor.amount}
+                               disabled={!editSavingFor}                               
+                               value={savingFor.amount}
                                onChange={(e) => {setSavingFor({...savingFor, amount: e.target.value})}}/>
                     </div>
                     {/* <div id="line"><hr /></div> */}
@@ -73,7 +76,7 @@ function Money(props) {
                         <input id="goal-desc-input" 
                             type="text" 
                             disabled={!editSavingFor} 
-                            placeholder={savingFor.description}
+                            value={savingFor.description}
                             onChange={(e) => {setSavingFor({...savingFor, description: e.target.value})}}/>
                     </div>
 

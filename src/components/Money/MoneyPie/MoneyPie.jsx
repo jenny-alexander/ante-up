@@ -2,19 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { VictoryPie } from "victory-pie";
 import { VictoryTooltip } from "victory-tooltip";
 import './MoneyPie.scss' //change this to './MoneyPie.scss';
-import * as Constants from '../../constants/index';
+import * as Constants from '../../../constants/index';
 
 function MoneyPie(props) {
 
-    useEffect(() => {
-        //console.log('in useEffect of MoneyPie');
+    useEffect(() => {        
         setPieData();
     },[props.bank])
 
     const [data, setData] = useState([]);
 
-    const setPieData = () => {
-        //console.log('in setPieData and props are:', props.bank);        
+    const setPieData = () => {             
         setData([           
             { x: "Spend", y: ( props.bank?.spend / props.bank?.total), z: Constants.dollarUS.format(props.bank?.spend) },
             { x: "Save", y: ( props.bank?.save / props.bank?.total ), z: Constants.dollarUS.format(props.bank?.save) },
@@ -24,7 +22,6 @@ function MoneyPie(props) {
 
     return (
         <div className="pie">
-
             <div className="chart-title">
                 My Money At-a-Glance
             </div>

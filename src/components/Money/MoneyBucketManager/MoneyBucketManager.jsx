@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './MoneyBucketManager.scss';
-import * as Constants from '../../constants/index';
+import * as Constants from '../../../constants/index';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
@@ -11,8 +11,7 @@ function MoneyBucketManager(props) {
     const MySwal = withReactContent(Swal);
     const [changeType, setChangeType] = useState('');
 
-    useEffect(() => { 
-        //console.log('in useEffect for bank changes and props.bank are:', props.bank)
+    useEffect(() => {         
         if (props.bank.changeSuccess === true) {
             launchSuccessToast();
         }
@@ -36,13 +35,12 @@ function MoneyBucketManager(props) {
 
     const changeAmount = (changeType, bucketType) => {
         setChangeType(changeType)
-        const changeAmountSWAL =  {
-            //console.log('in changeBucketAmount and params are:', bucketType, changeType);
-            title: `${bucketType}: Enter amount to ${changeType}`,
+        const changeAmountSWAL =  {            
+            title: `Enter amount to ${changeType} into ${bucketType} account`,
             focusConfirm: false,
             html: `<input class="swal2-input" id="amount" type="number" placeholder="0.00" />
                    <br />
-                   <textarea class="swal2-textarea" id="bucket-comments" placeholder="Enter comments here..."></textarea>`,
+                   <input class="swal2-input" id="bucket-comments" placeholder="Enter comments here..."></input>`,
             iconHtml: '<img src="images/ante_up.png" alt="ante up logo">',
             customClass: {
               icon: 'no-border'
@@ -70,12 +68,9 @@ function MoneyBucketManager(props) {
     }
     
     const handleChangeBankAmount = async (bucketType, changeType) => {
-
-        console.log('in handleChangeBankAmount with bucketType:', bucketType, 'and changeType', changeType);
         const changeBankAmount = async () => {
             const swalval = await MySwal.fire(changeAmount(changeType, bucketType));
-            let v = swalval && swalval.value || swalval.dismiss;
-            //console.log('v is:', v);
+            let v = swalval && swalval.value || swalval.dismiss;            
             if (v && v.amountValue  || v === 'cancel') {
                 if (v !== 'cancel') {
                     //setformdata(swalval);

@@ -13,9 +13,7 @@ function RegisterForm() {
   const navigate = useNavigate();
 
   const registerUser = (event) => {
-    event.preventDefault();
-
-    console.log('in registerUser with:', username, password);
+    event.preventDefault();    
 
     dispatch({
       type: 'REGISTER',
@@ -24,7 +22,7 @@ function RegisterForm() {
         password: password,
       },
     });
-  }; // end registerUser
+  };
 
   return (
     

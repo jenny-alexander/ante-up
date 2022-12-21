@@ -4,7 +4,7 @@ function Setting(props) {
 
     return (
         <div>
-            I'm the Allowance Component!
+            I'm the Setting Component!
         </div>
     )
 }
