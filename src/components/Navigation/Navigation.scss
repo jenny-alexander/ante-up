@@ -4,7 +4,8 @@
 }
 .navigation {
     // border: 1px solid #bacdd8;
-    background-color: rgb(216, 232, 229);
+    // background-color: rgb(216, 232, 229);
+    background-color: rgb(229 239 237);
     grid-area: navigation;
     padding: 0.5em;
 
@@ -41,7 +42,6 @@
                 border-radius: 5px;
                 
             }
-
         }
 
          a {
@@ -51,25 +51,6 @@
              text-decoration: none;
             
           }
-
-        // a::before {
-        //     content: "";
-        //     position: absolute;
-        //     display: block;
-        //     width: 100%;
-        //     height: 1px;
-        //     bottom: 0;
-        //     left: 0;
-        //     //background-color: #000;
-        //     background-color: #f8c348;
-        //     transform: scaleX(0);
-        //     transition: transform 0.1s ease;
-        // }
-        
-        // a:hover::before {
-        //     transform: scaleX(1);
-        // }
-
 
         & .nav-logout {
             border-radius: 5px;
@@ -85,36 +66,5 @@
                 transform: scale(1.05)        
             }
         }
-        // & .logout {
-        //     border: 1px solid var(--color-logout);
-        //     color: var(--color-logout);
-        //     border-radius: 5px;
-        //     width: 50%;
-        //     background: var(--color-logout);
-        //     color: white;
-        //     // margin-top:auto;
-        //     text-align: center;
-        //     margin-top: 4em;
-
-
-        // }        
-
-        // a:link { /* Essentially means a[href], or that the link actually goes somewhere */
-        //     color: blue;
-        //   }
-        //   a:visited {
-        //     color: purple;
-        //   }
-        //   a:hover {
-        //     color: green;
-        //   }
-        //   a:active {
-        //     color: red;
-        //   }
     }
-    // @media(max-width: 650px) {
-    //     .logo {
-    //         visibility:hidden;
-    //     }
-    // }
 }

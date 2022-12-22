@@ -58,7 +58,7 @@ function App() {
         </Route> */}
       </Routes>
     {/* </BrowserRouter> */}
-    {/* <RightBorder /> */}
+    <RightBorder />
     </div>
 
   )
