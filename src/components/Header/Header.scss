@@ -2,6 +2,9 @@
     display: flex;
     align-items: center;
     justify-content: right;
+    @media(max-width: 649px) {
+      height: 100%;
+    }
    
     //justify-content: space-evenly;
     flex-wrap:wrap;
@@ -28,7 +31,9 @@
         // }
       }
       @media(max-width: 651px) {
-        justify-content:space-around;
+        justify-content:space-between;
+        padding-left: 1em;
+        padding-right: 1em;
       }
   }
 

@@ -7,18 +7,26 @@ import './Header.scss';
 function Header(props) {
     const user = useSelector((store) => store.user);
 
+
+    const onMenuClick = () => {
+        console.log('clicked on menu icon');
+        return (
+            <div>Hi</div>
+        )
+    }
+
     return (
         <div className='header'>
             { Object.entries(user).length === 0 ? 
                 <div className="no-header"></div>
              :
             <div class="header-container">
-                <IconButton className="menu-icon">
+                <IconButton className="menu-icon" onClick={()=> {onMenuClick()}}>
                     <MenuIcon></MenuIcon>
                 </IconButton>
-                <div class="image">
+                {/* <div class="image">
                     <img className="logo" src="images/ante_up.png" alt="ante up logo"></img>
-                </div>
+                </div> */}
                 <div class="welcome-text">
                     <div>Welcome {user.username}!</div>
                 </div>

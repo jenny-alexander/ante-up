@@ -16,39 +16,26 @@ import './Money.scss';
 function Money(props) {
     const dispatch = useDispatch();
     const allowance = useSelector((store) => store.allowance);
-    // const bank = useSelector((store) => store.bank.bank );
     const bank = useSelector((store) => store.bank );
     const user = useSelector((store) => store.user);
     const[editSavingFor, setEditSavingFor] = useState(false);
     const[savingFor, setSavingFor] = useState({});
 
     useEffect(()=> {
-        //console.log('in Money useEffect');
         dispatch( { type: 'FETCH_ALLOWANCE', payload: user.id} );
         dispatch( { type: 'FETCH_LATEST_ALLOWANCE', payload: user.id });
-        //dispatch( { type: 'FETCH_BANK', payload: user.id })
          dispatch( {type: "GET_BANK_REQUESTED", payload: user.id})
     },[])
 
-    // useEffect(() => {
-    //     console.log('allowance changed! it is now:', allowance)
-    // },[allowance])
-
-    const saveGoalChanges = () => {
-        console.log('in saveGoalChanges and goals are:', savingFor.amount, 'and', savingFor.description);
+    const saveGoalChanges = () => {        
         dispatch( { type: 'SAVE_BANK_GOAL', payload: { amount: savingFor.amount, 
                                             description: savingFor.description,
                                             userID: user.id}})
     }
 
     useEffect(() => {
-        console.log('latest allowance changed! it is now:', allowance.latestAllowance)
-    },[allowance.latestAllowance])
-
-    useEffect(() => {
         setSavingFor({...savingFor,amount: bank.bank.goal_amount, description: bank.bank.goal_desc})
     },[bank.bank])
-
 
     return (
         <div className="money">
