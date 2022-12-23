@@ -20,8 +20,8 @@ function MoneyBucketManager(props) {
     const launchSuccessToast = () => {
         const Toast = Swal.mixin({
             toast: true,
-            //animation: false,
-            position: 'bottom-left',
+            animation: false,
+            position: 'top',
             showConfirmButton: false,
             timer: 2000,
             timerProgressBar: true,
@@ -29,7 +29,12 @@ function MoneyBucketManager(props) {
           
           Toast.fire({
             icon: 'success',            
-            title: `${changeType.charAt(0).toUpperCase() + changeType.slice(1)} was successful!`
+            title: `${changeType.charAt(0).toUpperCase() + changeType.slice(1)} was successful!`,
+            showClass: {
+                backdrop: 'swal2-noanimation',
+                popup: 'swal2-noanimation',
+                icon: 'swal2-noanimation'
+              },
           })
     }
 
@@ -38,17 +43,17 @@ function MoneyBucketManager(props) {
         const changeAmountSWAL =  {            
             title: `Enter amount to ${changeType} into ${bucketType} account`,
             focusConfirm: false,
-            html: `<input class="swal2-input" id="amount" type="number" placeholder="0.00" />
+            html: `<label for="amount">Amount:</label>
+                <input class="swal2-input" id="amount" type="number" placeholder="0.00" />
                    <br />
-                   <input class="swal2-input" id="bucket-comments" placeholder="Enter comments here..."></input>`,
-            iconHtml: '<img src="images/ante_up.png" alt="ante up logo">',
-            customClass: {
-              icon: 'no-border'
-            },
+                   <label for"bucket-comments">Reason:</label>
+                   <input class="swal2-input" id="bucket-comments"></input>`,
+            // iconHtml: '<img src="images/ante_up.png" alt="ante up logo">',
             showClass: {
-                backdrop: 'swal2-noanimation', // disable backdrop animation
-                popup: '',                     // disable popup animation
-                icon: ''                       // disable icon animation
+                //backdrop: 'swal2-noanimation', // disable backdrop animation
+                popup: 'swal2-noanimation',                     // disable popup animation
+                title: 'swal2-title bucket',
+                //icon: 'swal2-noanimation'                       // disable icon animation
               },
             showCancelButton: true,
             cancelButtonColor: 'grey',
@@ -56,7 +61,7 @@ function MoneyBucketManager(props) {
             confirmButtonText: 'Confirm',
             allowOutsideClick: false,
             customClass: {
-                title: 'allowance swal2-title',
+                title: 'money-bucket swal2-title',
             },
             preConfirm: () => ({
                 amountValue: document.getElementById('amount').value,

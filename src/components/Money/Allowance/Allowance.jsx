@@ -39,7 +39,8 @@ function Allowance(props) {
             })
             launchSuccessToast();
         }
-    }, [props.bank.allowanceDepositSuccess, props.bank])
+    // }, [props.bank.allowanceDepositSuccess, props.bank])
+}, [props.bank.allowanceDepositSuccess])
     
     const showErrorModal = () => {
         Swal.fire({
@@ -82,9 +83,15 @@ function Allowance(props) {
             cancelButtonText: 'No',
             confirmButtonColor: '#007E58',
             customClass: {
-                title: 'allowance swal2-title',
-                
+                popup: 'swal2-popup allowance',
+                title: 'swal2-title allowance',
+                icon:'swal2-icon allowance',              
             },
+            showClass: {
+                //backdrop: 'swal2-noanimation', // disable backdrop animation
+                popup: 'swal2-noanimation',                     // disable popup animation
+                icon: 'swal2-noanimation'                       // disable icon animation
+              },
         }).then((result) => {
             if (result.isConfirmed) {
             deposit(amount, toAccount, dbAccountName);
@@ -94,8 +101,8 @@ function Allowance(props) {
     const launchSuccessToast = () => {
         const Toast = Swal.mixin({
             toast: true,
-            animation: false,
-            position: 'bottom-left',
+            //animation: false,
+            position: 'top',
             showConfirmButton: false,
             timer: 2000,
             timerProgressBar: true,
@@ -103,7 +110,12 @@ function Allowance(props) {
           
           Toast.fire({
             icon: 'success',
-            title: 'Deposited Successfully!'
+            title: 'Deposited Successfully!',
+            showClass: {
+                backdrop: 'swal2-noanimation', // disable backdrop animation
+                popup: 'swal2-noanimation',
+                icon: 'swal2-noanimation'
+              },
           })
     }
     const getDayOfWeek = (date) => {

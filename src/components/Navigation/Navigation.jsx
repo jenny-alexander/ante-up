@@ -5,8 +5,6 @@ import './Navigation.scss';
 
 function Navigation(props) {
     const dispatch = useDispatch();
-    const user = useSelector((store) => store.user);
-    //const[isActive, setIsActive] = useState(false);
 
     return (
         <div className="navigation">
@@ -42,7 +40,7 @@ function Navigation(props) {
                             </NavLink>
                         </div>                        
                         </div>
-                    { Object.entries(user).length === 0 ? '' : 
+                    { Object.entries(props.user).length === 0 ? '' : 
                         <div className="logout">
                             <button className="nav-logout" onClick={() => dispatch( { type: 'LOGOUT' })}>Log Out </button>
                         </div>

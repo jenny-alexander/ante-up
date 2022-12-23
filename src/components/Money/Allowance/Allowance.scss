@@ -20,13 +20,23 @@ $greenButton: rgb(39, 95, 88);
       }   
 
 }
-
+.swal2-icon.allowance  {
+    margin-top: 1em;
+}
+.swal2-title.allowance {
+    padding-top: 0em;
+}
+.swal2-popup.allowance {
+    width: 26em;
+}
 
 .allowance {
     display: flex;
     flex-direction: column;
     //justify-content: center;
     align-items: center;
+
+
 
 
 
