@@ -1,52 +1,11 @@
-import React, {useState} from 'react';
-import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import NavOptions from '../Navigation/NavOptions';
 import './Navigation.scss';
 
 function Navigation(props) {
-    const dispatch = useDispatch();
 
-    return (
-        <div className="navigation">
-                <div className="main-links">
-                    <img className="logo" src="images/ante_up.png" alt="ante up logo"></img>
-                    <div className="action-links">
-                        <div>
-                            <NavLink 
-                                className={({ isActive }) => (isActive ? 'nav-dashboard isActive' : 'nav-dashboard')}
-                                to="/dashboard">
-                                Dashboard
-                            </NavLink>
-                        </div>                            
-                        <div>
-                            <NavLink 
-                                    className={({ isActive }) => (isActive ? 'nav-money isActive' : 'nav-money')}
-                                    to="/money">
-                                    Money
-                            </NavLink>
-                        </div>
-                        <div>
-                            <NavLink 
-                                className={({ isActive }) => (isActive ? 'nav-chore isActive' : 'nav-chore')}
-                                to="/chore">
-                                Chores
-                            </NavLink>
-                        </div>
-                        <div>
-                            <NavLink 
-                                className={({ isActive }) => (isActive ? 'nav-activity isActive' : 'nav-activity')}
-                                to="/activity">
-                                Activity Log
-                            </NavLink>
-                        </div>                        
-                        </div>
-                    { Object.entries(props.user).length === 0 ? '' : 
-                        <div className="logout">
-                            <button className="nav-logout" onClick={() => dispatch( { type: 'LOGOUT' })}>Log Out </button>
-                        </div>
-                    }
-                </div>
-            </div>  
+    return (        
+        <NavOptions />        
     )
 }
 

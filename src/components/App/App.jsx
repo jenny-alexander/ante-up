@@ -42,7 +42,7 @@ function App() {
     <div className='application'>
       {/* <ModalRoot /> */}
       {/* <button onClick={ addModal } className="btn btn-primary-m4">Open modal</button> */}
-      { Object.entries(user).length === 0 ?  <Welcome /> : <Navigation user={user} /> }
+      { Object.entries(user).length === 0 ?  <Welcome /> : <Navigation /> }
       <Header />
 
       <Routes>

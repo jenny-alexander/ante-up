@@ -33,7 +33,8 @@
             display: flex;
             flex-direction: column;
             gap: 2em;
-            & .isActive {
+            // & .isActive {
+                & .active {
                 text-decoration: underline wavy #f8c348 0.15rem;
                 text-underline-offset: 0.5rem;
             }
