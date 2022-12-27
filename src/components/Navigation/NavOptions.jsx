@@ -24,10 +24,9 @@ function NavOptions(props) {
       },
     ]
 
-    return (
-        <div className="navigation">
-            <div className="main-links">
-                <img className="logo" src="images/ante_up.png" alt="ante up logo"></img>
+    return (        
+            <>
+                {/* <img className="logo" src="images/ante_up.png" alt="ante up logo"></img> */}
                 <div className="action-links">
                 {
                     navOptions.map(option => 
@@ -37,12 +36,10 @@ function NavOptions(props) {
                     )
                 }
                 </div>
-                <div className="logout">
+                {/* <div className="logout">
                     <button className="nav-logout" onClick={() => dispatch( { type: 'LOGOUT' })}>Log Out </button>
-                </div>   
-            </div>
-             
-        </div>  
+                </div>    */}
+            </>                    
     )
 }
 

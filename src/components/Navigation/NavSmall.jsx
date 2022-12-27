@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import NavOptions from '../Navigation/NavOptions';
+import MenuIcon from '@mui/icons-material/Menu';
+import { IconButton } from '@mui/material';
 import './Navigation.scss';
 
 function NavSmall(props) {
@@ -11,13 +13,19 @@ function NavSmall(props) {
     }
 
     return (
+        // <div className="navigation">
         <div className="nav-small">
-            <button onClick={handleToggle}>Menu</button>
+                        <div className="main-links">
+            {/* <IconButton className="menu-icon" onClick={handleToggle}>
+                <MenuIcon></MenuIcon>
+            </IconButton>
             {
                 toggleMenu ? <NavOptions handleToogle={handleToggle} /> : ''
-            }            
+            }             */}
+            <NavOptions />
+            </div>
         </div>
-             
+        // </div>
     )
 }
 

@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
 import {  useSelector } from 'react-redux';
-import MenuIcon from '@mui/icons-material/Menu';
-import { IconButton } from '@mui/material';
+// import MenuIcon from '@mui/icons-material/Menu';
+// import { IconButton } from '@mui/material';
+import NavSmall from '../Navigation/NavSmall';
 import './Header.scss';
 
 function Header(props) {
     const user = useSelector((store) => store.user);
-
 
     const onMenuClick = () => {
         console.log('clicked on menu icon');
@@ -21,12 +21,7 @@ function Header(props) {
                 <div className="no-header"></div>
              :
             <div class="header-container">
-                <IconButton className="menu-icon" onClick={()=> {onMenuClick()}}>
-                    <MenuIcon></MenuIcon>
-                </IconButton>
-                {/* <div class="image">
-                    <img className="logo" src="images/ante_up.png" alt="ante up logo"></img>
-                </div> */}
+                <NavSmall />
                 <div class="welcome-text">
                     <div>Welcome {user.username}!</div>
                 </div>

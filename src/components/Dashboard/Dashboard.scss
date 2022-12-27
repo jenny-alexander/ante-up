@@ -1,11 +1,7 @@
 .dashboard {
-    // & [class*="dashboard-"] {
-    //     width:60%;
-    // }
     display: flex;
     flex-direction: column;
     background-color: #f9f9f6;
-    //width: 60%;
     & .dashboard-main {
         background-color: white;
         border: 1px solid #dee0e2;
@@ -16,16 +12,14 @@
         grid-template-columns: 1.5fr 1fr;
         grid-template-rows: auto;
         grid-template-areas: 
-          "money calendar"
-        //   "chore calendar";
+          "money calendar"        
         "chore chore";
         margin-top: 1em;
         margin-left: 2em;
         margin-right: 2em;
     }
 
-    & .dashboard-title {
-        //padding-left: 0.25em;        
+    & .dashboard-title {        
         text-align: center;
         padding-top: 0.5em;
     }
@@ -38,19 +32,3 @@
         margin-right: auto;
     }
 }
-// @media(max-width: 1000px) {
-//     .dashboard {
-//         width: 70%;
-//     }
-// }
-
-// @media(max-width: 850px) {
-//     .dashboard {
-//         & .dashboard-main {
-//             grid-template-areas: 
-//             "calendar calendar"
-//             "money"
-//             "chore";
-//         }
-//     }
-// }

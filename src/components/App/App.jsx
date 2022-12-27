@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Route,
   Routes,
@@ -13,7 +13,9 @@ import Chore from '../Chore/Chore';
 import ActivityLog from '../ActivityLog/ActivityLog';
 import Header from '../Header/Header';
 import RightBorder from '../RightBorder/RightBorder';
-
+import NavSmall from '../Navigation/NavSmall';
+import MenuIcon from '@mui/icons-material/Menu';
+import { IconButton } from '@mui/material';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
@@ -26,24 +28,53 @@ import './App.scss';
 
 function App() {
   const dispatch = useDispatch();
-
   const user = useSelector(store => store.user);
-
-  // const addModal = () => {
-  //   ModalService.open(TestModal);
-  // };
+  const [showSmallNav, setShowSmallNav] = useState(false);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
+  const toggleMenu = () => {
+    console.log('toggling menu');
+    setShowSmallNav(!showSmallNav);
+  }
+
   return (
-    // <div className={Object.entries(user).length === 0 ? 'application large' : 'application small'}>
     <div className='application'>
-      {/* <ModalRoot /> */}
-      {/* <button onClick={ addModal } className="btn btn-primary-m4">Open modal</button> */}
       { Object.entries(user).length === 0 ?  <Welcome /> : <Navigation /> }
-      <Header />
+      {/* <Header /> */}
+      {/* <div className='header'>
+            { Object.entries(user).length === 0 ? 
+                <div className="no-header"></div>
+             :
+            <div class="header-container">
+                <NavSmall />
+                <div class="welcome-text">
+                    <div>Welcome {user.username}!</div>
+                </div>
+          </div>
+}
+      </div> */}
+
+
+            {/* <div className="button_container" id="toggle">
+              <button className='menu-button' onClick={toggleMenu}>Menu</button>
+            </div> */}
+            <div className='header'>
+              <div className="header-container">
+                <IconButton className="menu-icon" onClick={toggleMenu}>
+                  <MenuIcon></MenuIcon>
+                </IconButton>
+              {/* <div className="overlay" id="overlay"> */}
+                <div className={`overlay ${showSmallNav ? 'open' : ''}`}>
+                  <NavSmall />
+                </div>
+                <div class="welcome-text">
+                    <div>Welcome {user.username}!</div>
+                </div>
+              </div>
+            </div>
 
       <Routes>
         <Route path="/" element={user.id ? (<Dashboard user={user} />) : (<LoginPage />)} />
@@ -57,7 +88,6 @@ function App() {
           <h1>404</h1>
         </Route> */}
       </Routes>
-    {/* </BrowserRouter> */}
     <RightBorder />
     </div>
 
