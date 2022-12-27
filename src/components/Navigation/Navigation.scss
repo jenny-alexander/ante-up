@@ -30,8 +30,7 @@
         & .action-links{
             display: flex;
             flex-direction: column;
-            gap: 2em;
-            // & .isActive {
+            gap: 2em;            
                 & .active {
                 text-decoration: underline wavy #f8c348 0.15rem;
                 text-underline-offset: 0.5rem;

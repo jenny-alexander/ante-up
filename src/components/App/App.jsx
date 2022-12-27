@@ -57,16 +57,15 @@ function App() {
 }
       </div> */}
 
-
-            {/* <div className="button_container" id="toggle">
-              <button className='menu-button' onClick={toggleMenu}>Menu</button>
-            </div> */}
             <div className='header'>
               <div className="header-container">
-                <IconButton className="menu-icon" onClick={toggleMenu}>
-                  <MenuIcon></MenuIcon>
-                </IconButton>
-              {/* <div className="overlay" id="overlay"> */}
+                  <button onClick={toggleMenu}
+                    className={`button-container ${showSmallNav ? 'active' : ''}`} 
+                    id="toggle">
+                      <span class="top"></span>
+                      <span class="middle"></span>
+                      <span class="bottom"></span>
+                  </button>
                 <div className={`overlay ${showSmallNav ? 'open' : ''}`}>
                   <NavSmall />
                 </div>

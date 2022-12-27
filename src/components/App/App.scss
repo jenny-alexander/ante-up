@@ -51,6 +51,9 @@ textarea {
       & .right-border {
         display: none;
       }
+      & .button-container {
+        display: none;
+      }
   }
   @media (min-width: 1450px){
     grid-template-columns: minmax(auto, 20%) 1fr minmax(auto, 20%);
@@ -61,7 +64,7 @@ textarea {
   }
 }
 
-.button_container {
+.button-container {
   position: fixed;
   top: 5%;
   right: 2%;
@@ -70,23 +73,24 @@ textarea {
   cursor: pointer;
   z-index: 100;
   transition: opacity .25s ease;
+  border:none;
 }
-.button_container:hover {
+.button-container:hover {
   opacity: .7;
 }
-.button_container.active .top {
+.button-container.active .top {
   transform: translateY(11px) translateX(0) rotate(45deg);
   background: rgb(71, 96, 155);
 }
-.button_container.active .middle {
+.button-container.active .middle {
   opacity: 0;
   background: rgb(71, 96, 155);
 }
-.button_container.active .bottom {
+.button-container.active .bottom {
   transform: translateY(-11px) translateX(0) rotate(-45deg);
   background: rgb(71, 96, 155);
 }
-.button_container span {
+.button-container span {
   background: #1abc9c;
   border: none;
   height: 5px;
@@ -97,10 +101,10 @@ textarea {
   transition: all .35s ease;
   cursor: pointer;
 }
-.button_container span:nth-of-type(2) {
+.button-container span:nth-of-type(2) {
   top: 11px;
 }
-.button_container span:nth-of-type(3) {
+.button-container span:nth-of-type(3) {
   top: 22px;
 }
 
