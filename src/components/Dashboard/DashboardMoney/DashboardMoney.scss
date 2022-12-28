@@ -55,16 +55,14 @@
         display: flex;
         align-items: flex-start;
         column-gap: 1em;
-        // border-radius: 10px;
-        // border: 1px solid rgb(79 79 79 / 46% );
-        // box-shadow: 7px 7px 5px 0px rgb(0 0 0 / 13%);
         & .saving-for-text {
             display: flex;
             flex-wrap: wrap;
         }
     }
 }
-@media(max-width: 900px) {
+//@media(max-width: 900px) {
+    @media (min-width: 651px) and (max-width: 49px) {
     .allowance-circles {
         display: flex;
         flex-direction: column;

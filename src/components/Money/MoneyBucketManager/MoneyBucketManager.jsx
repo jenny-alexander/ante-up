@@ -21,10 +21,10 @@ function MoneyBucketManager(props) {
         const Toast = Swal.mixin({
             toast: true,
             animation: false,
-            position: 'top',
+            position: 'bottom-left',
             showConfirmButton: false,
             timer: 2000,
-            timerProgressBar: true,
+            //timerProgressBar: true,
           })
           
           Toast.fire({

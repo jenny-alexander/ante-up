@@ -18,6 +18,14 @@
         margin-top: 1em;
         margin-left: 2em;
         margin-right: 2em;
+        @media (max-width: 949px) {
+                //background-color: pink;
+                grid-template-columns: 1fr;
+                grid-template-areas: 
+                "money"  
+                "calendar"      
+                "chore ";                        
+        }
     }
 
     & .dashboard-title {        

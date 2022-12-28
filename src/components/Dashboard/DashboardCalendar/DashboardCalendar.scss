@@ -1,4 +1,6 @@
 .calendar-container {
+    display: flex;
+    justify-content: center;
     grid-area: calendar;
     margin: 0em !important;
     background-color: rgb(216, 232, 229);
