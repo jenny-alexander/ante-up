@@ -60,13 +60,13 @@ function App() {
             <div className='header'>
               <div className="header-container">
                   <button onClick={toggleMenu}
-                    className={`button-container ${showSmallNav ? 'active' : ''}`} 
+                    className={`button-container ${showSmallNav ? 'active' : 'not-active'}`} 
                     id="toggle">
                       <span class="top"></span>
                       <span class="middle"></span>
                       <span class="bottom"></span>
                   </button>
-                <div className={`overlay ${showSmallNav ? 'open' : ''}`}>
+                <div className={`overlay ${showSmallNav ? 'open' : 'not-open'}`}>
                   <NavSmall />
                 </div>
                 <div class="welcome-text">

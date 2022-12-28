@@ -23,7 +23,7 @@ textarea {
 
 .application {  
   background-color: #f9f9f6;
-  height: 100vh;
+  //height: 100vh;
   display: grid;
 
   @media (max-width: 650px) {
@@ -33,10 +33,12 @@ textarea {
     grid-template-columns: 1fr;
     & .navigation {
       display: none;
-
     }
     & .header {
       background-color: rgb(216, 232, 229);
+      padding-top: 10px;
+      padding-bottom: 10px;
+      //height: 30px;
     }
     & .right-border{
       display: none;
@@ -51,7 +53,7 @@ textarea {
       & .right-border {
         display: none;
       }
-      & .button-container {
+      & .button-container.not-active {
         display: none;
       }
   }
@@ -61,26 +63,34 @@ textarea {
     grid-template-areas: 
       "navigation header right-border"
       "navigation main right-border";
+        & .button-container.not-active {
+          display: none;
+        }      
   }
 }
 
 .button-container {
-  position: fixed;
+  //position: fixed;
+  background-color:  rgb(216, 232, 229);
   top: 5%;
   right: 2%;
   height: 27px;
   width: 35px;
   cursor: pointer;
-  z-index: 100;
+  z-index: 101;
   transition: opacity .25s ease;
   border:none;
+  &.active {
+    background-color: #f9f9f6;
+  }
 }
 .button-container:hover {
-  opacity: .7;
+  opacity: .8;
 }
 .button-container.active .top {
   transform: translateY(11px) translateX(0) rotate(45deg);
   background: rgb(71, 96, 155);
+  
 }
 .button-container.active .middle {
   opacity: 0;
@@ -91,21 +101,27 @@ textarea {
   background: rgb(71, 96, 155);
 }
 .button-container span {
-  background: #1abc9c;
+  //background: #087f6b;
+  background: rgb(51, 77, 92);
   border: none;
   height: 5px;
-  width: 100%;
+  //width: 100%;
+  width: 30px;
+  margin-left: 1em;
   position: absolute;
   top: 0;
   left: 0;
   transition: all .35s ease;
   cursor: pointer;
 }
+.button-container span:nth-of-type(1) {
+  top: 10px;
+}
 .button-container span:nth-of-type(2) {
-  top: 11px;
+   top: 21px;  
 }
 .button-container span:nth-of-type(3) {
-  top: 22px;
+  top: 32px;
 }
 
 .overlay {
@@ -119,16 +135,17 @@ textarea {
   visibility: hidden;
   transition: opacity .35s, visibility .35s, height .35s;
   overflow: hidden;
+  z-index: 100;
 }
 .overlay.open {
   opacity: 1;
   visibility: visible;
   height: 100%;
 }
-.overlay.open li {
-  animation: fadeInRight .5s ease forwards;
-  animation-delay: .35s;
-}
+// .overlay.open div a {
+//   animation: fadeInRight .5s ease forwards;
+//   animation-delay: .35s;
+// }
 .overlay div {
   position: relative;
   height: 55%;
@@ -138,44 +155,53 @@ textarea {
   font-family:inherit;
   font-weight: 400;
   text-align: center;
+  & a {
+    text-decoration: none;
+    color: black;
+    &:hover {
+      text-decoration: underline wavy #f8c348 0.15rem;
+      text-underline-offset: 0.5rem;
+    }
+  }
 }
-.overlay ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
-  display: inline-block;
-  position: relative;
-  height: 100%;
-}
-.overlay ul li {
-  display: block;
-  height: 25%;
-  height: calc(100% / 4);
-  min-height: 50px;
-  position: relative;
-  opacity: 0;
-}
-.overlay ul li a {
-  display: block;
-  position: relative;
-  color: rgb(71, 96, 155);
-  text-decoration: none;
-  overflow: hidden;
-}
-.overlay ul li a:hover:after, .overlay ul li a:focus:after, .overlay ul li a:active:after {
-  width: 100%;
-}
-.overlay ul li a:after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0%;
-  transform: translateX(-50%);
-  height: 3px;
-  background: rgb(71, 96, 155);
-  transition: .35s;
-}
+
+// .overlay ul {
+//   list-style: none;
+//   padding: 0;
+//   margin: 0 auto;
+//   display: inline-block;
+//   position: relative;
+//   height: 100%;
+// }
+// .overlay ul li {
+//   display: block;
+//   height: 25%;
+//   height: calc(100% / 4);
+//   min-height: 50px;
+//   position: relative;
+//   opacity: 0;
+// }
+// .overlay ul li a {
+//   display: block;
+//   position: relative;
+//   color: rgb(71, 96, 155);
+//   text-decoration: none;
+//   overflow: hidden;
+// }
+// .overlay ul li a:hover:after, .overlay ul li a:focus:after, .overlay ul li a:active:after {
+//   width: 100%;
+// }
+// .overlay ul li a:after {
+//   content: '';
+//   position: absolute;
+//   bottom: 0;
+//   left: 50%;
+//   width: 0%;
+//   transform: translateX(-50%);
+//   height: 3px;
+//   background: rgb(71, 96, 155);
+//   transition: .35s;
+// }
 
 @keyframes fadeInRight {
   0% {
