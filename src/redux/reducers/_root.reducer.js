@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
+import chore from './chore.reducer';
 import allowance from './allowance.reducer';
 import bank from './bank.reducer';
 import bankTransaction from './bank.transaction.reducer';
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   allowance, //contains allowance and latestAllowance
   bank,
   bankTransaction,
+  chore,
 });
 
 export default rootReducer;

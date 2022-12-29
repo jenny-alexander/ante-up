@@ -9,7 +9,7 @@ import Navigation from '../Navigation/Navigation';
 import Dashboard from '../Dashboard/Dashboard';
 import Money from '../Money/Money';
 import Chore from '../Chore/Chore';
-// import About from '../About/About';
+import Card from '../Common/Card/Card';
 import ActivityLog from '../ActivityLog/ActivityLog';
 import Header from '../Header/Header';
 import RightBorder from '../RightBorder/RightBorder';
@@ -81,7 +81,7 @@ function App() {
         <Route path="/registration" element={user.id ? (<Dashboard user={user}/>) : (<RegisterPage />)} />
         <Route path="/dashboard" element={user.id ? (<Dashboard user={user}/>) : (<LoginPage />)} />
         <Route path="/money" element={user.id ? (<Money />) : (<LoginPage />)} />
-        <Route path="/chore" element={user.id ? (<Chore />) : (<LoginPage />)} />
+        <Route path="/chore" element={user.id ? (<Chore user={user} />) : (<LoginPage />)} />
         <Route path="/activity" element={user.id ? (<ActivityLog />) : (<LoginPage />)} />
         {/* <Route>
           <h1>404</h1>

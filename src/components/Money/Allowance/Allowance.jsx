@@ -27,7 +27,7 @@ function Allowance(props) {
     },[props.bank.error])
 
     useEffect(() => { 
-            if (props.bank.allowanceDepositSuccess === true) {
+        if (props.bank.allowanceDepositSuccess === true) {
             dispatch( {
                 type: 'UPDATE_ALLOWANCE',
                 payload: {
@@ -74,7 +74,7 @@ function Allowance(props) {
             }
         })
     }
-        const openAllowanceModal = (amount, toAccount, accountName, dbAccountName) => {        
+    const openAllowanceModal = (amount, toAccount, accountName, dbAccountName) => {        
         Swal.fire({
             title: `Deposit ${accountName} Allowance?`,            
             icon: 'question',
@@ -88,9 +88,8 @@ function Allowance(props) {
                 icon:'swal2-icon allowance',              
             },
             showClass: {
-                //backdrop: 'swal2-noanimation', // disable backdrop animation
-                popup: 'swal2-noanimation',                     // disable popup animation
-                icon: 'swal2-noanimation'                       // disable icon animation
+                popup: 'swal2-noanimation',
+                icon: 'swal2-noanimation'
               },
         }).then((result) => {
             if (result.isConfirmed) {
@@ -121,16 +120,12 @@ function Allowance(props) {
     const getDayOfWeek = (date) => {
         const datum = new Date(date);
         const dayOfWeek = weekday[datum.getDay()];
-        //const dayOfWeek = weekday[date.getDay()];
         return dayOfWeek;
     }
-    
 
     if (Object.keys(props.allowance.latestAllowance).length !=0 ) {
         return (
-
             <div className="allowance">
-                
                 <div className='allowance-title'>
                     Latest Allowance: {allowanceDay ? allowanceDay : null},
                     { updatedLatestAllowance.allowance_date ? ' ' + updatedLatestAllowance.allowance_date.slice(0,10) : null }

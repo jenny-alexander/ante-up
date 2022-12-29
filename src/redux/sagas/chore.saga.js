@@ -4,23 +4,22 @@ import { put, takeLatest } from 'redux-saga/effects';
 /* api functionality should include:
 - get chore
 - create new chore
-- delete a chore
-- update comments on a chore
-- move (update) a chore by moving it from 'daily' to 'weekly'
+- update chore (comments, status)
 */
 
-function* fetchChore() {
+function* fetchChore(action) {
     try {
         //yield put({ type: 'UNSET_CHORE' });
-        const response = yield axios.get('/api/chore');
-        yield put({ type: 'SET_CHORE', payload: response.data });
+        console.log('in fetchChore saga and action.payload is:', action.payload)
+        const response = yield axios.get(`/api/chore/${action.payload}`);
+        yield put({ type: 'GET_CHORE_SUCCESS', payload: response.data });
     } catch (error) {
         console.log('Chore GET request failed', error);
     }
 }
 
 function* choreSaga() {
-    yield takeLatest('FETCH_CHORE', fetchChore);
+    yield takeLatest('GET_CHORE_REQUESTED', fetchChore);
 }
 
 export default choreSaga;

@@ -24,13 +24,16 @@ function Money(props) {
     useEffect(()=> {
         dispatch( { type: 'FETCH_ALLOWANCE', payload: user.id} );
         dispatch( { type: 'FETCH_LATEST_ALLOWANCE', payload: user.id });
-         dispatch( {type: "GET_BANK_REQUESTED", payload: user.id})
+        dispatch( { type: 'GET_BANK_REQUESTED', payload: user.id})
     },[])
 
     const saveGoalChanges = () => {        
         dispatch( { type: 'SAVE_BANK_GOAL', payload: { amount: savingFor.amount, 
                                             description: savingFor.description,
                                             userID: user.id}})
+        
+        //TODO: check for successful save
+        setEditSavingFor(!editSavingFor);                                         
     }
 
     useEffect(() => {
@@ -83,8 +86,7 @@ function Money(props) {
 
 
             <div className="money-allowance">
-                <Card component={<Allowance allowance={allowance} bank={bank} />}
-                />
+                <Card component={<Allowance allowance={allowance} bank={bank}/>} />
             </div>
 
             <div className="money-bank-chart">

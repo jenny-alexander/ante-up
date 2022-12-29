@@ -2,6 +2,7 @@ import { all } from 'redux-saga/effects';
 import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
+import choreSaga from './chore.saga';
 import allowanceSaga from './allowance.saga';
 import bankSaga from './bank.saga';
 import bankTransactionSaga from './bank.transaction.saga';
@@ -18,6 +19,7 @@ export default function* rootSaga() {
     loginSaga(), // login saga is now registered
     registrationSaga(),
     userSaga(),
+    choreSaga(),
     allowanceSaga(),
     bankSaga(),
     bankTransactionSaga(),
