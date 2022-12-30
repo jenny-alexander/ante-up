@@ -31,7 +31,7 @@
                 font-size: 0.9em;
                 border-collapse: collapse;  
                 width: 100%;
-                border: solid 1px #bacdd8;
+                //border: solid 1px #bacdd8;
             }
             .chore-head {
                 //border: 2px dashed red;
@@ -41,6 +41,9 @@
                 text-align: left;
                 font-size:larger;
             }
+            // & .td-center {
+            //     text-align: center;
+            // }
             tr th {
                 padding: 8px;        
             }
@@ -61,6 +64,26 @@
             }    
             tr {
                 border-bottom: 1px solid #bacdd8;
+            }
+        }
+        & .chore-details {
+            //border: 1px solid red;
+            display: flex;
+            flex-direction: column;
+            & .chore-frequency {
+                // border: 2px dotted blue;
+                // display: flex;
+                & .daily-chore {
+                    display: flex;
+                    justify-content: space-evenly;
+                    & .daily {
+                        //border: 1px solid black;
+                        display: flex;
+                        flex-direction: column;
+                        
+                    }
+                }
+
             }
         }
 

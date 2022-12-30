@@ -3,6 +3,12 @@
     flex-direction: column;
     background-color: #f9f9f6;
     & .dashboard-main {
+        & .dashboard-week {
+            padding-top: 0.5em;
+            padding-bottom: 0.5em;
+            grid-area: dashboard-week;
+            font-size: 1.3em;
+        }
         background-color: white;
         border: 1px solid #dee0e2;
         border-radius: 5px;
@@ -12,6 +18,7 @@
         grid-template-columns: 1.5fr 1fr;
         grid-template-rows: auto;
         grid-template-areas: 
+            "dashboard-week dashboard-week"
             "money calendar"        
             "chore chore";
         margin-top: 1em;

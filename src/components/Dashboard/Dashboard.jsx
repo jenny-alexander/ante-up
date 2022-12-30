@@ -10,7 +10,8 @@ function Dashboard(props) {
     return (
         <div className="dashboard">
             <h1 className="dashboard-title">Dashboard</h1>
-            <div className="dashboard-main">                                         
+            <div className="dashboard-main">   
+                <div className="dashboard-week">Week of Dec. 26 - Jan. 1 2023</div>                                      
                 <DashboardCalendar user={props.user}/>
                 <DashboardMoney user={props.user} />
                 <DashboardChore />                        

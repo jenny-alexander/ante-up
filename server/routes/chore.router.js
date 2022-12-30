@@ -7,7 +7,7 @@ const router = express.Router();
  */
 router.get('/:id', (req, res) => {
   // GET route code here
-  const getChoreQuery = `SELECT name, description, frequency, payment, user_chore.status from user_chore
+  const getChoreQuery = `SELECT chore.id, name, description, frequency, payment, user_chore.status from user_chore
                         INNER JOIN chore
                         ON user_chore.chore_id = chore.id
                         WHERE user_id = ${req.params.id};`;
