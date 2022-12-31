@@ -51,10 +51,12 @@ function Chore(props) {
             <div className="chore-main">
                 <div className="chore-selector">
                     <div className="selector-title">Frequency:</div>
-                    <Select options={options}
-                            defaultValue={options[0]}
-                            onChange={handleFrequencyChange}
-                    />
+                    <div className="selector-dropdown">
+                        <Select options={options}
+                                defaultValue={options[0]}
+                                onChange={handleFrequencyChange}
+                        />
+                    </div>
                 </div>
                 <div className="chore-list">
                     {
@@ -93,17 +95,29 @@ function Chore(props) {
     const ChoreDetailsComponent = () => {
         return (
             <div className='chore-details'>
-                <h3>Chore Details</h3>
-                <br />
-                <div>{choreDetails.name}</div>
+                <div className='chore-details-frequency'>{choreDetails.frequency}</div>    
+                <div className='chore-details-name'>{choreDetails.name}
+                    <div id="line"><hr /></div>
+                </div>
+                <div className='chore-details-payment'>${choreDetails.payment}</div>
+                <div className='chore-details-description'>
+                    {choreDetails.description}
+                </div>
+                
+                {/* <div>
+                    <label>Name:</label>{choreDetails.name}</div>
                 <div>{choreDetails.description}</div>
                 <div>{choreDetails.frequency}</div>
-                <div>{choreDetails.payment}</div>
+                <div>{choreDetails.payment}</div> */}
                 {
-                    <div className='chore-frequency'>
+                    <div className='chore-details-schedule'>
                         { renderFrequencySchedule(choreDetails.frequency) }
                     </div>
                 }
+                <div className='chore-details-comments'>
+                    <label className='chore-comments-label'>Comments:</label>
+                    <input className='chore-comments-input' type="textarea"></input>
+                </div>
             </div>
         )
     }
@@ -160,8 +174,10 @@ function Chore(props) {
             <div className='chore-container'>
                 <h1 className="chore-title">Chores</h1>
                 <Card component={<ChoreComponent />} />
+                
                 {
                     choreDetails ?
+
                     <Card component={<ChoreDetailsComponent />} />
                     : <div>Nothing here</div>
                 }

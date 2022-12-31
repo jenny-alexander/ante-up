@@ -1,5 +1,4 @@
-.chore {
-    //border: 1px solid blue;
+.chore {    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,42 +7,36 @@
         text-align: center;
         padding-top: 0.5em; //<--need this?
     }
-    // & [class*="chore-main"] {
-    //     width: 70%;
-    // }
     & .chore-container {
         width: 70%;
         & .chore-main {
-
             display: flex;
-            flex-direction: column;
-            //align-items: center;
-            width: 80%;
+            flex-direction: column;            
+            width: 70%;
+            min-height: 15em;
             & .chore-selector {
                 display: flex;
-                align-items: center;
-                justify-content: center;
+                align-items: center;                
                 column-gap: 2em;
-                margin-bottom: 2em;            
+                margin-bottom: 1em;
+                margin-top: 1em;
+                & .selector-dropdown{
+                    width: 30%;
+                }       
             }
-            & .chore-table {
-                margin: 15px;
+            & .chore-table {                
                 font-size: 0.9em;
                 border-collapse: collapse;  
                 width: 100%;
                 //border: solid 1px #bacdd8;
             }
-            .chore-head {
-                //border: 2px dashed red;
+            .chore-head {                
                 background-color: #f8c348;
                 color: #ffffff;
                 color: black;
                 text-align: left;
                 font-size:larger;
             }
-            // & .td-center {
-            //     text-align: center;
-            // }
             tr th {
                 padding: 8px;        
             }
@@ -53,9 +46,6 @@
                 cursor: pointer;
             }
             
-            // tbody tr:last-child{
-            //     border: 1px solid black;
-            // }
             tr td {
                 padding: 8px;
                 padding-top:12px;
@@ -65,29 +55,93 @@
             tr {
                 border-bottom: 1px solid #bacdd8;
             }
+            padding-bottom: 1em;
         }
         & .chore-details {
-            //border: 1px solid red;
-            display: flex;
-            flex-direction: column;
-            & .chore-frequency {
-                // border: 2px dotted blue;
-                // display: flex;
-                & .daily-chore {
+            border: 1px solid lightgrey;            
+            background-color: #ecdc9d47;            
+            display:grid;
+            grid-template-rows: 40px 1fr 1fr 2fr 1fr;
+            grid-template-areas: 
+                "chore-details-frequency chore-details-payment"
+                "chore-details-name chore-details-name"
+                "chore-details-description chore-details-description"
+                "chore-details-schedule chore-details-schedule"
+                "chore-details-comments chore-details-comments";            
+            width: 70%;
+            min-height: 15em;
+            & .chore-details-frequency {
+                grid-area: chore-details-frequency;
+                display: flex;
+                justify-content:left;
+                margin-left: 0.5em;
+                margin-top: 0.5em;                
+            }
+            & .chore-details-name {
+                grid-area: chore-details-name;                
+                display: flex;
+                flex-direction: column;
+                justify-content: end;                
+                align-items: center;
+                font-weight: bolder;
+                font-size: 1.5em;
+                hr {
+                    border: 1px solid #087f6b;
+                    width: 100%;
+                    color: #087f6b;
+                }                    
+                #line {
+                    
+                    margin-top: 0.5em;                    
+                    width: 100%;
+                }
+            }
+            & .chore-details-payment {
+                grid-area: chore-details-payment;                
+                display: flex;
+                justify-content: right;
+                margin-right: 0.5em;
+                margin-top: 0.5em;
+            }
+            & .chore-details-description {
+                grid-area: chore-details-description;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: center;
+                padding-right: 0.3em;
+                padding-left: 0.3em;
+                //background-color: white;
+            }
+            & .chore-details-schedule {                
+                //background-color: white;
+                display: flex;
+                justify-content: center;                
+                align-items: center;
+                grid-area: chore-details-schedule;
+                & .daily-chore {                    
                     display: flex;
                     justify-content: space-evenly;
-                    & .daily {
-                        //border: 1px solid black;
+                    width: 100%;
+                    & .daily {                        
                         display: flex;
                         flex-direction: column;
                         
                     }
                 }
+            }
+            & .chore-details-comments {
+                grid-area: chore-details-comments;
+                //background-color: white;
+                display: flex;
+                flex-direction: column;
+                margin-left: 0.5em;
+                margin-right: 0.5em;
+                & .chore-comments-input {
+                    border-radius: 5px;
 
+                }
             }
         }
-
     }
-
-
 }
