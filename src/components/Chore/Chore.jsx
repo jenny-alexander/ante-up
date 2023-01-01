@@ -114,10 +114,10 @@ function Chore(props) {
                         { renderFrequencySchedule(choreDetails.frequency) }
                     </div>
                 }
-                <div className='chore-details-comments'>
+                {/* <div className='chore-details-comments'>
                     <label className='chore-comments-label'>Comments:</label>
                     <input className='chore-comments-input' type="textarea"></input>
-                </div>
+                </div> */}
             </div>
         )
     }

@@ -20,19 +20,17 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Welcome from '../Welcome/Welcome';
-
-// import ModalService from '../../modules/modals/services/ModalService';
-// import TestModal from '../Modal/TestModal';
 import './App.scss';
-
 
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(store => store.user);
+  const week = useSelector(store => store.week);
   const [showSmallNav, setShowSmallNav] = useState(false);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
+    dispatch({type: 'FETCH_WEEK'});
   }, [dispatch]);
 
   const toggleMenu = () => {
@@ -43,20 +41,6 @@ function App() {
   return (
     <div className='application'>
       { Object.entries(user).length === 0 ?  <Welcome /> : <Navigation /> }
-      {/* <Header /> */}
-      {/* <div className='header'>
-            { Object.entries(user).length === 0 ? 
-                <div className="no-header"></div>
-             :
-            <div class="header-container">
-                <NavSmall />
-                <div class="welcome-text">
-                    <div>Welcome {user.username}!</div>
-                </div>
-          </div>
-}
-      </div> */}
-
             <div className='header'>
               <div className="header-container">
                   <button onClick={toggleMenu}
@@ -76,10 +60,10 @@ function App() {
             </div>
 
       <Routes>
-        <Route path="/" element={user.id ? (<Dashboard user={user} />) : (<LoginPage />)} />
-        <Route path="/login" element={user.id ? (<Dashboard user={user}/>) : (<LoginPage />)} />
-        <Route path="/registration" element={user.id ? (<Dashboard user={user}/>) : (<RegisterPage />)} />
-        <Route path="/dashboard" element={user.id ? (<Dashboard user={user}/>) : (<LoginPage />)} />
+        <Route path="/" element={user.id ? (<Dashboard user={user} week={week} />) : (<LoginPage />)} />
+        <Route path="/login" element={user.id ? (<Dashboard user={user} week={week}/>) : (<LoginPage />)} />
+        <Route path="/registration" element={user.id ? (<Dashboard user={user} week={week}/>) : (<RegisterPage />)} />
+        <Route path="/dashboard" element={user.id ? (<Dashboard user={user}week={week}/>) : (<LoginPage />)} />
         <Route path="/money" element={user.id ? (<Money />) : (<LoginPage />)} />
         <Route path="/chore" element={user.id ? (<Chore user={user} />) : (<LoginPage />)} />
         <Route path="/activity" element={user.id ? (<ActivityLog />) : (<LoginPage />)} />

@@ -13,6 +13,7 @@ const allowanceRouter = require('./routes/allowance.router');
 const bankTransactionRouter = require('./routes/bank.transaction.router.js');
 const choreRouter = require('./routes/chore.router');
 const bankRouter = require('./routes/bank.router');
+const weekRouter = require('./routes/week.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -31,6 +32,7 @@ app.use('/api/allowance', allowanceRouter);
 app.use('/api/bank/transaction', bankTransactionRouter);
 app.use('/api/bank', bankRouter);
 app.use('/api/chore', choreRouter);
+app.use('/api/week', weekRouter);
 
 // Serve static files
 app.use(express.static('build'));

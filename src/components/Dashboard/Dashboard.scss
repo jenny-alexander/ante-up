@@ -27,10 +27,11 @@
         @media (max-width: 949px) {
                 //background-color: pink;
                 grid-template-columns: 1fr;
-                grid-template-areas: 
-                "money"  
-                "calendar"      
-                "chore ";                        
+                grid-template-areas:
+                "dashboard-week dashboard-week"
+                "money money"  
+                "calendar calendar"      
+                "chore chore";                        
         }
     }
 

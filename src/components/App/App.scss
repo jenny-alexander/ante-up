@@ -48,7 +48,7 @@ textarea {
       display: none;
     }
   }
-  @media (min-width: 651px) and (max-width: 1449px) {
+  @media (min-width: 651px) and (max-width: 1549px) {
     grid-template-columns: minmax(auto, 25%) 1fr;
     grid-template-rows: 80px 1fr;
     grid-template-areas: 
@@ -61,7 +61,7 @@ textarea {
         display: none;
       }
   }
-  @media (min-width: 1450px){
+  @media (min-width: 1550px){
     grid-template-columns: minmax(auto, 20%) 1fr minmax(auto, 20%);
     grid-template-rows: 80px 1fr;
     grid-template-areas: 
