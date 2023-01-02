@@ -64,7 +64,7 @@ function Chore(props) {
             })
     }
 
-    const ChoreComponent = () => {
+    const ChoreListComponent = () => {
         return (
             
             <div className="chore-main">
@@ -123,27 +123,16 @@ function Chore(props) {
                 <div className='chore-details-description'>
                     {choreDetails.description}
                 </div>
-                
-                {/* <div>
-                    <label>Name:</label>{choreDetails.name}</div>
-                <div>{choreDetails.description}</div>
-                <div>{choreDetails.frequency}</div>
-                <div>{choreDetails.payment}</div> */}
                 {
                     <div className='chore-details-schedule'>
                         { renderFrequencySchedule(choreDetails.frequency) }
                     </div>
                 }
-                {/* <div className='chore-details-comments'>
-                    <label className='chore-comments-label'>Comments:</label>
-                    <input className='chore-comments-input' type="textarea"></input>
-                </div> */}
             </div>
         )
     }
 
     const renderFrequencySchedule = (frequency) => {
-
         switch(frequency){
             case 'Daily':
                 return (
@@ -193,12 +182,10 @@ function Chore(props) {
         <div className='chore'>
             <div className='chore-container'>
                 <h1 className="chore-title">Chores</h1>
-                <Card component={<ChoreComponent />} />
-                
+                <Card component={<ChoreListComponent />} />                
                 {
                      Object.entries(choreDetails).length != 0 ?
-
-                    <Card component={<ChoreDetailsComponent />} />
+                        <Card component={<ChoreDetailsComponent />} />
                     : null
                 }
             </div>

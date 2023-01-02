@@ -31,7 +31,9 @@ function NavOptions(props) {
                 {
                     navOptions.map(option => 
                         <div>
-                            <NavLink className={option.className} to={option.to}>{option.name}</NavLink>
+                            <NavLink onClick={props.toggleMenu} className={option.className} to={option.to}>{option.name}
+                                
+                            </NavLink>
                         </div>
                     )
                 }

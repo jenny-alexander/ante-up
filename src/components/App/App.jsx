@@ -51,11 +51,13 @@ function App() {
                       <span class="bottom"></span>
                   </button>
                 <div className={`overlay ${showSmallNav ? 'open' : 'not-open'}`}>
-                  <NavSmall />
+                  <NavSmall toggleMenu={toggleMenu} />
                 </div>
-                <div class="welcome-text">
-                    <div>Welcome {user.username}!</div>
-                </div>
+                { Object.entries(user).length !== 0 ?
+                  <div class="welcome-text">
+                      <div>Welcome {user.username}!</div>
+                  </div> : null
+                }
               </div>
             </div>
 

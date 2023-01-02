@@ -123,12 +123,14 @@ function Allowance(props) {
         return dayOfWeek;
     }
 
-    if (Object.keys(props.allowance.latestAllowance).length !=0 ) {
+    // if (Object.keys(props.allowance.latestAllowance).length !==0 ) {
         return (
             <div className="allowance">
-                <div className='allowance-title'>
-                    Latest Allowance: {allowanceDay ? allowanceDay : null},
+                <div className='allowance-title'>  
+                Allowance info                  
+                    {/* Latest Allowance: {allowanceDay ? allowanceDay : null},
                     { updatedLatestAllowance.allowance_date ? ' ' + updatedLatestAllowance.allowance_date.slice(0,10) : null }
+                 */}
                 </div>
                 <table className="allowance-table">
                     <thead className="allowance-head">
@@ -138,10 +140,11 @@ function Allowance(props) {
                             <th>Actions</th>
                         </tr>
                     </thead>
+                    
                     <tbody>
                         <tr>
                             <td>Spend</td>
-                            <td>{ props.allowance?.latestAllowance ? Constants.dollarUS.format(props.allowance?.latestAllowance.spend) : ''}</td>
+                            <td>{ props.allowance?.latestAllowance?.spend ? Constants.dollarUS.format(props.allowance?.latestAllowance.spend) : null}</td>
                             <td>
                                 {
                                 props.allowance && props.allowance?.latestAllowance.spend_deposited ? <p>Deposited</p> :                               
@@ -153,19 +156,19 @@ function Allowance(props) {
                         </tr>
                         <tr>
                             <td>Save</td>
-                            <td>{ props.allowance ? Constants.dollarUS.format(props.allowance?.latestAllowance.save) : ''}</td>
+                            <td>{ props.allowance?.latestAllowance?.save ? Constants.dollarUS.format(props.allowance?.latestAllowance.save) : null}</td>
                             <td>
                             {     
                                 props.allowance && props.allowance?.latestAllowance.save_deposited ? <p>Deposited</p> :                               
                                     <button className="allowance-button" 
                                             onClick={ () => openAllowanceModal(props.allowance.latestAllowance.save,'save','Save','save_deposited')}
-                                    > Deposit</button>
+                                    > Deposit</button>                                    
                                 } 
                             </td>
                         </tr>
                         <tr>
                             <td>Share</td>
-                            <td>{ props.allowance ? Constants.dollarUS.format(props.allowance?.latestAllowance.share) : ''}</td>
+                            <td>{ props.allowance?.latestAllowance?.share ? Constants.dollarUS.format(props.allowance?.latestAllowance.share) : null}</td>
                             <td>
                             {     
                                 props.allowance && props.allowance.latestAllowance?.share_deposited ? <p>Deposited</p> :                               
@@ -179,7 +182,7 @@ function Allowance(props) {
                 </table>
             </div>
         )
-    } 
+    // } 
 }
 
 export default Allowance;

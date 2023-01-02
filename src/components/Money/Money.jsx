@@ -41,9 +41,12 @@ function Money(props) {
     },[bank.bank])
 
     return (
+        
         <div className="money">
             <h1 className="money-title">Money</h1>
             
+{/* {Object.entries(allowance).length !== 0 ? '' : ''} */}
+
             <div className="money-saving"> 
                 <div className="saving-title-section">
                     <div className="saving-title">Saving Goal</div>
@@ -83,16 +86,13 @@ function Money(props) {
                                 } }>Edit</button>)}
                     </div>
             </div>
-
-
+{/* {Object.entries(allowance).length !== 0 ? '' : ''} */}
             <div className="money-allowance">
                 <Card component={<Allowance allowance={allowance} bank={bank}/>} />
             </div>
-
             <div className="money-bank-chart">
                 <Card component={<MoneyPie bank={bank.bank}/>} />
             </div>
-
             <div className="money-bank">
                 <Card component={<MoneyBucketManager bank={bank} />} />
             </div> 

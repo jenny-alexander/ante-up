@@ -30,13 +30,17 @@ textarea {
   //height: 100vh;
   display: grid;
 
-  @media (max-width: 650px) {
+  @media (max-width: 650px) {    
     grid-template-areas: 
     "header"
     "main";
-    grid-template-columns: 1fr;
+    // grid-template-columns: 1fr;
+    grid-template-rows: 4em 1fr;
     & .navigation {
       display: none;
+    }
+    & .welcome {
+      display:none;
     }
     & .header {
       background-color: rgb(216, 232, 229);
