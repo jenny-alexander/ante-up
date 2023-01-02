@@ -6,18 +6,19 @@ import './Chore.scss';
 
 function Chore(props) {
     const dispatch = useDispatch();
-    const chores = useSelector((store) => store.chore);
-    const [userChores, setUserChores] = useState({});
+    const initialChores = useSelector((store) => store.chore);
+    const [userChores, setUserChores] = useState([]);
     const [choresExist, setChoresExist] = useState(false);
-    const [frequencySelected, setFrequencySelected] = useState('all');
+    const [frequencySelected, setFrequencySelected] = useState('All');
     const [choreDetails, setChoreDetails] = useState({});
+    //const [allChores, setAllChores] = useState(chores.chore);
 
     const options = [
-        { value: 'all', label: 'All'},
-        { value: 'daily', label: 'Daily' },
-        { value: 'weekly', label: 'Weekly' },
-        { value: 'monthly', label: 'Monthly' },
-        { value: 'ad hoc', label: 'Ad Hoc'}
+        { value: 'All', label: 'All'},
+        { value: 'Daily', label: 'Daily' },
+        { value: 'Weekly', label: 'Weekly' },
+        { value: 'Monthly', label: 'Monthly' },
+        { value: 'Occasionally', label: 'Occasionally'}
       ]
 
     useEffect(() => {
@@ -25,14 +26,32 @@ function Chore(props) {
             dispatch( {type: "GET_CHORE_REQUESTED", payload: props.user.id})
     },[])
     useEffect(() => {
-        console.log('chores is:', chores);
-        if (chores.chore.length > 0) {
+        console.log('chores is:', initialChores);
+        if (initialChores.chore.length > 0) {
             setChoresExist(true);
+            setUserChores(initialChores.chore)
         }
-    },[chores])
+    },[initialChores.chore]);
 
     const handleFrequencyChange = (selected) => {
         console.log('in handleFrequencyChange with:', selected);
+        console.log('userChores is:', userChores);
+        if (selected.value==='All') {
+            console.log('initialChores is:', initialChores)
+            setUserChores(initialChores.chore);
+        }else {
+            const filteredChores = initialChores.chore.filter(a =>
+                a.frequency === selected.value);
+            setUserChores(filteredChores);
+        }        
+
+        setFrequencySelected(selected);
+        
+        // setUserChores(
+        //     userChores.filter(a =>
+        //       a.frequency === selected.value
+        //     )
+        //   );
     }
 
     const showChoreDetails = (chore) => {
@@ -53,8 +72,9 @@ function Chore(props) {
                     <div className="selector-title">Frequency:</div>
                     <div className="selector-dropdown">
                         <Select options={options}
-                                defaultValue={options[0]}
-                                onChange={handleFrequencyChange}
+                                //defaultValue={{label: 'All', value: 'All'}}
+                                onChange={handleFrequencyChange}                                
+                                value={frequencySelected}
                         />
                     </div>
                 </div>
@@ -71,7 +91,7 @@ function Chore(props) {
                                     </tr>  
                                 </thead>
                                 <tbody>
-                                {chores.chore.map(chore=> 
+                                {userChores.map(chore=> 
                                     <tr onClick={()=>showChoreDetails(chore)}>
                                     <td>{chore.name}</td>
                                     <td>{chore.frequency}</td>
@@ -176,10 +196,10 @@ function Chore(props) {
                 <Card component={<ChoreComponent />} />
                 
                 {
-                    choreDetails ?
+                     Object.entries(choreDetails).length != 0 ?
 
                     <Card component={<ChoreDetailsComponent />} />
-                    : <div>Nothing here</div>
+                    : null
                 }
             </div>
         </div>

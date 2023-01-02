@@ -24,6 +24,10 @@
         margin-top: 1em;
         margin-left: 2em;
         margin-right: 2em;
+        @media(max-width: 425px) {
+            margin-left: 0.8em;
+            margin-right: 0.8em;
+        }
         @media (max-width: 949px) {
                 //background-color: pink;
                 grid-template-columns: 1fr;
@@ -48,3 +52,13 @@
         margin-right: auto;
     }
 }
+// @media(min-width: 375px) and (max-width: 425px) {
+//     .dashboard {
+//         &.dashboard-main {
+//             background-color: pink;
+//             margin-left: 0.8em;
+//             margin-right: 0.8em;
+//         }
+
+//     }
+// }

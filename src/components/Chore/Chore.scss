@@ -64,13 +64,14 @@
             //background-color: #ecdc9d47;
             background-color: #f8c34824;
             display:grid;
-            grid-template-rows: 40px 1fr 1fr 2fr 1fr;
+            // 
+            grid-template-rows: 40px 1fr 1fr 2fr;
             grid-template-areas: 
                 "chore-details-frequency chore-details-payment"
                 "chore-details-name chore-details-name"
                 "chore-details-description chore-details-description"
-                "chore-details-schedule chore-details-schedule"
-                "chore-details-comments chore-details-comments";            
+                "chore-details-schedule chore-details-schedule";
+                // "chore-details-comments chore-details-comments";            
             width: 70%;
             min-height: 15em;
             & .chore-details-frequency {
@@ -88,6 +89,7 @@
                 align-items: center;
                 font-weight: bolder;
                 font-size: 1.5em;
+                padding-left: 5px;
                 // hr {
                 //     border: 1px solid #087f6b;
                 //     width: 100%;
