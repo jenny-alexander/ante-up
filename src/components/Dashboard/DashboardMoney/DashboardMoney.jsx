@@ -11,15 +11,18 @@ function DashboardMoney(props) {
     const bank = useSelector((store) => store.bank );
     const user = useSelector((store) => store.user);    
     const[nextAllowance, setNextAllowance] = useState('');
+    const[allowanceAmounts, setAllowanceAmounts] = useState({});
     const[allowanceGoal, setAllowanceGoal] = useState({});
 
     useEffect(() => {
         dispatch( {type: "GET_BANK_REQUESTED", payload: user.id})
+        dispatch( { type: 'FETCH_LATEST_ALLOWANCE', payload: user.id });
     },[])
 
-    useEffect(()=> {
-        setNextAllowance(props.nextAllowanceDate);
-    },[props.nextAllowanceDate])
+    useEffect(()=>{
+        console.log('props.weekinfo is:', props.weekInfo);
+        setNextAllowance(props.weekInfo.allowanceDate);
+    },[props.weekInfo])
 
     useEffect(() => {        
         setAllowanceGoal({...allowanceGoal, 
@@ -28,31 +31,49 @@ function DashboardMoney(props) {
                         })
     },[bank.bank])
 
+    useEffect(() => {
+        if (allowance && allowance.latest ) {
+            console.log('allowance.latest is:', allowance.latestAllowance);
+            setAllowanceAmounts({...allowanceAmounts,
+                spend: allowance.latestAllowance.spend,
+                save: allowance.latestAllowance.save,
+                share: allowance.latestAllowance.share,
+                extra: allowance.latestAllowance.extra,
+            })
+        }
+
+    },[allowance]);
+
     return (
         <div className="dashboard-money">            
             <div className="next-allowance-date">Next allowance is:          
-                <div>{nextAllowance ? nextAllowance.slice(0,10) : null}</div>
+                <div>{nextAllowance ? nextAllowance : null}</div>
             </div>
             <div className="allowance-circles">
                 <div className="res-circle">
                     <div className="circle-text">
                         <div className="title">Spend:</div>
-                        <div className="amount">${allowance.nextAllowance ? allowance.nextAllowance.spend : null}</div>
+                        <div className="amount">${allowance.latestAllowance ? allowance.latestAllowance.spend : null}</div>
                     </div>                                        
                 </div>
                 <div className="res-circle">
                     <div className="circle-text">
                         <div className="title">Save:</div>
-                        <div className="amount">${allowance.nextAllowance ? allowance.nextAllowance.save : null}</div>
+                        <div className="amount">${allowance.latestAllowance ? allowance.latestAllowance.save : null}</div>
                     </div>
                 </div>
                 <div className="res-circle">
                     <div className="circle-text">
                         <div className="title">Share:</div>
-                        <div className="amount">${allowance.nextAllowance ? allowance.nextAllowance.share : null}</div>
+                        <div className="amount">${allowance.latestAllowance ? allowance.latestAllowance.share : null}</div>
                     </div>
                 </div>
-                
+                <div className="res-circle">
+                    <div className="circle-text">
+                        <div className="title">Extra:</div>
+                        <div className="amount">${allowance.latestAllowance ? allowance.latestAllowance.extra : null}</div>
+                    </div>
+                </div>                
             </div>
             <div className="saving-for">
                 <FontAwesomeIcon className="saving-for-icon" icon={faCircleRight} />                

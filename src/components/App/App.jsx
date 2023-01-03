@@ -26,12 +26,14 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector(store => store.user);
   const week = useSelector(store => store.week);
+  const allowance = useSelector(store => store.allowance);
   const [showSmallNav, setShowSmallNav] = useState(false);
   const [weekInfo, setWeekInfo] = useState({});
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
     dispatch({type: 'FETCH_WEEK'});
+    dispatch({type:'FETCH_ALLOWANCE'});
   }, [dispatch]);
 
   useEffect(() => {

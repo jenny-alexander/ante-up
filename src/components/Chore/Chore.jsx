@@ -66,7 +66,6 @@ function Chore(props) {
 
     const ChoreListComponent = () => {
         return (
-            
             <div className="chore-main">
                 <div className="chore-selector">
                     <div className="selector-title">Frequency:</div>
@@ -81,8 +80,8 @@ function Chore(props) {
                 <div className="chore-list">
                     {
                         choresExist ? 
-                        (<div>
-                            <table className='chore-table'>
+                        (<div >
+                            <table className='chore-table mobile-optimised'>
                                 <thead className='chore-head'>
                                     <tr>
                                         <th>Chore</th>
@@ -93,9 +92,9 @@ function Chore(props) {
                                 <tbody>
                                 {userChores.map(chore=> 
                                     <tr onClick={()=>showChoreDetails(chore)}>
-                                    <td>{chore.name}</td>
-                                    <td>{chore.frequency}</td>
-                                    <td className='td-center'>{chore.payment}</td>
+                                    <td data-th="Name">{chore.name}</td>
+                                    <td data-th="Frequency">{chore.frequency}</td>
+                                    <td data-th="Payment" className='td-center'>{chore.payment}</td>
                                 </tr>
                                  )}
                                 </tbody>
