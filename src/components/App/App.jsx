@@ -27,11 +27,17 @@ function App() {
   const user = useSelector(store => store.user);
   const week = useSelector(store => store.week);
   const [showSmallNav, setShowSmallNav] = useState(false);
+  const [weekInfo, setWeekInfo] = useState({});
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
     dispatch({type: 'FETCH_WEEK'});
   }, [dispatch]);
+
+  useEffect(() => {
+    console.log('in useEffect for week in App.jsx and week is:', week);
+    setWeekInfo({...weekInfo, week})
+  },[week])
 
   const toggleMenu = () => {
     console.log('toggling menu');
@@ -62,10 +68,10 @@ function App() {
             </div>
 
       <Routes>
-        <Route path="/" element={user.id ? (<Dashboard user={user} week={week} />) : (<LoginPage />)} />
-        <Route path="/login" element={user.id ? (<Dashboard user={user} week={week}/>) : (<LoginPage />)} />
-        <Route path="/registration" element={user.id ? (<Dashboard user={user} week={week}/>) : (<RegisterPage />)} />
-        <Route path="/dashboard" element={user.id ? (<Dashboard user={user}week={week}/>) : (<LoginPage />)} />
+        <Route path="/" element={user.id ? (<Dashboard user={user} week={weekInfo} />) : (<LoginPage />)} />
+        <Route path="/login" element={user.id ? (<Dashboard user={user} week={weekInfo}/>) : (<LoginPage />)} />
+        <Route path="/registration" element={user.id ? (<Dashboard user={user} week={weekInfo}/>) : (<RegisterPage />)} />
+        <Route path="/dashboard" element={user.id ? (<Dashboard user={user} week={weekInfo}/>) : (<LoginPage />)} />
         <Route path="/money" element={user.id ? (<Money />) : (<LoginPage />)} />
         <Route path="/chore" element={user.id ? (<Chore user={user} />) : (<LoginPage />)} />
         <Route path="/activity" element={user.id ? (<ActivityLog />) : (<LoginPage />)} />

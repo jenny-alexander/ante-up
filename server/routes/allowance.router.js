@@ -27,7 +27,8 @@ router.get('/next/:id', (req, res) => {
   const dateForQuery = nextAllowanceDate.toLocaleDateString();
 
   const getNextAllowanceQuery = `SELECT * FROM allowance where user_id = ${req.params.id}
-                                 AND allowance_date = '${dateForQuery}';`;
+                                 AND allowance_date = '${req.body.nextAllowanceDate}';`;
+                                 console.log('nextAllowanceQuery is:', getNextAllowanceQuery)
   pool.query(getNextAllowanceQuery)
     .then((results) => {
       res.send(results.rows[0])

@@ -104,7 +104,7 @@ function Allowance(props) {
             position: 'top',
             showConfirmButton: false,
             timer: 2000,
-            timerProgressBar: true,
+            //timerProgressBar: true,
           })
           
           Toast.fire({
@@ -143,11 +143,11 @@ function Allowance(props) {
                     
                     <tbody>
                         <tr>
-                            <td>Spend</td>
-                            <td>{ props.allowance?.latestAllowance?.spend ? Constants.dollarUS.format(props.allowance?.latestAllowance.spend) : null}</td>
+                            <td>Spend</td>                           
+                            <td>{ Constants.dollarUS.format(props.allowance?.latestAllowance?.spend)}</td>
                             <td>
                                 {
-                                props.allowance && props.allowance?.latestAllowance.spend_deposited ? <p>Deposited</p> :                               
+                                props.allowance?.latestAllowance?.spend_deposited ? <p>Deposited</p> :                               
                                     <button className="allowance-button" 
                                             onClick={ () => openAllowanceModal(props.allowance.latestAllowance.spend,'spend', 'Spend','spend_deposited')}
                                     > Deposit</button>
@@ -155,11 +155,11 @@ function Allowance(props) {
                             </td>
                         </tr>
                         <tr>
-                            <td>Save</td>
-                            <td>{ props.allowance?.latestAllowance?.save ? Constants.dollarUS.format(props.allowance?.latestAllowance.save) : null}</td>
+                            <td>Save</td>                            
+                            <td>{Constants.dollarUS.format(props.allowance?.latestAllowance?.save)}</td>
                             <td>
                             {     
-                                props.allowance && props.allowance?.latestAllowance.save_deposited ? <p>Deposited</p> :                               
+                                props.allowance?.latestAllowance?.save_deposited ? <p>Deposited</p> :                               
                                     <button className="allowance-button" 
                                             onClick={ () => openAllowanceModal(props.allowance.latestAllowance.save,'save','Save','save_deposited')}
                                     > Deposit</button>                                    
@@ -167,11 +167,11 @@ function Allowance(props) {
                             </td>
                         </tr>
                         <tr>
-                            <td>Share</td>
-                            <td>{ props.allowance?.latestAllowance?.share ? Constants.dollarUS.format(props.allowance?.latestAllowance.share) : null}</td>
+                            <td>Share</td>                            
+                            <td>{ Constants.dollarUS.format(props.allowance?.latestAllowance?.share)}</td>
                             <td>
                             {     
-                                props.allowance && props.allowance.latestAllowance?.share_deposited ? <p>Deposited</p> :                               
+                                props.allowance?.latestAllowance?.share_deposited ? <p>Deposited</p> :                               
                                     <button className="allowance-button" 
                                             onClick={ () => openAllowanceModal(props.allowance.latestAllowance.share,'share','Share','share_deposited')}
                                     > Deposit</button>

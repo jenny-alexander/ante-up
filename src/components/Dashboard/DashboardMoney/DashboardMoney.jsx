@@ -14,13 +14,12 @@ function DashboardMoney(props) {
     const[allowanceGoal, setAllowanceGoal] = useState({});
 
     useEffect(() => {
-        dispatch({ type: 'GET_NEXT_ALLOWANCE_INFO', payload: props.user.id,});
         dispatch( {type: "GET_BANK_REQUESTED", payload: user.id})
     },[])
 
-    useEffect(() => {
-        setNextAllowance(allowance.nextAllowance.allowance_date);
-    },[allowance.nextAllowance]);
+    useEffect(()=> {
+        setNextAllowance(props.nextAllowanceDate);
+    },[props.nextAllowanceDate])
 
     useEffect(() => {        
         setAllowanceGoal({...allowanceGoal, 
