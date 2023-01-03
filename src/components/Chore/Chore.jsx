@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '../Common/Card/Card';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import './Chore.scss';
 
 function Chore(props) {
@@ -11,6 +13,7 @@ function Chore(props) {
     const [choresExist, setChoresExist] = useState(false);
     const [frequencySelected, setFrequencySelected] = useState('All');
     const [choreDetails, setChoreDetails] = useState({});
+    const MySwal = withReactContent(Swal);
     //const [allChores, setAllChores] = useState(chores.chore);
 
     const options = [
@@ -64,6 +67,105 @@ function Chore(props) {
             })
     }
 
+    const addChore = () => {
+        //setChangeType(changeType)
+        const addChoreSWAL =  {            
+            title: `Enter new chore details`,
+            focusConfirm: true,
+            html: `
+                    <div class="chore-modal-container">
+                        <div class="chore-modal-row">
+                            <label class="swal2-label chore-label" for="chore-name">Chore:</label>
+                            <input class="swal2-input chore-input" id="chore-name" type="text" />
+                        </div>
+                        <div class="chore-modal-row">
+                            <label class="swal2-label chore-label" for="chore-frequency">Frequency:</label>
+                            <input class="swal2-input chore-input" id="chore-frequency" type="text" />
+                        </div>
+                        <div class="chore-modal-row">
+                            <label class="swal2-label chore-label" for="chore-payment">Payment:</label>
+                            <input class="swal2-input chore-input" id="chore-payment" type="text" />
+                        </div>
+                        <div class="chore-modal-row">
+                            <label class="swal2-label chore-label" for="chore-description">Description:</label>
+                            <input class="swal2-input chore-input" id="chore-description" type="text" />
+                    </div>
+                   </div>`                   
+                   ,
+            // iconHtml: '<img src="images/ante_up.png" alt="ante up logo">',
+            showClass: {
+                //backdrop: 'swal2-noanimation', // disable backdrop animation
+                popup: 'swal2-noanimation',                     // disable popup animation
+                title: 'swal2-title bucket',
+                //icon: 'swal2-noanimation'                       // disable icon animation
+              },
+            showCancelButton: true,
+            cancelButtonColor: 'grey',
+            confirmButtonColor: '#007E58',
+            confirmButtonText: 'Confirm',
+            allowOutsideClick: false,
+            // customClass: {
+            //     input: 'chore-input',
+            // },
+            preConfirm: () => ({
+                choreName: document.getElementById('chore-name').value,
+                choreFrequency: document.getElementById('chore-frequency').value,
+                chorePayment: document.getElementById('chore-payment').value,
+                choreDescription: document.getElementById('chore-description').value,
+            })          
+        }
+
+        return addChoreSWAL;
+    }    
+
+    const showAddChoreModal = () => {
+        console.log('you clicked on addChoreModal');
+        //show add chore modal
+        //dispatch({type: 'ADD_NEW_CHORE', payload: props.user.id})
+        const addNewChore = async () => {
+            const swalval = await MySwal.fire(addChore());
+            let v = swalval && swalval.value || swalval.dismiss;            
+            if (v && v.choreName  || v === 'cancel') {
+                if (v !== 'cancel') {
+                    console.log('about to dispatch to ADD_CHORE');
+                    //setformdata(swalval);
+                    dispatch({
+                        type: 'ADD_CHORE',
+                        payload: {
+                            userID: props.user.id,
+                            choreDetails: {
+                                name: v.choreName,
+                                frequency: v.choreFrequency,
+                                payment : v.chorePayment,
+                                description: v.choreDescription,                                
+                            }
+                        },
+                    });
+                    // dispatch({
+                    //     type: 'ADD_BANK_TRANSACTION',
+                    //     payload: {
+                    //         userId: user.id,
+                    //         type: changeType,
+                    //         timestamp: new Date().toISOString(),
+                    //         amount: v.amountValue,
+                    //         notes: v.comments,
+                    //     }
+                    // })
+                }
+            } else {
+              await MySwal.fire({ 
+                type: 'error', 
+                icon: 'warning',
+                title: 'A chore name is required!',
+                confirmButtonColor: '#007E58',
+                // confirmButtonColor: 'red',
+             });
+             addNewChore();
+            }
+          }
+          addNewChore();
+    }
+
     const ChoreListComponent = () => {
         return (
             <div className="chore-main">
@@ -75,6 +177,9 @@ function Chore(props) {
                                 onChange={handleFrequencyChange}                                
                                 value={frequencySelected}
                         />
+                    </div>
+                    <div>
+                        <button className="add-chore-btn" onClick={showAddChoreModal}>Add chore</button>
                     </div>
                 </div>
                 <div className="chore-list">
