@@ -14,6 +14,7 @@ function Chore(props) {
     const [frequencySelected, setFrequencySelected] = useState('All');
     const [choreDetails, setChoreDetails] = useState({});
     const MySwal = withReactContent(Swal);
+    const [selectedChoreOption, setSelectedChoreOption] = useState('All');
     //const [allChores, setAllChores] = useState(chores.chore);
 
     const options = [
@@ -101,12 +102,9 @@ function Chore(props) {
               },
             showCancelButton: true,
             cancelButtonColor: 'grey',
-            confirmButtonColor: '#007E58',
+            confirmButtonColor: '#E0AB31',
             confirmButtonText: 'Confirm',
             allowOutsideClick: false,
-            // customClass: {
-            //     input: 'chore-input',
-            // },
             preConfirm: () => ({
                 choreName: document.getElementById('chore-name').value,
                 choreFrequency: document.getElementById('chore-frequency').value,
@@ -157,7 +155,7 @@ function Chore(props) {
                 type: 'error', 
                 icon: 'warning',
                 title: 'A chore name is required!',
-                confirmButtonColor: '#007E58',
+                confirmButtonColor: '#f8c348',
                 // confirmButtonColor: 'red',
              });
              addNewChore();
@@ -166,10 +164,54 @@ function Chore(props) {
           addNewChore();
     }
 
+    const handleOptionChange = (event) => {
+        console.log('in handleOptionsChange with event:', event);
+        setSelectedChoreOption(event.target.value);
+    } 
+
+    const ChoreRadioComponent = () => {
+        return (
+            // <form onSubmit={this.handleFormSubmit}>
+            <div className="chore-radio-btn">
+                <div>
+                    <label>
+                        <input
+                        type="radio"
+                        name="chore-options"
+                        value="All"
+                        checked={selectedChoreOption === 'All'}
+                        onChange={(e) => { handleOptionChange(e)}}
+                        //className="form-check-input"
+                        />
+                        All chores available
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input
+                        type="radio"
+                        name="chore-options"
+                        value='Mine'
+                        checked={selectedChoreOption === 'Mine'}
+                        onChange={handleOptionChange}
+                        //className="form-check-input"
+                        />
+                        My chores
+                    </label>
+            </div>
+            </div>
+        //   </form>
+        )
+    }
+
     const ChoreListComponent = () => {
         return (
             <div className="chore-main">
+                {/* <div className="my-chore-selector">
+                <div className="selector-title">Frequency:</div>
+                </div> */}
                 <div className="chore-selector">
+                    {/* <ChoreRadioComponent /> */}
                     <div className="selector-title">Frequency:</div>
                     <div className="selector-dropdown">
                         <Select options={options}
@@ -178,9 +220,9 @@ function Chore(props) {
                                 value={frequencySelected}
                         />
                     </div>
-                    <div>
+                    {/* <div>
                         <button className="add-chore-btn" onClick={showAddChoreModal}>Add chore</button>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="chore-list">
                     {
@@ -192,6 +234,8 @@ function Chore(props) {
                                         <th>Chore</th>
                                         <th>Frequency</th>
                                         <th>Payment</th>
+                                        <th>Total $</th>
+                                        {/* <th>Actions</th> */}
                                     </tr>  
                                 </thead>
                                 <tbody>
@@ -200,6 +244,8 @@ function Chore(props) {
                                     <td data-th="Name">{chore.name}</td>
                                     <td data-th="Frequency">{chore.frequency}</td>
                                     <td data-th="Payment" className='td-center'>{chore.payment}</td>
+                                    <td data-th="Total $" className='td-center'>$10</td>
+                                    {/* <td><button className='assign-chore-btn'>Assign to Me</button></td> */}
                                 </tr>
                                  )}
                                 </tbody>
@@ -285,7 +331,7 @@ function Chore(props) {
     return (
         <div className='chore'>
             <div className='chore-container'>
-                <h1 className="chore-title">Chores</h1>
+                <h1 className="chore-title">My Chores</h1>
                 <Card component={<ChoreListComponent />} />                
                 {
                      Object.entries(choreDetails).length != 0 ?

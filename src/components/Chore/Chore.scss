@@ -25,7 +25,31 @@
                     @media screen and (max-width:475px) {
                         width:max-content;
                     }
-                }       
+                } 
+                & .add-chore-btn {
+                    
+                        border-radius: 5px;
+                        // border: 1px solid var(--color-logout);
+                        background-color: #f8c348;                        
+                        border: solid 1px rgba(186, 205, 216, 0.3803921569);
+                        
+                        // background: var(--color-logout);
+                        color: black;
+                        //margin-top: 3.5em;
+                        padding: 0.5em 1.5em;
+                        transition: 120ms all ease-in-out;
+                        &:hover {
+                            cursor: pointer;
+                            //filter: brightness(0.9);                    
+                            transform: scale(1.05);       
+                            //outline: 2px solid darkgoldenrod;
+                            //outline-offset: 2px;
+                        }
+                        &:focus {
+                            outline: 2px solid darkgoldenrod;
+                            outline-offset: 2px;
+                        } 
+                }
             }
             & .chore-table {                
                 font-size: 0.9em;
@@ -193,13 +217,13 @@
         }
     }
 }
-
 .chore-modal-container {
     //border: 1px solid red;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 2px;
+
     & .chore-modal-row {
         //border: 2px dotted blue;
         display: grid;
