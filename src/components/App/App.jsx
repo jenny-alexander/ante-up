@@ -34,7 +34,7 @@ function App() {
     dispatch({ type: 'FETCH_USER' });
     dispatch({type: 'FETCH_WEEK'});
     dispatch({type:'FETCH_ALLOWANCE'});
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     console.log('in useEffect for week in App.jsx and week is:', week);
@@ -75,7 +75,7 @@ function App() {
         <Route path="/registration" element={user.id ? (<Dashboard user={user} week={weekInfo}/>) : (<RegisterPage />)} />
         <Route path="/dashboard" element={user.id ? (<Dashboard user={user} week={weekInfo}/>) : (<LoginPage />)} />
         <Route path="/money" element={user.id ? (<Money />) : (<LoginPage />)} />
-        <Route path="/chore" element={user.id ? (<Chore user={user} />) : (<LoginPage />)} />
+        <Route path="/chore" element={user.id ? (<Chore user={user} week={weekInfo} />) : (<LoginPage />)} />
         <Route path="/activity" element={user.id ? (<ActivityLog />) : (<LoginPage />)} />
         {/* <Route>
           <h1>404</h1>

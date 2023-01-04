@@ -18,8 +18,9 @@
                 display: flex;
                 align-items: center;                
                 column-gap: 2em;
-                margin-bottom: 1em;
+                margin-bottom: 2em;                
                 margin-top: 1em;
+                padding: 8px;
                 & .selector-dropdown{
                     width: 30%;
                     @media screen and (max-width:475px) {
@@ -205,7 +206,7 @@
                 grid-area: chore-details-name;                
                 display: flex;
                 flex-direction: column;
-                justify-content: end;                
+                justify-content: flex-end;                
                 align-items: center;
                 font-weight: bolder;
                 font-size: 1.5em;

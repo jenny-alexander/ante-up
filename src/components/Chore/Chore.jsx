@@ -11,7 +11,8 @@ import './Chore.scss';
 
 function Chore(props) {
     const dispatch = useDispatch();
-    const initialChores = useSelector((store) => store.chore);
+    const chores = useSelector((store) => store.chore);
+    const chorePayments = useSelector((store) => store.chorePayments);
     const [userChores, setUserChores] = useState([]);
     const [choresExist, setChoresExist] = useState(false);
     const [frequencySelected, setFrequencySelected] = useState('All');
@@ -24,29 +25,35 @@ function Chore(props) {
         { value: 'Daily', label: 'Daily' },
         { value: 'Weekly', label: 'Weekly' },
         { value: 'Monthly', label: 'Monthly' },
-        { value: 'Occasionally', label: 'Occasionally'}
+        { value: 'Ad Hoc', label: 'Ad Hoc'}
       ]
 
     useEffect(() => {
-        console.log('in useEffect of CHORE!!!');
-            dispatch( {type: "GET_CHORE_REQUESTED", payload: props.user.id})
+        console.log('in useEffect of CHORE and props are:', props);
+            dispatch( {type: "GET_CHORE_REQUESTED", payload: props.user.id});
+
+            dispatch( {type: 'GET_DAILY_PAYMENT_REQUESTED', payload: {
+                                                            userID: props.user.id,
+                                                            // weekID: props.week.week[0].week_no}});
+                                                            weekID: 1}});
     },[])
+
     useEffect(() => {
-        console.log('chores is:', initialChores);
-        if (initialChores.chore.length > 0) {
+        console.log('chores is:', chores);
+        if (chores.chore.length > 0) {
             setChoresExist(true);
-            setUserChores(initialChores.chore)
+            setUserChores(chores.chore)
         }
-    },[initialChores.chore]);
+    },[chores.chore]);
 
     const handleFrequencyChange = (selected) => {
         console.log('in handleFrequencyChange with:', selected);
         console.log('userChores is:', userChores);
         if (selected.value==='All') {
-            console.log('initialChores is:', initialChores)
-            setUserChores(initialChores.chore);
+            console.log('chores is:', chores)
+            setUserChores(chores.chore);
         }else {
-            const filteredChores = initialChores.chore.filter(a =>
+            const filteredChores = chores.chore.filter(a =>
                 a.frequency === selected.value);
             setUserChores(filteredChores);
         }        
@@ -165,15 +172,15 @@ function Chore(props) {
           addNewChore();
     }
 
-    const showDetails = (chore,i) => {        
+    const showDetails = (i) => {        
         if (selectedRow === i) {
             setSelectedRow(-1);
-            setChoreDetails({...choreDetails,
-                name: chore.name,
-                description: chore.description,
-                frequency: chore.frequency,
-                payment: chore.payment,
-                })
+            // setChoreDetails({...choreDetails,
+            //     name: chore.name,
+            //     description: chore.description,
+            //     frequency: chore.frequency,
+            //     payment: chore.payment,
+            //     })
         }else {
             setSelectedRow(i);
         }        
@@ -222,7 +229,7 @@ function Chore(props) {
                                         <td data-th="expand" className='td-center'>
                                             <button 
                                                 className='chore-btn'
-                                                onClick={()=>showDetails(chore,i)}>
+                                                onClick={()=>showDetails(i)}>
                                                     { selectedRow === i ? (
                                                         <FontAwesomeIcon icon={faChevronUp} />
                                                     ) : (
@@ -231,11 +238,11 @@ function Chore(props) {
                                             </button>
                                         </td>
                                         <td className={`${selectedRow===i ? 'expanded-row-content': 'expanded-row-content hide-row'}`}>
-                                        {
-                    <div className='chore-details-schedule'>
-                        { renderFrequencySchedule(choreDetails.frequency) }
-                    </div>
-                }
+                                            { selectedRow===i ?
+                                                    <div className='chore-details-schedule'>
+                                                        { renderFrequencySchedule(chore.frequency) }
+                                                    </div> : null
+                                            }
                                         </td>
                                         {/* <td><button className='assign-chore-btn'>Assign to Me</button></td> */}
                                     </tr>
@@ -273,7 +280,7 @@ function Chore(props) {
     }
 
     const renderFrequencySchedule = (frequency) => {
-        switch(frequency){
+        switch(frequency){            
             case 'Daily':
                 return (
                     <div className="daily-chore">
@@ -310,7 +317,7 @@ function Chore(props) {
                 return (<div>I am a weekly chore</div>)
             case 'Monthly':
                 return (<div>I am a monthly chore</div>)
-            case 'Ad hoc':
+            case 'Ad Hoc':
                 return (<div>I am an ad hoc chore</div>)
             default:
                 return null;

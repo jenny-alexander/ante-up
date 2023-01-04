@@ -53,7 +53,7 @@ const nextAllowance = (state = {}, action) => {
 // these will be on the redux state at:
 // state.allowance.allowance and state.allowance.latestAllowance
 export default combineReducers({
-    allowance,
+    //allowance,
     latestAllowance,
     nextAllowance,
 });

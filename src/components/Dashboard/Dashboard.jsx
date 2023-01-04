@@ -18,6 +18,7 @@ function Dashboard(props) {
         if (props.week && props.week.week) {
             if (Object.entries(props.week.week).length !== 0) {                
                 setWeekInfo({...weekInfo,
+                    week_no: props.week.week[0].week_no,
                     allowanceDate: props.week.week[0].allowance_date.substring(0,10),
                     startDate: props.week.week[0].start_date.substring(0,10),
                     endDate: props.week.week[0].end_date.substring(0,10),

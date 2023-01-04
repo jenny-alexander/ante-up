@@ -7,6 +7,7 @@ import allowanceSaga from './allowance.saga';
 import bankSaga from './bank.saga';
 import bankTransactionSaga from './bank.transaction.saga';
 import weekSaga from './week.saga';
+import chorePaymentSaga from './chore.payment.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -25,5 +26,6 @@ export default function* rootSaga() {
     bankSaga(),
     bankTransactionSaga(),
     weekSaga(),
+    chorePaymentSaga(),
   ]);
 }
