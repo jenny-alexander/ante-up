@@ -13,9 +13,8 @@ function Chore(props) {
     const [choresExist, setChoresExist] = useState(false);
     const [frequencySelected, setFrequencySelected] = useState('All');
     const [choreDetails, setChoreDetails] = useState({});
-    const MySwal = withReactContent(Swal);
-    const [selectedChoreOption, setSelectedChoreOption] = useState('All');
-    //const [allChores, setAllChores] = useState(chores.chore);
+    const MySwal = withReactContent(Swal);        
+    const [selectedRow, setSelectedRow] = useState(-1);    
 
     const options = [
         { value: 'All', label: 'All'},
@@ -92,8 +91,7 @@ function Chore(props) {
                             <input class="swal2-input chore-input" id="chore-description" type="text" />
                     </div>
                    </div>`                   
-                   ,
-            // iconHtml: '<img src="images/ante_up.png" alt="ante up logo">',
+                   ,            
             showClass: {
                 //backdrop: 'swal2-noanimation', // disable backdrop animation
                 popup: 'swal2-noanimation',                     // disable popup animation
@@ -164,45 +162,19 @@ function Chore(props) {
           addNewChore();
     }
 
-    const handleOptionChange = (event) => {
-        console.log('in handleOptionsChange with event:', event);
-        setSelectedChoreOption(event.target.value);
-    } 
-
-    const ChoreRadioComponent = () => {
-        return (
-            // <form onSubmit={this.handleFormSubmit}>
-            <div className="chore-radio-btn">
-                <div>
-                    <label>
-                        <input
-                        type="radio"
-                        name="chore-options"
-                        value="All"
-                        checked={selectedChoreOption === 'All'}
-                        onChange={(e) => { handleOptionChange(e)}}
-                        //className="form-check-input"
-                        />
-                        All chores available
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input
-                        type="radio"
-                        name="chore-options"
-                        value='Mine'
-                        checked={selectedChoreOption === 'Mine'}
-                        onChange={handleOptionChange}
-                        //className="form-check-input"
-                        />
-                        My chores
-                    </label>
-            </div>
-            </div>
-        //   </form>
-        )
-    }
+    const showDetails = (chore,i) => {        
+        if (selectedRow === i) {
+            setSelectedRow(-1);
+            setChoreDetails({...choreDetails,
+                name: chore.name,
+                description: chore.description,
+                frequency: chore.frequency,
+                payment: chore.payment,
+                })
+        }else {
+            setSelectedRow(i);
+        }        
+      }
 
     const ChoreListComponent = () => {
         return (
@@ -210,8 +182,7 @@ function Chore(props) {
                 {/* <div className="my-chore-selector">
                 <div className="selector-title">Frequency:</div>
                 </div> */}
-                <div className="chore-selector">
-                    {/* <ChoreRadioComponent /> */}
+                <div className="chore-selector">                    
                     <div className="selector-title">Frequency:</div>
                     <div className="selector-dropdown">
                         <Select options={options}
@@ -239,20 +210,26 @@ function Chore(props) {
                                     </tr>  
                                 </thead>
                                 <tbody>
-                                {userChores.map(chore=> 
-                                    <tr onClick={()=>showChoreDetails(chore)}>
-                                    <td data-th="Name">{chore.name}</td>
-                                    <td data-th="Frequency">{chore.frequency}</td>
-                                    <td data-th="Payment" className='td-center'>{chore.payment}</td>
-                                    <td data-th="Total $" className='td-center'>$10</td>
-                                    {/* <td><button className='assign-chore-btn'>Assign to Me</button></td> */}
-                                </tr>
+                                {userChores.map((chore,i)=> 
+                                    <tr onClick={()=>showDetails(chore,i)}>
+                                    {/* <tr>                                                                             */}
+                                        <td data-th="Name">{chore.name}</td>
+                                        <td data-th="Frequency">{chore.frequency}</td>
+                                        <td data-th="Payment" className='td-center'>{chore.payment}</td>
+                                        <td data-th="Total $" className='td-center'>$10</td>
+                                        <td className={`${selectedRow===i ? 'expanded-row-content': 'expanded-row-content hide-row'}`}>
+                                        {
+                    <div className='chore-details-schedule'>
+                        { renderFrequencySchedule(choreDetails.frequency) }
+                    </div>
+                }
+                                        </td>
+                                        {/* <td><button className='assign-chore-btn'>Assign to Me</button></td> */}
+                                    </tr>
                                  )}
                                 </tbody>
                             </table>
-                        </div>) 
-                        
-                        
+                        </div>)                                             
                         : ''
                     }
                 </div>
@@ -333,11 +310,11 @@ function Chore(props) {
             <div className='chore-container'>
                 <h1 className="chore-title">My Chores</h1>
                 <Card component={<ChoreListComponent />} />                
-                {
+                {/* {
                      Object.entries(choreDetails).length != 0 ?
                         <Card component={<ChoreDetailsComponent />} />
                     : null
-                }
+                } */}
             </div>
         </div>
     )

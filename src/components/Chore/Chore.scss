@@ -67,6 +67,39 @@
                 tr th {
                     padding: 8px;        
                 }
+
+                tr {
+                    background-color: #fff;
+                    border: none;
+                    cursor: pointer;
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    justify-content: flex-start;
+                  }
+              
+                //   tr:first-child:hover {
+                //     cursor: default;
+                //     background-color: #fff;
+                //   }
+              
+                  tr:hover {
+                    cursor: pointer;
+                    background-color: #EEF4FD;
+                  }
+              
+                  .expanded-row-content {
+                    border-top: none;
+                    //display: grid;
+                    grid-column: 1/-1;
+                    justify-content: flex-start;
+                    color: #AEB1B3;
+                    font-size: 13px;
+                    background-color: #fff;
+                  }
+              
+                  .hide-row {
+                    display: none;
+                  }
                 
                 tbody tr:hover {
                     background-color: rgb(243, 243, 243);
@@ -123,6 +156,23 @@
             }
             
             padding-bottom: 1em;
+            & .chore-details-schedule {                
+                //background-color: white;
+                display: flex;
+                justify-content: center;                
+                align-items: center;
+                grid-area: chore-details-schedule;
+                & .daily-chore {                    
+                    display: flex;
+                    justify-content: space-evenly;
+                    width: 100%;
+                    & .daily {                        
+                        display: flex;
+                        flex-direction: column;
+                        
+                    }
+                }
+            }
 
         }
         & .chore-details {
@@ -185,23 +235,23 @@
                 padding-left: 0.3em;
                 //background-color: white;
             }
-            & .chore-details-schedule {                
-                //background-color: white;
-                display: flex;
-                justify-content: center;                
-                align-items: center;
-                grid-area: chore-details-schedule;
-                & .daily-chore {                    
-                    display: flex;
-                    justify-content: space-evenly;
-                    width: 100%;
-                    & .daily {                        
-                        display: flex;
-                        flex-direction: column;
+            // & .chore-details-schedule {                
+            //     //background-color: white;
+            //     display: flex;
+            //     justify-content: center;                
+            //     align-items: center;
+            //     grid-area: chore-details-schedule;
+            //     & .daily-chore {                    
+            //         display: flex;
+            //         justify-content: space-evenly;
+            //         width: 100%;
+            //         & .daily {                        
+            //             display: flex;
+            //             flex-direction: column;
                         
-                    }
-                }
-            }
+            //         }
+            //     }
+            // }
             & .chore-details-comments {
                 grid-area: chore-details-comments;
                 //background-color: white;
