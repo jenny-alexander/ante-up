@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './DashboardMoney.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBuildingColumns } from '@fortawesome/free-solid-svg-icons';
 import { faCircleRight } from '@fortawesome/free-solid-svg-icons';
 
 function DashboardMoney(props) {

@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import Card from '../Common/Card/Card';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import './Chore.scss';
 
 function Chore(props) {
@@ -205,18 +208,28 @@ function Chore(props) {
                                         <th>Chore</th>
                                         <th>Frequency</th>
                                         <th>Payment</th>
-                                        <th>Total $</th>
+                                        <th></th>
                                         {/* <th>Actions</th> */}
                                     </tr>  
                                 </thead>
                                 <tbody>
                                 {userChores.map((chore,i)=> 
-                                    <tr onClick={()=>showDetails(chore,i)}>
+                                    <tr >
                                     {/* <tr>                                                                             */}
                                         <td data-th="Name">{chore.name}</td>
                                         <td data-th="Frequency">{chore.frequency}</td>
                                         <td data-th="Payment" className='td-center'>{chore.payment}</td>
-                                        <td data-th="Total $" className='td-center'>$10</td>
+                                        <td data-th="expand" className='td-center'>
+                                            <button 
+                                                className='chore-btn'
+                                                onClick={()=>showDetails(chore,i)}>
+                                                    { selectedRow === i ? (
+                                                        <FontAwesomeIcon icon={faChevronUp} />
+                                                    ) : (
+                                                        <FontAwesomeIcon icon={faChevronDown} />
+                                                    )}
+                                            </button>
+                                        </td>
                                         <td className={`${selectedRow===i ? 'expanded-row-content': 'expanded-row-content hide-row'}`}>
                                         {
                     <div className='chore-details-schedule'>
