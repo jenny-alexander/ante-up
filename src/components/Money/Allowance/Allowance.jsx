@@ -39,12 +39,11 @@ function Allowance(props) {
             })
             launchSuccessToast();
         }
-    // }, [props.bank.allowanceDepositSuccess, props.bank])
-}, [props.bank.allowanceDepositSuccess])
+    },[props.bank.allowanceDepositSuccess])
     
     const showErrorModal = () => {
         Swal.fire({
-            icon: 'error',
+            icon: 'error',  
             title: 'Oops...',
             text: 'Something went wrong!',
           })
@@ -123,15 +122,11 @@ function Allowance(props) {
         return dayOfWeek;
     }
 
-    // if (Object.keys(props.allowance.latestAllowance).length !==0 ) {
-        return (
-            <div className="allowance">
+        return (           
+            <div className="allowance">                                                
                 <div className='allowance-title'>  
-                Allowance info                  
-                    {/* Latest Allowance: {allowanceDay ? allowanceDay : null},
-                    { updatedLatestAllowance.allowance_date ? ' ' + updatedLatestAllowance.allowance_date.slice(0,10) : null }
-                 */}
-                </div>
+                    Allowance info                  
+                </div>                
                 <table className="allowance-table">
                     <thead className="allowance-head">
                         <tr>
@@ -179,10 +174,9 @@ function Allowance(props) {
                             </td>
                         </tr>
                     </tbody>
-                </table>
+                </table>                
             </div>
         )
-    // } 
 }
 
 export default Allowance;

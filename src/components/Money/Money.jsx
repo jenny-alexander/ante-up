@@ -20,12 +20,17 @@ function Money(props) {
     const user = useSelector((store) => store.user);
     const[editSavingFor, setEditSavingFor] = useState(false);
     const[savingFor, setSavingFor] = useState({});
+    const [allowanceInfo, setAllowanceInfo] = useState ({});
 
     useEffect(()=> {
         dispatch( { type: 'FETCH_ALLOWANCE', payload: user.id} );
         dispatch( { type: 'FETCH_LATEST_ALLOWANCE', payload: user.id });
         dispatch( { type: 'GET_BANK_REQUESTED', payload: user.id})
     },[])
+
+    useEffect(() => {
+        setAllowanceInfo({...allowanceInfo, allowance})
+    },[allowance])
 
     const saveGoalChanges = () => {        
         dispatch( { type: 'SAVE_BANK_GOAL', payload: { amount: savingFor.amount, 
@@ -45,57 +50,58 @@ function Money(props) {
         <div className="money">
             <h1 className="money-title">Money</h1>
             
-{/* {Object.entries(allowance).length !== 0 ? '' : ''} */}
+{Object.entries(allowanceInfo).length > 0 ? 
 
-            <div className="money-saving"> 
-                <div className="saving-title-section">
-                    <div className="saving-title">Saving Goal</div>
-                    <FontAwesomeIcon id="info-snippet" className="saving-info-icon" icon={faCircleInfo} />
-                    <Tooltip anchorId="info-snippet" place={'right'} content="Saving for a specific goal can keep you motivitated!"/>
+            <><div className="money-saving">
+                    <div className="saving-title-section">
+                        <div className="saving-title">Saving Goal</div>
+                        <FontAwesomeIcon id="info-snippet" className="saving-info-icon" icon={faCircleInfo} />
+                        <Tooltip anchorId="info-snippet" place={'right'} content="Saving for a specific goal can keep you motivitated!" />
+                    </div>
+
+                    <div className="money-input-group">
+                        <div className="saving-goal-amount">
+                            <label id="goal-amount-label" for="saving-goal">Amount:</label>
+                            <input id="goal-amount-input"
+                                type="text"
+                                disabled={!editSavingFor}
+                                value={savingFor.amount}
+                                onChange={(e) => { setSavingFor({ ...savingFor, amount: e.target.value }); } } />
+                        </div>
+                        {/* <div id="line"><hr /></div> */}
+                        <div className="saving-goal-desc">
+                            <label id="goal-desc-label" for="saving-goal">Description:</label>
+                            <input id="goal-desc-input"
+                                type="text"
+                                disabled={!editSavingFor}
+                                value={savingFor.description}
+                                onChange={(e) => { setSavingFor({ ...savingFor, description: e.target.value }); } } />
+                        </div>
+
+                    </div>
+                    <div className="saving-goal-buttons">
+                        {editSavingFor ?
+                            (<>
+                                <button onClick={() => { saveGoalChanges(); } }>Save</button>
+                                <button onClick={() => { setEditSavingFor(false); } }>Cancel</button>
+                            </>)
+                            :
+                            (<button onClick={() => {
+                                setEditSavingFor(true);
+                            } }>Edit</button>)}
+                    </div>
                 </div>
-
-                <div className="money-input-group">
-                    <div className="saving-goal-amount">
-                        <label id="goal-amount-label" for="saving-goal">Amount:</label>
-                        <input id="goal-amount-input" 
-                               type="text" 
-                               disabled={!editSavingFor}                               
-                               value={savingFor.amount}
-                               onChange={(e) => {setSavingFor({...savingFor, amount: e.target.value})}}/>
-                    </div>
-                    {/* <div id="line"><hr /></div> */}
-                    <div className="saving-goal-desc">
-                        <label id="goal-desc-label" for="saving-goal">Description:</label>
-                        <input id="goal-desc-input" 
-                            type="text" 
-                            disabled={!editSavingFor} 
-                            value={savingFor.description}
-                            onChange={(e) => {setSavingFor({...savingFor, description: e.target.value})}}/>
-                    </div>
-
+                <div className="money-allowance">
+                    <Card component={<Allowance allowance={allowance} bank={bank} />} />
                 </div>
-                <div className="saving-goal-buttons">
-                        { editSavingFor ? 
-                                (<>
-                                    <button onClick={()=>{saveGoalChanges()}}>Save</button>
-                                    <button onClick={()=>{setEditSavingFor(false)}}>Cancel</button>
-                                </>)
-                            : 
-                                ( <button onClick={() => {
-                                    setEditSavingFor(true)
-                                } }>Edit</button>)}
-                    </div>
-            </div>
-{/* {Object.entries(allowance).length !== 0 ? '' : ''} */}
-            <div className="money-allowance">
-                <Card component={<Allowance allowance={allowance} bank={bank}/>} />
-            </div>
-            <div className="money-bank-chart">
-                <Card component={<MoneyPie bank={bank.bank}/>} />
-            </div>
-            <div className="money-bank">
-                <Card component={<MoneyBucketManager bank={bank} />} />
-            </div> 
+                <div className="money-bank-chart">
+                    <Card component={<MoneyPie bank={bank.bank} />} />
+                </div>
+                <div className="money-bank">
+                    <Card component={<MoneyBucketManager bank={bank} />} />
+                </div>
+                </> 
+                    : '' }
         </div >
     )
 }

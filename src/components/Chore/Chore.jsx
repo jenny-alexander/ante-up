@@ -19,6 +19,7 @@ function Chore(props) {
     const [choreDetails, setChoreDetails] = useState({});
     const MySwal = withReactContent(Swal);        
     const [selectedRow, setSelectedRow] = useState(-1);    
+    const [allowPaymentUpdate, setAllowPaymentUpdate] = useState(false);
 
     const options = [
         { value: 'All', label: 'All'},
@@ -31,11 +32,10 @@ function Chore(props) {
     useEffect(() => {
         console.log('in useEffect of CHORE and props are:', props);
             dispatch( {type: "GET_CHORE_REQUESTED", payload: props.user.id});
-
             dispatch( {type: 'GET_DAILY_PAYMENT_REQUESTED', payload: {
                                                             userID: props.user.id,
                                                             // weekID: props.week.week[0].week_no}});
-                                                            weekID: 1}});
+                                                            weekID: 1}}); //<--TODO: set this dynamically
     },[])
 
     useEffect(() => {
@@ -45,6 +45,11 @@ function Chore(props) {
             setUserChores(chores.chore)
         }
     },[chores.chore]);
+
+    const editPaymentFrequency = () => {
+        console.log('you clicked on editPaymentFrequency!');
+        setAllowPaymentUpdate(!allowPaymentUpdate);
+    }
 
     const handleFrequencyChange = (selected) => {
         console.log('in handleFrequencyChange with:', selected);
@@ -240,7 +245,7 @@ function Chore(props) {
                                         <td className={`${selectedRow===i ? 'expanded-row-content': 'expanded-row-content hide-row'}`}>
                                             { selectedRow===i ?
                                                     <div className='chore-details-schedule'>
-                                                        { renderFrequencySchedule(chore.frequency) }
+                                                        { renderFrequencySchedule(chore.frequency, chore.id) }
                                                     </div> : null
                                             }
                                         </td>
@@ -279,10 +284,12 @@ function Chore(props) {
         )
     }
 
-    const renderFrequencySchedule = (frequency) => {
+    const renderFrequencySchedule = (frequency, choreID) => {
+        console.log('this is chore ID:', choreID);
         switch(frequency){            
             case 'Daily':
                 return (
+                    
                     <div className="daily-chore">
                         <div className="daily">
                             <label>M</label>
@@ -311,7 +318,11 @@ function Chore(props) {
                             <label>Sun</label>
                             <input type="checkbox"></input>
                         </div>
+                        {/* <button onClick={editPaymentFrequency}>Update</button> */}
+                        
                     </div>
+                    
+                    
                     )
             case 'Weekly':
                 return (<div>I am a weekly chore</div>)

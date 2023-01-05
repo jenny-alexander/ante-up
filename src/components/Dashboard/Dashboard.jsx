@@ -6,51 +6,31 @@ import DashboardMoney from '../Dashboard/DashboardMoney/DashboardMoney';
 import DashboardChore from '../Dashboard/DashboardChore/DashboardChore';
 
 function Dashboard(props) {
-    const dispatch = useDispatch();
-    const allowance = useSelector((store) => store.allowance);    
+    // const dispatch = useDispatch();
     const [weekInfo, setWeekInfo] = useState ({});
 
-    useEffect(()=> {
-        dispatch( { type: 'FETCH_ALLOWANCE', payload: props.user.id} );
-    },[])
-
-    useEffect(() => {        
+    useEffect(() => {
+        console.log('props in Dashboard useEffect are:',props)
         if (props.week && props.week.week) {
             if (Object.entries(props.week.week).length !== 0) {                
                 setWeekInfo({...weekInfo,
-                    week_no: props.week.week[0].week_no,
-                    allowanceDate: props.week.week[0].allowance_date.substring(0,10),
-                    startDate: props.week.week[0].start_date.substring(0,10),
-                    endDate: props.week.week[0].end_date.substring(0,10),
-                    //nextAllowanceDate: getNextAllowanceDate(props.week.week[0].allowance_date.substring(0,10)),                
+                    week_no: props.week.week.week_no,
+                    allowanceDate: props.week.week.allowance_date.substring(0,10),
+                    startDate: props.week.week.start_date.substring(0,10),
+                    endDate: props.week.week.end_date.substring(0,10),                    
                 })                
             }
         }
     },[props.week])
 
-    // const getNextAllowanceDate = (d) => {
-    //     let date = new Date(d);
-    //     date.setDate(date.getDate() + 7);
-    //     const year = date.getUTCFullYear();
-    //     const month = padTo2Digits(date.getUTCMonth() + 1);
-    //     const day = padTo2Digits(date.getUTCDate());
-    //     const dateWithHyphens = [year, month, day].join('-');
-    //     return dateWithHyphens;
-             
-    // }
-    // const padTo2Digits= (num) => {
-    //     return num.toString().padStart(2, '0');
-    //   }
-
     return (
         <div className="dashboard">
             <h1 className="dashboard-title">Dashboard</h1>
-            <div className="dashboard-main">                   
-                {/* <div className="dashboard-week">Week of {weekInfo.startDate}</div>                                       */}
+            <div className="dashboard-main">                                   
                 <DashboardCalendar user={props.user}/>
                 <DashboardMoney 
                     user={props.user} 
-                    weekInfo={weekInfo} />
+                    weekInfo={weekInfo} /> {/* TODO --> CHECK IF WE CAN DO THIS IN THE MONEY COMP */}
                     {/* allowance={allowance}/> */}
                 <DashboardChore />                        
             </div>
