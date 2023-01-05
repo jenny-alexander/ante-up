@@ -12,7 +12,7 @@ import './Chore.scss';
 function Chore(props) {
     const dispatch = useDispatch();
     const chores = useSelector((store) => store.chore);
-    const chorePayments = useSelector((store) => store.chorePayments);
+    const chorePayment = useSelector((store) => store.chorePayment);
     const [userChores, setUserChores] = useState([]);
     const [choresExist, setChoresExist] = useState(false);
     const [frequencySelected, setFrequencySelected] = useState('All');
@@ -20,6 +20,7 @@ function Chore(props) {
     const MySwal = withReactContent(Swal);        
     const [selectedRow, setSelectedRow] = useState(-1);    
     const [allowPaymentUpdate, setAllowPaymentUpdate] = useState(false);
+    const [checkedDailyState, setCheckedDailyState] = useState([]);
 
     const options = [
         { value: 'All', label: 'All'},
@@ -37,6 +38,12 @@ function Chore(props) {
                                                             // weekID: props.week.week[0].week_no}});
                                                             weekID: 1}}); //<--TODO: set this dynamically
     },[])
+
+    useEffect(()=> {
+        if (chorePayment.dailyPayment.payment.length > 0) {
+            console.log('in useEffect for dailyPayments and it has:', chorePayment.dailyPayment.payment)            
+        }
+    },[chorePayment.dailyPayment.payment])
 
     useEffect(() => {
         console.log('chores is:', chores);
@@ -245,8 +252,9 @@ function Chore(props) {
                                         <td className={`${selectedRow===i ? 'expanded-row-content': 'expanded-row-content hide-row'}`}>
                                             { selectedRow===i ?
                                                     <div className='chore-details-schedule'>
+                                               
                                                         { renderFrequencySchedule(chore.frequency, chore.id) }
-                                                    </div> : null
+                                                    </div> : <div>NADA</div>
                                             }
                                         </td>
                                         {/* <td><button className='assign-chore-btn'>Assign to Me</button></td> */}
@@ -284,56 +292,58 @@ function Chore(props) {
         )
     }
 
-    const renderFrequencySchedule = (frequency, choreID) => {
-        console.log('this is chore ID:', choreID);
-        switch(frequency){            
-            case 'Daily':
-                return (
-                    
-                    <div className="daily-chore">
-                        <div className="daily">
-                            <label>M</label>
-                            <input type="checkbox"></input></div>                                             
-                        <div className="daily">
-                            <label>T</label>
-                            <input type="checkbox"></input>
-                        </div>
-                        <div className="daily">
-                            <label>W</label>
-                            <input type="checkbox"></input>
-                        </div>
-                        <div className="daily">
-                            <label>Th</label>
-                            <input type="checkbox"></input>
-                        </div>
-                        <div className="daily">
-                            <label>F</label>
-                            <input type="checkbox"></input>
-                        </div>
-                        <div className="daily">
-                            <label>Sat</label>
-                            <input type="checkbox"></input>
-                        </div>
-                        <div className="daily">
-                            <label>Sun</label>
-                            <input type="checkbox"></input>
-                        </div>
-                        {/* <button onClick={editPaymentFrequency}>Update</button> */}
-                        
-                    </div>
-                    
-                    
-                    )
-            case 'Weekly':
-                return (<div>I am a weekly chore</div>)
-            case 'Monthly':
-                return (<div>I am a monthly chore</div>)
-            case 'Ad Hoc':
-                return (<div>I am an ad hoc chore</div>)
-            default:
-                return null;
-        }
+    const createDailyCheckbox = (payment, index) => {
+        console.log('in createDailyCheck with:', payment);
+        return (
+            <>
+                <input
+                type="checkbox"
+                id={`custom-checkbox-${index}`}
+                name={payment}
+                value={payment}
+                checked={checkedState[index]}
+                onChange={() => handleOnChange(index)}
+                />
+                <label htmlFor={`custom-checkbox-${index}`}>{payment}</label>
+          </>
+        )
+    }
 
+    const renderFrequencySchedule = (frequency, choreID) => {
+        // return (
+        //     <div>help me</div>
+        // )
+        console.log('this is chore ID:', choreID);
+        const paymentForThisChore = chorePayment.dailyPayment.payment.filter(payment => payment.chore_id == choreID);
+        console.log('payment for this chore is:', paymentForThisChore[0]);
+        if ( paymentForThisChore.length > 0 ) {
+            const paymentObj = paymentForThisChore[0];
+            return (
+                Object.keys(paymentObj).map(key => {
+                    //TODO :REDO Multiple OR            
+                    if ( key === 'monday' || key === 'tuesday' || key === 'wednesday' ||
+                        key === 'thursday' || key === 'friday' || key === 'saturday' || key === 'sunday' ) {
+                        return (
+                        <div className="daily-chore">
+                            <div className="daily">
+                                <label htmlFor={`custom-checkbox-${choreID}`}>{key.substring(0,1).toUpperCase()}</label>
+                                <input
+                                    type="checkbox"
+                                    id={`custom-checkbox-${choreID}`}
+                                    name={key}
+                                    value={key}
+                                    checked={paymentObj[key]}
+                                    //onChange={() => handleOnChange(index)}
+                                />                    
+                            </div>
+                        </div>
+                        );
+                    }
+              })
+            )
+        } else {
+            return null;
+        }    
     }
 
     return (

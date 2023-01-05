@@ -14,7 +14,7 @@ const weeklyInitialState = {
     changeSuccess: false,
 }
 
-const dailyPaymentReducer = (state = dailyInitialState, action) => {
+const dailyPayment = (state = dailyInitialState, action) => {
     switch (action.type) {
         case 'GET_DAILY_PAYMENT_REQUESTED':
             return { ...state, loading: true, changeSuccess: false }
@@ -27,7 +27,7 @@ const dailyPaymentReducer = (state = dailyInitialState, action) => {
     }
 }
 
-const weeklyPaymentReducer = (state = weeklyInitialState, action) => {
+const weeklyPayment = (state = weeklyInitialState, action) => {
     switch (action.type) {
         case 'GET_WEEKLY_PAYMENT_REQUESTED':
             return { ...state, loading: true, changeSuccess: false }
@@ -42,6 +42,6 @@ const weeklyPaymentReducer = (state = weeklyInitialState, action) => {
 
 export default combineReducers({
     //allowance,
-    dailyPaymentReducer,
-    weeklyPaymentReducer,
+    dailyPayment,
+    weeklyPayment,
 });
