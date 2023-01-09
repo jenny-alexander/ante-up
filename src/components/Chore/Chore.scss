@@ -42,7 +42,7 @@
                 // background: var(--color-logout);
                 color: black;
                 //margin-top: 3.5em;
-                padding: 0.5em 1em;
+                //padding: 0.5em 1em;
                 transition: 120ms all ease-in-out;
                 &:hover {
                     cursor: pointer;
@@ -60,10 +60,7 @@
                 font-size: 0.9em;
                 border-collapse: collapse;  
                 width: 100%;
-                //border: solid 1px #bacdd8;
-                //border: solid 1px #bacdd861;
-                .chore-head {                
-                    //background-color: #f8c348;
+                .chore-head {                                    
                     color: #ffffff;
                     color: black;
                     text-align: left;
@@ -73,28 +70,30 @@
                     padding: 8px;        
                 }
 
-                tr {
-                    //background-color: #fff;
-                    border: none;
-                    //cursor: pointer;
+                tr {                    
+                    border: none;                    
                     display: grid;
                     grid-template-columns: repeat(4, 1fr);
                     justify-content: flex-start;
-                  }            
+                  }                          
               
-                  tr:hover {
-                    //cursor: pointer;
-                    background-color: #EEF4FD;
+                  tr:has(.expanded-row-content.hide-row) {
+                    background-color: white;
                   }
-              
+                  tr:has(.expanded-row-content.hide-row):hover {
+                    background-color: rgb(243, 243, 243);
+                  }
+                  tr:has(.expanded-row-content) {
+                    background-color: rgb(243, 243, 243);
+                  }
+
                   .expanded-row-content {
-                    border-top: none;
-                    //display: grid;
+                    //border-top: none;                    
+                    border-top: 1px solid rgba(186, 205, 216, 0.3803921569);
                     grid-column: 1/-1;
-                    justify-content: flex-start;
-                    color: #AEB1B3;
-                    font-size: 13px;
-                    background-color: #fff;
+                    justify-content: flex-start;                    
+                    color: #6e6f6f;
+                    font-size: 13px;                    
                     padding-bottom: 1em;
                     padding-top: 1em;
                   }
@@ -103,24 +102,16 @@
                     display: none;
                   }
                 
-                tbody tr:hover {
-                    background-color: rgb(243, 243, 243);
-                    //cursor: pointer;
-                }
-                
+                  
                 tr td:not(.expanded-row-content) {
                     padding: 8px;
-                    padding-top:12px;
-                    //padding-bottom:12px;
+                    padding-top:12px;                        
                     display:flex;
-                    align-items: center;
-            
+                    align-items: center;                        
                 }    
-                tr {
-                    //border-bottom: 1px solid #bacdd8;
+                tr {                        
                     border-bottom: 1px solid #bacdd861;
                 }
-                
             }
             @media screen and (max-width:475px) {
                 table.mobile-optimised {
@@ -164,19 +155,30 @@
                 //background-color: white;
                 
                 display: flex;
-                justify-content: center;                
-                align-items: center;
+                // justify-content: center;                
+                // align-items: center;
                 grid-area: chore-details-schedule;
+
                 & .daily-chore {                    
                     display: flex;
                     justify-content: space-evenly;
                     width: 100%;
-                    & .daily {                        
+                    & label {
                         display: flex;
-                        flex-direction: column;
-                        
+                        flex-direction:column;
                     }
+                    // & .daily {                        
+                    //     display: flex;
+                    //     flex-direction: column;
+                        
+                    // }
                 }
+            }
+            & .chore-details-payment {
+                display:flex;
+                margin-top: 1.5em;
+                justify-content: center;
+                font-size: 1.5em;
             }
 
         }

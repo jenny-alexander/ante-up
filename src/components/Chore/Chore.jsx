@@ -21,6 +21,7 @@ function Chore(props) {
     const [selectedRow, setSelectedRow] = useState(-1);    
     const [allowPaymentUpdate, setAllowPaymentUpdate] = useState(false);
     const [checkedDailyState, setCheckedDailyState] = useState([]);
+    const [choreTotalPayment, setChoreTotalPayment] = useState(0)
 
     const options = [
         { value: 'All', label: 'All'},
@@ -53,6 +54,8 @@ function Chore(props) {
         }
     },[chores.chore]);
 
+    const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
+
     const editPaymentFrequency = () => {
         console.log('you clicked on editPaymentFrequency!');
         setAllowPaymentUpdate(!allowPaymentUpdate);
@@ -64,19 +67,12 @@ function Chore(props) {
         if (selected.value==='All') {
             console.log('chores is:', chores)
             setUserChores(chores.chore);
-        }else {
+        } else {
             const filteredChores = chores.chore.filter(a =>
                 a.frequency === selected.value);
             setUserChores(filteredChores);
         }        
-
-        setFrequencySelected(selected);
-        
-        // setUserChores(
-        //     userChores.filter(a =>
-        //       a.frequency === selected.value
-        //     )
-        //   );
+        setFrequencySelected(selected);    
     }
 
     const showChoreDetails = (chore) => {
@@ -89,121 +85,17 @@ function Chore(props) {
             })
     }
 
-    const addChore = () => {
-        //setChangeType(changeType)
-        const addChoreSWAL =  {            
-            title: `Enter new chore details`,
-            focusConfirm: true,
-            html: `
-                    <div class="chore-modal-container">
-                        <div class="chore-modal-row">
-                            <label class="swal2-label chore-label" for="chore-name">Chore:</label>
-                            <input class="swal2-input chore-input" id="chore-name" type="text" />
-                        </div>
-                        <div class="chore-modal-row">
-                            <label class="swal2-label chore-label" for="chore-frequency">Frequency:</label>
-                            <input class="swal2-input chore-input" id="chore-frequency" type="text" />
-                        </div>
-                        <div class="chore-modal-row">
-                            <label class="swal2-label chore-label" for="chore-payment">Payment:</label>
-                            <input class="swal2-input chore-input" id="chore-payment" type="text" />
-                        </div>
-                        <div class="chore-modal-row">
-                            <label class="swal2-label chore-label" for="chore-description">Description:</label>
-                            <input class="swal2-input chore-input" id="chore-description" type="text" />
-                    </div>
-                   </div>`                   
-                   ,            
-            showClass: {
-                //backdrop: 'swal2-noanimation', // disable backdrop animation
-                popup: 'swal2-noanimation',                     // disable popup animation
-                title: 'swal2-title bucket',
-                //icon: 'swal2-noanimation'                       // disable icon animation
-              },
-            showCancelButton: true,
-            cancelButtonColor: 'grey',
-            confirmButtonColor: '#E0AB31',
-            confirmButtonText: 'Confirm',
-            allowOutsideClick: false,
-            preConfirm: () => ({
-                choreName: document.getElementById('chore-name').value,
-                choreFrequency: document.getElementById('chore-frequency').value,
-                chorePayment: document.getElementById('chore-payment').value,
-                choreDescription: document.getElementById('chore-description').value,
-            })          
-        }
-
-        return addChoreSWAL;
-    }    
-
-    const showAddChoreModal = () => {
-        console.log('you clicked on addChoreModal');
-        //show add chore modal
-        //dispatch({type: 'ADD_NEW_CHORE', payload: props.user.id})
-        const addNewChore = async () => {
-            const swalval = await MySwal.fire(addChore());
-            let v = swalval && swalval.value || swalval.dismiss;            
-            if (v && v.choreName  || v === 'cancel') {
-                if (v !== 'cancel') {
-                    console.log('about to dispatch to ADD_CHORE');
-                    //setformdata(swalval);
-                    dispatch({
-                        type: 'ADD_CHORE',
-                        payload: {
-                            userID: props.user.id,
-                            choreDetails: {
-                                name: v.choreName,
-                                frequency: v.choreFrequency,
-                                payment : v.chorePayment,
-                                description: v.choreDescription,                                
-                            }
-                        },
-                    });
-                    // dispatch({
-                    //     type: 'ADD_BANK_TRANSACTION',
-                    //     payload: {
-                    //         userId: user.id,
-                    //         type: changeType,
-                    //         timestamp: new Date().toISOString(),
-                    //         amount: v.amountValue,
-                    //         notes: v.comments,
-                    //     }
-                    // })
-                }
-            } else {
-              await MySwal.fire({ 
-                type: 'error', 
-                icon: 'warning',
-                title: 'A chore name is required!',
-                confirmButtonColor: '#f8c348',
-                // confirmButtonColor: 'red',
-             });
-             addNewChore();
-            }
-          }
-          addNewChore();
-    }
-
     const showDetails = (i) => {        
         if (selectedRow === i) {
             setSelectedRow(-1);
-            // setChoreDetails({...choreDetails,
-            //     name: chore.name,
-            //     description: chore.description,
-            //     frequency: chore.frequency,
-            //     payment: chore.payment,
-            //     })
         }else {
-            setSelectedRow(i);
+            setSelectedRow(i);            
         }        
       }
 
     const ChoreListComponent = () => {
         return (
             <div className="chore-main">
-                {/* <div className="my-chore-selector">
-                <div className="selector-title">Frequency:</div>
-                </div> */}
                 <div className="chore-selector">                    
                     <div className="selector-title">Frequency:</div>
                     <div className="selector-dropdown">
@@ -228,7 +120,6 @@ function Chore(props) {
                                         <th>Frequency</th>
                                         <th>Payment</th>
                                         <th></th>
-                                        {/* <th>Actions</th> */}
                                     </tr>  
                                 </thead>
                                 <tbody>
@@ -250,12 +141,12 @@ function Chore(props) {
                                             </button>
                                         </td>
                                         <td className={`${selectedRow===i ? 'expanded-row-content': 'expanded-row-content hide-row'}`}>
-                                            { selectedRow===i ?
-                                                    <div className='chore-details-schedule'>
-                                               
-                                                        { renderFrequencySchedule(chore.frequency, chore.id) }
-                                                    </div> : <div>NADA</div>
+                                            { selectedRow===i ?                                                                      
+                                                    <div className='chore-details-schedule'>                                               
+                                                        { renderDailySchedule(chore.frequency, chore.id, chore.payment) }                                                        
+                                                    </div> : null                                                                                                    
                                             }
+                                            <div className='chore-details-payment'>Total Payment: ${choreTotalPayment}</div>
                                         </td>
                                         {/* <td><button className='assign-chore-btn'>Assign to Me</button></td> */}
                                     </tr>
@@ -266,9 +157,7 @@ function Chore(props) {
                         : ''
                     }
                 </div>
-            </div>
-            
-
+            </div>            
         )
     }
     
@@ -285,63 +174,45 @@ function Chore(props) {
                 </div>
                 {
                     <div className='chore-details-schedule'>
-                        { renderFrequencySchedule(choreDetails.frequency) }
+                        { renderDailySchedule(choreDetails.frequency) }
                     </div>
                 }
             </div>
         )
     }
 
-    const createDailyCheckbox = (payment, index) => {
-        console.log('in createDailyCheck with:', payment);
-        return (
-            <>
-                <input
-                type="checkbox"
-                id={`custom-checkbox-${index}`}
-                name={payment}
-                value={payment}
-                checked={checkedState[index]}
-                onChange={() => handleOnChange(index)}
-                />
-                <label htmlFor={`custom-checkbox-${index}`}>{payment}</label>
-          </>
-        )
-    }
-
-    const renderFrequencySchedule = (frequency, choreID) => {
-        // return (
-        //     <div>help me</div>
-        // )
+    const renderDailySchedule = (frequency, choreID) => {
         console.log('this is chore ID:', choreID);
         const paymentForThisChore = chorePayment.dailyPayment.payment.filter(payment => payment.chore_id == choreID);
-        console.log('payment for this chore is:', paymentForThisChore[0]);
+        console.log('payment for this chore is:', paymentForThisChore);
+        
         if ( paymentForThisChore.length > 0 ) {
             const paymentObj = paymentForThisChore[0];
+            console.log('TOTAL payment is:', paymentObj.total_payment);
+            setChoreTotalPayment(paymentObj.total_payment);
             return (
                 Object.keys(paymentObj).map(key => {
                     //TODO :REDO Multiple OR            
-                    if ( key === 'monday' || key === 'tuesday' || key === 'wednesday' ||
-                        key === 'thursday' || key === 'friday' || key === 'saturday' || key === 'sunday' ) {
+                    if ( key.substring(key.length - 3) === 'day' ) {                       
                         return (
-                        <div className="daily-chore">
-                            <div className="daily">
-                                <label htmlFor={`custom-checkbox-${choreID}`}>{key.substring(0,1).toUpperCase()}</label>
-                                <input
-                                    type="checkbox"
-                                    id={`custom-checkbox-${choreID}`}
-                                    name={key}
-                                    value={key}
-                                    checked={paymentObj[key]}
-                                    //onChange={() => handleOnChange(index)}
-                                />                    
-                            </div>
+                        <div className="daily-chore">                            
+                                <label htmlFor={`custom-checkbox-${choreID}`}>{key.substring(0,1).toUpperCase()}
+                                    <input
+                                        type="checkbox"
+                                        id={`custom-checkbox-${choreID}`}
+                                        name={key}
+                                        value={key}
+                                        checked={paymentObj[key]}
+                                        //onChange={() => handleOnChange(index)}
+                                    />
+                                </label>                                           
                         </div>
                         );
                     }
-              })
+              })              
             )
         } else {
+            setChoreTotalPayment(0);
             return null;
         }    
     }
@@ -351,11 +222,6 @@ function Chore(props) {
             <div className='chore-container'>
                 <h1 className="chore-title">My Chores</h1>
                 <Card component={<ChoreListComponent />} />                
-                {/* {
-                     Object.entries(choreDetails).length != 0 ?
-                        <Card component={<ChoreDetailsComponent />} />
-                    : null
-                } */}
             </div>
         </div>
     )
