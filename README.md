@@ -9,26 +9,27 @@
   * Login/Register functionality (COMPLETED):
     * User can login or register (if new user).
 
-# ![image of dashboard](./public/images/ante_up_login.png)
+# ![image of login](./public/images/ante_up_login.png)
 
 * Dashboard functionality (CURRENTLY IN PROGRESS):
   * User see a snapshot of upcoming allowances and chores that are due.
 
 # ![image of dashboard](./public/images/ante_up_dashboard.png)
 
-* Money functionality (CURRENTLY IN PROGRESS):
+* Money functionality (COMPLETED):
   * User can "deposit" allowance into their 3 buckets: spend, share or save.
   * User will see a breakdown of spend, share and save bucks via VictoryPie component from Victory package.
   * User can move money (withdraw, deposit) between spend, share and save buckets.
 
-# ![image of dashboard](./public/images/ante_up_money.png)
+# ![image of money](./public/images/ante_up_money.png)
 
-* Chore functionality (NOT YET STARTED):
+* Chore functionality (IN PROGRESS):
   * User can see a list of chores.
   * User can toggle between daily & monthly chores.
-  * User can propose a new chore to parent.
   * User can update a chore when done (via checkbox).
   * User can add comments to a chore.
+
+# ![image of chore](./public/images/ante_up_chore.png)
 
 **Frontend:** Frontend is built using React, Redux, Redux-Saga, JavaScript, CSS and HTML.
 
