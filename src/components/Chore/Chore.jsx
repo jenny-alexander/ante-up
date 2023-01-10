@@ -13,11 +13,11 @@ function Chore(props) {
     const dispatch = useDispatch();
     const chores = useSelector((store) => store.chore);
     const chorePayment = useSelector((store) => store.chorePayment);
+    const MySwal = withReactContent(Swal); 
     const [userChores, setUserChores] = useState([]);
     const [choresExist, setChoresExist] = useState(false);
     const [frequencySelected, setFrequencySelected] = useState('All');
-    const [choreDetails, setChoreDetails] = useState({});
-    const MySwal = withReactContent(Swal);        
+    const [choreDetails, setChoreDetails] = useState({});       
     const [selectedRow, setSelectedRow] = useState(-1);    
     const [allowPaymentUpdate, setAllowPaymentUpdate] = useState(false);
     const [checkedDailyState, setCheckedDailyState] = useState([]);
@@ -32,22 +32,31 @@ function Chore(props) {
       ]
 
     useEffect(() => {
-        console.log('in useEffect of CHORE and props are:', props);
             dispatch( {type: "GET_CHORE_REQUESTED", payload: props.user.id});
             dispatch( {type: 'GET_DAILY_PAYMENT_REQUESTED', payload: {
-                                                            userID: props.user.id,
-                                                            // weekID: props.week.week[0].week_no}});
+                                                            userID: props.user.id,                                                            
                                                             weekID: 1}}); //<--TODO: set this dynamically
     },[])
 
     useEffect(()=> {
         if (chorePayment.dailyPayment.payment.length > 0) {
-            console.log('in useEffect for dailyPayments and it has:', chorePayment.dailyPayment.payment)            
+            const newStateArray = [];
+            chorePayment.dailyPayment.payment.map((item, index) => {
+                const newObject = { choreID: item.chore_id,
+                                    totalPayment: item.total_payment,
+                                    schedule: {} };
+                Object.keys(item).map((key, index) => {
+                    if ( key.substring(key.length - 3) === 'day' ) {   
+                        newObject.schedule[key] = item[key];
+                    }
+                })   
+                newStateArray.push(newObject);
+            })
+            setCheckedDailyState(newStateArray); //need spread?
         }
     },[chorePayment.dailyPayment.payment])
 
     useEffect(() => {
-        console.log('chores is:', chores);
         if (chores.chore.length > 0) {
             setChoresExist(true);
             setUserChores(chores.chore)
@@ -56,36 +65,35 @@ function Chore(props) {
 
     const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
 
-    const editPaymentFrequency = () => {
-        console.log('you clicked on editPaymentFrequency!');
-        setAllowPaymentUpdate(!allowPaymentUpdate);
-    }
-
     const handleFrequencyChange = (selected) => {
-        console.log('in handleFrequencyChange with:', selected);
-        console.log('userChores is:', userChores);
         if (selected.value==='All') {
-            console.log('chores is:', chores)
             setUserChores(chores.chore);
         } else {
             const filteredChores = chores.chore.filter(a =>
                 a.frequency === selected.value);
             setUserChores(filteredChores);
         }        
-        setFrequencySelected(selected);    
+        setFrequencySelected(selected);
+        setSelectedRow(-1);
     }
 
-    const showChoreDetails = (chore) => {
-        console.log('clicked on the row and the chore id is:', chore);
-        setChoreDetails({...choreDetails,
-            name: chore.name,
-            description: chore.description,
-            frequency: chore.frequency,
-            payment: chore.payment,
-            })
-    }
+    const handleDailyScheduleChange = (choreID, key) => {
+        setCheckedDailyState(current =>
+            current.map(obj => {
+              if (obj.choreID === choreID) {
+                let checkValue = obj.schedule[key];
+                return {...obj, 
+                        schedule: { ...obj.schedule,
+                        [key]: !checkValue,
+                    }
+                };
+              }
+              return obj;
+            }),
+          );
+      };
 
-    const showDetails = (i) => {        
+    const showDetails = (i) => {       
         if (selectedRow === i) {
             setSelectedRow(-1);
         }else {
@@ -105,9 +113,6 @@ function Chore(props) {
                                 value={frequencySelected}
                         />
                     </div>
-                    {/* <div>
-                        <button className="add-chore-btn" onClick={showAddChoreModal}>Add chore</button>
-                    </div> */}
                 </div>
                 <div className="chore-list">
                     {
@@ -140,15 +145,15 @@ function Chore(props) {
                                                     )}
                                             </button>
                                         </td>
-                                        <td className={`${selectedRow===i ? 'expanded-row-content': 'expanded-row-content hide-row'}`}>
+                                        <td className={`${selectedRow===i ? 'expanded-row-content show-row': 'expanded-row-content hide-row'}`}>
                                             { selectedRow===i ?                                                                      
                                                     <div className='chore-details-schedule'>                                               
                                                         { renderDailySchedule(chore.frequency, chore.id, chore.payment) }                                                        
                                                     </div> : null                                                                                                    
                                             }
-                                            <div className='chore-details-payment'>Total Payment: ${choreTotalPayment}</div>
+                                            <div className="edit-schedule"><button>Edit schedule</button></div>
+                                            <div className='chore-details-payment'>Total Payment: ${choreTotalPayment}</div>                                            
                                         </td>
-                                        {/* <td><button className='assign-chore-btn'>Assign to Me</button></td> */}
                                     </tr>
                                  )}
                                 </tbody>
@@ -160,39 +165,15 @@ function Chore(props) {
             </div>            
         )
     }
-    
-    const ChoreDetailsComponent = () => {
-        return (
-            <div className='chore-details'>
-                <div className='chore-details-frequency'>{choreDetails.frequency}</div>    
-                <div className='chore-details-name'>{choreDetails.name}
-                    <div id="line"><hr /></div>
-                </div>
-                <div className='chore-details-payment'>${choreDetails.payment}</div>
-                <div className='chore-details-description'>
-                    {choreDetails.description}
-                </div>
-                {
-                    <div className='chore-details-schedule'>
-                        { renderDailySchedule(choreDetails.frequency) }
-                    </div>
-                }
-            </div>
-        )
-    }
 
-    const renderDailySchedule = (frequency, choreID) => {
-        console.log('this is chore ID:', choreID);
-        const paymentForThisChore = chorePayment.dailyPayment.payment.filter(payment => payment.chore_id == choreID);
-        console.log('payment for this chore is:', paymentForThisChore);
-        
+    const renderDailySchedule = (frequency, choreID) => {    
+        console.log('TO BEGIN THE CHECKED DAILY STATE IS:', checkedDailyState)            
+        const paymentForThisChore = checkedDailyState.filter(payment => payment.choreID == choreID);                
         if ( paymentForThisChore.length > 0 ) {
-            const paymentObj = paymentForThisChore[0];
-            console.log('TOTAL payment is:', paymentObj.total_payment);
-            setChoreTotalPayment(paymentObj.total_payment);
+            const paymentObj = paymentForThisChore[0];            
+            setChoreTotalPayment(paymentObj.totalPayment);
             return (
-                Object.keys(paymentObj).map(key => {
-                    //TODO :REDO Multiple OR            
+                Object.keys(paymentObj.schedule).map((key, index) => {                                        
                     if ( key.substring(key.length - 3) === 'day' ) {                       
                         return (
                         <div className="daily-chore">                            
@@ -202,8 +183,8 @@ function Chore(props) {
                                         id={`custom-checkbox-${choreID}`}
                                         name={key}
                                         value={key}
-                                        checked={paymentObj[key]}
-                                        //onChange={() => handleOnChange(index)}
+                                        checked={paymentObj.schedule[key]}
+                                        onChange={() => handleDailyScheduleChange(choreID, key)}                                
                                     />
                                 </label>                                           
                         </div>
