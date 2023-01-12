@@ -2,6 +2,7 @@
     --color-logout: rgb(39, 95, 88);
     --hover-brightness: 1.2;
 }
+$greenButton: rgb(39, 95, 88);
 .navigation {
     // border: 1px solid #bacdd8;
     // background-color: rgb(216, 232, 229);
@@ -30,15 +31,30 @@
         & .action-links{
             display: flex;
             flex-direction: column;
-            gap: 2em;            
-                & .active {
-                text-decoration: underline wavy #f8c348 0.15rem;
-                text-underline-offset: 0.5rem;
+            width: 100%;
+            align-items: center;
+            //gap: 2em;            
+            //     & .active {
+            //     text-decoration: underline wavy #f8c348 0.15rem;
+            //     text-underline-offset: 0.5rem;
+            // }
+            & div {
+                padding: 1em;
             }
-            & [class*="nav-"]:hover {
+
+            & [class*="nav-option"]:hover {
                 background-color: rgba(39, 95, 88, 0.2);
                 border-radius: 5px;
-                
+                padding:10px;
+                //padding: 1em;
+            }
+            & [class*="nav-option"]:focus {
+                //border-style: solid;
+                //border-width: 2px;
+                border-radius: 5px;
+                //border-color: $greenButton; 
+                border: 2px solid $greenButton;
+                padding: 10px;
             }
         }
 
@@ -60,9 +76,14 @@
             transition: 120ms all ease-in-out;
             &:hover {
                 cursor: pointer;
-                //filter: brightness(0.9);                    
-                transform: scale(1.05)        
+                //background-color:#00ad79;
+                //transition: 0.5s;
+                text-decoration: underline white 0.1em;
             }
+            &:focus {
+                outline: 2px solid $greenButton;
+                outline-offset: 2px;
+            }             
         }
     }
 }

@@ -10,7 +10,7 @@ import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import './Chore.scss';
 
 function Chore(props) {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch();    
     const chores = useSelector((store) => store.chore);
     const chorePayment = useSelector((store) => store.chorePayment);
     const MySwal = withReactContent(Swal); 
@@ -109,6 +109,7 @@ function Chore(props) {
                     <div className="selector-dropdown">
                         <Select options={options}
                                 //defaultValue={{label: 'All', value: 'All'}}
+                                
                                 onChange={handleFrequencyChange}                                
                                 value={frequencySelected}
                         />

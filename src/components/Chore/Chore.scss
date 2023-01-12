@@ -1,3 +1,4 @@
+$greenButton: rgb(39, 95, 88);
 .chore {    
     display: flex;
     flex-direction: column;
@@ -27,7 +28,6 @@
                         width:max-content;
                     }
                 } 
-
             }
             & .chore-btn {
                 height: 40px;
@@ -36,13 +36,15 @@
                 background-color: #e8e8e8;
                 border: solid 1px rgba(186, 205, 216, 0.3803921569);                                
                 color: black;
-                transition: 120ms all ease-in-out;
+                transition: background-color 0.8s;
+
                 &:hover {
                     cursor: pointer;                    
-                    transform: scale(1.05);       
+                    //transform: scale(1.05);
+                    background-color: #c0bfbf;
                 }
                 &:focus {
-                    outline: 2px solid lightgrey;
+                    outline: 3px solid lightgrey;
                     outline-offset: 2px;
                 } 
         }
@@ -105,25 +107,33 @@
                         justify-content: center;
                         margin: 1.5em;
                         & button {
-                            border-radius: 5px;
-                            //border: 1px solid $greenButton;
-                            border: 1px solid rgb(39, 95, 88, 0.5);
-                            //background: white;
-                            background-color:rgb(39, 95, 88);
-                            //color: rgb(7,10,10,1);
+                            border-radius: 5px;                            
+                            border: 1px solid rgb(39, 95, 88, 0.5);                            
+                            background-color:rgb(39, 95, 88);                            
                             color: white;
-                            //font-weight: bold;
+                            
+
+
                             padding: 0.5em 1.5em;
                             margin-top: 0.5em;
-                            transition: 60ms all ease-in-out;
+                            &:hover {
+                                cursor: pointer;
+                                text-decoration: underline white 0.1em;
+                                // background-color:#00ad79;
+                                // transition: 0.5s;
+                            }
+                            &:focus {
+                                outline: 2px solid $greenButton;
+                                outline-offset: 2px;
+                            } 
                             &:focus {
                                 outline: 2px solid darkgreen;
                                 outline-offset: 2px;
                             }
-                            &:hover {
-                                cursor: pointer;                                                                                                              
-                                transform: scale(1.05)                                                                  
-                            } 
+                            // &:hover {
+                            //     cursor: pointer;                                                                                                              
+                            //     transform: scale(1.05)                                                                  
+                            // } 
                         }
                     }
                 }  

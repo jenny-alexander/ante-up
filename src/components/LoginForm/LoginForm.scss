@@ -45,8 +45,9 @@ $greenButton: rgb(39, 95, 88);
         transition: 120ms all ease-in-out;
         &:hover {
             cursor: pointer;
-            background-color:#00ad79;
-            transition: 0.5s;
+            text-decoration: underline white 0.1em;
+            // background-color:#00ad79;
+            // transition: 0.5s;
         }
         &:focus {
             outline: 2px solid $greenButton;
@@ -73,8 +74,9 @@ $greenButton: rgb(39, 95, 88);
         &:hover {
             cursor: pointer;
             border: 1px solid rgb(39, 95, 88, 1);
+            text-decoration: underline rgb(22, 21, 21) 0.1em;
             //background-color: rgba(243, 243, 245, 0.75);
-            background-color: rgba(217, 239, 232, 0.75);
+            //background-color: rgba(217, 239, 232, 0.75);
         } 
     }
 

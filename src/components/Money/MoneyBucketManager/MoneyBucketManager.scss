@@ -43,8 +43,7 @@
             padding-bottom: 0.5em;
             border: 2px solid rgb(217 238 230);
             background-color: hsl(174deg 44% 96%);
-            border-radius: 5px;
-            box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.13);
+            border-radius: 5px;            
             gap: 0.5em;
 
             .buttons {
@@ -64,8 +63,12 @@
                     cursor: pointer;  
                     border-radius: 15px;
                     color: white;
-                    &:hover {                                        
-                        transform: scale(1.10)  
+                    transition: background-color 1s;
+                    //font-weight:bolder;
+                    font-size: larger;
+                    &:hover {                        
+                        background-color: rgb(39, 95, 88);
+                        border: rgb(39, 95, 88);
                     }
                 }
             }

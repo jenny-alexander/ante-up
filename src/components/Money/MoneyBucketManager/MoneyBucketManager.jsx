@@ -119,7 +119,7 @@ function MoneyBucketManager(props) {
     return (
         <div className="bucket-container">
             <div className="bucket-title">
-                Money Bucket Manager
+                Transfer Money
             </div>
             <div className="small-bucket">
                 <div className="bucket spend">
