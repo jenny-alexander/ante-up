@@ -36,11 +36,22 @@ function* saveBankGoal(action) {
     }
 }
 
+function* clearDepositSuccess(action) {
+    try {
+        yield put({ type: 'CLEAR_DEPOSIT_SUCCESS' });
+    } 
+    catch(error){
+        console.log('Problem clearing deposit success:', error);
+    }
+    
+}
+
 function* bankSaga() {
     yield takeLatest('FETCH_BANK', fetchBank);
     yield takeLatest('CHANGE_BANK', depositBank);
     yield takeLatest('GET_BANK_REQUESTED', fetchBank);
     yield takeLatest('SAVE_BANK_GOAL', saveBankGoal);
+    yield takeLatest('CLEAR_DEPOSIT_SUCCESS_FLAG', clearDepositSuccess);    
 }
 
 export default bankSaga;

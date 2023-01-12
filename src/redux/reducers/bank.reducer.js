@@ -32,7 +32,7 @@ const bankReducer = (state = initialState, action) => {
                 allowanceDepositSuccess: true
             }
         case 'CLEAR_DEPOSIT_SUCCESS':
-            return { ...state, changeSuccess: false }
+            return { ...state, allowanceDepositSuccess: false }
         default:
             return state;
     }

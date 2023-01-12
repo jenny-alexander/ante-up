@@ -26,6 +26,14 @@ function Allowance(props) {
         }
     },[props.bank.error])
 
+    useEffect(() => {
+        console.log('in [] useEffect for Allowance');
+        if (props.bank.allowanceDepositSuccess === true) {
+            console.log('going to dispatch CLEAR_DEPOSIT_SUCCESS')
+            dispatch({type:'CLEAR_DEPOSIT_SUCCESS_FLAG'});
+        }
+    }, [])
+
     useEffect(() => { 
         if (props.bank.allowanceDepositSuccess === true) {
             dispatch( {
