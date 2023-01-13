@@ -37,7 +37,7 @@ function MoneySaving(props) {
                     <div className="saving-goal-amount">
                         <label id="goal-amount-label" for="saving-goal">Amount:</label>
                         <input id="goal-amount-input"
-                            type="text"
+                            type="number"
                             disabled={!editSavingFor}
                             value={savingFor.amount}
                             onChange={(e) => { setSavingFor({ ...savingFor, amount: e.target.value }); } } />

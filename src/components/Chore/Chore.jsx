@@ -22,6 +22,7 @@ function Chore(props) {
     const [allowPaymentUpdate, setAllowPaymentUpdate] = useState(false);
     const [checkedDailyState, setCheckedDailyState] = useState([]);
     const [choreTotalPayment, setChoreTotalPayment] = useState(0)
+    const [scheduleIsDisabled, setScheduleIsDisabled] = useState(true)
 
     const options = [
         { value: 'All', label: 'All'},
@@ -93,7 +94,8 @@ function Chore(props) {
           );
       };
 
-    const showDetails = (i) => {       
+    const showDetails = (i) => {   
+        setScheduleIsDisabled(true);
         if (selectedRow === i) {
             setSelectedRow(-1);
         }else {
@@ -152,7 +154,16 @@ function Chore(props) {
                                                         { renderDailySchedule(chore.frequency, chore.id, chore.payment) }                                                        
                                                     </div> : null                                                                                                    
                                             }
-                                            <div className="edit-schedule"><button>Edit schedule</button></div>
+                                            <div className="edit-schedule">                                            
+                                                { scheduleIsDisabled ? 
+                                                <button onClick={()=>setScheduleIsDisabled(!scheduleIsDisabled)}>Edit schedule</button>
+                                                :
+                                                    <>
+                                                        <button onClick={()=>setScheduleIsDisabled(!scheduleIsDisabled)}>Save</button>
+                                                        <button onClick={()=>setScheduleIsDisabled(!scheduleIsDisabled)}>Cancel</button>
+                                                    </>
+                                            }
+                                            </div>
                                             <div className='chore-details-payment'>Total Payment: ${choreTotalPayment}</div>                                            
                                         </td>
                                     </tr>
@@ -179,7 +190,8 @@ function Chore(props) {
                         return (
                         <div className="daily-chore">                            
                                 <label htmlFor={`custom-checkbox-${choreID}`}>{key.substring(0,1).toUpperCase()}
-                                    <input
+                                    <input className="schedule-checkbox"
+                                        disabled={scheduleIsDisabled}
                                         type="checkbox"
                                         id={`custom-checkbox-${choreID}`}
                                         name={key}

@@ -76,7 +76,7 @@ $greenButton: rgb(39, 95, 88);
                     background-color: rgb(243, 243, 243);
                   }
                   tr:has(.expanded-row-content.show-row) {
-                    background-color: rgb(243, 243, 243);
+                    background-color: rgb(243 243 243 / 57%);
                     border: 1px solid darkgreen;
                     //border: 2px solid darkgreen;
                   }
@@ -106,21 +106,18 @@ $greenButton: rgb(39, 95, 88);
                         display: flex;
                         justify-content: center;
                         margin: 1.5em;
+                        column-gap: 2em;
                         & button {
+                        
                             border-radius: 5px;                            
                             border: 1px solid rgb(39, 95, 88, 0.5);                            
                             background-color:rgb(39, 95, 88);                            
-                            color: white;
-                            
-
-
+                            color: white;                            
                             padding: 0.5em 1.5em;
                             margin-top: 0.5em;
                             &:hover {
                                 cursor: pointer;
                                 text-decoration: underline white 0.1em;
-                                // background-color:#00ad79;
-                                // transition: 0.5s;
                             }
                             &:focus {
                                 outline: 2px solid $greenButton;
@@ -130,10 +127,6 @@ $greenButton: rgb(39, 95, 88);
                                 outline: 2px solid darkgreen;
                                 outline-offset: 2px;
                             }
-                            // &:hover {
-                            //     cursor: pointer;                                                                                                              
-                            //     transform: scale(1.05)                                                                  
-                            // } 
                         }
                     }
                 }  
@@ -191,6 +184,12 @@ $greenButton: rgb(39, 95, 88);
                     & label {
                         display: flex;
                         flex-direction:column;
+                        align-items: center;
+                    }
+                    & input {
+                        height: 1.3em;
+                        width: 1.3em;                        
+                        accent-color: rgb(39, 95, 88);             
                     }
                 }
             }
