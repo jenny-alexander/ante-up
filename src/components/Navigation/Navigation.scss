@@ -32,12 +32,12 @@ $greenButton: rgb(39, 95, 88);
             display: flex;
             flex-direction: column;
             width: 100%;
-            align-items: center;
-            //gap: 2em;            
-            //     & .active {
-            //     text-decoration: underline wavy #f8c348 0.15rem;
-            //     text-underline-offset: 0.5rem;
-            // }
+            align-items: center;                
+                & .active {
+                    border-radius: 5px;            
+                    border: 2px solid $greenButton;
+                    padding: 10px;
+            }
             & div {
                 padding: 1em;
             }
@@ -45,14 +45,10 @@ $greenButton: rgb(39, 95, 88);
             & [class*="nav-option"]:hover {
                 background-color: rgba(39, 95, 88, 0.2);
                 border-radius: 5px;
-                padding:10px;
-                //padding: 1em;
+                padding:10px;                
             }
             & [class*="nav-option"]:focus {
-                //border-style: solid;
-                //border-width: 2px;
-                border-radius: 5px;
-                //border-color: $greenButton; 
+                border-radius: 5px;            
                 border: 2px solid $greenButton;
                 padding: 10px;
             }
@@ -60,8 +56,7 @@ $greenButton: rgb(39, 95, 88);
 
          a {
              position: relative;
-             color: #000;
-             //text-decoration: underline;
+             color: #000;             
              text-decoration: none;
             
           }
@@ -76,8 +71,6 @@ $greenButton: rgb(39, 95, 88);
             transition: 120ms all ease-in-out;
             &:hover {
                 cursor: pointer;
-                //background-color:#00ad79;
-                //transition: 0.5s;
                 text-decoration: underline white 0.1em;
             }
             &:focus {

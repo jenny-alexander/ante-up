@@ -1,0 +1,85 @@
+.money-saving {
+    width: 100% !important;    
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+    margin: 1em;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    row-gap: 1em;
+    input {
+        font-size: 1em;
+        font-family: inherit;
+    }
+    & .saving-title-section {
+        display: flex;
+        justify-content: center;
+        column-gap: 0.5em;
+        margin-top: 0.5em;
+        & .saving-title {
+            font-size: 1.2em;
+            & .saving-info-icon {
+                font-size: 1em;
+            }
+        }
+    }
+
+    & .saving-goal-buttons{
+        display:flex;
+        justify-content: center;
+        gap: 0.8em;
+        
+        & button {
+            min-width: 7em;
+            padding: 0.5em 1.5em;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            &:hover {
+                cursor: pointer;
+                filter: brightness(95%)
+            }
+        }
+    }
+    & .money-input-group {
+        display: flex;            
+        flex-direction: column;
+        justify-content: center;           
+        width: 100% !important;
+        row-gap: 0.5em;
+
+        @media(max-width: 890px ) {
+            display: flex;
+            flex-direction: column;
+            align-items: initial;
+        }
+
+        & [class*="saving-goal-"] {            
+            display: flex;
+            align-items: center;
+            column-gap: 0.2em;
+            width: 100%;
+            justify-content: left;
+            & label {
+                padding-left: 1em;
+                display: flex;                
+                min-width: 6em;
+            }
+            & input {
+                border: 1px solid lightgrey;                
+                border-radius: 5px;
+                font-size: 1em;
+                padding: 0.5em;                
+             }
+             & #goal-amount-input {
+                width: 20%;
+             }
+             & #goal-desc-input {
+                width: 75%;
+             }
+             & input:focus {
+                 outline: none;
+                 border: 2px solid #f8c348;
+             }
+      }
+    }
+}
