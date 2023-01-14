@@ -19,7 +19,7 @@ function* fetchDailyPayment(action) {
 
 function* fetchWeeklyPayment(action) {
     try {        
-        const response = yield axios.get(`/api/chore/payment/weekly/${action.payload}`);
+        const response = yield axios.get(`/api/chore/payment/weekly/${action.payload.userID}/${action.payload.weekID}`);
         yield put({ type: 'GET_WEEKLY_PAYMENT_SUCCESS', payload: response.data });
     } catch (error) {
         yield put({ type: 'GET_WEEKLY_PAYMENT_FAILED', payload: error });

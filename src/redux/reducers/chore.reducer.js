@@ -2,11 +2,13 @@ const initialState = {
     chore: {},
     loading: false,
     error: null,
-    changeSuccess: false,
+    changeSuccess: false,    
 }
 
 const choreReducer = (state = initialState, action) => {
+    console.log('in choreReducer and action.payload is:', action.payload)
     switch (action.type) {
+
         case 'GET_CHORE_REQUESTED':
             return { ...state, loading: true, changeSuccess: false }
         case 'GET_CHORE_SUCCESS':

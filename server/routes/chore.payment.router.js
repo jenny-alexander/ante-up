@@ -7,7 +7,7 @@ const router = express.Router();
  */
 router.get('/daily/:userID/:weekID', (req, res) => {
   // GET route code here
-  console.log('ABOUT TO CALL QUERY FOR PAYMENT AND req is:', req.params);
+  console.log('ABOUT TO CALL DAILY QUERY FOR PAYMENT AND req is:', req.params);
   const dailyPaymentQuery = `SELECT * FROM chore_payment_daily
                         WHERE user_id = ${req.params.userID}
                         AND week_id = ${req.params.weekID};`;
@@ -21,11 +21,12 @@ router.get('/daily/:userID/:weekID', (req, res) => {
     })
 });
 
-router.get('/weekly', (req, res) => {
+router.get('/weekly/:userID/:weekID', (req, res) => {
   // GET route code here
+  console.log('ABOUT TO CALL WEEKLY QUERY FOR PAYMENT AND req is:', req.params);
   const weeklyPaymentQuery = `SELECT * FROM chore_payment_weekly
-                        WHERE user_id = ${req.payload.userID}
-                        AND week_id = ${req.payload.weekId};`;
+                        WHERE user_id = ${req.params.userID}
+                        AND week_id = ${req.params.weekID};`;
   console.log('weeklyPaymentQuery is:', weeklyPaymentQuery);
   pool.query(weeklyPaymentQuery)
     .then((results) => {
