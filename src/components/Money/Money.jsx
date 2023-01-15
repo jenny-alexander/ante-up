@@ -32,7 +32,7 @@ function Money(props) {
                 {Object.entries(allowanceInfo).length > 0 ? 
                 <>
                     <div className="money-saving-for">
-                        <Card className='green-background' component={<MoneySaving/>} />
+                        <Card component={<MoneySaving/>} />
                     </div>
                     <div className="money-allowance">
                         <Card component={<Allowance allowance={allowance} bank={bank} />} />

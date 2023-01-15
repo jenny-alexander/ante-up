@@ -107,14 +107,20 @@ $greenButton: rgb(39, 95, 88);
                         justify-content: center;
                         margin: 1.5em;
                         column-gap: 1em;
-                        & button {
-                        
-                            border-radius: 5px;                            
+                        & button {                        
+                            // border-radius: 5px;                            
                             border: 1px solid rgb(39, 95, 88, 0.5);                            
                             background-color:rgb(39, 95, 88);                            
                             color: white;                            
+                            // padding: 0.5em 1.5em;
+                            // margin-top: 0.5em;
+
+                            min-width: 7em;
                             padding: 0.5em 1.5em;
-                            margin-top: 0.5em;
+                            //border: 1px solid #ccc;
+                            border-radius: 20px;
+                            //.color: black;
+
                             &:hover {
                                 cursor: pointer;
                                 text-decoration: underline white 0.1em;
