@@ -36,9 +36,10 @@
             border: 1px solid #ccc;
             border-radius: 20px;
             color: black;
+            //transition: background-color 1s; 
             &:hover {
                 cursor: pointer;
-                filter: brightness(95%)
+                filter: brightness(95%);
             }
         }
     }
@@ -67,7 +68,7 @@
                 min-width: 6em;
             }
             & input {
-                border: 1px solid lightgrey;                
+                border: 2px solid lightgrey;                
                 border-radius: 5px;
                 font-size: 1em;
                 padding: 0.5em;

@@ -22,6 +22,10 @@ const dailyPayment = (state = dailyInitialState, action) => {
             return { ...state, loading: false, payment: action.payload, error: null, changeSuccess: false }
         case 'GET_DAILY_PAYMENT_FAILED':
             return { ...state, loading: false, error: action.payload, changeSuccess: false }
+        case 'SET_DAILY_PAYMENT':
+            return { ...state, loading: false, payment: action.payload, error: null, changeSuccess: true }
+        case 'UPDATE_DAILY_PAYMENT_FAILED':
+            return { ...state, loading: false, error: action.payload, changeSuccess: false }
         default:
             return state;
     }
@@ -35,6 +39,10 @@ const weeklyPayment = (state = weeklyInitialState, action) => {
             return { ...state, loading: false, payment: action.payload, error: null, changeSuccess: false }
         case 'GET_WEEKLY_PAYMENT_FAILED':
             return { ...state, loading: false, error: action.payload, changeSuccess: false }
+            case 'SET_WEEKLY_PAYMENT':
+                return { ...state, loading: false, payment: action.payload, error: null, changeSuccess: true }
+            case 'UPDATE_WEEKLY_PAYMENT_FAILED':
+                return { ...state, loading: false, error: action.payload, changeSuccess: false }
         default:
             return state;
     }

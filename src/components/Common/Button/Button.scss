@@ -1,20 +1,6 @@
 $allowanceBtnColor: rgb(47, 59, 77);
 $greenButton: rgb(39, 95, 88);
 
-.allowance-button {
-    border: px solid black;
-    padding: 5px 10px;
-    border-radius: 4px;
-    background-color: $allowanceBtnColor;
-    color: white;
-
-    transition: 220ms all ease-in-out;
-
-    &:hover {
-        cursor: pointer;
-        background-color: scale-color($allowanceBtnColor, $lightness: -20%);
-      }    
-}
 .green-button {
     border-radius: 5px;
     border: 1px solid $greenButton;

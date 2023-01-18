@@ -6,40 +6,67 @@ const router = express.Router();
  * GET route
  */
 router.get('/daily/:userID/:weekID', (req, res) => {
-  // GET route code here
-  console.log('ABOUT TO CALL DAILY QUERY FOR PAYMENT AND req is:', req.params);
   const dailyPaymentQuery = `SELECT * FROM chore_payment_daily
                         WHERE user_id = ${req.params.userID}
-                        AND week_id = ${req.params.weekID};`;
-  console.log('dailyPaymentQuery is:', dailyPaymentQuery);
+                        AND week_id = ${req.params.weekID};`;  
   pool.query(dailyPaymentQuery)
-    .then((results) => {
-      console.log('results from get daily chore payment are:', results.rows);
+    .then((results) => {      
       res.send(results.rows);
     }).catch((error) => {
-      console.log('GET daily chore payment records from server error is:', error);
     })
 });
 
 router.get('/weekly/:userID/:weekID', (req, res) => {
-  // GET route code here
-  console.log('ABOUT TO CALL WEEKLY QUERY FOR PAYMENT AND req is:', req.params);
   const weeklyPaymentQuery = `SELECT * FROM chore_payment_weekly
                         WHERE user_id = ${req.params.userID}
                         AND week_id = ${req.params.weekID};`;
-  console.log('weeklyPaymentQuery is:', weeklyPaymentQuery);
   pool.query(weeklyPaymentQuery)
     .then((results) => {
-      console.log('results from get weekly chore payment are:', results.rows);
       res.send(results.rows);
     }).catch((error) => {
-      console.log('GET weekly chore payment records from server error is:', error);
     })
 });
 
 /**
- * PUT route
+ * UPDATE DAILY PAYMENT
  */
+router.put('/daily', (req, res) => {
+  const updateDailyPaymentQuery = `UPDATE chore_payment_weekly 
+                                    SET monday = ${req.body.monday},
+                                    tuesday = ${req.body.tuesday},
+                                    wednesday = ${req.body.wednesday},
+                                    thursday = ${req.body.thursday},
+                                    friday = ${req.body.friday},
+                                    saturday = ${req.body.saturday},
+                                    sunday = ${req.body.sunday},
+                                    total_payment = ${req.body.totalPayment}
+                                    WHERE id = ${req.body.chorePayment.id}:`;      
+                                    console.log('updateDailyPaymentQuery is:', updateDailyPaymentQuery)                   
+  pool.query(updateDailyPaymentQuery)
+    .then((result) => {
+      res.sendStatus(200);
+    }).catch((error) => {
+      console.log('Update daily payment error is:', error);
+      res.sendStatus(500);
+    })
+});
 
+/**
+ * UPDATE WEEKLY PAYMENT
+ */
+router.put('/weekly', (req, res) => {
+  const updateWeeklyPaymentQuery = `UPDATE chore_payment_weekly 
+                                    SET weekly = ${req.body.weekly},
+                                    total_payment = ${req.body.totalPayment}
+                                    WHERE id = ${req.body.chorePayment.id}:`;
+    console.log('updateWeeklyPaymentQuery is:', updateWeeklyPaymentQuery)
+  pool.query(updateWeeklyPaymentQuery)
+    .then((result) => {
+      res.sendStatus(200);
+    }).catch((error) => {
+      console.log('Update weekly payment error is:', error);
+      res.sendStatus(500);
+    })
+});
 
 module.exports = router;

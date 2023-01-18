@@ -6,6 +6,8 @@ import { put, takeLatest } from 'redux-saga/effects';
 - update chore payments
 */
 
+/* WEEKLY PAYMENT */
+
 function* fetchDailyPayment(action) {
     console.log('in fetchDailyPayment and action is:', action);
     try {        
@@ -17,6 +19,17 @@ function* fetchDailyPayment(action) {
     }
 }
 
+function* updateDailyPayment(action) {
+    try {        
+        const response = yield axios.get(`/api/chore/payment/weekly/${action.payload.userID}/${action.payload.weekID}`);
+        yield put({ type: 'GET_WEEKLY_PAYMENT_SUCCESS', payload: response.data });
+    } catch (error) {
+        yield put({ type: 'GET_WEEKLY_PAYMENT_FAILED', payload: error });
+        console.log('Chore Weekly Payment GET request failed', error);
+    }
+}
+
+/* WEEKLY PAYMENT */
 function* fetchWeeklyPayment(action) {
     try {        
         const response = yield axios.get(`/api/chore/payment/weekly/${action.payload.userID}/${action.payload.weekID}`);
@@ -27,9 +40,21 @@ function* fetchWeeklyPayment(action) {
     }
 }
 
+function* updateWeeklyPayment(action) {
+    try {        
+        const response = yield axios.put(`/api/chore/payment/weekly`, action.payload);
+        yield put({ type: 'PUT_WEEKLY_PAYMENT_SUCCESS', payload: response.data });
+    } catch (error) {
+        yield put({ type: 'GET_WEEKLY_PAYMENT_FAILED', payload: error });
+        console.log('Chore Weekly Payment GET request failed', error);
+    }
+}
+
 function* chorePaymentSaga() {
     yield takeLatest('GET_DAILY_PAYMENT_REQUESTED', fetchDailyPayment);
-    yield takeLatest('GET_WEEKLY_PAYMENT_REQUESTED', fetchWeeklyPayment);     
+    yield takeLatest('GET_WEEKLY_PAYMENT_REQUESTED', fetchWeeklyPayment);
+    yield takeLatest('UPDATE_DAILY_PAYMENT', updateDailyPayment);
+    yield takeLatest('UPDATE_WEEKLY_PAYMENT', updateWeeklyPayment);
 }
 
 export default chorePaymentSaga;

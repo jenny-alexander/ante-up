@@ -40,7 +40,7 @@ function Chore(props) {
     },[])
 
     useEffect(()=> {
-        if (chorePayment.dailyPayment.payment.length > 0) {            
+        if (chorePayment.dailyPayment.payment.length > 0) {                        
             buildPaymentState(chorePayment.dailyPayment.payment, 'daily');
         }
     },[chorePayment.dailyPayment.payment]);
@@ -98,19 +98,28 @@ function Chore(props) {
     }
 
     const handleDailyScheduleChange = (choreID, key) => {
+        console.log('state of daily checked is:', checkedDailyState);
         setCheckedDailyState(current =>
             current.map(obj => {
               if (obj.choreID === choreID) {
                 let checkValue = obj.schedule[key];
                 return {...obj, 
-                        schedule: { ...obj.schedule,
-                        [key]: !checkValue,
-                    }
+                        schedule: { ...obj.schedule, [key]: !checkValue},
+                        //totalPayment: 
                 };
               }
               return obj;
             }),
           );
+        //   const totalPrice = updatedCheckedState.reduce(
+        //     (sum, currentState, index) => {
+        //       if (currentState === true) {
+        //         return sum + 1;
+        //       }
+        //       return sum;
+        //     },
+        //     0
+        //   );
       };
 
       const handleWeeklyScheduleChange = (choreID, key) => {

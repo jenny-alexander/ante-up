@@ -9,15 +9,13 @@ $greenButton: rgb(39, 95, 88);
     padding: 5px 10px;
     border-radius: 20px;
     background-color: $allowanceBtnColor;
-    box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.13);
+    box-shadow: 5px 5px 8px 0px rgba(0,0,0,0.13);
     color: white;
     transition: background-color 1s;    
-
     &:hover {
         cursor: pointer;        
         background-color: scale-color($allowanceBtnColor, $lightness: -50%);
       }   
-
 }
 .swal2-icon.allowance  {
     margin-top: 1em;
