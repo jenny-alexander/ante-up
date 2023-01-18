@@ -97,46 +97,42 @@ function Chore(props) {
         setSelectedRow(-1);
     }
 
-    const handleDailyScheduleChange = (choreID, key) => {
-        console.log('state of daily checked is:', checkedDailyState);
-        setCheckedDailyState(current =>
-            current.map(obj => {
-              if (obj.choreID === choreID) {
+    const handleDailyScheduleChange = (choreID, key) => {        
+        const updatedState = checkedDailyState.map(obj => {
+            if (obj.choreID === choreID) {
                 let checkValue = obj.schedule[key];
+                let payment;
+                if (checkValue) {
+                    payment = obj.totalPayment - 1;
+                }
+                else {
+                    payment = obj.totalPayment + 1;
+                }
                 return {...obj, 
                         schedule: { ...obj.schedule, [key]: !checkValue},
-                        //totalPayment: 
+                        totalPayment: payment,
                 };
-              }
+              } 
               return obj;
-            }),
-          );
-        //   const totalPrice = updatedCheckedState.reduce(
-        //     (sum, currentState, index) => {
-        //       if (currentState === true) {
-        //         return sum + 1;
-        //       }
-        //       return sum;
-        //     },
-        //     0
-        //   );
-      };
+        })
+        setCheckedDailyState(updatedState);          
+    }
 
-      const handleWeeklyScheduleChange = (choreID, key) => {
-        setCheckedWeeklyState(current =>
-            current.map(obj => {
-              if (obj.choreID === choreID) {
-                let checkValue = obj.schedule[key];
-                return {...obj, 
-                        schedule: { ...obj.schedule,
-                        [key]: !checkValue,
-                    }
-                };
-              }
-              return obj;
-            }),
-          );
-      };
+    const handleWeeklyScheduleChange = (choreID, key) => {
+    setCheckedWeeklyState(current =>
+        current.map(obj => {
+            if (obj.choreID === choreID) {
+            let checkValue = obj.schedule[key];
+            return {...obj, 
+                    schedule: { ...obj.schedule,
+                    [key]: !checkValue,
+                }
+            };
+            }
+            return obj;
+        }),
+        );
+    };
 
     const showDetails = (i) => {   
         setScheduleIsDisabled(true);
