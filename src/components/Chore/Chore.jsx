@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import './Chore.scss';
+import { ConstructionOutlined } from '@mui/icons-material';
 
 function Chore(props) {
     const dispatch = useDispatch();    
@@ -141,8 +142,28 @@ function Chore(props) {
         }else {
             setSelectedRow(i);            
         }        
-      }
+    }
+    
+    const saveScheduleChange = (choreID) => {
+        console.log('in saveScheduleChange and payment info is:', checkedDailyState);
+        console.log('chore passed as param is:', choreID);
+        //send only the chore that was updated in the payload.
+        const paymentForThisChore = checkedDailyState.filter(payment => payment.choreID == choreID);
+        console.log('paymentForThisChore is:', paymentForThisChore);
 
+        //TODO: need to confirm that user wants to save the changes.
+
+        dispatch( { 
+                    type: 'UPDATE_DAILY_PAYMENT', 
+                    payload: {
+                        userID: props.user.id,
+                        choreID: choreID,
+                        schedule: paymentForThisChore[0].schedule,
+                        totalPayment: paymentForThisChore[0].totalPayment,
+                }
+        });
+        setScheduleIsDisabled(!scheduleIsDisabled);
+    }
     const ChoreListComponent = () => {
         return (
             <div className="chore-main">
@@ -197,7 +218,7 @@ function Chore(props) {
                                                 <button onClick={()=>setScheduleIsDisabled(!scheduleIsDisabled)}>Edit schedule</button>
                                                 :
                                                     <>
-                                                        <button onClick={()=>setScheduleIsDisabled(!scheduleIsDisabled)}>Save</button>
+                                                        <button onClick={()=>saveScheduleChange(chore.id)}>Save</button>
                                                         <button onClick={()=>setScheduleIsDisabled(!scheduleIsDisabled)}>Cancel</button>
                                                     </>
                                             }
