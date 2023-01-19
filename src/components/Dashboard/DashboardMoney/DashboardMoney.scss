@@ -20,6 +20,7 @@
     .allowance-circles {
         display: flex;
         //flex-wrap: wrap;
+        flex-wrap:nowrap;
         gap: 1em;
     }
     .res-circle {
@@ -30,6 +31,11 @@
         background-color: #bcd6ff;
         //line-height: 0;
         position:relative;
+        @media(max-width: 395px) {
+            width: 65px;
+            height: 65px;
+        }
+
     }
     .res-circle::after {
         content: "";
@@ -62,7 +68,7 @@
     }
 }
 //@media(max-width: 900px) {
-    @media (min-width: 651px) and (max-width: 49px) {
+    @media (max-width: 395px) {
     .allowance-circles {
         display: flex;
         flex-direction: column;

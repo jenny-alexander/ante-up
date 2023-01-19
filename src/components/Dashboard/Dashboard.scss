@@ -25,10 +25,7 @@
         margin-top: 1em;
         margin-left: 2em;
         margin-right: 2em;
-        @media(max-width: 425px) {
-            margin-left: 0.8em;
-            margin-right: 0.8em;
-        }
+
         @media (max-width: 949px) {
                 //background-color: pink;
                 grid-template-columns: 1fr;
@@ -38,13 +35,18 @@
                 "calendar calendar"      
                 "chore chore";                        
         }
+        @media(max-width: 425px) {
+            //background-color: orange;
+            margin-left: 0.8em;
+            margin-right: 0.8em;
+            padding: 0.5em;
+        }
     }
 
     & .dashboard-title {        
         text-align: center;
         padding-top: 0.5em;
     }
-
 }
 @media(min-width: 1340px) {
     .dashboard {
