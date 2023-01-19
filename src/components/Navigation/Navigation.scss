@@ -43,7 +43,9 @@ $greenButton: rgb(39, 95, 88);
             }
 
             & [class*="nav-option"]:hover {
-                background-color: rgba(39, 95, 88, 0.2);
+                //background-color: rgba(39, 95, 88, 0.2);
+                //background-color: rgb(50 220 161 / 60%);
+                background-color: #54a58dab;
                 border-radius: 5px;
                 padding:10px;                
             }
@@ -67,11 +69,14 @@ $greenButton: rgb(39, 95, 88);
             color: white;
             margin-top: 3.5em;
             padding: 0.5em 1.5em;
-            transition: background-color 0.75s;  
+            //transition: background-color 0.75s;  
             &:hover {
                 cursor: pointer;
-                background-color: rgb( 24, 60, 55, 1);
-                border-color: rgb(24, 60, 55, 1);
+                // background-color: rgb( 24, 60, 55, 1);
+                // border-color: rgb(24, 60, 55, 1);
+                //outline: 6px solid rgb(50 220 161 / 60%);
+                outline: 5px solid #54a58d;
+                border: 1px solid #54a58d;
             }
             &:focus {
                 outline: 2px solid $greenButton;

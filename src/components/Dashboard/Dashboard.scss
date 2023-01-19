@@ -26,8 +26,7 @@
         margin-left: 2em;
         margin-right: 2em;
 
-        @media (max-width: 949px) {
-                //background-color: pink;
+        @media (max-width: 949px) {                
                 grid-template-columns: 1fr;
                 grid-template-areas:
                 "dashboard-week dashboard-week"
@@ -35,8 +34,7 @@
                 "calendar calendar"      
                 "chore chore";                        
         }
-        @media(max-width: 425px) {
-            //background-color: orange;
+        @media(max-width: 425px) {            
             margin-left: 0.8em;
             margin-right: 0.8em;
             padding: 0.5em;

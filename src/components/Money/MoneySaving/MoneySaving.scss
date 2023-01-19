@@ -1,5 +1,5 @@
 .money-saving {
-    width: 100% !important;    
+    width: 75% !important;    
     display: flex;
     flex-direction:column;
     justify-content: space-between;
@@ -22,6 +22,10 @@
             & .saving-info-icon {
                 font-size: 1em;
             }
+            & .info-snippet:hover{
+                cursor: pointer;
+                outline: 3px solid lightgrey;
+            }
         }
     }
 
@@ -39,7 +43,8 @@
             //transition: background-color 1s; 
             &:hover {
                 cursor: pointer;
-                filter: brightness(95%);
+                //filter: brightness(95%);
+                outline: 5px solid lightgrey;
             }
         }
     }

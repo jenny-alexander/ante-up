@@ -1,3 +1,4 @@
+$greenButton: rgb(39, 95, 88);
 .bucket-container {
     display: flex;
     flex-direction: column;
@@ -67,8 +68,15 @@
                     //font-weight:bolder;
                     font-size: larger;
                     &:hover {                        
-                        background-color: rgb(39, 95, 88);
-                        border: rgb(39, 95, 88);
+                        //background-color: rgb(39, 95, 88);
+                        //border: rgb(39, 95, 88);
+                        // outline: 6px solid rgb(50 220 161 / 60%);
+                        outline: 4px solid rgb(39, 95, 88, 0.87);
+
+                    }
+                    &:focus {
+                        outline: 2px solid rgb(39, 95, 88, 0.87);
+                        outline-offset: 2px;
                     }
                 }
             }

@@ -45,18 +45,20 @@ $greenButton: rgb(39, 95, 88);
         color: white;    
         padding: 0.5em 1.5em;
         width: 100%;
-        transition: 320ms all ease-in-;
+        //transition: 320ms all ease-in-;
         &:hover {
             cursor: pointer;
-            color:black;
-            background-color: #b9e3cd;
+            //color:black;
+            //background-color: #b9e3cd;
             //text-decoration: underline white 0.1em;
             // background-color:#00ad79;
             // transition: 0.5s;
+            outline: 5px solid #54a58d;
         }
         &:focus {
-            outline: 2px solid $greenButton;
-            outline-offset: 2px;
+            // outline: 2px solid $greenButton;
+            // outline-offset: 2px;
+            outline: 5px solid #54a58d;
         } 
         // &:active {
         //     background-color: #ffbf00;
@@ -71,18 +73,16 @@ $greenButton: rgb(39, 95, 88);
         //font-weight: bold;
         padding: 0.5em 1.5em;
         margin-top: 0.5em;
-        transition: 320ms all ease-in;
+        transition: 120ms all ease-in;
+        &:hover {
+            cursor: pointer;
+            outline: 5px solid #54a58d;
+        } 
         &:focus {
             outline: 2px solid $greenButton;
             outline-offset: 2px;
         }
-        &:hover {
-            cursor: pointer;
-            // border: 1px solid rgb(39, 95, 88, 1);
-            // background-color: rgba(217, 239, 232, 0.75);
-            color:black;
-            background-color: #b9e3cd;;
-        } 
+
     }
 
     @media(max-width: 650px) {

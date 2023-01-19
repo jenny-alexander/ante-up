@@ -46,30 +46,21 @@ $greenButton: rgb(39, 95, 88);
     transition: 120ms all ease-in-out;
     &:hover {
         cursor: pointer;
-        //text-decoration: underline white 0.1em;
-        // background-color:#00ad79;
-        // transition: 0.5s;
-       //transform: scale(1.10)  
-       //outline: #333 solid 4px;
+        outline: 5px solid #54a58d;
     }
     &:focus {
         outline: 2px solid $greenButton;
         outline-offset: 2px;
     } 
-    // &:active {
-    //     background-color: #ffbf00;
-    // }
 }
 .white-button {
     border-radius: 5px;
-    //border: 1px solid $greenButton;
     border: 1px solid rgb(39, 95, 88, 0.5);
     background: white;
     color: rgb(7,10,10,1);
-    //font-weight: bold;
     padding: 0.5em 1.5em;
     margin-top: 0.5em;
-    transition: background-color 0.2s;
+    transition: 120ms all ease-in-out;
     &:focus {
         outline: 2px solid $greenButton;
         outline-offset: 2px;
@@ -77,8 +68,6 @@ $greenButton: rgb(39, 95, 88);
     &:hover {
         cursor: pointer;
         border: 1px solid rgb(39, 95, 88, 1);
-        //background-color: rgba(243, 243, 245, 0.75);
-        background-color: rgba(233, 239, 237, 0.75);
-        //text-decoration: underline white 0.1em;
+        outline: 5px solid #54a58d;
     } 
 }
