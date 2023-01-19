@@ -7,7 +7,8 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
   pool.query('SELECT * from week WHERE CURRENT_DATE BETWEEN start_date and end_date')
-    .then((results) => {      
+    .then((results) => {
+      console.log('results from week router are:', results.rows[0])
       res.send(results.rows[0]);
     }).catch((error) => {
       console.log('GET week records from server error is:', error);

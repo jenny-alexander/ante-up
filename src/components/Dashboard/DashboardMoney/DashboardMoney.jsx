@@ -20,7 +20,9 @@ function DashboardMoney(props) {
 
     useEffect(()=>{
         console.log('props.weekinfo is:', props.weekInfo);
-        setNextAllowance(props.weekInfo.allowanceDate);
+        if (Object.entries(props.weekInfo).length !==0 ) {
+            setNextAllowance(props.weekInfo.allowanceDate.substring(0,10));
+        }        
     },[props.weekInfo])
 
     useEffect(() => {        
