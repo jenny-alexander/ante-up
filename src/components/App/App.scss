@@ -27,14 +27,12 @@ textarea {
 
 .application {  
   background-color: #f9f9f6;
-  //height: 100vh;
   display: grid;
 
   @media (max-width: 650px) {    
     grid-template-areas: 
     "header"
     "main";
-    // grid-template-columns: 1fr;
     grid-template-rows: 4em 1fr;
     & .navigation {
       display: none;
@@ -47,7 +45,7 @@ textarea {
       padding-top: 10px;
       padding-bottom: 10px;
       //height: 30px;
-    }
+    }    
     & .right-border{
       display: none;
     }
@@ -150,16 +148,13 @@ textarea {
   visibility: visible;
   height: 100%;
 }
-// .overlay.open div a {
-//   animation: fadeInRight .5s ease forwards;
-//   animation-delay: .35s;
-// }
+
 .overlay div {
   position: relative;
   height: 55%;
   top: 30%;
   transform: translateY(-50%);
-  font-size: 30px;
+  font-size: 1.15em;
   font-family:inherit;
   font-weight: 400;
   text-align: center;
@@ -172,44 +167,6 @@ textarea {
     }
   }
 }
-
-// .overlay ul {
-//   list-style: none;
-//   padding: 0;
-//   margin: 0 auto;
-//   display: inline-block;
-//   position: relative;
-//   height: 100%;
-// }
-// .overlay ul li {
-//   display: block;
-//   height: 25%;
-//   height: calc(100% / 4);
-//   min-height: 50px;
-//   position: relative;
-//   opacity: 0;
-// }
-// .overlay ul li a {
-//   display: block;
-//   position: relative;
-//   color: rgb(71, 96, 155);
-//   text-decoration: none;
-//   overflow: hidden;
-// }
-// .overlay ul li a:hover:after, .overlay ul li a:focus:after, .overlay ul li a:active:after {
-//   width: 100%;
-// }
-// .overlay ul li a:after {
-//   content: '';
-//   position: absolute;
-//   bottom: 0;
-//   left: 50%;
-//   width: 0%;
-//   transform: translateX(-50%);
-//   height: 3px;
-//   background: rgb(71, 96, 155);
-//   transition: .35s;
-// }
 
 @keyframes fadeInRight {
   0% {

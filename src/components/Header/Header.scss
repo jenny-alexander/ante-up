@@ -1,13 +1,10 @@
 .header-container {
     display: flex;
     align-items: center;
-    justify-content: right;
-    // @media(max-width: 649px) { //CHECK THIS???
-    //   height: 100%;      
-    // }
-   
-    //justify-content: space-evenly;
+    //justify-content: right;
+    justify-content: space-between;
     flex-wrap:wrap;
+
     & img {
         max-width: 100%
       }
@@ -16,7 +13,18 @@
         display: flex;
         flex-wrap:wrap;
         font-size: 1.2em;
-        padding-right: 20px;
+        padding-right: 2em;
+        @media(max-width: 649px) {          
+          padding-right: 0.5em;
+        }
+      }
+
+      & .week-info{
+        font-size: 1.2em;
+        padding-left: 2em;
+        @media(max-width: 649px) {
+          padding:0;
+        }
       }
 
       @media(min-width: 650px) {
@@ -27,10 +35,9 @@
         }
       }
       @media(max-width: 649px) {
-        justify-content:space-between;
-        padding-left: 1em;
-        padding-right: 1em;
+        font-size: 0.85em;
       }
+      
   }
 
   @media(min-width: 651px) {

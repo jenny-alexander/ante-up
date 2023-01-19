@@ -21,8 +21,8 @@ function Header(props) {
                 <div className="no-header"></div>
              :
             <div class="header-container">
-                <NavSmall />
-                <div class="welcome-text">
+                <NavSmall />                
+                <div className="welcome-text">                
                     <div>Welcome {user.username}!</div>
                 </div>
           </div>

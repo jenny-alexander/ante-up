@@ -61,6 +61,7 @@ function App() {
                 <div className={`overlay ${showSmallNav ? 'open' : 'not-open'}`}>
                   <NavSmall toggleMenu={toggleMenu} />
                 </div>
+                <div className="week-info">Week of Jan. 16 - Jan. 22</div>
                 { Object.entries(user).length !== 0 ?
                   <div class="welcome-text">
                       <div>Welcome {user.username}!</div>
