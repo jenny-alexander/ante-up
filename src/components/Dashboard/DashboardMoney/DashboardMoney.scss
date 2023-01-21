@@ -1,5 +1,5 @@
 .dashboard-money {
-    border: #bdbdbe 1px solid;
+    border: #dee0e2 1px solid;
     border-radius: 5px;
     grid-area: money;
     display: flex;
@@ -11,7 +11,7 @@
     & .next-allowance-date {
         display: flex;
         flex-wrap: wrap;
-        font-size: larger;
+        font-size: 1.5em;
         gap: 0.25em;
         padding-top: 1em;
         padding-bottom: 1em;
@@ -28,7 +28,7 @@
          width: 70px;
          height: 70px;
         border-radius: 50%;
-        background-color: #bcd6ff;
+        background-color: #f1f1ed;
         //line-height: 0;
         position:relative;
         @media(max-width: 395px) {

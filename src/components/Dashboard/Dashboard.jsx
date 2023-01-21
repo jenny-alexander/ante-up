@@ -6,22 +6,22 @@ import DashboardMoney from '../Dashboard/DashboardMoney/DashboardMoney';
 import DashboardChore from '../Dashboard/DashboardChore/DashboardChore';
 
 function Dashboard(props) {
-    // const dispatch = useDispatch();
-    //const [weekInfo, setWeekInfo] = useState ({});
+    const chores = useSelector((store) => store.chore);
+    const [userChores, setUserChores] = useState([]);
+    const [choresExist, setChoresExist] = useState(false);
+    const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     console.log('props in Dashboard useEffect are:',props)
-    //     // if (props.week && props.week.week) {
-    //     //     if (Object.entries(props.week.week).length !== 0) {                
-    //     //         setWeekInfo({...weekInfo,
-    //     //             week_no: props.week.week.week_no,
-    //     //             allowanceDate: props.week.week.allowance_date.substring(0,10),
-    //     //             startDate: props.week.week.start_date.substring(0,10),
-    //     //             endDate: props.week.week.end_date.substring(0,10),                    
-    //     //         })                
-    //     //     }
-    //     // }
-    // },[props.week])
+    useEffect(() => {
+        dispatch({type: 'GET_CHORE_REQUESTED', payload: props.user.id})
+    },[])
+
+    useEffect(()=>{
+        console.log('in Dashboard useEffect for chore store:', chores);
+        if (chores.chore.length > 0) {
+            setChoresExist(true);
+            setUserChores(chores.chore)
+        }
+    },[chores.chore]);
 
     return (
         <div className="dashboard">
@@ -31,7 +31,7 @@ function Dashboard(props) {
                 <DashboardMoney 
                     user={props.user} 
                     weekInfo={props.week} />
-                <DashboardChore />                        
+                <DashboardChore chore={userChores} />                        
             </div>
         </div>
     )

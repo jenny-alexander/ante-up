@@ -14,13 +14,10 @@ function Chore(props) {
     const dispatch = useDispatch();    
     const chores = useSelector((store) => store.chore);
     const chorePayment = useSelector((store) => store.chorePayment);
-    const MySwal = withReactContent(Swal); 
     const [userChores, setUserChores] = useState([]);
     const [choresExist, setChoresExist] = useState(false);
-    const [frequencySelected, setFrequencySelected] = useState('All');
-    //const [choreDetails, setChoreDetails] = useState({});       
+    const [frequencySelected, setFrequencySelected] = useState('All');      
     const [selectedRow, setSelectedRow] = useState(-1);    
-    //const [allowPaymentUpdate, setAllowPaymentUpdate] = useState(false);
     const [checkedDailyState, setCheckedDailyState] = useState([]);
     const [checkedWeeklyState, setCheckedWeeklyState] = useState([]);
     const [choreTotalPayment, setChoreTotalPayment] = useState(0)

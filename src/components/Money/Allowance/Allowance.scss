@@ -1,22 +1,18 @@
-//$allowanceBtnColor: rgb(47, 59, 77);
-$allowanceBtnColor: rgb(100 107 101);
-$greenButton: rgb(39, 95, 88);
-
-
-.allowance-button {
-    //border: 1px solid black;
-    border: 1px solid $allowanceBtnColor;
-    padding: 5px 10px;
-    border-radius: 20px;
-    background-color: $allowanceBtnColor;
-    box-shadow: 5px 5px 8px 0px rgba(0,0,0,0.13);
-    color: white;
-    transition: background-color 1s;    
-    &:hover {
-        cursor: pointer;        
-        background-color: scale-color($allowanceBtnColor, $lightness: -50%);
-      }   
-}
+    .allowance-button {
+            min-width: 7em;
+            padding: 0.5em 1em;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            color: black;
+            &:hover {
+                cursor: pointer;
+                outline: 5px solid lightgrey;
+            }
+            &:focus {
+                outline: 2px solid lightgray;
+                outline-offset: 2px;
+            }
+    }
 .swal2-icon.allowance  {
     margin-top: 1em;
 }
@@ -63,10 +59,8 @@ $greenButton: rgb(39, 95, 88);
             padding: 8px;        
         }
         
-        tbody tr:hover {background-color: rgb(243, 243, 243);}
-        // tbody tr:last-child{
-        //     border: 1px solid black;
-        // }
+        // tbody tr:hover {background-color: rgb(243, 243, 243);}
+
         tr td {
             padding: 8px;
             padding-top:12px;

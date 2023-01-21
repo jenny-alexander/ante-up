@@ -8,12 +8,12 @@ import './Header.scss';
 function Header(props) {
     const user = useSelector((store) => store.user);
 
-    const onMenuClick = () => {
-        console.log('clicked on menu icon');
-        return (
-            <div>Hi</div>
-        )
-    }
+    // const onMenuClick = () => {
+    //     console.log('clicked on menu icon');
+    //     return (
+    //         <div>Hi</div>
+    //     )
+    // }
 
     return (
         <div className='header'>

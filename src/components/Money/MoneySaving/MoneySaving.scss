@@ -40,12 +40,15 @@
             border: 1px solid #ccc;
             border-radius: 20px;
             color: black;
-            //transition: background-color 1s; 
+            &:focus {
+                outline: 2px solid lightgray;
+                outline-offset: 2px;
+            }
             &:hover {
                 cursor: pointer;
-                //filter: brightness(95%);
                 outline: 5px solid lightgrey;
             }
+
         }
     }
     & .money-input-group {
