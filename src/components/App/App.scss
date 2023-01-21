@@ -51,7 +51,7 @@ textarea {
     }
   }
   @media (min-width: 651px) and (max-width: 1625px) {
-    grid-template-columns: minmax(auto, 25%) 1fr;
+    grid-template-columns: minmax(auto, 30%) 1fr;
     grid-template-rows: 80px 1fr;
     grid-template-areas: 
       "navigation header"

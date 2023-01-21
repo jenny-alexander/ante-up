@@ -13,7 +13,7 @@ function Navigation(props) {
                 <NavOptions />
                 <div className="logout">
                     <button className="nav-logout" onClick={() => dispatch( { type: 'LOGOUT' })}>Log Out </button>
-                </div>    
+                </div>
             </div>
         </div>     
     )

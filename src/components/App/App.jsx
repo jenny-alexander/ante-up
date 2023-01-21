@@ -80,8 +80,8 @@ function App() {
                     }            */}
                              
                     <div class="welcome-text">
-                    <img className="profile-image" src="/images/panda.png"/>
-                        <div>Welcome {user.username}!</div>                                                                                                               
+                    <img className="profile-image" src="/images/profile/bee.png"/>
+                        <div>{user.username}</div>                                                                                                               
                     </div>                  
                   </div> : null
                 }

@@ -15,17 +15,21 @@ function Welcome(props) {
                 </div> */}
                 <div className="about">
                     <div className="about-money">
-                        <PaidOutlineIcon className="icon"/>
+                        {/* <PaidOutlineIcon className="icon"/> */}
+                        <img className="profile-image" src="/images/profile/lottery.png"/>
                         <div className="about-blurb">Make allowance payments</div>
                     </div>
                     <div className="about-chores">
-                        <CleaningServicesIcon className="icon"/>
+                        {/* <CleaningServicesIcon className="icon"/> */}
+                        <img className="profile-image" src="/images/profile/laundry.png"/>
                         <div className="about-blurb">Delegate chores</div>
                     </div>
                     <div className="about-history">
-                        <HistoryIcon className="icon"/>
+                        {/* <HistoryIcon className="icon"/> */}
+                        <img className="profile-image" src="/images/profile/history.png"/>
                         <div className="about-blurb">View chore & payment history</div>
                     </div>
+                    {/* <img className="profile-image" src="/images/profile/lottery.png"/> */}
                 </div>
             </div>
         </div>
