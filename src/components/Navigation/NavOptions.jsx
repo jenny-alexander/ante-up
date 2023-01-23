@@ -1,10 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import './Navigation.scss';
 
 function NavOptions(props) {
-    const dispatch = useDispatch();
     const navOptions = [
         {name: 'Dashboard',
          className: 'nav-option',
@@ -25,8 +23,7 @@ function NavOptions(props) {
     ]
 
     return (        
-            <>
-                {/* <img className="logo" src="images/ante_up.png" alt="ante up logo"></img> */}
+            <>                
                 <div className="action-links">
                 {
                     navOptions.map(option => 
@@ -37,10 +34,7 @@ function NavOptions(props) {
                         </div>
                     )
                 }
-                </div>
-                {/* <div className="logout">
-                    <button className="nav-logout" onClick={() => dispatch( { type: 'LOGOUT' })}>Log Out </button>
-                </div>    */}
+                </div>              
             </>                    
     )
 }

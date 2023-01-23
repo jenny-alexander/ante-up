@@ -1,0 +1,36 @@
+.user-menu-wrap {
+    position: absolute;
+    top: 55px;
+    right: 20px;
+    width: 250px;
+    height: 100px;
+    padding: 1em;
+    border: 1px solid lightgrey;
+    background-color: white;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 5px;
+    @media (min-width: 1626px){
+        right:400px;
+    }
+    & .user-menu {
+        display: flex;
+        flex-direction: column;
+        row-gap: 0.8em;
+
+        & .user-menu-name {
+            display: flex;
+            justify-content: center;
+        }
+        & .user-menu-nav-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            row-gap: 0.5em;
+            a {
+                color: #000;             
+                text-decoration: none;
+             }
+        }
+    }
+
+}
