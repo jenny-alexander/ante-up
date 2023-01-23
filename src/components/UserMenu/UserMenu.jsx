@@ -1,12 +1,27 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import { useDispatch } from 'react-redux';
 import UserNav from '../Navigation/UserNav';
 import './UserMenu.scss';
 
 function UserMenu(props) {
+    const ref = useRef(null);
+    const { onClickOutside } = props;
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+          if (ref.current && !ref.current.contains(event.target)) {
+            onClickOutside && onClickOutside();
+          }
+        };
+        document.addEventListener('click', handleClickOutside, true);
+        return () => {
+          document.removeEventListener('click', handleClickOutside, true);
+        };
+      }, [ onClickOutside ]);
+
     return (
-        <div className="user-menu-wrap">
+        <div ref={ref} className="user-menu-wrap">
             <div className="user-menu">
                 <div className="user-menu-name">
                     <h2>{props.user.username}</h2>                    

@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import NavSmall from '../Navigation/NavSmall';
 import UserMenu from '../UserMenu/UserMenu';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import './Header.scss';
 
 function Header(props) {
@@ -33,21 +31,17 @@ function Header(props) {
                     <NavSmall toggleMenu={toggleMenu} />
                 </div>            
                 { Object.entries(props.user).length !== 0 ?
-                    <div className="header-info">                                               
-                        <div class="profile-info">                        
-                            <img className="profile-image" src="/images/profile/hades.png"/>
-                            <div className="username">{props.user.username}
-                            <span onClick={toggleUserMenu}>      
-                                <FontAwesomeIcon className="show-user" icon={faChevronDown} />
-                            </span>
-                            </div>
-                        </div>                   
-                    
+                    <div className="header-info">                                                                    
+                            <button className="profile info" onClick={toggleUserMenu}>                  
+                                <img className="profile-image" src="/images/profile/hades.png"/>
+                                <div className="username">{props.user.username}
+                                </div>
+                            </button>                
                     </div>
                     : null
                 }
                 </div>
-                { showUserMenu ? <UserMenu user={props.user} /> : null }
+                { showUserMenu ? <UserMenu onClickOutside={() => {setShowUserMenu(false)}} user={props.user} /> : null }
       </div>
     )
 }
