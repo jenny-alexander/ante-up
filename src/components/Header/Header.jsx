@@ -7,13 +7,11 @@ function Header(props) {
     const [showSmallNav, setShowSmallNav] = useState(false);
     const [showUserMenu, setShowUserMenu] = useState(false);
 
-    const toggleMenu = () => {
-        console.log('toggling menu');
+    const toggleMenu = () => {        
         setShowSmallNav(!showSmallNav);
     }
 
     const toggleUserMenu = () => {
-        console.log('toggleUserMenu...it was:', showUserMenu);
         setShowUserMenu(!showUserMenu);
     }
 
@@ -31,7 +29,7 @@ function Header(props) {
                     <NavSmall toggleMenu={toggleMenu} />
                 </div>            
                 { Object.entries(props.user).length !== 0 ?
-                    <div className="header-info">                                                                    
+                    <div  className="header-info">                                                                    
                             <button className="profile info" onClick={toggleUserMenu}>                  
                                 <img className="profile-image" src="/images/profile/hades.png"/>
                                 <div className="username">{props.user.username}
@@ -41,7 +39,7 @@ function Header(props) {
                     : null
                 }
                 </div>
-                { showUserMenu ? <UserMenu onClickOutside={() => {setShowUserMenu(false)}} user={props.user} /> : null }
+                { showUserMenu ? <UserMenu onClickOutside={toggleUserMenu} user={props.user} /> : null }
       </div>
     )
 }

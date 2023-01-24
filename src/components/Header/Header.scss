@@ -6,7 +6,6 @@ $greenButton: rgb(39, 95, 88);
     @media(min-width: 650px) {          
       display: block;
     }
-
     & img {
         max-width: 100%;
         height: 38px;
@@ -16,10 +15,6 @@ $greenButton: rgb(39, 95, 88);
       display:flex;
       align-items: center;
       justify-content: right;
-      // & .show-user {
-      //   cursor:pointer;
-      //   padding-left: 0.3em;
-      //   font-size: smaller;
         & button {
           display: flex;
           align-items: center;
@@ -34,33 +29,13 @@ $greenButton: rgb(39, 95, 88);
               outline: 3px solid $greenButton;
               outline-offset: 0.1em;
             }
-            &:focus{
-              outline: 2px dotted $greenButton;
-              outline-offset: 3px;
-            } 
-            &:focus::after {
-              border: none;
-            } 
-          // & button {
-          //   display: flex;
-          //   align-items: center;
-          //   border: none;
-          //   background-color: inherit;
-          //   column-gap: 0.3em;
-          //   font-size: 1em;
-          //   &:hover {
-          //     cursor: pointer;
-              
-          //     filter: brightness(0.85);
-          //   }        
-          // }
+            // &:focus{
+            //   outline: 2px dotted $greenButton;
+            //   outline-offset: 3px;
+            // } 
           @media(max-width: 649px) {
             margin-right: 1em;
           }
-
-
-      // }
-
       @media(max-width: 649px) {          
        display: flex;
        width: 100%;
@@ -71,17 +46,7 @@ $greenButton: rgb(39, 95, 88);
           display: none;
         }  
       }
-
-
-        // & .username {
-        //   display: flex;
-        //   & span {
-        //     display:flex;
-        //     align-items: end;
-        //   }
-        // }
       }
-
       & .week-info{
         font-size: 1.2em;
         padding-left: 2em;

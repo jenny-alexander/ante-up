@@ -10,9 +10,10 @@ function UserMenu(props) {
 
     useEffect(() => {
         const handleClickOutside = (event) => {
+          event.stopPropagation();
           if (ref.current && !ref.current.contains(event.target)) {
-            onClickOutside && onClickOutside();
-          }
+            onClickOutside && onClickOutside(ref);
+          }          
         };
         document.addEventListener('click', handleClickOutside, true);
         return () => {
@@ -21,7 +22,9 @@ function UserMenu(props) {
       }, [ onClickOutside ]);
 
     return (
-        <div ref={ref} className="user-menu-wrap">
+        <div 
+          ref={ref}
+           className="user-menu-wrap">
             <div className="user-menu">
                 <div className="user-menu-name">
                     <h2>{props.user.username}</h2>                    
