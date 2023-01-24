@@ -27,7 +27,11 @@ function UserMenu(props) {
            className="user-menu-wrap">
             <div className="user-menu">
                 <div className="user-menu-name">
-                    <h2>{props.user.username}</h2>                    
+                    <img className="menu-profile-image" src="/images/profile/hades-large.png"/>
+                    <div className='user-menu-profile'>
+                      <div className="profile-username">{props.user.username}</div>
+                      <div className="profile-type">Child</div>          
+                    </div>                            
                 </div>
                 <div className="user-menu-nav-option">
                     <UserNav />
