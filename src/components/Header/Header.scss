@@ -3,7 +3,7 @@ $greenButton: rgb(39, 95, 88);
     display: flex;
     align-items: center;    
     justify-content: space-between;    
-    @media(min-width: 650px) {          
+    @media(min-width: 651px) {          
       display: block;
     }
     & img {
@@ -22,25 +22,14 @@ $greenButton: rgb(39, 95, 88);
           margin-right: 5em;
           border: none;
           background-color: inherit;
-          //border: 1px solid lightgray;
-          //padding: 0.5em;
-          //border-radius: 50%;
-          //background-color: white;
+
             &:hover {
               cursor: pointer;
-              
-              // outline: 2px solid #54a58d;
-              // border-radius: 50%;
-              //outline-offset: 0.1em;
-             
             }
-            // &:focus{
-            //   outline: 2px dotted $greenButton;
-            //   outline-offset: 3px;
-            // } 
-          @media(max-width: 649px) {
-            margin-right: 1em;
-          }
+
+          // @media(max-width: 649px) {
+          //   margin-right: 1em;
+          // }
       @media(max-width: 649px) {          
        display: flex;
        width: 100%;
@@ -61,7 +50,7 @@ $greenButton: rgb(39, 95, 88);
       }
     }
 
-      @media(min-width: 650px) {
+      @media(min-width: 651px) {
         padding-top: 1em;
         img {
             &.logo {

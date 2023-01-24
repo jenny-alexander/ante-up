@@ -31,7 +31,7 @@ function Header(props) {
                 { Object.entries(props.user).length !== 0 ?
                     <div  className="header-info">                                                                    
                             <button className="profile info" onClick={toggleUserMenu}>                  
-                                <img className="profile-image" src="/images/profile/hades.png"/>
+                                <img className="profile-image" src="/images/profile/teenager.png"/>
                                 {/* <div className="username">{props.user.username}
                                 </div> */}
                             </button>                

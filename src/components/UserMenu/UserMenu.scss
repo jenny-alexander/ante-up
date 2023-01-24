@@ -4,9 +4,9 @@ $green: rgb(39, 95, 88);
     top: 65px;
     right: 4em;
     width: 12em;
-    height: 12em;
-    padding: 1em;
-    border: 1px solid lightgrey;
+    height: 14em;
+    //padding: 1em;
+    //border: 1px solid lightgrey;
     background-color: white;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     border-radius: 5px;
@@ -17,7 +17,8 @@ $green: rgb(39, 95, 88);
     // }
     & .user-menu {
         display: grid;
-        grid-template-rows: 80px 1fr;
+        grid-template-rows: 5em 8em;
+        // grid-template-columns: max-content;
         grid-template-areas: 
         "profile"
         "nav";
@@ -28,8 +29,11 @@ $green: rgb(39, 95, 88);
             //border: 1px solid black;
             grid-area: profile;
             display: flex;
+            // padding-top: 1em;
+            padding-left: 0.3em;
             //flex-wrap: wrap;
-            align-items: start;
+            align-items: center;
+            // justify-content: center;
             column-gap: 1em;
             //border: 1px solid black;
             & .user-menu-profile {
@@ -56,16 +60,53 @@ $green: rgb(39, 95, 88);
 
         }
         & .user-menu-nav-option {
+            background-color: white;
+            padding-top: 0.8em;
             grid-area: nav;
             display: flex;
             flex-direction: column;
             align-items: center;
-            row-gap: 0.8em;
+            row-gap: 1em;
+            margin-top: 0.5em;
             a {
                 color: #000;             
                 text-decoration: none;
              }
+             & .nav-logout {
+                border-radius: 20px;
+                border: 1px solid $green;
+                background-color: $green;
+                color: white;                
+                padding: 0.4em 1em;
+                //margin-top: 0.5em;
+                &:hover{
+                    cursor: pointer;
+                }
+             }
         }
     }
-
+    .caret {
+        position: relative;
+      }
+      
+      .caret:before {
+        content: '';
+        position: absolute;
+        top: -245px;
+        left: 152px;
+        border-bottom: 14px solid #E5EFED;
+        border-left: 14px solid transparent;
+        border-right: 14px solid transparent;
+      }
+      
+      .caret:after {
+        content: '';
+        position: absolute;
+        left: 100px;
+        top: 100px;
+        border-bottom: -86px solid #fff;
+        border-left: -86px solid transparent;
+        border-right: -86px solid transparent;
+      }
 }
+
