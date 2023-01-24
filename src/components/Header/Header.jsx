@@ -29,9 +29,10 @@ function Header(props) {
                     <NavSmall toggleMenu={toggleMenu} />
                 </div>            
                 { Object.entries(props.user).length !== 0 ?
-                    <div  className="header-info">                                                                    
-                            <button className="profile info" onClick={toggleUserMenu}>                  
-                                <img className="profile-image" src="/images/profile/teenager.png"/>
+                    <div className="header-info">                                                                    
+                            <button className="profile info" onClick={toggleUserMenu}>     
+                            <div className="username">{props.user.username}</div>
+                                <img className="profile-image" src="/images/profile/hades.png"/>
                                 {/* <div className="username">{props.user.username}
                                 </div> */}
                             </button>                
