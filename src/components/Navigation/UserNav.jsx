@@ -5,11 +5,11 @@ import './Navigation.scss';
 function UserNav(props) {
     const navOptions = [
         {name: 'Edit Profile',
-         className: 'user-profile',
+         className: 'nav-option',
          to: '/user'
         },
         {name: 'Help',
-        className: 'nav-help',
+        className: 'nav-option',
         to: '/help'
        },
     ]

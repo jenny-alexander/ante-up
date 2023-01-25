@@ -56,13 +56,24 @@ $green: rgb(39, 95, 88);
         & .user-menu-nav-option {
             background-color: white;
             border-top: 1px solid lightgrey;
-            padding-top: 1em;
+            padding-top: 0.5em;
             grid-area: nav;
             display: flex;
             flex-direction: column;
             align-items: center;
-            row-gap: 1em;
-            //margin-top: 0.5em;
+            & .nav-option {
+                padding:10px;
+            }
+            & [class*="nav-option"]:hover {
+                background-color: #54a58dab;
+                border-radius: 5px;
+                padding:10px;                
+            }
+            & [class*="nav-option"]:focus {
+                border-radius: 5px;            
+                border: 2px solid $green;
+                //padding: 10px;
+            }
             a {
                 color: #000;             
                 text-decoration: none;
@@ -73,8 +84,10 @@ $green: rgb(39, 95, 88);
                 background-color: $green;
                 color: white;                
                 padding: 0.4em 1em;
+                margin-top: 10px;
                 &:hover{
                     cursor: pointer;
+                    outline: 5px solid #54a58d;
                 }
              }
         }
