@@ -188,12 +188,11 @@ function Chore(props) {
                                 </thead>
                                 <tbody>
                                 {userChores.map((chore,i)=> 
-                                    <tr >
-                                    {/* <tr>                                                                             */}
-                                        <td data-th="Name">{chore.name}</td>
-                                        <td data-th="Frequency">{chore.frequency}</td>
-                                        <td data-th="Payment" className='td-center'>${chore.payment}</td>
-                                        <td data-th="expand" className='td-center'>
+                                    <tr >                                    
+                                        <td data-th="Name:">{chore.name}</td>
+                                        <td data-th="Frequency:">{chore.frequency}</td>
+                                        <td data-th="Payment:" className='payment-offset'>${chore.payment}</td>
+                                        <td data-th="Schedule:" className='td-center'>
                                             <button 
                                                 className='chore-btn'
                                                 onClick={()=>showDetails(i)}>

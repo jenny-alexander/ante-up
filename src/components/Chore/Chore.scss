@@ -100,7 +100,9 @@ $greenButton: rgb(39, 95, 88);
                     padding: 8px;
                     padding-top:12px;                        
                     display:flex;
-                    align-items: center;                        
+                    align-items: center;
+                    column-gap: 0.5em;
+
                 } 
                 tr .expanded-row-content {
                     & .edit-schedule {
@@ -161,6 +163,9 @@ $greenButton: rgb(39, 95, 88);
                     -moz-box-sizing:border-box;
                     -webkit-box-sizing:border-box;
                     box-sizing:border-box;
+                    // &.payment-offset {
+                    //     padding-left: 0.5em;
+                    // }
                 }
                 table.mobile-optimised tbody, table.mobile-optimised tr {
                     display:block
