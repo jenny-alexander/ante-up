@@ -14,7 +14,12 @@ $greenButton: rgb(39, 95, 88);
     & .header-info {
       display:flex;
       align-items: center;
-      justify-content: right;
+      //justify-content: right;
+      justify-content: space-between;
+      @media(max-width: 649px) {
+        width: 100%;
+        margin-left: 1.5em;
+      }
         & button {
           display: flex;
           margin-right: 3em;
@@ -35,7 +40,7 @@ $greenButton: rgb(39, 95, 88);
 
           @media(max-width: 649px) {          
           display: flex;
-          width: 100%;
+          //width: 100%;
           }
           // @media(max-width:450px) {        
           //   justify-content: right;
@@ -45,7 +50,7 @@ $greenButton: rgb(39, 95, 88);
           // }
       }
       & .week-info{
-        font-size: 1.2em;
+        font-size: 1.1em;
         padding-left: 2em;
         @media(max-width: 649px) {
           padding:0;

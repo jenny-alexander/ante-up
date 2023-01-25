@@ -51,6 +51,7 @@ function App() {
     // const dayOfWeek = weekday[datum.getDay()];
     const month = months[datum.getMonth()];
     const year = datum.getFullYear();
+    console.log('in getDateString and value is:', month +  ', ' + dateOfWeek + ' ' + year)
     return  month +  ', ' + dateOfWeek + ' ' + year;
 }
 
@@ -60,9 +61,12 @@ function App() {
         Object.entries(user).length === 0 ?  
           <Welcome /> 
             : 
+          <>
           <Navigation className="show-nav" />
+          <Header user={user} weekInfo={getDateString(week.start_date)}/>
+          </>
       }
-        <Header user={user}/>
+        
         <Routes>
           <Route path="/" element={user.id ? (<Dashboard user={user} week={weekInfo} />) : (<LoginPage />)} />
           <Route path="/login" element={user.id ? (<Dashboard user={user} week={weekInfo}/>) : (<LoginPage />)} />

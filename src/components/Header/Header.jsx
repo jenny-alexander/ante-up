@@ -28,16 +28,16 @@ function Header(props) {
                 <div className={`overlay ${showSmallNav ? 'open' : 'not-open'}`}>
                     <NavSmall toggleMenu={toggleMenu} />
                 </div>            
-                { Object.entries(props.user).length !== 0 ?
-                    <div className="header-info">                                                                    
-                            <button className="profile-info" onClick={toggleUserMenu}>    
-                            {/* <button onClick={click}>Test</button>  */}
-                                <div className="username">{props.user.username}</div>
-                                <img className="profile-image" src="/images/profile/hades.png"/>
-                            </button>                
+                {/* { Object.entries(props.user).length !== 0 ? */}
+                    <div className="header-info">
+                        <div className="week-info">Week of: {props.weekInfo}</div>                                                                    
+                        <button className="profile-info" onClick={toggleUserMenu}>    
+                            <div className="username">{props.user.username}</div>
+                            <img className="profile-image" src="/images/profile/hades.png"/>
+                        </button>                
                     </div>
-                    : null
-                }
+                    {/* : null
+                } */}
                 </div>
                 { 
                     showUserMenu ? 
