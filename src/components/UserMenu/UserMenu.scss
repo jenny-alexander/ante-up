@@ -25,9 +25,11 @@ $green: rgb(39, 95, 88);
         & .user-menu-name {
             grid-area: profile;
             display: flex;
-            padding-left: 0.3em;
+            justify-content: center;
+            padding-left: 0.75em;
             align-items: center;
             column-gap: 1em;
+            padding-top: 0.75em;
             & .user-menu-profile {
                 display: flex;
                 flex-direction: column;
@@ -53,7 +55,8 @@ $green: rgb(39, 95, 88);
         }
         & .user-menu-nav-option {
             background-color: white;
-            padding-top: 0.5em;
+            border-top: 1px solid lightgrey;
+            padding-top: 1em;
             grid-area: nav;
             display: flex;
             flex-direction: column;

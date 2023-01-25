@@ -6,6 +6,8 @@ import Dashboard from '../Dashboard/Dashboard';
 import Money from '../Money/Money';
 import Chore from '../Chore/Chore';
 import ActivityLog from '../ActivityLog/ActivityLog';
+import Help from '../Help/Help';
+import UserProfile from '../UserProfile/UserProfile';
 import Header from '../Header/Header';
 import RightBorder from '../RightBorder/RightBorder';
 import LoginPage from '../LoginPage/LoginPage';
@@ -69,6 +71,8 @@ function App() {
           <Route path="/money" element={user.id ? (<Money />) : (<LoginPage />)} />
           <Route path="/chore" element={user.id ? (<Chore user={user} week={weekInfo} />) : (<LoginPage />)} />
           <Route path="/activity" element={user.id ? (<ActivityLog />) : (<LoginPage />)} />
+          <Route path="/help" element={user.id ? (<Help />) : (<LoginPage />)} />
+          <Route path="/user" element={user.id ? (<UserProfile />) : (<LoginPage />)} />
           {/* <Route>
             <h1>404</h1>
           </Route> */}

@@ -8,18 +8,23 @@ function UserMenu(props) {
     const { onClickOutside } = props;
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-          event.stopPropagation();
-          if (ref.current && !ref.current.contains(event.target)) {
-            onClickOutside && onClickOutside(ref);
-          }          
-        };
-        document.addEventListener('click', handleClickOutside, true);
-        return () => {
-          document.removeEventListener('click', handleClickOutside, true);
-        };
-      }, [ onClickOutside ]);
+    // useEffect(() => {
+    //     const handleClickOutside = (event) => {
+    //       event.stopPropagation();
+    //       if (ref.current && !ref.current.contains(event.target)) {
+    //         onClickOutside && onClickOutside(ref);
+    //       }          
+    //     };
+    //     document.addEventListener('click', handleClickOutside, true);
+    //     return () => {
+    //       document.removeEventListener('click', handleClickOutside, true);
+    //     };
+    //   }, [ onClickOutside ]);
+
+    const logout = () => {
+      props.toggleUserMenu();
+      dispatch( { type: 'LOGOUT' })
+    }
 
     return (
         <div 
@@ -35,9 +40,11 @@ function UserMenu(props) {
                     </div>                            
                 </div>
                 <div className="user-menu-nav-option">
-                    <UserNav />
+                    <UserNav toggleUserMenu={props.toggleUserMenu} />
                     <div className="logout">
-                        <button className="nav-logout" onClick={() => dispatch( { type: 'LOGOUT' })}>Log Out </button>
+                        <button className="nav-logout" 
+                                onClick={logout}                                
+                        >Log Out </button>
                     </div>
                 </div>
             </div>

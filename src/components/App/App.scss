@@ -42,9 +42,9 @@ textarea {
     }
     & .header {
       background-color: rgb(216, 232, 229);
-      padding-top: 10px;
-      padding-bottom: 10px;
-      //height: 30px;
+      padding-top: 1em;
+      //padding-bottom: 10px;
+      min-height: 80px;
     }    
     & .right-border{
       display: none;
@@ -122,13 +122,13 @@ textarea {
   cursor: pointer;
 }
 .button-container span:nth-of-type(1) {
-  top: 10px;
+  top: 23px;
 }
 .button-container span:nth-of-type(2) {
-   top: 21px;  
+   top: 34px;  
 }
 .button-container span:nth-of-type(3) {
-  top: 32px;
+  top: 45px;
 }
 
 .overlay {
@@ -152,8 +152,8 @@ textarea {
 
 .overlay div {
   position: relative;
-  height: 55%;
-  top: 30%;
+  height: 50%;
+  top: 28%;
   transform: translateY(-50%);
   font-size: 1.15em;
   font-family:inherit;
