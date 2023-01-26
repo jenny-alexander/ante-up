@@ -2,26 +2,25 @@ import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '../Common/Card/Card';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import './Chore.scss';
-import { ConstructionOutlined } from '@mui/icons-material';
 
 function Chore(props) {
     const dispatch = useDispatch();    
     const chores = useSelector((store) => store.chore);
     const chorePayment = useSelector((store) => store.chorePayment);
+    const allowance = useSelector((store) => store.allowance)
     const [userChores, setUserChores] = useState([]);
     const [choresExist, setChoresExist] = useState(false);
     const [frequencySelected, setFrequencySelected] = useState('All');      
     const [selectedRow, setSelectedRow] = useState(-1);    
     const [checkedDailyState, setCheckedDailyState] = useState([]);
     const [checkedWeeklyState, setCheckedWeeklyState] = useState([]);
-    const [choreTotalPayment, setChoreTotalPayment] = useState(0)
-    const [scheduleIsDisabled, setScheduleIsDisabled] = useState(true)
+    const [choreTotalPayment, setChoreTotalPayment] = useState(0);
+    const [scheduleIsDisabled, setScheduleIsDisabled] = useState(true);
+    const [allChoresPayment, setAllChoresPayment] = useState(0);
 
     const options = [
         { value: 'All', label: 'All'},
@@ -42,6 +41,11 @@ function Chore(props) {
             buildPaymentState(chorePayment.dailyPayment.payment, 'daily');
         }
     },[chorePayment.dailyPayment.payment]);
+
+    useEffect(() => {
+        console.log('allowance is;', allowance);
+        setAllChoresPayment(allowance?.latestAllowance?.chore_money);
+    },[allowance?.latestAllowance]);
 
     useEffect(()=> {
         if (chorePayment.weeklyPayment.payment.length > 0) {      
@@ -172,6 +176,10 @@ function Chore(props) {
                                 value={frequencySelected}
                         />
                     </div>
+                </div>
+                <div className="all-chores-payment">
+                    <div className="all-chores-payment-title">Total chore payments this week:</div>
+                    <div className="all-chores-payment-amount">${allChoresPayment}</div>
                 </div>
                 <div className="chore-list">
                     {

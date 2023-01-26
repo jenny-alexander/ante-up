@@ -48,8 +48,32 @@ const weeklyPayment = (state = weeklyInitialState, action) => {
     }
 }
 
+const dailyTotalChorePayment = (state = 0, action ) => { 
+        switch (action.type) {
+        //console.log('action.payload is:', action.payload);
+        case 'GET_TOTAL_DAILY_CHORE_PAYMENT_SUCCESS':
+            console.log('HELLO IS IT YOU DAILY:', action.payload)
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+const weeklyTotalChorePayment = (state = 0, action ) => { 
+    switch (action.type) {
+    //console.log('action.payload is:', action.payload);
+    case 'GET_TOTAL_WEEKLY_CHORE_PAYMENT_SUCCESS':
+        console.log('HELLO IS IT YOU WEEKLY:', action.payload)
+        return action.payload;
+    default:
+        return state;
+}
+}
+
 export default combineReducers({
     //allowance,
     dailyPayment,
     weeklyPayment,
+    dailyTotalChorePayment,
+    weeklyTotalChorePayment,
 });

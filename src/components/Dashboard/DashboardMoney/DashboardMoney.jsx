@@ -6,16 +6,23 @@ import { faCircleRight } from '@fortawesome/free-solid-svg-icons';
 
 function DashboardMoney(props) {
     const dispatch = useDispatch();
-    const allowance = useSelector((store) => store.allowance);
+    const allowance = useSelector((store) => store.allowance); //TODO: rename as store (i.e. allowanceStore)
+    const dailyTotalChorePayment = useSelector((store) => store.chorePayment.dailyTotalChorePayment);
+    const weeklyTotalChorePayment = useSelector((store) => store.chorePayment.weeklyTotalChorePayment);
     const bank = useSelector((store) => store.bank );
     const user = useSelector((store) => store.user);    
     const[nextAllowance, setNextAllowance] = useState('');
     const[allowanceAmounts, setAllowanceAmounts] = useState({});
     const[allowanceGoal, setAllowanceGoal] = useState({});
+    const[totalDailyChorePayment, setTotalDailyChorePayment] = useState(null);
+    const[totalWeeklyChorePayment, setTotalWeeklyChorePayment] = useState(null);
+    const[extraAmount, setExtraAmount] = useState(totalDailyChorePayment + totalWeeklyChorePayment);
 
     useEffect(() => {
-        dispatch( {type: "GET_BANK_REQUESTED", payload: user.id})
+        dispatch( {type: 'GET_BANK_REQUESTED', payload: user.id}); // TODO: STICK WITH SAME NAMING CONVENTION (FETCH vs GET)
         dispatch( { type: 'FETCH_LATEST_ALLOWANCE', payload: user.id });
+        dispatch( { type: 'GET_TOTAL_DAILY_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: 1}})
+        dispatch( { type: 'GET_TOTAL_WEEKLY_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: 1}})
     },[])
 
     useEffect(()=>{
@@ -39,11 +46,22 @@ function DashboardMoney(props) {
                 spend: allowance.latestAllowance.spend,
                 save: allowance.latestAllowance.save,
                 share: allowance.latestAllowance.share,
-                extra: allowance.latestAllowance.extra,
+                extra: allowance.latestAllowance.chore_money,
             })
         }
 
     },[allowance]);
+
+    useEffect(() => {
+        console.log('YO YO YO weekly total chorePayment from store is:', weeklyTotalChorePayment);
+        setTotalWeeklyChorePayment(weeklyTotalChorePayment);
+    }, [weeklyTotalChorePayment]);
+
+
+    useEffect(() => {
+        console.log('YO YO YO DAILY chorePayment from store is:', dailyTotalChorePayment);
+        setTotalDailyChorePayment(dailyTotalChorePayment);
+    }, [dailyTotalChorePayment])
 
     return (
         <div className="dashboard-money">            
@@ -71,8 +89,8 @@ function DashboardMoney(props) {
                 </div>
                 <div className="res-circle">
                     <div className="circle-text">
-                        <div className="title">Extra:</div>
-                        <div className="amount">${allowance.latestAllowance ? allowance.latestAllowance.extra : null}</div>
+                        <div className="title">Chores:</div>
+                        <div className="amount">${totalDailyChorePayment !== null ? totalWeeklyChorePayment !== null ? totalDailyChorePayment + totalWeeklyChorePayment : '0' : '5' }</div>
                     </div>
                 </div>                
             </div>

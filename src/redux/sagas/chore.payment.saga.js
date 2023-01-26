@@ -52,11 +52,38 @@ function* updateWeeklyPayment(action) {
     }
 }
 
+function* fetchTotalDailyChorePayment(action) {
+    console.log('OH YEAH..about to get total DAILY chore payment');
+    try {        
+        const response = yield axios.get(`/api/chore/payment/daily/total/${action.payload.userID}/${action.payload.weekID}`);
+        console.log('response from getting total daily chore is:', response.data)
+        yield put({ type: 'GET_TOTAL_DAILY_CHORE_PAYMENT_SUCCESS', payload: response.data });
+    } catch (error) {
+        yield put({ type: 'GET_TOTAL_DAILY_CHORE_PAYMENT_FAILED', payload: error });
+        console.log('Chore Daily Payment GET request failed', error);
+    }
+}
+
+function* fetchTotalWeeklyChorePayment(action) {
+    console.log('OH YEAH..about to get total WEEKLY chore payment');
+    try {        
+        const response = yield axios.get(`/api/chore/payment/weekly/total/${action.payload.userID}/${action.payload.weekID}`);
+        console.log('response from getting total weekly chore is:', response.data)
+        yield put({ type: 'GET_TOTAL_WEEKLY_CHORE_PAYMENT_SUCCESS', payload: response.data });
+    } catch (error) {
+        yield put({ type: 'GET_TOTAL_WEEKLY_CHORE_PAYMENT_FAILED', payload: error });
+        console.log('Chore Weekly Payment GET request failed', error);
+    }
+}
+
+
 function* chorePaymentSaga() {
     yield takeLatest('GET_DAILY_PAYMENT_REQUESTED', fetchDailyPayment);
     yield takeLatest('GET_WEEKLY_PAYMENT_REQUESTED', fetchWeeklyPayment);
     yield takeLatest('UPDATE_DAILY_PAYMENT', updateDailyPayment);
     yield takeLatest('UPDATE_WEEKLY_PAYMENT', updateWeeklyPayment);
+    yield takeLatest('GET_TOTAL_DAILY_CHORE_PAYMENT', fetchTotalDailyChorePayment);
+    yield takeLatest('GET_TOTAL_WEEKLY_CHORE_PAYMENT', fetchTotalWeeklyChorePayment);
 }
 
 export default chorePaymentSaga;
