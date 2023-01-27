@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './DashboardMoney.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,19 +8,17 @@ function DashboardMoney(props) {
     const dispatch = useDispatch();
     const allowance = useSelector((store) => store.allowance); //TODO: rename as store (i.e. allowanceStore)
     const dailyTotalChorePayment = useSelector((store) => store.chorePayment.dailyTotalChorePayment);
+    const bank = useSelector((store) => store.bank );    
     const weeklyTotalChorePayment = useSelector((store) => store.chorePayment.weeklyTotalChorePayment);
-    const bank = useSelector((store) => store.bank );
-    const user = useSelector((store) => store.user);    
     const[nextAllowance, setNextAllowance] = useState('');
     const[allowanceAmounts, setAllowanceAmounts] = useState({});
     const[allowanceGoal, setAllowanceGoal] = useState({});
     const[totalDailyChorePayment, setTotalDailyChorePayment] = useState(null);
-    const[totalWeeklyChorePayment, setTotalWeeklyChorePayment] = useState(null);
-    const[extraAmount, setExtraAmount] = useState(totalDailyChorePayment + totalWeeklyChorePayment);
+    const[totalWeeklyChorePayment, setTotalWeeklyChorePayment] = useState(null);    
 
     useEffect(() => {
-        dispatch( {type: 'GET_BANK_REQUESTED', payload: user.id}); // TODO: STICK WITH SAME NAMING CONVENTION (FETCH vs GET)
-        dispatch( { type: 'FETCH_LATEST_ALLOWANCE', payload: user.id });
+        dispatch( {type: 'GET_BANK_REQUESTED', payload: props.user.id}); // TODO: STICK WITH SAME NAMING CONVENTION (FETCH vs GET)
+        dispatch( { type: 'FETCH_LATEST_ALLOWANCE', payload: props.user.id });
         dispatch( { type: 'GET_TOTAL_DAILY_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: 1}})
         dispatch( { type: 'GET_TOTAL_WEEKLY_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: 1}})
     },[])
@@ -40,26 +38,23 @@ function DashboardMoney(props) {
     },[bank.bank])
 
     useEffect(() => {
-        if (allowance && allowance.latest ) {
-            console.log('allowance.latest is:', allowance.latestAllowance);
+        if (allowance && allowance.latest ) {            
             setAllowanceAmounts({...allowanceAmounts,
                 spend: allowance.latestAllowance.spend,
                 save: allowance.latestAllowance.save,
                 share: allowance.latestAllowance.share,
-                extra: allowance.latestAllowance.chore_money,
+                //extra: allowance.latestAllowance.chore_money, //TODO: Don't need this so remove from app and DB
             })
         }
 
     },[allowance]);
 
-    useEffect(() => {
-        console.log('YO YO YO weekly total chorePayment from store is:', weeklyTotalChorePayment);
+    useEffect(() => {        
         setTotalWeeklyChorePayment(weeklyTotalChorePayment);
     }, [weeklyTotalChorePayment]);
 
 
-    useEffect(() => {
-        console.log('YO YO YO DAILY chorePayment from store is:', dailyTotalChorePayment);
+    useEffect(() => {        
         setTotalDailyChorePayment(dailyTotalChorePayment);
     }, [dailyTotalChorePayment])
 
@@ -69,7 +64,7 @@ function DashboardMoney(props) {
                 <div>{nextAllowance ? nextAllowance : null}</div>
             </div>
             <div className="allowance-circles">
-                <div className="res-circle">
+                <div className="res-circle"> 
                     <div className="circle-text">
                         <div className="title">Spend:</div>
                         <div className="amount">${allowance.latestAllowance ? allowance.latestAllowance.spend : null}</div>
@@ -90,7 +85,12 @@ function DashboardMoney(props) {
                 <div className="res-circle">
                     <div className="circle-text">
                         <div className="title">Chores:</div>
-                        <div className="amount">${totalDailyChorePayment !== null ? totalWeeklyChorePayment !== null ? totalDailyChorePayment + totalWeeklyChorePayment : '0' : '5' }</div>
+                        <div className="amount">$
+                            {totalDailyChorePayment !== null ? 
+                                totalWeeklyChorePayment !== null ? 
+                                    totalDailyChorePayment + totalWeeklyChorePayment : '0' : '0' 
+                            }
+                        </div>
                     </div>
                 </div>                
             </div>
