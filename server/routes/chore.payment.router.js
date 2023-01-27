@@ -64,7 +64,7 @@ router.put('/daily', (req, res) => {
   Object.entries(req.body.schedule).forEach(([key, value]) => {
     updateDailyPaymentQuery += `${key} = ${value},`;
   });
-  updateDailyPaymentQuery += `total_payment = ${req.body.totalPayment} WHERE id = ${req.body.choreID};`;
+  updateDailyPaymentQuery += `total_payment = ${req.body.totalPayment} WHERE id = ${req.body.id};`;
   
   pool.query(updateDailyPaymentQuery)
     .then((result) => {
@@ -79,10 +79,11 @@ router.put('/daily', (req, res) => {
  * UPDATE WEEKLY PAYMENT
  */
 router.put('/weekly', (req, res) => {
+  console.log('req.body for weekly update is:', req.body);
   const updateWeeklyPaymentQuery = `UPDATE chore_payment_weekly 
-                                    SET weekly = ${req.body.weekly},
+                                    SET weekly = ${req.body.schedule.weekly},
                                     total_payment = ${req.body.totalPayment}
-                                    WHERE id = ${req.body.chorePayment.id}:`;
+                                    WHERE id = ${req.body.id};`;
     console.log('updateWeeklyPaymentQuery is:', updateWeeklyPaymentQuery)
   pool.query(updateWeeklyPaymentQuery)
     .then((result) => {

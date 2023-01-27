@@ -6,9 +6,9 @@ import { faCircleRight } from '@fortawesome/free-solid-svg-icons';
 
 function DashboardMoney(props) {
     const dispatch = useDispatch();
+    const bank = useSelector((store) => store.bank );   
     const allowance = useSelector((store) => store.allowance); //TODO: rename as store (i.e. allowanceStore)
-    const dailyTotalChorePayment = useSelector((store) => store.chorePayment.dailyTotalChorePayment);
-    const bank = useSelector((store) => store.bank );    
+    const dailyTotalChorePayment = useSelector((store) => store.chorePayment.dailyTotalChorePayment); 
     const weeklyTotalChorePayment = useSelector((store) => store.chorePayment.weeklyTotalChorePayment);
     const[nextAllowance, setNextAllowance] = useState('');
     const[allowanceAmounts, setAllowanceAmounts] = useState({});

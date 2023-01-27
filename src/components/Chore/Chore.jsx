@@ -38,18 +38,12 @@ function Chore(props) {
 
     useEffect(()=> {
         if (chorePayment.dailyPayment.payment.length > 0) {                        
-            buildPaymentState(chorePayment.dailyPayment.payment, 'daily');
+            buildPaymentState(chorePayment.dailyPayment.payment, 'daily');            
         }
     },[chorePayment.dailyPayment.payment]);
 
-    useEffect(() => {
-        console.log('allowance is;', allowance);
-        setAllChoresPayment(allowance?.latestAllowance?.chore_money);
-    },[allowance?.latestAllowance]);
-
     useEffect(()=> {
         if (chorePayment.weeklyPayment.payment.length > 0) {      
-            console.log('chorePayment in useEffect (weekly) is:', chorePayment.weeklyPayment.payment)
             buildPaymentState(chorePayment.weeklyPayment.payment, 'weekly');   
         }
     },[chorePayment.weeklyPayment.payment]);
@@ -61,14 +55,17 @@ function Chore(props) {
         }
     },[chores.chore]);
 
-    const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
+    //const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
 
     const buildPaymentState = ( payment, paymentType ) => {        
-        const newStateArray = [];        
+        const newStateArray = [];   
+        let choreTotal = 0;     
         payment.map((item) => {
-            const newObject = { choreID: item.chore_id,
+            const newObject = { id: item.id,
+                                choreID: item.chore_id,
                                 totalPayment: item.total_payment,
                                 schedule: {} };
+            console.log('newObject is:', newObject);
             if ( paymentType === 'daily') {
                 Object.keys(item).map((key) => {
                     if ( key.substring(key.length - 3) === 'day' ) {   
@@ -78,13 +75,15 @@ function Chore(props) {
             } else if (paymentType === 'weekly') {
                 newObject.schedule.weekly = item.weekly;
             }
+            choreTotal = newObject.totalPayment + choreTotal;
             newStateArray.push(newObject);
         })  
         if (paymentType === 'daily')
                 setCheckedDailyState(newStateArray); 
         else if (paymentType === 'weekly'){
             setCheckedWeeklyState(newStateArray);
-        }         
+        }     
+        setAllChoresPayment(allChoresPayment + choreTotal);    
     }
 
     const handleFrequencyChange = (selected) => {
@@ -99,16 +98,17 @@ function Chore(props) {
         setSelectedRow(-1);
     }
 
-    const handleDailyScheduleChange = (choreID, key) => {        
+    const handleDailyScheduleChange = (choreID, key, chorePayment) => {        
         const updatedState = checkedDailyState.map(obj => {
+            console.log('obj is:', obj);
             if (obj.choreID === choreID) {
                 let checkValue = obj.schedule[key];
                 let payment;
                 if (checkValue) {
-                    payment = obj.totalPayment - 1;
+                    payment = obj.totalPayment - chorePayment;
                 }
                 else {
-                    payment = obj.totalPayment + 1;
+                    payment = obj.totalPayment + chorePayment;
                 }
                 return {...obj, 
                         schedule: { ...obj.schedule, [key]: !checkValue},
@@ -120,20 +120,26 @@ function Chore(props) {
         setCheckedDailyState(updatedState);          
     }
 
-    const handleWeeklyScheduleChange = (choreID, key) => {
-    setCheckedWeeklyState(current =>
-        current.map(obj => {
+    const handleWeeklyScheduleChange = (choreID, key, chorePayment) => {
+        const updatedState = checkedWeeklyState.map(obj => {
             if (obj.choreID === choreID) {
-            let checkValue = obj.schedule[key];
-            return {...obj, 
-                    schedule: { ...obj.schedule,
-                    [key]: !checkValue,
+                console.log('obj values are:', obj)
+                let checkValue = obj.schedule[key];
+                let payment;
+                console.log('checkValue is:', checkValue);
+                if (checkValue) {
+                    payment = obj.totalPayment - chorePayment;
+                }else {
+                    payment = obj.totalPayment + chorePayment;
                 }
-            };
+                return {...obj, 
+                    schedule: { ...obj.schedule, [key]: !checkValue},
+                    totalPayment: payment,
+                };
             }
             return obj;
-        }),
-        );
+        })
+        setCheckedWeeklyState(updatedState);
     };
 
     const showDetails = (i) => {   
@@ -145,20 +151,18 @@ function Chore(props) {
         }        
     }
     
-    const saveScheduleChange = (choreID) => {
-        console.log('in saveScheduleChange and payment info is:', checkedDailyState);
-        console.log('chore passed as param is:', choreID);
-        //send only the chore that was updated in the payload.
-        const paymentForThisChore = checkedDailyState.filter(payment => payment.choreID == choreID);
-        console.log('paymentForThisChore is:', paymentForThisChore);
-
-        //TODO: need to confirm that user wants to save the changes.
-
+    const saveScheduleChange = (choreID, frequency) => {
+        let paymentForThisChore;
+        if (frequency === 'Daily') {
+            paymentForThisChore = checkedDailyState.filter(payment => payment.choreID == choreID);      
+        } else if( frequency === 'Weekly') {
+            paymentForThisChore = checkedWeeklyState.filter(payment => payment.choreID == choreID);
+        };
         dispatch( { 
-                    type: 'UPDATE_DAILY_PAYMENT', 
+                    type: `UPDATE_${frequency.toUpperCase()}_PAYMENT`, 
                     payload: {
-                        userID: props.user.id,
-                        choreID: choreID,
+                        id: paymentForThisChore[0].id,
+                        //choreID: choreID,
                         schedule: paymentForThisChore[0].schedule,
                         totalPayment: paymentForThisChore[0].totalPayment,
                 }
@@ -222,7 +226,7 @@ function Chore(props) {
                                                 <button onClick={()=>setScheduleIsDisabled(!scheduleIsDisabled)}>Edit schedule</button>
                                                 :
                                                     <>
-                                                        <button onClick={()=>saveScheduleChange(chore.id)}>Save</button>
+                                                        <button onClick={()=>saveScheduleChange(chore.id, chore.frequency)}>Save</button>
                                                         <button onClick={()=>setScheduleIsDisabled(!scheduleIsDisabled)}>Cancel</button>
                                                     </>
                                             }
@@ -241,15 +245,15 @@ function Chore(props) {
         )
     }
 
-    const renderSchedule = (frequency, choreID) => {    
-        let paymentForThisChore;
+    const renderSchedule = (frequency, choreID, chorePayment) => {
+        let paymentsForThisChore;
         if ( frequency === 'Daily') {
-            paymentForThisChore = checkedDailyState.filter(payment => payment.choreID == choreID);
+            paymentsForThisChore = checkedDailyState.filter(payment => payment.choreID == choreID);
         } else {
-            paymentForThisChore = checkedWeeklyState.filter(payment => payment.choreID === choreID);
+            paymentsForThisChore = checkedWeeklyState.filter(payment => payment.choreID === choreID);
         }
-        if ( paymentForThisChore.length > 0 ) {
-            const paymentObj = paymentForThisChore[0];            
+        if ( paymentsForThisChore.length > 0 ) {
+            const paymentObj = paymentsForThisChore[0];            
             setChoreTotalPayment(paymentObj.totalPayment);
             return (
                 Object.keys(paymentObj.schedule).map((key, index) => {                                        
@@ -264,7 +268,7 @@ function Chore(props) {
                                         name={key}
                                         value={key}
                                         checked={paymentObj.schedule[key]}
-                                        onChange={() => handleDailyScheduleChange(choreID, key)}                                
+                                        onChange={() => handleDailyScheduleChange(choreID, key, chorePayment)}                                
                                     />
                                 </label>                                           
                         </div>
@@ -280,7 +284,7 @@ function Chore(props) {
                                         name={key}
                                         value={key}
                                         checked={paymentObj.schedule[key]}
-                                        onChange={() => handleWeeklyScheduleChange(choreID, key)}                                
+                                        onChange={() => handleWeeklyScheduleChange(choreID, key, chorePayment)}                                
                                     />
                                 </label>                                           
                             </div>

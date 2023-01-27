@@ -23,6 +23,7 @@ function* updateDailyPayment(action) {
     console.log('in updateDailyPayment saga and action is:', action);
     try {        
         const response = yield axios.put(`/api/chore/payment/daily`, action.payload);
+        console.log('response.data from updateDailyPayment is:', response.data);
         yield put({ type: 'PUT_DAILY_PAYMENT_SUCCESS', payload: response.data });
     } catch (error) {
         yield put({ type: 'PUT_DAILY_PAYMENT_FAILED', payload: error });
