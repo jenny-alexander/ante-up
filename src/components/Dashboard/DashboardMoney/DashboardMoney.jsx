@@ -8,8 +8,8 @@ function DashboardMoney(props) {
     const dispatch = useDispatch();
     const bank = useSelector((store) => store.bank );   
     const allowance = useSelector((store) => store.allowance); //TODO: rename as store (i.e. allowanceStore)
-    const dailyTotalChorePayment = useSelector((store) => store.chorePayment.dailyTotalChorePayment); 
-    const weeklyTotalChorePayment = useSelector((store) => store.chorePayment.weeklyTotalChorePayment);
+    const dailyTotalChorePayment = useSelector((store) => store.dashboard.dailyTotalChorePayment); 
+    const weeklyTotalChorePayment = useSelector((store) => store.dashboard.weeklyTotalChorePayment);
     const[nextAllowance, setNextAllowance] = useState('');
     const[allowanceAmounts, setAllowanceAmounts] = useState({});
     const[allowanceGoal, setAllowanceGoal] = useState({});
@@ -49,12 +49,12 @@ function DashboardMoney(props) {
 
     },[allowance]);
 
-    useEffect(() => {        
+    useEffect(() => {          
         setTotalWeeklyChorePayment(weeklyTotalChorePayment);
     }, [weeklyTotalChorePayment]);
 
 
-    useEffect(() => {        
+    useEffect(() => {              
         setTotalDailyChorePayment(dailyTotalChorePayment);
     }, [dailyTotalChorePayment])
 

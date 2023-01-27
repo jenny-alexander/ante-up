@@ -4,10 +4,8 @@ import './DashboardChore.scss';
 function DashboardChore(props) {
     const[userChores, setUserChores] = useState([]);
 
-    useEffect(()=>{
-        console.log('props in DashboardChore useEffect are:', props);
-        if (props.chore.length > 0) {
-            //setChoresExist(true);
+    useEffect(()=>{        
+        if (props.chore.length > 0) {            
             setUserChores(props.chore)
         }
     },[props.chore]);

@@ -10,11 +10,9 @@ router.get('/:id', (req, res) => {
   const getChoreQuery = `SELECT chore.id, name, description, frequency, payment from user_chore
                         INNER JOIN chore
                         ON user_chore.chore_id = chore.id
-                        WHERE user_id = ${req.params.id};`;
-  console.log('getChoreQuery is:', getChoreQuery);
+                        WHERE user_id = ${req.params.id};`;  
   pool.query(getChoreQuery)
-    .then((results) => {
-      console.log('results from get chore query are:', results.rows);
+    .then((results) => {      
       res.send(results.rows);
     }).catch((error) => {
       console.log('GET chore records from server error is:', error);
@@ -39,11 +37,11 @@ router.post('/add', (req, res) => {
         .then((result) => {
           res.sendStatus(201);
       }).catch((error) => {
-        console.log('YABOO add chore table error:', error);
+        console.log('Add chore table error:', error);
         res.sendStatus(500);
       })      
     }).catch((error) => {
-      console.log('BOOYA add chore table error:', error);
+      console.log('Add chore table error:', error);
       res.sendStatus(500);
     })
 });

@@ -7,6 +7,7 @@ import bank from './bank.reducer';
 import bankTransaction from './bank.transaction.reducer';
 import week from './week.reducer';
 import chorePayment from './chore.payment.reducer';
+import dashboard from './dashboard.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   chore,
   week,
   chorePayment,
+  dashboard,
 });
 
 export default rootReducer;

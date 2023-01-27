@@ -50,8 +50,7 @@ function App() {
     const dateOfWeek = datum.getDate();
     // const dayOfWeek = weekday[datum.getDay()];
     const month = months[datum.getMonth()];
-    const year = datum.getFullYear();
-    console.log('in getDateString and value is:', month +  ', ' + dateOfWeek + ' ' + year)
+    const year = datum.getFullYear();    
     return  month +  ', ' + dateOfWeek + ' ' + year;
 }
 

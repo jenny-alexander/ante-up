@@ -31,8 +31,7 @@ router.get('/weekly/:userID/:weekID', (req, res) => {
 router.get('/daily/total/:userID/:weekID', (req, res) => {  
   const dailyTotalQuery = `SELECT SUM (total_payment) AS total_daily_chore FROM chore_payment_daily
                         WHERE user_id = ${req.params.userID}
-                        AND week_id = ${req.params.weekID};`;
-                        console.log('dailyTotalQuery is:', dailyTotalQuery);
+                        AND week_id = ${req.params.weekID};`;                        
   pool.query(dailyTotalQuery)
     .then((results) => {
       res.send(results?.rows[0]?.total_daily_chore);
@@ -44,11 +43,9 @@ router.get('/daily/total/:userID/:weekID', (req, res) => {
 router.get('/weekly/total/:userID/:weekID', (req, res) => {  
   const weeklyTotalQuery = `SELECT SUM (total_payment) AS total_weekly_chore FROM chore_payment_weekly
                              WHERE user_id = ${req.params.userID}
-                             AND week_id = ${req.params.weekID};`;
-                             console.log('weeklyTotalQuery is:', weeklyTotalQuery);
+                             AND week_id = ${req.params.weekID};`;                             
   pool.query(weeklyTotalQuery)
-    .then((results) => {
-      console.log('results for total weekly chore payment is:', results?.rows[0]?.total_weekly_chore);
+    .then((results) => {      
       res.send(results?.rows[0]?.total_weekly_chore);
     }).catch((error) => {
       console.log('SELECT weekly total chore payment error is:', error);
@@ -79,7 +76,7 @@ router.put('/daily', (req, res) => {
  * UPDATE WEEKLY PAYMENT
  */
 router.put('/weekly', (req, res) => {
-  console.log('req.body for weekly update is:', req.body);
+  
   const updateWeeklyPaymentQuery = `UPDATE chore_payment_weekly 
                                     SET weekly = ${req.body.schedule.weekly},
                                     total_payment = ${req.body.totalPayment}
