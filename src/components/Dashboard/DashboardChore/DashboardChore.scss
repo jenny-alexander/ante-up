@@ -17,9 +17,10 @@
     & .dashboard-chore-card{
         padding: 1em;
         display: flex;
+        align-items: center;
         background-color: #f1f1ed;
         border-radius: 10px;
-        column-gap: 3em;
+        column-gap: 1em;
         & div {
             width: 100%;
         }

@@ -15,18 +15,22 @@ $greenButton: rgb(39, 95, 88);
             flex-direction: column;            
             width: 80%;
             min-height: 15em;
-            padding-bottom: 5em;
+            padding-bottom: 3em;
             & .chore-selector {
                 display: flex;
                 align-items: center;                
                 column-gap: 2em;
+                @media (max-width: 475px) {
+                    column-gap: 0.5em;
+                }
                 margin-bottom: 2em;                
                 margin-top: 1em;
                 //padding: 8px;
                 & .selector-dropdown{
                     width: 50%;
                     @media screen and (max-width:475px) {
-                        width:max-content;
+                        //width:max-content;
+                        width: 80%;
                     }
                 } 
             }

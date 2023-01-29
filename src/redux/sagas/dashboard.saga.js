@@ -20,10 +20,8 @@ function* fetchTotalWeeklyChorePayment(action) {
 }
 
 function* fetchIndividualChorePayment(action) {    
-    console.log(' in fetchIndividualChorePayment and action is:', action);
     try {        
-        const response = yield axios.get(`/api/dashboard/payment/individual/${action.payload.userID}/${action.payload.weekID}`);        
-        console.log('response from fetchIndividualChorePayment is:', response);
+        const response = yield axios.get(`/api/dashboard/payment/individual/${action.payload.userID}/${action.payload.weekID}`);
         yield put({ type: 'GET_INDIVIDUAL_CHORE_PAYMENT_SUCCESS', payload: response.data });
     } catch (error) {
         yield put({ type: 'GET_INDIVIDUAL_CHORE_PAYMENT_FAILED', payload: error });        
