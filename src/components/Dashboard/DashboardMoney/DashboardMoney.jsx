@@ -19,8 +19,8 @@ function DashboardMoney(props) {
     useEffect(() => {
         dispatch( {type: 'GET_BANK_REQUESTED', payload: props.user.id}); // TODO: STICK WITH SAME NAMING CONVENTION (FETCH vs GET)
         dispatch( { type: 'FETCH_LATEST_ALLOWANCE', payload: props.user.id });
-        dispatch( { type: 'GET_TOTAL_DAILY_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: 1}})
-        dispatch( { type: 'GET_TOTAL_WEEKLY_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: 1}})
+        dispatch( { type: 'GET_TOTAL_DAILY_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: 1}}); //TODO: Make dynamic
+        dispatch( { type: 'GET_TOTAL_WEEKLY_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: 1}}); //TODO: Make dynamic
     },[])
 
     useEffect(()=>{
@@ -35,7 +35,7 @@ function DashboardMoney(props) {
                           goalAmount: bank.bank.goal_amount,
                           goalDescription: bank.bank.goal_desc,                         
                         })
-    },[bank.bank])
+    },[bank.bank]);
 
     useEffect(() => {
         if (allowance && allowance.latest ) {            

@@ -15,6 +15,7 @@ const choreRouter = require('./routes/chore.router');
 const bankRouter = require('./routes/bank.router');
 const weekRouter = require('./routes/week.router');
 const chorePaymentRouter = require('./routes/chore.payment.router');
+const dashboardRouter = require('./routes/dashboard.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -35,6 +36,7 @@ app.use('/api/bank', bankRouter);
 app.use('/api/chore', choreRouter);
 app.use('/api/week', weekRouter);
 app.use('/api/chore/payment', chorePaymentRouter);
+app.use('/api/dashboard', dashboardRouter);
 
 // Serve static files
 app.use(express.static('build'));
