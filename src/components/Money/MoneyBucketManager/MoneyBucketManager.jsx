@@ -47,13 +47,10 @@ function MoneyBucketManager(props) {
                 <input class="swal2-input" id="amount" type="number" placeholder="0.00" />
                    <br />
                    <label for"bucket-comments">Reason:</label>
-                   <input class="swal2-input" id="bucket-comments"></input>`,
-            // iconHtml: '<img src="images/ante_up.png" alt="ante up logo">',
-            showClass: {
-                //backdrop: 'swal2-noanimation', // disable backdrop animation
-                popup: 'swal2-noanimation',                     // disable popup animation
+                   <input class="swal2-input" id="bucket-comments"></input>`,            
+            showClass: {                
+                popup: 'swal2-noanimation',
                 title: 'swal2-title bucket',
-                //icon: 'swal2-noanimation'                       // disable icon animation
               },
             showCancelButton: true,
             cancelButtonColor: 'grey',
@@ -107,8 +104,7 @@ function MoneyBucketManager(props) {
                 type: 'error', 
                 icon: 'warning',
                 title: 'An amount is required!',
-                confirmButtonColor: '#007E58',
-                // confirmButtonColor: 'red',
+                confirmButtonColor: '#007E58',                
              });
               changeBankAmount();
             }
@@ -116,54 +112,39 @@ function MoneyBucketManager(props) {
           changeBankAmount();
         }
 
+    const Bucket = (props) => {
+        return (
+            <div className="bucket spend">
+                <div className="spend-title">
+                    {props.bucket.charAt(0).toUpperCase() + props.bucket.slice(1)}
+                </div>
+                <div className="spend-total">{props.amount}</div>
+                <div className="buttons">
+                    <button className="deposit-button" onClick={() => {handleChangeBankAmount(props.bucket, 'deposit')}}>+</button>
+                    <button className="deposit-button" onClick={() => {handleChangeBankAmount(props.bucket, 'withdraw')}}>-</button>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div className="bucket-container">
             <div className="bucket-title">
                 Transfer Money
             </div>
             <div className="small-bucket">
-                <div className="bucket spend">
-                    <div className="spend-title">
-                        Spend
-                    </div>
-                    <div className="spend-total">
-                        {
-                            props.bank && props.bank.bank ? Constants.dollarUS.format(props.bank.bank.spend) : ''
-                        }
-                    </div>
-                    <div className="buttons">
-                        <button className="deposit-button" onClick={() => {handleChangeBankAmount('spend', 'deposit')}}>+</button>
-                        <button className="deposit-button" onClick={() => {handleChangeBankAmount('spend', 'withdraw')}}>-</button>
-                    </div>
-                </div>
-                <div className="bucket save">
-                    <div className="spend-title">
-                        Save
-                    </div>
-                    <div className="spend-total">
-                    {
-                            props.bank && props.bank.bank ? Constants.dollarUS.format(props.bank.bank.save) : ''
-                        }
-                    </div>
-                    <div className="buttons">
-                        <button className="deposit-button" onClick={() => {handleChangeBankAmount('save', 'deposit')}}>+</button>
-                        <button className="deposit-button" onClick={() => {handleChangeBankAmount('save', 'withdraw')}}>-</button>
-                    </div>
-                </div>
-                <div className="bucket share">
-                    <div className="spend-title">
-                        Share
-                    </div>
-                    <div className="spend-total">
-                    {
-                            props.bank && props.bank.bank ? Constants.dollarUS.format(props.bank.bank.share) : ''
-                        }
-                    </div>
-                    <div className="buttons">
-                        <button className="deposit-button" onClick={() => {handleChangeBankAmount('share', 'deposit')}}>+</button>
-                        <button className="deposit-button" onClick={() => {handleChangeBankAmount('share', 'withdraw')}}>-</button>
-                    </div>
-                </div>
+                <Bucket className = "bucket spend" 
+                        amount={props.bank && props.bank.bank ? Constants.dollarUS.format(props.bank.bank.spend) : ''}
+                        bucket={'spend'}
+                />
+                <Bucket className = "bucket save" 
+                        amount={props.bank && props.bank.bank ? Constants.dollarUS.format(props.bank.bank.save) : ''}
+                        bucket="save"
+                />
+                <Bucket className = "bucket share" 
+                        amount={props.bank && props.bank.bank ? Constants.dollarUS.format(props.bank.bank.share) : ''}
+                        bucket="share"
+                />                
             </div>
         </div >
     )
