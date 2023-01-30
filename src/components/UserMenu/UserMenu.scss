@@ -1,15 +1,15 @@
 $green: rgb(39, 95, 88);
 .user-menu-wrap {
     position: absolute;
-    top: 72px;
-    right: 4em;
-    width: 12em;
+    top: 4em;
+    right: 2em;
+    width: 14em;
     height: 14em;
     //padding: 1em;
     //border: 1px solid lightgrey;
     background-color: white;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    border-radius: 5px;
+    border-radius: 10px;
     z-index: 100;
     //background-color: rgb(229, 239, 237);
     // @media (min-width: 1626px){
@@ -61,6 +61,7 @@ $green: rgb(39, 95, 88);
             display: flex;
             flex-direction: column;
             align-items: center;
+            border-radius:10px;
             & .nav-option {
                 padding:10px;
             }

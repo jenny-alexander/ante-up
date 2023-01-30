@@ -53,6 +53,9 @@ $greenButton: rgb(39, 95, 88);
                 gap: 1em;
                 align-items: center;
                 justify-content: center;
+                // .icon-center: {
+                //     text-align: center;
+                // }
 
                 .deposit-button {
                     height: 40px;
@@ -62,11 +65,9 @@ $greenButton: rgb(39, 95, 88);
                     background-color: #54a58d;
                     border: 1px solid #54a58d;
                     cursor: pointer;  
-                    border-radius: 15px;
+                    border-radius: 50%;
                     color: white;
                     transition: background-color 1s;
-                    //font-weight:bolder;
-                    font-size: larger;
                     &:hover {                        
                         //background-color: rgb(39, 95, 88);
                         //border: rgb(39, 95, 88);

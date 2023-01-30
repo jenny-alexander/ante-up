@@ -1,6 +1,9 @@
 import { React, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './MoneyBucketManager.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMinus } from '@fortawesome/free-solid-svg-icons';
 import * as Constants from '../../../constants/index';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
@@ -56,7 +59,7 @@ function MoneyBucketManager(props) {
             cancelButtonColor: 'grey',
             confirmButtonColor: '#007E58',
             confirmButtonText: 'Confirm',
-            allowOutsideClick: false,
+            allowOutsideClick: false,            
             customClass: {
                 title: 'money-bucket swal2-title',
             },
@@ -120,8 +123,12 @@ function MoneyBucketManager(props) {
                 </div>
                 <div className="spend-total">{props.amount}</div>
                 <div className="buttons">
-                    <button className="deposit-button" onClick={() => {handleChangeBankAmount(props.bucket, 'deposit')}}>+</button>
-                    <button className="deposit-button" onClick={() => {handleChangeBankAmount(props.bucket, 'withdraw')}}>-</button>
+                    <button className="deposit-button" onClick={() => {handleChangeBankAmount(props.bucket, 'deposit')}}>
+                        <FontAwesomeIcon className="icon-center" icon={faPlus} />
+                    </button>
+                    <button className="deposit-button" onClick={() => {handleChangeBankAmount(props.bucket, 'withdraw')}}>
+                        <FontAwesomeIcon className="icon-center" icon={faMinus} />
+                    </button>
                 </div>
             </div>
         )

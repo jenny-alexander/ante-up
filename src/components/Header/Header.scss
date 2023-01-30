@@ -23,25 +23,30 @@ $greenButton: rgb(39, 95, 88);
         & button {
           display: flex;
           margin-right: 3em;
-          background: #ffffff;
-          border-radius: 25px;
+          background: inherit;
+          border-radius: 50%;
           justify-content: space-between;
           align-items: center;
           padding: 4px 6px;
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+          //box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
           border: none;
-          padding-left: 1em;
-          padding-right: 0.7em;
+          // padding-left: 1em;
+          // padding-right: 0.7em;
           column-gap: 0.5em;
             &:hover {
               cursor: pointer;
-              box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+              //box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+              //outline: 2px solid $greenButton;
+              box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            }
+            &:active {
+              outline: 1px solid $greenButton;
             }
 
           @media(max-width: 650px) {          
           display: flex;
           margin-right: 1em;
-          min-width: 9em;
+          //min-width: 9em;
           }  
       }
       & .week-info{

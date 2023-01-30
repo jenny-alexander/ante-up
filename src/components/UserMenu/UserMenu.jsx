@@ -31,7 +31,7 @@ function UserMenu(props) {
           ref={ref}
            className="user-menu-wrap">
             <div className="user-menu">
-            <div class="caret"></div>
+            {/* <div class="caret"></div> */}
                 <div className="user-menu-name">
                     <img className="menu-profile-image" src="/images/profile/hades-large.png"/>
                     <div className='user-menu-profile'>

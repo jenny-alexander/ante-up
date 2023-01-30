@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Tooltip } from 'react-tooltip';
+import Utility from '../../../utility';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import 'react-tooltip/dist/react-tooltip.css';
@@ -15,7 +16,7 @@ function MoneySaving(props) {
 
     const saveGoalChanges = () => {        
         dispatch( { type: 'SAVE_BANK_GOAL', payload: { amount: savingFor.amount, 
-                                            description: savingFor.description,
+                                            description: Utility.replaceApostrophe(savingFor.description),
                                             userID: user.id}})        
         //TODO: check for successful save
         setEditSavingFor(!editSavingFor);                                         
