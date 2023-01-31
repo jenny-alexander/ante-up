@@ -65,8 +65,9 @@ function RegisterForm() {
             
           </div>
           <div className="form-row">
+          <div className="input-radio-title">Profile Type:</div>
             <div className="input-group-radio">
-              <div className="input-radio-title">Profile Type:</div>
+              
               <div className="input-radio-buttons" onChange={onChangeValue}>
                 <div className="radio-input">
                   <label><input type="radio" value="Child" name="profile" checked={profileType === "Child"} />Child</label>
