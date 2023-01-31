@@ -4,6 +4,7 @@ $greenButton: rgb(39, 95, 88);
     flex-direction: column;
     align-items: center;
     background-color: #f9f9f6;
+    margin-bottom: 2em;
     & .chore-title {
         text-align: center;
         padding-top: 0.5em; //<--need this?
@@ -15,7 +16,7 @@ $greenButton: rgb(39, 95, 88);
             flex-direction: column;            
             width: 80%;
             min-height: 15em;
-            padding-bottom: 3em;
+            padding-bottom: 1.5em;
             & .chore-selector {
                 display: flex;
                 align-items: center;                

@@ -1,5 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import { useDispatch } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faX, faXmark } from '@fortawesome/free-solid-svg-icons';
 import UserNav from '../Navigation/UserNav';
 import './UserMenu.scss';
 
@@ -32,6 +34,13 @@ function UserMenu(props) {
            className="user-menu-wrap">
             <div className="user-menu">
             {/* <div class="caret"></div> */}
+                <div className="user-menu-header">
+                    <button className="close-user-menu" 
+                            onClick={props.toggleUserMenu}
+                    >
+                        <FontAwesomeIcon icon={faXmark} />
+                    </button>
+                </div>
                 <div className="user-menu-name">
                     <img className="menu-profile-image" src="/images/profile/hades-large.png"/>
                     <div className='user-menu-profile'>

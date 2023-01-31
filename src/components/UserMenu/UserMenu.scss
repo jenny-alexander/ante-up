@@ -17,11 +17,28 @@ $green: rgb(39, 95, 88);
     // }
     & .user-menu {
         display: grid;
-        grid-template-rows: 5em 8em;
+        grid-template-rows: 1em 4.5em 8.5em;
         grid-template-areas: 
+        "header"
         "profile"
         "nav";
-        row-gap: 0.8em;
+        row-gap: 0.2em;
+        & .user-menu-header {
+            grid-area: header;
+            //border: 1px solid red;
+            display: flex;
+            justify-content: end;
+            //margin: 0.5em;
+            margin-top: 0.3em;
+            margin-right: 0.3em;
+            & .close-user-menu {
+                background-color: inherit;
+                border: none;
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+        }
         & .user-menu-name {
             grid-area: profile;
             display: flex;
@@ -29,7 +46,8 @@ $green: rgb(39, 95, 88);
             padding-left: 0.75em;
             align-items: center;
             column-gap: 1em;
-            padding-top: 0.75em;
+            //padding-top: 0.75em;
+            padding-bottom: 0.1em;
             & .user-menu-profile {
                 display: flex;
                 flex-direction: column;
@@ -54,16 +72,16 @@ $green: rgb(39, 95, 88);
 
         }
         & .user-menu-nav-option {
-            background-color: white;
+            //background-color: white;
             border-top: 1px solid lightgrey;
             padding-top: 0.5em;
             grid-area: nav;
             display: flex;
             flex-direction: column;
             align-items: center;
-            border-radius:10px;
+            //border-radius:10px;
             & .nav-option {
-                padding:10px;
+                padding: 0.5em;
             }
             & [class*="nav-option"]:hover {
                 background-color: #54a58dab;
