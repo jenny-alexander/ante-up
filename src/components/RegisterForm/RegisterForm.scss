@@ -13,6 +13,60 @@ $greenButton: rgb(39, 95, 88);
 }
 .form-row {
     padding-bottom: 0.5em;
+    & .input-group-radio {
+        background: rgba(0, 0, 0, 0.03);
+        border: 1px solid lightgrey;
+        padding: 16px;
+        border-radius: 8px;
+        display: flex;
+        column-gap: 1em;
+        margin-bottom: 0.1em;
+        & .input-radio-buttons {
+            & .radio-input{
+                & label {
+                    display: flex;
+                    margin-bottom: 0.5em;
+                    align-items: flex-end;
+                    & input {                        
+                        appearance: none;
+                        background-color: #fff;
+                        margin: 0;
+                        font: inherit;
+                        color: currentColor;
+                        width: 1.15em;
+                        height: 1.15em;
+                        border: 0.15em solid currentColor;
+                        border-radius: 50%;
+                        transform: translateY(-0.075em);
+                        margin-right: 0.3em;
+                        display: grid;
+                        place-content: center;
+                    }
+                    & input[type="radio"]::before {
+                        content: "";
+                        width: 0.65em;
+                        height: 0.65em;
+                        border-radius: 50%;
+                        transform: scale(0);
+                        transition: 120ms transform ease-in-out;
+                        box-shadow: inset 1em 1em currentColor;
+                    }
+                    input[type="radio"]:checked::before {
+                        transform: scale(1);
+                      }
+                    input[type="radio"]:hover {
+                        color: $greenButton;
+                        box-shadow: inset 1em 1em currentColor;
+                        cursor: pointer;
+
+                      }
+                }
+
+            }
+
+        }
+    }
+
 }
 
 
@@ -34,6 +88,9 @@ $greenButton: rgb(39, 95, 88);
 
 .already-registered {
     padding-top: 1.5em;
+    display: flex;
+    align-items: center;
+    column-gap: 1em;
 }
 .green-button {
     border-radius: 5px;
@@ -58,7 +115,7 @@ $greenButton: rgb(39, 95, 88);
     background: white;
     color: rgb(7,10,10,1);
     padding: 0.5em 1.5em;
-    margin-top: 0.5em;
+    //margin-top: 0.5em;
     transition: 120ms all ease-in-out;
     &:focus {
         outline: 2px solid $greenButton;

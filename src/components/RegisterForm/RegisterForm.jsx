@@ -7,6 +7,8 @@ import './RegisterForm.scss';
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [profileType, setProfileType] = useState('Child');
+  //const [gender, setGender] = useState("Male");
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
   //const history = useHistory();
@@ -23,6 +25,14 @@ function RegisterForm() {
       },
     });
   };
+
+  const handleProfileChange = (event) => {
+    console.log('you clicked on a radio button with:', event.target.value);
+  }
+  const onChangeValue = (event) => {
+    setProfileType(event.target.value);
+    console.log(event.target.value);
+  }
 
   return (
     
@@ -52,6 +62,20 @@ function RegisterForm() {
                 onChange={(event) => setPassword(event.target.value)}
                 required />              
             </div>
+            
+          </div>
+          <div className="form-row">
+            <div className="input-group-radio">
+              <div className="input-radio-title">Profile Type:</div>
+              <div className="input-radio-buttons" onChange={onChangeValue}>
+                <div className="radio-input">
+                  <label><input type="radio" value="Child" name="profile" checked={profileType === "Child"} />Child</label>
+                </div>
+                <div className="radio-input">
+                  <label><input type="radio" value="Parent" name="profile" checked={profileType === "Parent"}/>Parent</label>
+                </div>   
+              </div>
+            </div>            
           </div>
           <div className="form-row">
             <button type="submit" className="green-button register">Register</button>
