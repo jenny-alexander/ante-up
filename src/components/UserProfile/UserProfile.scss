@@ -1,0 +1,45 @@
+.user-profile {
+    //border: 2px solid red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & .user-profile-title {
+        text-align: center;
+        padding-top: 0.5em; //<--need this?
+    }
+    & .card.user-profile-container {
+        //border: 2px dotted orange;
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        & .user-profile-header {            
+            //border: 1px solid green;
+            width: 50%;
+            // height: 100%;
+            text-align: center;
+            & button {
+                margin-top: 0.5em
+            }
+
+        }
+        & .user-profile-body {  
+            .user-update-form {
+                display: flex;
+                justify-content: left; 
+                padding: 1em;
+                padding-left: 2em;
+            }          
+            //border: 1px solid red;
+            width: 60%;
+        }
+        //flex-direction: column;
+        //align-items: center;
+        //border: 2px dotted green;
+        //width: 70%;
+
+        // & .card {
+        //     width: 100%;
+        // }
+
+    }
+}

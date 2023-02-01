@@ -62,19 +62,6 @@ function Chore(props) {
         }
     },[chores.chore]);
 
-    // useEffect(() => {    
-    //     console.log('BOO WEEKLY USE EFFECT CALLED and param values are:', weeklyTotalChorePayment);
-    //     setTotalWeeklyChorePayment(weeklyTotalChorePayment);        
-    // }, [weeklyTotalChorePayment]);
-
-
-    // useEffect(() => {
-    //     console.log('BOO DAILY USE EFFECT CALLED and param values are:', dailyTotalChorePayment);
-    //     setTotalDailyChorePayment(dailyTotalChorePayment);
-    // }, [dailyTotalChorePayment])
-
-    //const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
-
     const buildPaymentState = ( payment, paymentType ) => {        
         const newStateArray = [];   
         let choreTotal = 0;     
@@ -275,25 +262,6 @@ function Chore(props) {
             </div>            
         )
     }
-
-    // const buildPaymentsArray = (choreID, paymentForChore) => {
-    //     console.log('n buildPaymentsArray and params are', choreID, paymentForChore);
-    //     // console.log('in buildPaymentsArray and params are:', )
-    //     let paymentsForThisChore;
-    //     if ( frequency === 'Daily') {
-    //         paymentsForThisChore = checkedDailyState.filter(payment => payment.choreID == choreID);
-    //     } else {
-    //         paymentsForThisChore = checkedWeeklyState.filter(payment => payment.choreID === choreID);
-    //     }
-    //     // [
-    //     //     ...paymentsArray, //old items
-    //     //     {
-    //     //         choreID: choreID,
-    //     //         totalPayment: paymentForChore,
-    //     //     }
-    //     // ]
-
-    // }
 
     const renderSchedule = (frequency, choreID, chorePayment) => {
         let paymentsForThisChore;
