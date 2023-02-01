@@ -1,0 +1,52 @@
+:root {
+    --main-color: rgb(104, 117, 217);
+    --main-color-hover: rgb(104, 117, 217, 0.2);
+    --track-color: #ddd;
+  }
+  
+  .customSlider {
+    max-width: 300px;
+    margin: auto;
+  }
+  
+  .customSlider-track {
+    top: 8px;
+    height: 4px;
+    background: var(--track-color);
+  }
+  
+  .customSlider-track.customSlider-track-0 {
+    background: var(--main-color);
+  }
+  .customSlider-thumb {
+    height: 25px;
+    line-height: 27px;
+    width: 25px;
+    top: -2px;
+    text-align: center;
+    background-color: rgb(104, 117, 217);
+    color: white;
+    font-weight: 700;
+    border-radius: 50%;
+    cursor: grab;
+  }
+  
+  .customSlider-thumb:hover {
+    box-shadow: 0 0 0 8px var(--main-color-hover);
+  }
+
+  .customSlider-mark {
+    cursor: pointer;
+    top: 6px;
+    width: 1.5px;
+    height: 8px;
+    background-color: var(--mark-color);
+  }
+  
+  .customSlider-mark.customSlider-mark-before {
+    background-color: var(--main-color);
+  }
+  
+  .customSlider-mark.customSlider-mark-active {
+    display: none;
+  }

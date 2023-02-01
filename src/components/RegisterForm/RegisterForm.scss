@@ -1,4 +1,8 @@
 $greenButton: rgb(39, 95, 88);
+$sliderColor: rgb(104, 117, 217);
+$sliderColorHover: rgb(104, 117, 217, 0.2);
+$sliderTrackColor: #ddd;
+
 * {
     margin: 0;
 }
@@ -13,6 +17,15 @@ $greenButton: rgb(39, 95, 88);
 }
 .form-row {
     padding-bottom: 0.5em;
+
+    &.age-slider {
+        margin-bottom: 2em;
+        & .age-slider-title {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+    }
+
     & .input-radio-title {
         margin-bottom: 0.3em;
     }
@@ -134,3 +147,33 @@ $greenButton: rgb(39, 95, 88);
         outline: 5px solid #54a58d;
     } 
 }
+.customSlider {
+    max-width: 300px;
+    margin: auto;
+  }
+  
+  .customSlider-track {
+    top: 8px;
+    height: 4px;
+    background: $sliderTrackColor;
+  }
+  
+  .customSlider-track.customSlider-track-0 {
+    background: $sliderColor;
+  }
+  .customSlider-thumb {
+    height: 25px;
+    line-height: 27px;
+    width: 25px;
+    top: -2px;
+    text-align: center;
+    background-color: rgb(104, 117, 217);
+    color: white;
+    font-weight: 700;
+    border-radius: 50%;
+    cursor: grab;
+  }
+  
+  .customSlider-thumb:hover {
+    box-shadow: 0 0 0 8px $sliderColorHover;
+  }
