@@ -15,12 +15,14 @@ function RegisterForm() {
 
   const registerUser = (event) => {
     event.preventDefault();    
-
+    console.log('values in register are:', username, password, age, profileType)
     dispatch({
       type: 'REGISTER',
       payload: {
         username: username,
         password: password,
+        age: age,
+        type: profileType,
       },
     });
   };
@@ -35,12 +37,12 @@ function RegisterForm() {
           className="customSlider"
           thumbClassName="customSlider-thumb"
           trackClassName="customSlider-track"
-          markClassName="customSlider-mark"
+          //markClassName="customSlider-mark"
           marks
           min={5}
           max={17}            
           value={age}
-          onChange={(age) => setAge(age)}
+          onAfterChange={(age) => setAge(age)}
           renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
     />
     )

@@ -45,7 +45,7 @@ function UserMenu(props) {
                     <img className="menu-profile-image" src="/images/profile/hades-large.png"/>
                     <div className='user-menu-profile'>
                       <div className="profile-username">{props.user.username}</div>
-                      <div className="profile-type">Child</div>          
+                      <div className="profile-type">{props.user.type}</div>          
                     </div>                            
                 </div>
                 <div className="user-menu-nav-option">
