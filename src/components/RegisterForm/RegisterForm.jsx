@@ -65,7 +65,7 @@ function RegisterForm() {
             
           </div>
           <div className="form-row">
-          <div className="input-radio-title">Profile Type:</div>
+            <div className="input-radio-title">Profile Type:</div>
             <div className="input-group-radio">
               
               <div className="input-radio-buttons" onChange={onChangeValue}>
@@ -78,6 +78,9 @@ function RegisterForm() {
               </div>
             </div>            
           </div>
+          {
+            profileType === 'Child' ? <div>How old are you?</div> : null
+          }
           <div className="form-row">
             <button type="submit" className="green-button register">Register</button>
           </div>
