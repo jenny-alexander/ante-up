@@ -75,7 +75,7 @@ function App() {
           <Route path="/chore" element={user.id ? (<Chore user={user} week={weekInfo} />) : (<LoginPage />)} />
           <Route path="/activity" element={user.id ? (<ActivityLog />) : (<LoginPage />)} />
           <Route path="/help" element={user.id ? (<Help />) : (<LoginPage />)} />
-          <Route path="/user" element={user.id ? (<UserProfile />) : (<LoginPage />)} />
+          <Route path="/user" element={user.id ? (<UserProfile user={user} />) : (<LoginPage />)} />
           {/* <Route>
             <h1>404</h1>
           </Route> */}

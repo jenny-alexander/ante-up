@@ -33,7 +33,7 @@ function Header(props) {
                         <div className="week-info">Week of: {props.weekInfo}</div>                                                                    
                         <button className="profile-info" onClick={toggleUserMenu}>    
                             {/* <div className="username">{props.user.username}</div> */}
-                            <img className="profile-image" src="/images/profile/hades.png"/>
+                            <img className="profile-image" src="/images/profile/kraken.png"/>
                         </button>                
                     </div>
                     {/* : null

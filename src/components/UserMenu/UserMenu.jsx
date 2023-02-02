@@ -42,7 +42,7 @@ function UserMenu(props) {
                     </button>
                 </div>
                 <div className="user-menu-name">
-                    <img className="menu-profile-image" src="/images/profile/hades-large.png"/>
+                    <img className="menu-profile-image" src="/images/profile/kraken-large.png"/>
                     <div className='user-menu-profile'>
                       <div className="profile-username">{props.user.username}</div>
                       <div className="profile-type">{props.user.type}</div>          

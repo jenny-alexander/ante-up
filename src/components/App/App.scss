@@ -44,7 +44,8 @@ textarea {
       background-color: rgb(216, 232, 229);
       padding-top: 1em;
       //padding-bottom: 10px;
-      min-height: 80px;
+      //min-height: 80px;
+      max-height: 80px;
     }    
     & .right-border{
       display: none;
