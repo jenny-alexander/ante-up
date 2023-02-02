@@ -46,6 +46,14 @@
             .user-update-form {
                 display: flex;
                 justify-content: center;
+                & .form-row.profile-type {
+                    display: flex;
+                    column-gap: 0.5em;
+                    margin-bottom: 0.5em;
+                }
+                & input {
+                    padding: 0.25em;
+                }
                 & button {
                     margin-top: 2em;
                 }

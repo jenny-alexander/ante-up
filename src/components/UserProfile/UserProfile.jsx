@@ -71,24 +71,28 @@ function UserProfile(props) {
                                         required />
                                     </div>
                                 </div>
+                            <div className="form-row profile-type">
+                                <div className="profile-type-title">Profile Type:</div>
+                                <div className="profile-type-value">
+                                    {props.user.type}
+                                </div>                                                      
+                            </div>    
                             <div className="form-row age">
                                 <div className="age-slider-title">Age:</div>
                                 <div className="age-slider-value">
                                     <Slider disabled={!editProfile}/>
                                 </div>                                                      
-                                </div>
+                            </div>
                             <div className="form-row update-button">
                                 <>
                                 { editProfile ?
-                                <div className="on-change-buttons">
-                                    <button className="green-button save">Save</button>
-                                    <button className="green-button cancel" onClick={changeProfile}>Cancel</button>
-                                </div>
+                                    <div className="on-change-buttons">
+                                        <button className="green-button save">Save</button>
+                                        <button className="green-button cancel" onClick={changeProfile}>Cancel</button>
+                                    </div>
                                 : <button className="green-button update" onClick={changeProfile}>Edit Profile</button>
-                                }
-                                    
-                                </>
-                                
+                                }                                    
+                                </>                                
                             </div>
                         </div>
                     </form> 
