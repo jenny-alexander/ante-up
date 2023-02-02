@@ -43,8 +43,15 @@ function UserProfile(props) {
     const UserProfile = () => {
         return (
             <>
-                <div className="user-profile-header">
-                    <img className="menu-profile-image" src="/images/profile/kraken-xlarge.png"/>
+                <div className={`${editProfile ? 'user-profile-header edit': 'user-profile-header'}`}>
+                    <img className="menu-profile-image" src={`/images/profile/${props.user.avatar}-xlarge.png`}/>                   
+                    { editProfile ?
+                        <>
+                        <img className="menu-profile-image" src={`/images/profile/banshee-xlarge.png`}/>
+                        <img className="menu-profile-image" src={`/images/profile/hades-xlarge.png`}/>
+                        </>
+                        : null
+                    }
                     {/* <div>
                         <button className="white-button">Change Avatar</button>
                     </div> */}
@@ -71,7 +78,17 @@ function UserProfile(props) {
                                 </div>                                                      
                                 </div>
                             <div className="form-row update-button">
-                                <button className="green-button update" onClick={changeProfile}>Edit Profile</button>
+                                <>
+                                { editProfile ?
+                                <div className="on-change-buttons">
+                                    <button className="green-button save">Save</button>
+                                    <button className="green-button cancel" onClick={changeProfile}>Cancel</button>
+                                </div>
+                                : <button className="green-button update" onClick={changeProfile}>Edit Profile</button>
+                                }
+                                    
+                                </>
+                                
                             </div>
                         </div>
                     </form> 
