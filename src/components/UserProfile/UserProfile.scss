@@ -19,7 +19,24 @@
             & img {
                 height: 100px;
                 width: 100px;
+                position: relative
             }
+            div .fa-check {
+                position: absolute;
+                margin-top: -24px;
+                margin-left: 70px;
+                border: 1px solid lightgrey;
+                border-radius: 50%;
+                // padding: 11px; 
+                height: 18px;
+                width: 18px;
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                background-color: white;
+                color: cornflowerblue;
+                //box-shadow: 0 0 8px 3px #B8B8B8;
+              }
               &.edit {
                 & img {
                     height: 84px;

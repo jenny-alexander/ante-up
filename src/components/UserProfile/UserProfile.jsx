@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactSlider from "react-slider";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import Card from '../Common/Card/Card'
 import './UserProfile.scss';
 
@@ -44,14 +46,18 @@ function UserProfile(props) {
         return (
             <>
                 <div className={`${editProfile ? 'user-profile-header edit': 'user-profile-header'}`}>
-                    <img className="menu-profile-image" src={`/images/profile/${props.user.avatar}-xlarge.png`}/>                   
-                    { editProfile ?
-                        <>
-                        <img className="menu-profile-image" src={`/images/profile/banshee-xlarge.png`}/>
-                        <img className="menu-profile-image" src={`/images/profile/hades-xlarge.png`}/>
-                        </>
-                        : null
-                    }
+                    <div className="menu-profile-image">
+                        <img src={`/images/profile/${props.user.avatar}-xlarge.png`}/>  
+                        <FontAwesomeIcon className="fa-check" icon={faCheck} />
+                        {/* <i class="fa fa-edit"></i>                  */}
+                        { editProfile ?
+                            <>
+                            <img className="menu-profile-image" src={`/images/profile/banshee-xlarge.png`}/>
+                            <img className="menu-profile-image" src={`/images/profile/hades-xlarge.png`}/>
+                            </>
+                            : null
+                        }
+                    </div>
                     {/* <div>
                         <button className="white-button">Change Avatar</button>
                     </div> */}

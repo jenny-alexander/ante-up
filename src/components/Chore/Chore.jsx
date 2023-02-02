@@ -11,9 +11,6 @@ function Chore(props) {
     const dispatch = useDispatch();    
     const chores = useSelector((store) => store.chore);
     const chorePayment = useSelector((store) => store.chorePayment);
-    // const allowance = useSelector((store) => store.allowance)
-    // const dailyTotalChorePayment = useSelector((store) => store.chorePayment.dailyTotalChorePayment); 
-    // const weeklyTotalChorePayment = useSelector((store) => store.chorePayment.weeklyTotalChorePayment);
     const [userChores, setUserChores] = useState([]);
     const [choresExist, setChoresExist] = useState(false);
     const [frequencySelected, setFrequencySelected] = useState('All');      
