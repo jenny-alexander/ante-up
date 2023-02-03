@@ -9,17 +9,28 @@ import './UserProfile.scss';
 function UserProfile(props) {
     const [username, setUsername] = useState(props.user.username);    
     const [age, setAge] = useState(props.user.age);
-    const [editProfile, setEditProfile] = useState(false)
+    const [editProfile, setEditProfile] = useState(false);
+    const [selectedAvatar, setSelectedAvatar] = useState(props.user.avatar);
     const errors = useSelector((store) => store.errors);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        console.log('!!!! my props are:', props);
-    },[])
+
+    const avatars = [
+        'kraken',
+        'mermaid',
+        'banshee',
+        'hades',
+        'jackalope',
+        'nymph',
+      ]
 
       const updateUser = () => {
         console.log('updateUser')
       }
+
+      useEffect(() => {
+        console.log('BOW WOW props are:', props);
+      },[])
     
       const Slider = (props) => {
         return (
@@ -42,25 +53,31 @@ function UserProfile(props) {
         setEditProfile(!editProfile);
       }
 
+      const imgClick = (avatar) => {
+        console.log('you clicked on the image!');
+        setSelectedAvatar(avatar)
+      }
+
     const UserProfile = () => {
         return (
             <>
                 <div className={`${editProfile ? 'user-profile-header edit': 'user-profile-header'}`}>
-                    <div className="menu-profile-image">
-                        <img src={`/images/profile/${props.user.avatar}-xlarge.png`}/>  
-                        <FontAwesomeIcon className="fa-check" icon={faCheck} />
-                        {/* <i class="fa fa-edit"></i>                  */}
-                        { editProfile ?
-                            <>
-                            <img className="menu-profile-image" src={`/images/profile/banshee-xlarge.png`}/>
-                            <img className="menu-profile-image" src={`/images/profile/hades-xlarge.png`}/>
-                            </>
-                            : null
+                    <div className="menu-profile-image">                            
+                        { editProfile ? 
+                                
+                                 avatars.map(avatar => {
+                                    return (
+                                        avatar === selectedAvatar ? (
+                                            <img onClick={() => imgClick()} className="selected-image" src={`/images/profile/${avatar}-xlarge.png`}/>
+                                        ) : <img onClick={() => imgClick(avatar)} src={`/images/profile/${avatar}-xlarge.png`}/>  
+                                    )
+                                 })                            
+                            :                          
+                                <div>
+                                    <img src={`/images/profile/${props.user.avatar}-xlarge.png`}/>                            
+                                </div> 
                         }
                     </div>
-                    {/* <div>
-                        <button className="white-button">Change Avatar</button>
-                    </div> */}
                 </div>
                 <div className="user-profile-body">
                     <form className="user-update-form" onSubmit={updateUser}>
