@@ -23,14 +23,6 @@ function UserProfile(props) {
         'jackalope',
         'nymph',
       ]
-
-      const updateUser = () => {
-        console.log('updateUser')
-      }
-
-      useEffect(() => {
-        console.log('BOW WOW props are:', props);
-      },[])
     
       const Slider = (props) => {
         return (
@@ -49,7 +41,23 @@ function UserProfile(props) {
         )
       }
 
-      const changeProfile = () => {
+      const updateProfile = () => {
+        //save changes
+        console.log('about to save changes!')
+        event.preventDefault();
+        if (username) {
+            dispatch({
+              type: 'UPDATE_USER',
+              payload: {
+                username: username,
+                age: age,
+                avatar: selectedAvatar,
+                id: props.user.id,
+              },
+            });
+          } else {
+            dispatch({ type: 'LOGIN_INPUT_ERROR' });
+          }
         setEditProfile(!editProfile);
       }
 
@@ -58,18 +66,22 @@ function UserProfile(props) {
         setSelectedAvatar(avatar)
       }
 
+      const onCancel = () => {
+        setSelectedAvatar(props.user.avatar);
+        setEditProfile(!editProfile);
+      }
+
     const UserProfile = () => {
         return (
-            <>
+            <div className="user-profile-main">
                 <div className={`${editProfile ? 'user-profile-header edit': 'user-profile-header'}`}>
                     <div className="menu-profile-image">                            
                         { editProfile ? 
-                                
                                  avatars.map(avatar => {
-                                    return (
-                                        avatar === selectedAvatar ? (
-                                            <img onClick={() => imgClick()} className="selected-image" src={`/images/profile/${avatar}-xlarge.png`}/>
-                                        ) : <img onClick={() => imgClick(avatar)} src={`/images/profile/${avatar}-xlarge.png`}/>  
+                                    return(
+                                        <img onClick={() => imgClick(avatar)} 
+                                                    className={`${avatar === selectedAvatar ? 'selected-image' : ''}`}
+                                                    src={`/images/profile/${avatar}-xlarge.png`}/>
                                     )
                                  })                            
                             :                          
@@ -79,8 +91,9 @@ function UserProfile(props) {
                         }
                     </div>
                 </div>
+                
                 <div className="user-profile-body">
-                    <form className="user-update-form" onSubmit={updateUser}>
+                    <form className="user-update-form" onSubmit={updateProfile}>
                         <div className="form-body">
                             <div className="form-row username">
                                 <div className= "input-group">
@@ -100,7 +113,7 @@ function UserProfile(props) {
                                     {props.user.type}
                                 </div>                                                      
                             </div>    
-                            <div className="form-row age">
+                            <div className={`${editProfile ? 'form-row age edit': 'form-row age'}`}>
                                 <div className="age-slider-title">Age:</div>
                                 <div className="age-slider-value">
                                     <Slider disabled={!editProfile}/>
@@ -111,25 +124,23 @@ function UserProfile(props) {
                                 { editProfile ?
                                     <div className="on-change-buttons">
                                         <button className="green-button save">Save</button>
-                                        <button className="green-button cancel" onClick={changeProfile}>Cancel</button>
+                                        <button className="green-button cancel" onClick={onCancel}>Cancel</button>
                                     </div>
-                                : <button className="green-button update" onClick={changeProfile}>Edit Profile</button>
+                                : <button className="green-button update" onClick={updateProfile}>Edit Profile</button>
                                 }                                    
                                 </>                                
                             </div>
                         </div>
                     </form> 
                 </div>
-            </>
+            </div>
         )
     }
 
     return (
         <div className="user-profile">
             <h1 className="user-profile-title">User Profile</h1>
-            {/* <div className="user-profile-container">                 */}
             <Card className="user-profile-container" component={<UserProfile />} />
-            {/* </div> */}
         </div>
     )
 }

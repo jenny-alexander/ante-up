@@ -24,8 +24,22 @@ function* fetchUser() {
   }
 }
 
+function* updateUser(action) {
+  console.log('in updateUser SAGA and action.payload is:', action.payload);
+  try {
+    yield axios.put('/api/user', action.payload);
+
+    //now we need to send the updated user back to the app
+    yield put({ type: 'SET_USER', payload: action.payload });
+  }
+  catch (error) {
+    console.log(`Error updating user profile!`, error);
+  }
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('UPDATE_USER', updateUser);
 }
 
 export default userSaga;

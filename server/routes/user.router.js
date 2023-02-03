@@ -34,6 +34,26 @@ router.post('/register', (req, res, next) => {
     });
 });
 
+//Update the user information
+router.put('/', (req, res) => {
+  console.log('update user req.body is:', req.body);
+  let putQueryString = `UPDATE "user" SET username = '${req.body.username}',
+                                               age = '${req.body.age}',
+                                            avatar = '${req.body.avatar}'
+                                          WHERE id = ${req.body.id}`;
+  console.log('update user query is:', putQueryString);
+  pool
+    .query(putQueryString)
+    .then((results) => {
+      res.sendStatus(200);
+    }).catch((error) => {
+      console.log(`Error updating user profile.`, error);
+      res.sendStatus(500);
+    })
+})
+
+
+
 // Handles login form authenticate/login POST
 // userStrategy.authenticate('local') is middleware that we run on this route
 // this middleware will run our POST if successful
