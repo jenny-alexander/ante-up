@@ -7,7 +7,7 @@ import './UserMenu.scss';
 
 function UserMenu(props) {
     const ref = useRef(null);
-    const { onClickOutside } = props;
+    const { onClickOutside } = props;    
     const dispatch = useDispatch();
 
     // useEffect(() => {

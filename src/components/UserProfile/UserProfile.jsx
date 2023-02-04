@@ -9,6 +9,7 @@ import './UserProfile.scss';
 function UserProfile(props) {
     const [username, setUsername] = useState(props.user.username);    
     const [age, setAge] = useState(props.user.age);
+    // const [type, setType] = useState(prop.user.type);
     const [editProfile, setEditProfile] = useState(false);
     const [selectedAvatar, setSelectedAvatar] = useState(props.user.avatar);
     const errors = useSelector((store) => store.errors);
@@ -125,10 +126,10 @@ function UserProfile(props) {
                                 <>
                                 { editProfile ?
                                     <div className="on-change-buttons">
-                                        <button className="green-button save">Save</button>
+                                        <button className="green-button save" onClick={updateProfile}>Save</button>
                                         <button className="green-button cancel" onClick={onCancel}>Cancel</button>
                                     </div>
-                                : <button className="green-button update" onClick={updateProfile}>Edit Profile</button>
+                                : <button className="green-button update" onClick={()=>setEditProfile(!editProfile)}>Edit Profile</button>
                                 }                                    
                                 </>                                
                             </div>
