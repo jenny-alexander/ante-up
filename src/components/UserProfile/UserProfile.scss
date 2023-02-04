@@ -24,15 +24,20 @@
             }
               &.edit {
                 & img {
-                    height: 84px;
-                    width: 84px;
+                    height: 72px;
+                    width: 72px;
+                    
                     &.selected-image {
                         outline: 2px dashed #642464;
-                        border-radius: 50%;
+                        border-radius: 30%;
                         padding: 5px;
+                                                          
                     }
                     &:hover {
                         cursor: pointer;
+                        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                        //transition: box-shadow 0.1s ease-in-out;                        
+                        border-radius: 30%;
                     }
                 }
                 @media (max-width: 949px) {

@@ -79,9 +79,11 @@ function UserProfile(props) {
                         { editProfile ? 
                                  avatars.map(avatar => {
                                     return(
-                                        <img onClick={() => imgClick(avatar)} 
-                                                    className={`${avatar === selectedAvatar ? 'selected-image' : ''}`}
-                                                    src={`/images/profile/${avatar}-xlarge.png`}/>
+                                        <div className="image-container">
+                                            <img onClick={() => imgClick(avatar)} 
+                                                className={`${avatar === selectedAvatar ? 'selected-image' : 'image'}`}
+                                                src={`/images/profile/${avatar}-xlarge.png`}/>
+                                        </div>
                                     )
                                  })                            
                             :                          
