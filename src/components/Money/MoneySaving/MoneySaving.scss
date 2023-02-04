@@ -25,6 +25,7 @@
             & .info-snippet:hover{
                 cursor: pointer;
                 outline: 3px solid lightgrey;
+                transition: outline 0.2s ease-in-out;
             }
         }
     }
@@ -47,6 +48,7 @@
             &:hover {
                 cursor: pointer;
                 outline: 5px solid lightgrey;
+                transition: outline 0.2s ease-in-out;
             }
 
         }

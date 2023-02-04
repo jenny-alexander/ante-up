@@ -4,13 +4,9 @@
 }
 $greenButton: rgb(39, 95, 88);
 .navigation {
-    // border: 1px solid #bacdd8;
-    // background-color: rgb(216, 232, 229);
     background-color: rgb(229 239 237);
     grid-area: navigation;
     padding: 0.5em;
-    //max-width: 70%;
-
     & .nav-greeting {
         text-align: left;
         font-size: 1.5em;
@@ -18,7 +14,6 @@ $greenButton: rgb(39, 95, 88);
         word-spacing: 0.5em;
         font-weight:100;
     }
-
     & .main-links {
         display: flex;
         flex-direction: column;        
@@ -44,11 +39,10 @@ $greenButton: rgb(39, 95, 88);
             }
 
             & [class*="nav-option"]:hover {
-                //background-color: rgba(39, 95, 88, 0.2);
-                //background-color: rgb(50 220 161 / 60%);
                 background-color: #54a58dab;
                 border-radius: 5px;
-                padding:10px;                
+                padding:10px;
+                transition: background-color 0.2s ease-in-out;            
             }
             & [class*="nav-option"]:focus {
                 border-radius: 5px;            
@@ -73,11 +67,9 @@ $greenButton: rgb(39, 95, 88);
             //transition: background-color 0.75s;  
             &:hover {
                 cursor: pointer;
-                // background-color: rgb( 24, 60, 55, 1);
-                // border-color: rgb(24, 60, 55, 1);
-                //outline: 6px solid rgb(50 220 161 / 60%);
                 outline: 5px solid #54a58d;
                 border: 1px solid #54a58d;
+                transition: outline 0.2s ease-in-out;
             }
             &:focus {
                 outline: 2px solid $greenButton;

@@ -23,22 +23,22 @@
                 }
             }
               &.edit {
-                & img {
-                    height: 72px;
-                    width: 72px;
-                    
+                & button {
+                    background-color: inherit;
+                    border: none;
+                    border-radius: 50%;
                     &.selected-image {
-                        outline: 2px dashed #642464;
-                        border-radius: 30%;
-                        padding: 5px;
-                                                          
+                        outline: 2px dashed #642464;                                
                     }
                     &:hover {
                         cursor: pointer;
-                        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-                        //transition: box-shadow 0.1s ease-in-out;                        
-                        border-radius: 30%;
-                    }
+                        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+                        transition: box-shadow 0.2s ease-in-out; 
+                      }
+                }
+                & img {
+                    height: 72px;
+                    width: 72px;
                 }
                 @media (max-width: 949px) {
                     column-gap: 2em;

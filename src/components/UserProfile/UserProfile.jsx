@@ -53,6 +53,7 @@ function UserProfile(props) {
                 username: username,
                 age: age,
                 avatar: selectedAvatar,
+                type: props.user.type,
                 id: props.user.id,
               },
             });
@@ -81,9 +82,13 @@ function UserProfile(props) {
                                  avatars.map(avatar => {
                                     return(
                                         <div className="image-container">
-                                            <img onClick={() => imgClick(avatar)} 
-                                                className={`${avatar === selectedAvatar ? 'selected-image' : 'image'}`}
+                                            <button
+                                                className={`${avatar === selectedAvatar ? 'selected-image' : 'image'}`} 
+                                                onClick={() => imgClick(avatar)} >
+                                            <img 
+                                                
                                                 src={`/images/profile/${avatar}-xlarge.png`}/>
+                                                </button>
                                         </div>
                                     )
                                  })                            

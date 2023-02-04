@@ -53,6 +53,7 @@ $greenButton: rgb(39, 95, 88);
             // background-color:#00ad79;
             // transition: 0.5s;
             outline: 5px solid #54a58d;
+            transition: outline 0.2s ease-in-out;
         }
         &:focus {
             // outline: 2px solid $greenButton;
@@ -72,10 +73,11 @@ $greenButton: rgb(39, 95, 88);
         //font-weight: bold;
         padding: 0.5em 1.5em;
         margin-top: 0.5em;
-        transition: 120ms all ease-in;
+        //transition: 120ms all ease-in;
         &:hover {
             cursor: pointer;
             outline: 5px solid #54a58d;
+            transition: outline 0.2s ease-in-out;
         } 
         &:focus {
             outline: 2px solid $greenButton;

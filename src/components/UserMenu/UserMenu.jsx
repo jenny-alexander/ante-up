@@ -23,6 +23,10 @@ function UserMenu(props) {
     //     };
     //   }, [ onClickOutside ]);
 
+    useEffect(() => {
+        console.log('USERMENU props are:', props.user);
+    },[])
+
     const logout = () => {
       props.toggleUserMenu();
       dispatch( { type: 'LOGOUT' })

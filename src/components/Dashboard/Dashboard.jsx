@@ -26,26 +26,19 @@ function Dashboard(props) {
         }
     },[chores.chore]);
 
-    // useEffect(()=> {
-    //     if (chorePayment.dailyPayment.payment.length > 0) {                                    
-    //         buildTotalPayment(chorePayment.dailyPayment.payment);
-    //     }
-    // },[chorePayment.dailyPayment.payment]);
-
-    // useEffect(()=> {
-    //     if (chorePayment.weeklyPayment.payment.length > 0) {      
-    //         buildTotalPayment(chorePayment.weeklyPayment.payment);
-    //     }
-    // },[chorePayment.weeklyPayment.payment]);    
-
-    // const buildTotalPayment = (payment) => {
-    //     let totalPayment = totalWeeklyChorePayment;
-    //     payment.forEach((item) => {            
-    //         totalPayment += item.total_payment;
-    //         console.log('totalPayment is now:', totalPayment);
-    //     })
-    //     setTotalWeeklyChorePayment(totalPayment);
-    // }
+    const DashboardContainer = () => {
+        return (
+            <div className="dashboard-main">                                   
+                <DashboardCalendar user={props.user}/>
+                <DashboardMoney 
+                    user={props.user} 
+                    weekInfo={props.week} />
+                <DashboardChore                    
+                    user={props.user}
+                    chore={userChores} />                        
+            </div>
+        )
+    }
 
     return (
         <div className="dashboard">
@@ -55,8 +48,7 @@ function Dashboard(props) {
                 <DashboardMoney 
                     user={props.user} 
                     weekInfo={props.week} />
-                <DashboardChore
-                    //choreMoney = {totalWeeklyChorePayment}
+                <DashboardChore                    
                     user={props.user}
                     chore={userChores} />                        
             </div>
