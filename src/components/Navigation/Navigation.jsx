@@ -6,6 +6,13 @@ import './Navigation.scss';
 function Navigation(props) {
     const dispatch = useDispatch();
 
+    // const logout = () => {        
+    //     dispatch( { type: 'LOGOUT' })
+    //       .then(() => {
+    //           navigate('/login');
+    //       })
+    //   }
+
     return (
         <div className="navigation">
             <div className="main-links">

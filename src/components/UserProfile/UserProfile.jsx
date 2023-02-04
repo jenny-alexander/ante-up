@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactSlider from "react-slider";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import Card from '../Common/Card/Card'
 import './UserProfile.scss';
 
 function UserProfile(props) {
     const [username, setUsername] = useState(props.user.username);    
-    const [age, setAge] = useState(props.user.age);
-    // const [type, setType] = useState(prop.user.type);
+    const [age, setAge] = useState(props.user.age);    
     const [editProfile, setEditProfile] = useState(false);
     const [selectedAvatar, setSelectedAvatar] = useState(props.user.avatar);
     const errors = useSelector((store) => store.errors);
@@ -85,16 +82,14 @@ function UserProfile(props) {
                                             <button
                                                 className={`${avatar === selectedAvatar ? 'selected-image' : 'image'}`} 
                                                 onClick={() => imgClick(avatar)} >
-                                            <img 
-                                                
-                                                src={`/images/profile/${avatar}-xlarge.png`}/>
-                                                </button>
+                                                <img src={`/images/profile/${avatar}.png`}/>
+                                            </button>
                                         </div>
                                     )
                                  })                            
                             :                          
                                 <div>
-                                    <img src={`/images/profile/${props.user.avatar}-xlarge.png`}/>                            
+                                    <img src={`/images/profile/${props.user.avatar}.png`}/>                            
                                 </div> 
                         }
                     </div>

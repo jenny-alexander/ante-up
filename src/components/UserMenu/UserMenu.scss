@@ -9,6 +9,7 @@ $green: rgb(39, 95, 88);
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     border-radius: 10px;
     z-index: 100;
+    margin-top: 0.3em;
     & .user-menu {
         display: grid;
         grid-template-rows: 1em 4.5em 8.5em;
@@ -20,6 +21,7 @@ $green: rgb(39, 95, 88);
         & .user-menu-header {
             grid-area: header;
             display: flex;
+            //position: absolute;
             justify-content: end;
             margin-top: 0.3em;
             margin-right: 0.3em;
@@ -39,6 +41,10 @@ $green: rgb(39, 95, 88);
             align-items: center;
             column-gap: 1em;
             padding-bottom: 0.1em;
+            & img {
+                height: 64px;
+                width: 64px;
+            }
             & .user-menu-profile {
                 display: flex;
                 flex-direction: column;
