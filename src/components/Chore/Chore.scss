@@ -34,11 +34,17 @@ $greenButton: rgb(39, 95, 88);
                 } 
             }
             & .all-chores-payment {
-                padding-bottom: 1.5em;
+                margin-bottom: 0.5em;
+                margin-top: 0.5em;
                 display: flex;
                 flex-direction: row;
                 column-gap: 1em;
                 font-size: 1.2em;
+                border: 1px solid lightgrey;
+                padding: 0.5em;
+                border-radius: 10px;
+                background-color: #ecf5ec95;
+                justify-content: center;
             }
             & .chore-btn {
                 height: 40px;
@@ -130,7 +136,7 @@ $greenButton: rgb(39, 95, 88);
                             color: white;                            
                             min-width: 7em;
                             padding: 0.5em 1.5em;
-                            border-radius: 20px;
+                            border-radius: 5px;
                             &:hover {
                                 cursor: pointer;
                                 //text-decoration: underline white 0.1em;

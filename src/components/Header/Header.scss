@@ -1,4 +1,7 @@
 $greenButton: rgb(39, 95, 88);
+.header {
+  position: relative;
+}
 .header-container {
     display: flex;
     align-items: center;    
@@ -30,7 +33,7 @@ $greenButton: rgb(39, 95, 88);
           border-radius: 50%;
           justify-content: space-between;
           align-items: center;
-          padding: 4px 6px;
+          padding: 5px 7px;
           border: none;
           column-gap: 0.5em;
             &:hover {

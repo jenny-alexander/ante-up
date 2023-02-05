@@ -181,6 +181,11 @@ function Chore(props) {
     const ChoreListComponent = () => {
         return (
             <div className="chore-main">
+                                <div className="all-chores-payment">
+                    <div className="all-chores-payment-title">Total chore payments this week:</div>
+                    <div className="all-chores-payment-amount">${allChoresPayment}
+                    </div>
+                </div>
                 <div className="chore-selector">                    
                     <div className="selector-title">Frequency:</div>
                     <div className="selector-dropdown">
@@ -190,16 +195,7 @@ function Chore(props) {
                         />
                     </div>
                 </div>
-                <div className="all-chores-payment">
-                    <div className="all-chores-payment-title">Total chore payments this week:</div>
-                    {/* <div className="all-chores-payment-amount">${totalDailyChorePayment + totalWeeklyChorePayment} */}
-                    <div className="all-chores-payment-amount">${allChoresPayment}
-                    {/* {totalDailyChorePayment !== null ? 
-                                totalWeeklyChorePayment !== null ? 
-                                    totalDailyChorePayment + totalWeeklyChorePayment : '0' : '0' 
-                            } */}
-                    </div>
-                </div>
+
                 <div className="chore-list">
                     {
                         choresExist ? 

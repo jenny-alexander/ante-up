@@ -8,8 +8,12 @@
     }
     & .card.user-profile-container {
         width: 50%;
-        padding: 3em;
+        padding: 2em;
         display: flex;
+        margin-bottom: 1.5em;
+        @media (max-width:425px) {
+            width: 70%;
+        }
         & .user-profile-header {   
             & .menu-profile-image {
                 display: flex;
@@ -17,8 +21,8 @@
                 justify-content: center;
                 gap: 1em;
                 & img {
-                    height: 100px;
-                    width: 100px;
+                    height: 90px;
+                    width: 90px;
                     padding: 5px;
                 }
             }
@@ -27,18 +31,19 @@
                     background-color: inherit;
                     border: none;
                     border-radius: 50%;
+                    padding: 0.65em;
                     &.selected-image {
-                        outline: 2px dashed #642464;                                
+                        outline: 3px dashed #a093a0bd;                                
                     }
                     &:hover {
                         cursor: pointer;
-                        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+                        box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
                         transition: box-shadow 0.2s ease-in-out; 
                       }
                 }
                 & img {
-                    height: 72px;
-                    width: 72px;
+                    height: 60px;
+                    width: 60px;
                 }
                 @media (max-width: 949px) {
                     column-gap: 2em;

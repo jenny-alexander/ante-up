@@ -42,10 +42,7 @@ textarea {
     }
     & .header {
       background-color: rgb(216, 232, 229);
-      padding-top: 1em;
-      position: relative;
-      //padding-bottom: 10px;
-      //min-height: 80px;
+      padding-top: 0.7em;
       max-height: 80px;
     }    
     & .right-border{
@@ -53,7 +50,6 @@ textarea {
     }
   }
   @media (min-width: 651px) and (max-width: 1625px) {
-  // and (max-width: 1625px) {
     grid-template-columns: minmax(auto, 20%) 1fr;
     grid-template-rows: 80px 1fr;
     grid-template-areas: 
@@ -67,7 +63,7 @@ textarea {
       }
   }
   @media (min-width: 1626px){
-    grid-template-columns: minmax(auto, 20%) 1fr minmax(auto, 20%);
+    grid-template-columns: minmax(auto, 25%) 1fr minmax(auto, 25%);
     grid-template-rows: 80px 1fr;
     grid-template-areas: 
       "navigation header right-border"
@@ -79,7 +75,6 @@ textarea {
 }
 
 .button-container {
-  //position: fixed;
   background-color:  rgb(216, 232, 229);
   top: 5%;
   right: 2%;
@@ -110,11 +105,9 @@ textarea {
   background: rgb(71, 96, 155);
 }
 .button-container span {
-  //background: #087f6b;
   background: rgb(51, 77, 92);
   border: none;
   height: 5px;
-  //width: 100%;
   width: 30px;
   margin-left: 1em;
   position: absolute;

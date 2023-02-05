@@ -14,12 +14,27 @@ function UserProfile(props) {
 
 
     const avatars = [
-        'kraken',
-        'mermaid',
-        'banshee',
-        'hades',
-        'jackalope',
-        'nymph',
+        // 'kraken',
+        // 'mermaid',
+        // 'banshee',
+        // 'hades',
+        // 'jackalope',
+        // 'nymph',
+        // 'frog',
+        // 'crab',
+        // 'leopard',
+        // 'hamster',
+        // 'dinosaur',
+        // 'whale',
+        // 'pig',
+        'hulk',
+        'groot',
+        'batgirl',
+        'wonderwoman',
+        'batman',
+        'spiderman',
+        'nick_fury',
+        'joker',
       ]
     
       const Slider = (props) => {
