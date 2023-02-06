@@ -2,11 +2,19 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
+// Get all chores
+router.get('/', (req, res) => {
+  const getAllChoresQuery = `SELECT * FROM chore;`;
+  pool.query(getAllChoresQuery)
+    .then((results) => {      
+      res.send(results.rows);
+    }).catch((error) => {
+      console.log('GET ALL chore records from server error is:', error);
+    })
+});
+
+// Get chores by userid
 router.get('/:id', (req, res) => {
-  // GET route code here
   const getChoreQuery = `SELECT chore.id, name, description, frequency, payment from user_chore
                         INNER JOIN chore
                         ON user_chore.chore_id = chore.id
@@ -19,9 +27,8 @@ router.get('/:id', (req, res) => {
     })
 });
 
-/**
- * POST route template
- */
+
+// Add chore
 router.post('/add', (req, res) => {
   const createChoreQuery = `INSERT INTO chore ("name", "description", "frequency", "payment")
                             VALUES($1,$2,$3,$4)

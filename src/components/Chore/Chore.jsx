@@ -5,13 +5,18 @@ import Card from '../Common/Card/Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import ChoreModal from './ChoreModal/ChoreModal';
+//import Modal from '../Common/Modal/Modal';
 import './Chore.scss';
 
 function Chore(props) {
     const dispatch = useDispatch();    
     const chores = useSelector((store) => store.chore);
+    //const chores = useSelector((store) => store.chore.userChore);
+    //const allChores = useSelector((store) => store.chore.allChore);
     const chorePayment = useSelector((store) => store.chorePayment);
     const [userChores, setUserChores] = useState([]);
+    const [allChores, setAllChores] = useState([]);
     const [choresExist, setChoresExist] = useState(false);
     const [frequencySelected, setFrequencySelected] = useState('All');      
     const [selectedRow, setSelectedRow] = useState(-1);    
@@ -20,9 +25,7 @@ function Chore(props) {
     const [choreTotalPayment, setChoreTotalPayment] = useState(0);
     const [scheduleIsDisabled, setScheduleIsDisabled] = useState(true);
     const [allChoresPayment, setAllChoresPayment] = useState(0);
-    const [totalDailyChorePayment, setTotalDailyChorePayment] = useState(null);
-    const [totalWeeklyChorePayment, setTotalWeeklyChorePayment] = useState(null);
-    const [paymentsArray, setPaymentsArray] = useState([]);
+    const [showModal, setShowModal] = useState(false);
 
     const options = [
         { value: 'All', label: 'All'},
@@ -34,10 +37,9 @@ function Chore(props) {
 
     useEffect(() => {
             dispatch( {type: "GET_CHORE_REQUESTED", payload: props.user.id});
+            dispatch( {type: "GET_ALL_CHORE_REQUESTED"});
             dispatch( {type: 'GET_DAILY_PAYMENT_REQUESTED', payload: {userID: props.user.id,weekID: 1}}); //<--TODO: set this dynamically
             dispatch( {type: 'GET_WEEKLY_PAYMENT_REQUESTED', payload: {userID: props.user.id,weekID: 1}}); //<--TODO: set this dynamically
-            // dispatch( { type: 'GET_TOTAL_DAILY_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: 1}})
-            // dispatch( { type: 'GET_TOTAL_WEEKLY_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: 1}})
     },[])
 
     useEffect(()=> {        
@@ -53,11 +55,20 @@ function Chore(props) {
     },[chorePayment.weeklyPayment.payment]);
 
     useEffect(() => {
-        if (chores.chore.length > 0) {
+        if (chores.userChore.chore.length > 0) {
+            console.log('chores.chore is:', chores.userChore.chore)
             setChoresExist(true);
-            setUserChores(chores.chore)
+            setUserChores(chores.userChore.chore)
         }
-    },[chores.chore]);
+    },[chores.userChore.chore]);
+
+    useEffect(() => {
+        if (chores.allChore.chore.length > 0) {
+            console.log('chores.allChore.chore is:', chores.allChore.chore)
+            //setChoresExist(true);
+            setAllChores(chores.allChore.chore)
+        }
+    },[chores.allChore.chore]);
 
     const buildPaymentState = ( payment, paymentType ) => {        
         const newStateArray = [];   
@@ -178,24 +189,53 @@ function Chore(props) {
         setAllChoresPayment(total);
         setScheduleIsDisabled(!scheduleIsDisabled);
     }
+
+    const showAddChoreModal = () => {
+        console.log('clicked on add chore modal');
+        setShowModal(true);
+    }
+    const hideChoreModal = () => {
+        setShowModal(false);
+    }
+
+    const filterChores = () => {
+        const result = [];
+        if ( userChores && allChores ) {
+            result = allChores.filter(all => 
+                userChores.every(user => user.id !== all.id));                
+        }
+        return result;
+    }
+    const closeModal = () => {
+        setShowModal(false);
+    }
+
+
     const ChoreListComponent = () => {
         return (
+            
             <div className="chore-main">
-                                <div className="all-chores-payment">
-                    <div className="all-chores-payment-title">Total chore payments this week:</div>
-                    <div className="all-chores-payment-amount">${allChoresPayment}
-                    </div>
-                </div>
-                <div className="chore-selector">                    
-                    <div className="selector-title">Frequency:</div>
-                    <div className="selector-dropdown">
+                {/* <button onClick={() => filterObjectArray(allChores, userChores)}>Click me</button> */}
+                <ChoreModal close={hideChoreModal}
+                            show={showModal} 
+                            title={'Assign Chore'}
+                            content={allChores.filter(all=>userChores.every(user => user.id !== all.id))} 
+                            actions={[{name: 'Assign', action: 'addChore'},
+                                //   {name: 'Cancel', action: 'hideChoreModal'}
+                                ]}
+                        />
+                <div className="frequency-selector">                    
+                    <div className="frequency-title">Frequency:</div>
+                    <div className="frequency-dropdown">
                         <Select options={options}
                                 onChange={handleFrequencyChange}                                
                                 value={frequencySelected}
                         />
                     </div>
+                    <div className="chore-actions">
+                        <button onClick={() => {showAddChoreModal()}}>Assign Chore</button>
+                    </div>
                 </div>
-
                 <div className="chore-list">
                     {
                         choresExist ? 
@@ -251,6 +291,11 @@ function Chore(props) {
                         </div>)                                             
                         : ''
                     }
+                </div>
+                <div className="all-chores-payment">
+                    <div className="all-chores-payment-title">Total chore payments this week:</div>
+                    <div className="all-chores-payment-amount">${allChoresPayment}
+                    </div>
                 </div>
             </div>            
         )
@@ -314,7 +359,7 @@ function Chore(props) {
         <div className='chore'>
             <div className='chore-container'>
                 <h1 className="chore-title">My Chores</h1>
-                <Card component={<ChoreListComponent />} />                
+                <Card component={<ChoreListComponent />} />   
             </div>
         </div>
     )

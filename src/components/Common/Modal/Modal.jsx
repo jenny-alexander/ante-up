@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
+
 import './Modal.scss';
 
 function Modal(props) {
@@ -9,15 +10,23 @@ function Modal(props) {
         <div className="modal-container">
             <div className="modal">
                 <h2>{props.title}</h2>
-                <div className="modal-content">
-                    I'll be the content
+                <div>
+                    { props.content.length > 0 ?
+                        props.content.map((content,i) => {
+                            return (
+                                <div className="modal-content">
+                                    <input type="checkbox" />
+                                    <div>{content.name}</div>
+                                </div>
+                            )
+                        })
+                        : <div>Nothing here</div>
+                    }
                 </div>
                 
                 <div className="modal-actions">                    
                     <div className="action-buttons">
-                        {/* Always provide ability to close the modal. */}
-                        <button onClick={props.close}>Close</button>
-                        {/* Loop through any other actions */}
+                        {/* <button onClick={props.close}>Close</button> */}
                         {
                             props.actions.map(action => {
                                 return (
@@ -41,5 +50,6 @@ Modal.PropTypes = {
     close: PropTypes.func.isRequired,
     show: PropTypes.bool.isRequired,
     actions: PropTypes.array,
+    content: PropTypes.array,
 }
 export default Modal;

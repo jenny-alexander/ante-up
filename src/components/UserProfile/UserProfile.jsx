@@ -31,7 +31,7 @@ function UserProfile(props) {
         'groot',
         'batgirl',
         'wonderwoman',
-        'batman',
+        'green_lantern',
         'spiderman',
         'nick_fury',
         'joker',

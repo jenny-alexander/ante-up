@@ -20,11 +20,11 @@ function Dashboard(props) {
     },[])
 
     useEffect(()=>{
-        if (chores.chore.length > 0) {
+        if (chores.userChore.chore.length > 0) {
             setChoresExist(true);
             setUserChores(chores.chore)
         }
-    },[chores.chore]);
+    },[chores.userChore.chore]);
 
     const DashboardContainer = () => {
         return (

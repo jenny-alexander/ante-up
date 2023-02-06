@@ -7,7 +7,7 @@ const router = express.Router();
  */
 router.get('/latest/:id', (req, res) => {
   const getLatestAllowanceQuery = `SELECT * FROM allowance where user_id = ${req.params.id}
-                             AND latest = TRUE;`;
+                             AND latest = TRUE;`;                             
   pool.query(getLatestAllowanceQuery)
     .then((results) => {
       res.send(results.rows[0])

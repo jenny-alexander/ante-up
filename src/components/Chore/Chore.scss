@@ -5,44 +5,50 @@ $greenButton: rgb(39, 95, 88);
     align-items: center;
     background-color: #f9f9f6;
     margin-bottom: 2em;
-    & .chore-title {
+    & .frequency-title {
         text-align: center;
         padding-top: 0.5em;
     }
     & .chore-container {
         width: 70%;
+        & .chore-title {
+            text-align: center;
+            padding-top: 0.5em;
+        }
         & .chore-main {
             display: flex;
             flex-direction: column;            
             width: 80%;
-            min-height: 15em;
-            padding-bottom: 1.5em;
-            & .chore-selector {
+            min-height: 15em;            
+            & .frequency-selector {
                 display: flex;
                 align-items: center;                
-                column-gap: 2em;
+                column-gap: 1.5em;
                 @media (max-width: 475px) {
                     column-gap: 0.5em;
                 }
                 margin-bottom: 2em;                
                 margin-top: 1em;
-                & .selector-dropdown{
+                & .frequency-dropdown{
                     width: 50%;
                     @media screen and (max-width:475px) {
                         width: 80%;
                     }
                 } 
+                @media (max-width: 890px) {
+                    flex-direction: column;
+                }
             }
             & .all-chores-payment {
                 margin-bottom: 0.5em;
-                margin-top: 0.5em;
+                margin-top: 1em;
                 display: flex;
                 flex-direction: row;
                 column-gap: 1em;
                 font-size: 1.2em;
                 border: 1px solid lightgrey;
                 padding: 0.5em;
-                border-radius: 10px;
+                //border-radius: 10px;
                 background-color: #ecf5ec95;
                 justify-content: center;
             }
@@ -142,7 +148,7 @@ $greenButton: rgb(39, 95, 88);
                                 //text-decoration: underline white 0.1em;
                                 outline: 5px solid #54a58d;
                                 border: 1px solid #54a58d;
-                                transition: outline 0.2s ease-in-out;
+                                transition: outline 0.1s ease-in-out;
                             }
                             &:focus {
                                 outline: 2px solid $greenButton;
@@ -159,6 +165,36 @@ $greenButton: rgb(39, 95, 88);
                     border-bottom: 1px solid #bacdd861;
                 }
             }
+
+            .chore-actions {
+                margin-bottom: 0.5em;
+                margin-top: 0.5em;
+                display: flex;
+                flex-direction: row;
+                -webkit-column-gap: 1em;
+                column-gap: 1em;
+                font-size: 1.2em;
+                & button {
+                    border-radius: 5px;
+                    align-items: baseline;
+                    //border: 1px solid lightgrey;
+                    padding: 0.75em 0.5em;
+                    border: 1px solid rgb(39, 95, 88);
+                    color: rgb(39, 95, 88);
+                    background-color: white;
+                    transition: background-color 0.8s;
+                    &:hover {
+                        cursor: pointer;
+                        //background-color: #c0bfbfd4;
+                        //background-color: rgb(242 255 250 / 83%);
+
+                        outline: 1px solid rgb(39, 95, 88);
+                        transition: outline 0.1s ease-in;
+                        
+                    }
+                }                 
+            }
+
             @media screen and (max-width:475px) {
                 table.mobile-optimised {
                     word-wrap:break-word;

@@ -1,3 +1,4 @@
+import { combineReducers } from 'redux';
 const initialState = {
     chore: {},
     loading: false,
@@ -5,7 +6,13 @@ const initialState = {
     changeSuccess: false,    
 }
 
-const choreReducer = (state = initialState, action) => {
+const allChoresInitialState = {
+    chore: {},
+    loading: false,
+    error: null,  
+}
+
+const userChore = (state = initialState, action) => {
     switch (action.type) {
 
         case 'GET_CHORE_REQUESTED':
@@ -22,5 +29,22 @@ const choreReducer = (state = initialState, action) => {
             return state;
     }
 }
+const allChore = (state = allChoresInitialState, action) => {
+    switch (action.type) {
 
-export default choreReducer;
+        case 'GET_ALL_CHORES_REQUESTED':
+            return { ...state, loading: true}
+        case 'GET_ALL_CHORES_SUCCESS':
+            return { ...state, loading: false, chore: action.payload, error: null }
+        case 'GET_ALL_CHORES_FAILED':
+            return { ...state, loading: false, error: action.payload,  }
+        default:
+            return state;
+    }
+}
+
+//export default choreReducer;
+export default combineReducers({
+    userChore, //chore per user
+    allChore, //all chores
+  });

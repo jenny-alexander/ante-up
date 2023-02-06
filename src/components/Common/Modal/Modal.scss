@@ -3,6 +3,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     background-color: rgba(248, 247, 247, 0.8);
+    //background-color: rgba(0,0,0,0.8);
     z-index:1000;
     position: fixed;
     top: 0;
@@ -11,53 +12,56 @@
     left: 0;
     
     .modal {
-    width: 30%; 
-    background: white;
-    border: 2px solid rgb(187, 186, 186);
-    //transition: 1.1s ease-out;
-    box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
-    filter: blur(0);
-    transform: scale(1);
-    opacity: 1;
-    visibility: visible;
+      width: 50%; 
+      background: white;
+      border: 2px solid rgb(187, 186, 186);
+      border-radius: 12px;
+      //transition: all 150ms ease-in-out;
+      transition: opacity 3s ease-in-out;
+      box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
+      filter: blur(0);
+      transform: scale(1);
+      opacity: 1;
+      visibility: visible;
 
-    /* To make the modal window center */
-    position: fixed;
-    left: 50%;
-    top: 30%;
-    transform: translate(-50%, -50%);
-            
-    h2 {
-      border-bottom: 1px solid #ccc;
-      padding: 1rem;
-      margin: 0;
-    }
-    .modal-content {
-      padding: 1rem;
-    }
-    .modal-actions {
-      display: flex;
-      justify-content: center;
-      border-top: 1px solid #ccc;
-      background: #eee;
-      padding: 0.5rem 1rem;
+      /* To make the modal window center */
+      position: fixed;
+      left: 50%;
+      top: 40%;
+      transform: translate(-50%, -50%);
+              
+      h2 {
+        border-bottom: 1px solid #ccc;
+        padding: 1rem;
+        margin: 0;
+      }
+      .modal-content {
+        padding: 1rem;
+        display: flex;        
+        gap: 0.5em;
+        align-items: center;
+      }
+      .modal-actions {
+        display: flex;
+        justify-content: center;
+        border-top: 1px solid #ccc;
+        background: #eee;
+        padding: 0.5rem 1rem;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
 
-      .action-buttons {
-        display:flex;
-        gap: 2em;
-        padding-top: 1em;
-        border: 0;
-        //background: #78f89f;
-        
-        border-radius: 5px;
-        
-        
-        font-size: 0.8rem;
-        line-height: 1;
-        &:hover {
-            cursor: pointer;
+        .action-buttons {
+          display:flex;
+          gap: 2em;
+          padding-top: 1em;
+          border: 0;
+          border-radius: 5px; 
+          font-size: 0.8rem;
+          line-height: 1;
+          &:hover {
+              cursor: pointer;
+          }
         }
       }
-    }
   }
 }

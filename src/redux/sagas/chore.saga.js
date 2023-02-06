@@ -18,6 +18,19 @@ function* fetchChore(action) {
     }
 }
 
+function* fetchAllChores() {
+    console.log('in fetchAllChores')
+    try {
+        //yield put({ type: 'UNSET_CHORE' });
+        const response = yield axios.get(`/api/chore`);
+        console.log('response.data is:', response.data)
+        yield put({ type: 'GET_ALL_CHORES_SUCCESS', payload: response.data });
+    } catch (error) {
+        yield put({ type: 'GET_ALL_CHORES_FAILED', payload: error });
+        console.log('Chore GET ALL CHORE request failed', error);
+    }
+}
+
 function* addChore(action) {
     console.log('in addChore with action.payload:', action.payload);
     try {
@@ -30,6 +43,7 @@ function* addChore(action) {
 
 function* choreSaga() {
     yield takeLatest('GET_CHORE_REQUESTED', fetchChore);
+    yield takeLatest('GET_ALL_CHORE_REQUESTED', fetchAllChores);
     yield takeLatest('ADD_CHORE', addChore);
 }
 

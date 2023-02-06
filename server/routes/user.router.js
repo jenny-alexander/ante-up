@@ -35,13 +35,11 @@ router.post('/register', (req, res, next) => {
 });
 
 //Update the user information
-router.put('/', (req, res) => {
-  console.log('update user req.body is:', req.body);
+router.put('/', (req, res) => {  
   let putQueryString = `UPDATE "user" SET username = '${req.body.username}',
                                                age = '${req.body.age}',
                                             avatar = '${req.body.avatar}'
-                                          WHERE id = ${req.body.id}`;
-  console.log('update user query is:', putQueryString);
+                                          WHERE id = ${req.body.id}`;  
   pool
     .query(putQueryString)
     .then((results) => {
