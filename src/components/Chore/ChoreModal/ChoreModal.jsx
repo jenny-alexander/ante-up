@@ -24,39 +24,61 @@ function Modal(props) {
                         <FontAwesomeIcon icon={faXmark} />
                     </button>
                 </div>
-                <div className="modal-body">
-                    <button className="add-new-chore" onClick={()=>setAddChore(!addChore)}>Add New Chore</button>
+                {/* <div><button className="add-chore-btn" onClick={()=>setAddChore(!addChore)}>Suggest New Chore</button></div> */}
+                <div className="modal-body">                    
                     { addChore ?
                         <div>
                             I will add a chore soon
                         </div> : null }
 
-                        <div>
+                        <div className={`${addChore ? 'modal-chore-list hide' : 'modal-chore-list'}`} >
                             { props.content.length > 0 ?
                                 props.content.map((content,i) => {
                                     return (
                                         <div className="modal-content">
-                                            <input type="checkbox" />
-                                            <div>{content.name}</div>
+                                            <div className="modal-chore-details">
+                                                <div className="modal-chore-payment">${content.payment}</div>
+                                                <div>
+                                                    <div className="chore-name">{content.name}</div>
+                                                    <div className="chore-frequency">{content.frequency}</div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <button>Assign</button>
+                                            </div> 
+                                            {/* <div className="modal-chore-payment">$3</div>
+                                            <div className="modal-chore">
+                                                <div className="chore-name">{content.name}</div>
+                                                <div className="chore-frequency">Daily</div>
+                                            </div>
+
+                                            */}
+
+                                            {/* <div className="modal-chore-payment">$3</div>
+                                            <div className="modal-chore">
+                                                <div className="chore-name">{content.name}</div>
+                                                <div className="chore-frequency">Daily</div>
+                                            </div>
+                                            <div>
+                                                <button>Assign</button>
+                                            </div> */}
                                         </div>
                                     )
                                 })
                                 : <div>Nothing here</div>
                             }
-                        </div>
-                    
-                    
+                        </div>                                        
                     <div className="modal-actions">                    
                         <div className="action-buttons">
                         
-                            {
+                            {/* {
                                 props.actions.map(action => {
                                     return (
                                         <button key="modal-action" onClick={action.method}>{action.name}</button>
                                     )
                                 })
-                            }
-                            <button onClick={props.close}>Cancel</button>
+                            } */}
+                            <button onClick={props.close}>Close</button>
                         </div>
                     </div>
                 </div>

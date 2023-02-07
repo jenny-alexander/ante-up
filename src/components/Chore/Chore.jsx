@@ -218,8 +218,9 @@ function Chore(props) {
                 {/* <button onClick={() => filterObjectArray(allChores, userChores)}>Click me</button> */}
                 <ChoreModal close={hideChoreModal}
                             show={showModal} 
-                            title={'Assign Chore'}
-                            content={allChores.filter(all=>userChores.every(user => user.id !== all.id))} 
+                            title={'Manage Chores'}
+                            // content={allChores.filter(all=>userChores.every(user => user.id !== all.id))} 
+                            content={allChores} 
                             actions={[{name: 'Assign', action: 'addChore'},
                                 //   {name: 'Cancel', action: 'hideChoreModal'}
                                 ]}
@@ -233,7 +234,7 @@ function Chore(props) {
                         />
                     </div>
                     <div className="chore-actions">
-                        <button onClick={() => {showAddChoreModal()}}>Assign Chore</button>
+                        <button onClick={() => {showAddChoreModal()}}>Manage Chores</button>
                     </div>
                 </div>
                 <div className="chore-list">
