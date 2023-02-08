@@ -70,7 +70,8 @@
     }
     & .modal-body {
       display: flex;
-      flex-direction: column;      
+      flex-direction: column;
+      border: 1px solid lightgrey;
       
         & .modal-chore-list {
           padding-top: 0.8em;

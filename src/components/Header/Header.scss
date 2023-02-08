@@ -23,8 +23,8 @@ $greenButton: rgb(39, 95, 88);
           margin-left: 1.5em;
         }
         & img {
-          width: 40px;
-          height: 40px;
+          width: 3em;
+          height: 3em;
         }
         & button {
           display: flex;
@@ -33,7 +33,7 @@ $greenButton: rgb(39, 95, 88);
           border-radius: 50%;
           justify-content: space-between;
           align-items: center;
-          padding: 5px 7px;
+          padding: 7px 9px;
           border: none;
           column-gap: 0.5em;
             &:hover {
