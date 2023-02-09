@@ -6,11 +6,27 @@ import PropTypes from 'prop-types';
 import './ChoreModal.scss';
 
 function Modal(props) {
-    const[addChore, setAddChore] = useState(false);
+    const[suggestChore, setSuggestChore] = useState(false);
+    const [userChoresExist, setUserChoresExist] = useState(false);
 
     useEffect(() => {
         console.log('props in modal are:', props);
     },[])
+
+    useEffect(() => {
+        console.log('in useEffect for user chores in MODAL!');
+        if (Object.entries(props.content.userChores).length > 0) {
+            setUserChoresExist(true);
+            // setUserChores(chores.userChore.chore)
+        }
+    },[props.content.userChores]);
+
+    const addChore = () => {
+        console.log('in assignChore!');
+    }
+    const removeChore = () => {
+        console.log('in assignChore!');
+    }
 
     if ( props.show ) {
         return (
@@ -21,19 +37,21 @@ function Modal(props) {
                     <button className="close-user-menu" 
                             onClick={props.close}
                     >
-                        <FontAwesomeIcon icon={faXmark} />
+                        {/* <FontAwesomeIcon icon={faXmark} /> */}
+                        Close
                     </button>
                 </div>
-                {/* <div><button className="add-chore-btn" onClick={()=>setAddChore(!addChore)}>Suggest New Chore</button></div> */}
+                {/* <div><button className="add-chore-btn" onClick={()=>setAddChore(!suggestChore)}>Suggest New Chore</button></div> */}
+                <div className="modal-body-container">
                 <div className="modal-body">                    
-                    { addChore ?
+                    { suggestChore ?
                         <div>
                             I will add a chore soon
                         </div> : null }
 
-                        <div className={`${addChore ? 'modal-chore-list hide' : 'modal-chore-list'}`} >
-                            { props.content.length > 0 ?
-                                props.content.map((content,i) => {
+                        <div className={`${suggestChore ? 'modal-chore-list hide' : 'modal-chore-list'}`} >
+                            { Object.entries(props.content.allChores).length > 0 ?
+                                props.content.allChores.map((content,i) => {
                                     return (
                                         <div className="modal-content">
                                             <div className="modal-chore-details">
@@ -43,44 +61,36 @@ function Modal(props) {
                                                     <div className="chore-frequency">{content.frequency}</div>
                                                 </div>
                                             </div>
-                                            <div>
-                                                <button>Assign</button>
+                                            <div className="manage-chore-btn">
+                                                {
+                                                    userChoresExist ? 
+                                                        props.content.userChores.find(chore => chore.id === content.id) ? <button onClick={()=> removeChore()}>Remove</button> 
+                                                            : <button onClick={()=> addChore()}>Add</button>
+                                                
+                                                        : <button onClick={()=> addChore()}>Add</button>
+                                                }
+                                                {/* <button onClick={()=> addChore()}>Add</button> */}
                                             </div> 
-                                            {/* <div className="modal-chore-payment">$3</div>
-                                            <div className="modal-chore">
-                                                <div className="chore-name">{content.name}</div>
-                                                <div className="chore-frequency">Daily</div>
-                                            </div>
-
-                                            */}
-
-                                            {/* <div className="modal-chore-payment">$3</div>
-                                            <div className="modal-chore">
-                                                <div className="chore-name">{content.name}</div>
-                                                <div className="chore-frequency">Daily</div>
-                                            </div>
-                                            <div>
-                                                <button>Assign</button>
-                                            </div> */}
                                         </div>
                                     )
                                 })
                                 : <div>Nothing here</div>
                             }
                         </div>                                        
-                    <div className="modal-actions">                    
+                    {/* <div className="modal-actions">                    
                         <div className="action-buttons">
                         
-                            {/* {
+                            {
                                 props.actions.map(action => {
                                     return (
                                         <button key="modal-action" onClick={action.method}>{action.name}</button>
                                     )
                                 })
-                            } */}
+                            }
                             <button onClick={props.close}>Close</button>
                         </div>
-                    </div>
+                    </div> */}
+                </div>
                 </div>
             </div>
         </div>

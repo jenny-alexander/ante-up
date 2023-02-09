@@ -190,8 +190,8 @@ function Chore(props) {
         setScheduleIsDisabled(!scheduleIsDisabled);
     }
 
-    const showAddChoreModal = () => {
-        console.log('clicked on add chore modal');
+    const showManageChoreModal = () => {
+        console.log('clicked on manage chore modal');
         setShowModal(true);
     }
     const hideChoreModal = () => {
@@ -220,7 +220,10 @@ function Chore(props) {
                             show={showModal} 
                             title={'Manage Chores'}
                             // content={allChores.filter(all=>userChores.every(user => user.id !== all.id))} 
-                            content={allChores} 
+                            content={
+                                        {allChores: allChores, 
+                                        userChores: userChores}
+                                    } 
                             actions={[{name: 'Assign', action: 'addChore'},
                                 //   {name: 'Cancel', action: 'hideChoreModal'}
                                 ]}
@@ -234,7 +237,7 @@ function Chore(props) {
                         />
                     </div>
                     <div className="chore-actions">
-                        <button onClick={() => {showAddChoreModal()}}>Manage Chores</button>
+                        <button onClick={() => {showManageChoreModal()}}>Manage Chores</button>
                     </div>
                 </div>
                 <div className="chore-list">

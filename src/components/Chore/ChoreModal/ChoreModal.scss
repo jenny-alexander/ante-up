@@ -43,21 +43,44 @@
         display: flex;
         justify-content: center;
         font-size: 1.8em;
-        width: 100%;  
+        width: 100%;
+        align-items: center;
       }
-      & button {
-        display: flex;
-        background-color: inherit;
-        border: none;
-        &:hover {
-          cursor: pointer;
-        }
-      }
+      // & button {
+        // display: flex;
+        // background-color: inherit;
+        // border: none;
+        & button {
+          border-radius: 15px;
+          // background-color: rgb(104, 117, 217);
+          // border: rgb(104, 117, 217);
+          background-color: rgb(39, 95, 88);
+          border: 1px solid rgb(39, 95, 88);
+          color: white;
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+          0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+          padding: 0.5em 1em;
+          //margin: 1em;
+          //letter-spacing: 0.2em;
+          
+          &:hover {
+              cursor: pointer;          
+                //outline: 4px solid rgb(12 30 164 / 87%);
+                outline: 5px solid #54a58d;
+                border: 1px solid #54a58d;
+                transition: outline 0.1s ease-in-out;
+            }
+          
+        } 
+
+      // }
     }
     & .add-chore-btn {
-      color: rgb(104, 117, 217);
       background-color: white;
-      border: 1px solid rgb(104, 117, 217);
+      // color: rgb(104, 117, 217);
+      // border: 1px solid rgb(104, 117, 217);
+      color: rgb(39, 95, 88);
+      background-color: rgb(39, 95, 88);
       box-shadow: none;
       padding: 0.75em 0.75em;
       margin: 1em;
@@ -68,6 +91,18 @@
         transition: outline 0.1s ease-in;
       }
     }
+    // & .modal-body-container {
+    //   // border: 1px solid cadetblue;
+    //   color: cadetblue;
+    //   display: inline-block;
+    //   padding: 10px;
+    //   border-width: 5px;
+    //   border-left-color: cadetblue;
+    //   border-bottom-color: cadetblue;
+    //   border-right-color: cadetblue;
+    //   border-top-color: cadetblue;
+    //   border-radius: 40px;
+    
     & .modal-body {
       display: flex;
       flex-direction: column;
@@ -93,10 +128,15 @@
             border-radius: 12px;
             width: 60%;
             & button {
+              display: flex;
               border:none;
               background-color: inherit;
-              color: rgb(104, 117, 217);
+              //color: rgb(104, 117, 217);
+              color: rgb(39, 95, 88);
               text-transform: uppercase;
+              &:hover {
+                cursor: pointer;
+              }
             }
             & .modal-chore-details {
               display: flex;
@@ -115,8 +155,10 @@
               font-size: 0.9em;
               padding: 0.5em;
               display:flex;
-              border: 1px solid rgb(104, 117, 217);
-              background-color: rgb(104, 117, 217);
+              // border: 1px solid rgb(104, 117, 217);
+              // background-color: rgb(104, 117, 217);
+              border: 1px solid rgb(39, 95, 88);
+              background-color: rgb(39, 95, 88);
               color: white;
               border-radius: 50%;
               height: 1em;
@@ -159,7 +201,7 @@
             } 
           }
         }
-    }
-
+    // }
+  }
 }
 }
