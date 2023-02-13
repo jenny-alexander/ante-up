@@ -28,6 +28,18 @@ router.get('/weekly/:userID/:weekID', (req, res) => {
     })
 });
 
+router.get('/adhoc/:userID/:weekID', (req, res) => {
+  const adhocPaymentQuery = `SELECT * FROM chore_payment_adhoc
+                        WHERE user_id = ${req.params.userID}
+                        AND week_id = ${req.params.weekID};`;      
+  pool.query(adhocPaymentQuery)
+    .then((results) => {
+      res.send(results.rows);
+    }).catch((error) => {
+      console.log('SELECT adhoc chore payment error is:', error);
+    })
+});
+
 router.get('/daily/total/:userID/:weekID', (req, res) => {  
   const dailyTotalQuery = `SELECT SUM (total_payment) AS total_daily_chore FROM chore_payment_daily
                         WHERE user_id = ${req.params.userID}
@@ -49,6 +61,18 @@ router.get('/weekly/total/:userID/:weekID', (req, res) => {
       res.send(results?.rows[0]?.total_weekly_chore);
     }).catch((error) => {
       console.log('SELECT weekly total chore payment error is:', error);
+    })
+});
+
+router.get('/adhoc/total/:userID/:weekID', (req, res) => {  
+  const adhocTotalQuery = `SELECT SUM (total_payment) AS total_adhoc_chore FROM chore_payment_adhoc
+                             WHERE user_id = ${req.params.userID}
+                             AND week_id = ${req.params.weekID};`;                             
+  pool.query(adhocTotalQuery)
+    .then((results) => {      
+      res.send(results?.rows[0]?.total_adhoc_chore);
+    }).catch((error) => {
+      console.log('SELECT adhoc total chore payment error is:', error);
     })
 });
 
@@ -80,13 +104,30 @@ router.put('/weekly', (req, res) => {
   const updateWeeklyPaymentQuery = `UPDATE chore_payment_weekly 
                                     SET weekly = ${req.body.schedule.weekly},
                                     total_payment = ${req.body.totalPayment}
-                                    WHERE id = ${req.body.id};`;
-    console.log('updateWeeklyPaymentQuery is:', updateWeeklyPaymentQuery)
+                                    WHERE id = ${req.body.id};`;    
   pool.query(updateWeeklyPaymentQuery)
     .then((result) => {
       res.sendStatus(200);
     }).catch((error) => {
       console.log('Update weekly payment error is:', error);
+      res.sendStatus(500);
+    })
+});
+
+/**
+ * UPDATE ADHOC PAYMENT
+ */
+router.put('/adhoc', (req, res) => {
+  
+  const updateAdhocPaymentQuery = `UPDATE chore_payment_adhoc 
+                                    SET adhoc = ${req.body.schedule.adhoc},
+                                    total_payment = ${req.body.totalPayment}
+                                    WHERE id = ${req.body.id};`;    
+  pool.query(updateAdhocPaymentQuery)
+    .then((result) => {
+      res.sendStatus(200);
+    }).catch((error) => {
+      console.log('Update adhoc payment error is:', error);
       res.sendStatus(500);
     })
 });

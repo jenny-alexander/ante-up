@@ -94,13 +94,15 @@ $greenButton: rgb(39, 95, 88);
               
                   tr:has(.expanded-row-content.hide-row) {
                     background-color: white;
+                    //border: 1px solid  rgb(39, 95, 88);
+                    // border-radius: 12px;
                   }
                   tr:has(.expanded-row-content.hide-row):hover {
                     background-color: rgb(243, 243, 243);
                   }
                   tr:has(.expanded-row-content.show-row) {
                     background-color: rgb(243 243 243 / 57%);
-                    border: 1px solid darkgreen;
+                    border: 1px solid rgb(39, 95, 88);
                   }
 
                   .expanded-row-content {                                      
@@ -217,6 +219,7 @@ $greenButton: rgb(39, 95, 88);
                     box-sizing:border-box;
                 }
                 table.mobile-optimised tbody, table.mobile-optimised tr {
+                    //border: 1px darkgreen;
                     display:block
                 }
                 .mobile-optimised td:before {

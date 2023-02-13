@@ -22,10 +22,10 @@ function Modal(props) {
     },[props.content.userChores]);
 
     const addChore = () => {
-        console.log('in assignChore!');
+        console.log('in addChore!');
     }
     const removeChore = () => {
-        console.log('in assignChore!');
+        console.log('in removeChore!');
     }
 
     if ( props.show ) {

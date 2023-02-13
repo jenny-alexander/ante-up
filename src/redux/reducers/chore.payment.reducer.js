@@ -14,6 +14,13 @@ const weeklyInitialState = {
     changeSuccess: false,
 }
 
+const adhocInitialState = {
+    payment: [],
+    loading: false,
+    error: null,
+    changeSuccess: false,
+}
+
 const dailyPayment = (state = dailyInitialState, action) => {
     switch (action.type) {
         case 'GET_DAILY_PAYMENT_REQUESTED':
@@ -48,32 +55,25 @@ const weeklyPayment = (state = weeklyInitialState, action) => {
     }
 }
 
-// const dailyTotalChorePayment = (state = 0, action ) => { 
-//         switch (action.type) {        
-//         case 'GET_TOTAL_DAILY_CHORE_PAYMENT_SUCCESS':            
-//             return action.payload;
-//         case 'SET_TOTAL_DAILY_CHORE_PAYMENT':            
-//             return action.payload;
-//         default:
-//             return state;
-//     }
-// }
-
-// const weeklyTotalChorePayment = (state = 0, action ) => { 
-//     switch (action.type) {    
-//     case 'GET_TOTAL_WEEKLY_CHORE_PAYMENT_SUCCESS':        
-//         return action.payload;
-//     case 'SET_TOTAL_WEEKLY_CHORE_PAYMENT':        
-//         return action.payload;        
-//     default:
-//         return state;
-//     }
-// }
+const adhocPayment = (state = adhocInitialState, action) => {
+    switch (action.type) {
+        case 'GET_ADHOC_PAYMENT_REQUESTED':
+            return { ...state, loading: true, changeSuccess: false }
+        case 'GET_ADHOC_PAYMENT_SUCCESS':
+            return { ...state, loading: false, payment: action.payload, error: null, changeSuccess: false }
+        case 'GET_ADHOC_PAYMENT_FAILED':
+            return { ...state, loading: false, error: action.payload, changeSuccess: false }
+        case 'PUT_ADHOC_PAYMENT_SUCCESS':
+            return { ...state, loading: false, error: null, changeSuccess: true }
+        case 'UPDATE_ADHOC_PAYMENT_FAILED':
+                return { ...state, loading: false, error: action.payload, changeSuccess: false }
+        default:
+            return state;
+    }
+}
 
 export default combineReducers({
-    //allowance,
     dailyPayment,
     weeklyPayment,
-    // dailyTotalChorePayment,
-    // weeklyTotalChorePayment,
+    adhocPayment,
 });

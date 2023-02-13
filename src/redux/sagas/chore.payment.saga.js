@@ -56,6 +56,25 @@ function* updateWeeklyPayment(action) {
     }
 }
 
+function* fetchAdhocPayment(action) {
+    try {        
+        const response = yield axios.get(`/api/chore/payment/adhoc/${action.payload.userID}/${action.payload.weekID}`);
+        yield put({ type: 'GET_ADHOC_PAYMENT_SUCCESS', payload: response.data });
+    } catch (error) {
+        yield put({ type: 'GET_ADHOC_PAYMENT_FAILED', payload: error });        
+    }
+}
+
+function* updateAdhocPayment(action) {    
+    console.log('updateAdHocPayment action is:', action);
+    try {
+        const response = yield axios.put(`/api/chore/payment/adhoc`, action.payload);
+    } catch (error) {
+        yield put({ type: 'PUT_ADHOC_PAYMENT_FAILED', payload: error });        
+    }
+}
+
+
 // function* fetchTotalWeeklyChorePayment(action) {    
 //     try {        
 //         const response = yield axios.get(`/api/chore/payment/weekly/total/${action.payload.userID}/${action.payload.weekID}`);        
@@ -69,8 +88,10 @@ function* updateWeeklyPayment(action) {
 function* chorePaymentSaga() {
     yield takeLatest('GET_DAILY_PAYMENT_REQUESTED', fetchDailyPayment);
     yield takeLatest('GET_WEEKLY_PAYMENT_REQUESTED', fetchWeeklyPayment);
+    yield takeLatest('GET_ADHOC_PAYMENT_REQUESTED', fetchAdhocPayment);
     yield takeLatest('UPDATE_DAILY_PAYMENT', updateDailyPayment);
     yield takeLatest('UPDATE_WEEKLY_PAYMENT', updateWeeklyPayment);
+    yield takeLatest('UPDATE_ADHOC_PAYMENT', updateAdhocPayment);
     // yield takeLatest('GET_TOTAL_DAILY_CHORE_PAYMENT', fetchTotalDailyChorePayment);
     // yield takeLatest('GET_TOTAL_WEEKLY_CHORE_PAYMENT', fetchTotalWeeklyChorePayment);
 }
