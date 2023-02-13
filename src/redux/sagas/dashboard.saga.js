@@ -19,6 +19,15 @@ function* fetchTotalWeeklyChorePayment(action) {
     }
 }
 
+function* fetchTotalAdhocChorePayment(action) {    
+    try {        
+        const response = yield axios.get(`/api/chore/payment/adhoc/total/${action.payload.userID}/${action.payload.weekID}`);        
+        yield put({ type: 'GET_TOTAL_ADHOC_CHORE_PAYMENT_SUCCESS', payload: response.data });
+    } catch (error) {
+        yield put({ type: 'GET_TOTAL_ADHOC_CHORE_PAYMENT_FAILED', payload: error });        
+    }
+}
+
 function* fetchIndividualChorePayment(action) {    
     try {        
         const response = yield axios.get(`/api/dashboard/payment/individual/${action.payload.userID}/${action.payload.weekID}`);
@@ -31,6 +40,7 @@ function* fetchIndividualChorePayment(action) {
 function* dashboardSaga() {
     yield takeLatest('GET_TOTAL_DAILY_CHORE_PAYMENT', fetchTotalDailyChorePayment);
     yield takeLatest('GET_TOTAL_WEEKLY_CHORE_PAYMENT', fetchTotalWeeklyChorePayment);
+    yield takeLatest('GET_TOTAL_ADHOC_CHORE_PAYMENT', fetchTotalAdhocChorePayment);
     yield takeLatest('GET_INDIVIDUAL_CHORE_PAYMENT', fetchIndividualChorePayment);
 }
 

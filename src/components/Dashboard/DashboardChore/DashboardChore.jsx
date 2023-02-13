@@ -12,12 +12,6 @@ function DashboardChore(props) {
         dispatch( { type: 'GET_INDIVIDUAL_CHORE_PAYMENT', payload: { userID: props.user.id, weekID: 1} }); //TODO: Make dynamic
     },[]);
 
-    // useEffect(()=>{        
-    //     if (props.chore.length > 0) {            
-    //         setUserChores(props.chore);
-    //     }
-    // },[props.chore]);
-
     useEffect(()=>{        
         console.log('individualChorePayment is:', chorePayments);
         if (chorePayments.length > 0) {

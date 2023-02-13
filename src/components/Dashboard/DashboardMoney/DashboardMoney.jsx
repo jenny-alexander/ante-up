@@ -10,17 +10,20 @@ function DashboardMoney(props) {
     const allowance = useSelector((store) => store.allowance); //TODO: rename as store (i.e. allowanceStore)
     const dailyTotalChorePayment = useSelector((store) => store.dashboard.dailyTotalChorePayment); 
     const weeklyTotalChorePayment = useSelector((store) => store.dashboard.weeklyTotalChorePayment);
+    const adhocTotalChorePayment = useSelector((store) => store.dashboard.adhocTotalChorePayment);
     const[nextAllowance, setNextAllowance] = useState('');
     const[allowanceAmounts, setAllowanceAmounts] = useState({});
     const[allowanceGoal, setAllowanceGoal] = useState({});
-    const[totalDailyChorePayment, setTotalDailyChorePayment] = useState(null);
-    const[totalWeeklyChorePayment, setTotalWeeklyChorePayment] = useState(null);    
+    const[totalDailyChorePayment, setTotalDailyChorePayment] = useState(0);
+    const[totalWeeklyChorePayment, setTotalWeeklyChorePayment] = useState(0);
+    const[totalAdhocChorePayment, setTotalAdhocChorePayment] = useState(0);  
 
     useEffect(() => {
         dispatch( {type: 'GET_BANK_REQUESTED', payload: props.user.id}); // TODO: STICK WITH SAME NAMING CONVENTION (FETCH vs GET)
         dispatch( { type: 'FETCH_LATEST_ALLOWANCE', payload: props.user.id });
         dispatch( { type: 'GET_TOTAL_DAILY_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: 1}}); //TODO: Make dynamic
         dispatch( { type: 'GET_TOTAL_WEEKLY_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: 1}}); //TODO: Make dynamic
+        dispatch( { type: 'GET_TOTAL_ADHOC_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: 1}}); //TODO: Make dynamic
     },[])
 
     useEffect(()=>{
@@ -53,10 +56,18 @@ function DashboardMoney(props) {
         setTotalWeeklyChorePayment(weeklyTotalChorePayment);
     }, [weeklyTotalChorePayment]);
 
-
     useEffect(() => {              
         setTotalDailyChorePayment(dailyTotalChorePayment);
-    }, [dailyTotalChorePayment])
+    }, [dailyTotalChorePayment]);
+
+    useEffect(() => {              
+        setTotalAdhocChorePayment(adhocTotalChorePayment);
+    }, [adhocTotalChorePayment]);
+
+    const allChoresPayment = () => {
+        console.log('in allChoresPayment');
+
+    }
 
     return (
         <div className="dashboard-money">            
@@ -86,10 +97,13 @@ function DashboardMoney(props) {
                     <div className="circle-text">
                         <div className="title">Chores:</div>
                         <div className="amount">$
-                            {totalDailyChorePayment !== null ? 
+                        {
+                            totalDailyChorePayment + totalAdhocChorePayment + totalWeeklyChorePayment
+                        }
+                            {/* {totalDailyChorePayment !== null ? 
                                 totalWeeklyChorePayment !== null ? 
                                     totalDailyChorePayment + totalWeeklyChorePayment : '0' : '0' 
-                            }
+                            } */}
                         </div>
                     </div>
                 </div>                

@@ -5,11 +5,7 @@ const router = express.Router();
  * GET route template
  */
 // router.get('/payment/individual/1/1')
-router.get('/payment/individual/:userID/:weekID', (req, res) => {
-  // GET route code here
-    // const individualChorePaymentQuery = `SELECT chore_id, total_payment FROM chore_payment_daily
-    //                     WHERE user_id = ${req.params.userID}
-    //                     AND week_id = ${req.params.weekID};`;       
+router.get('/payment/individual/:userID/:weekID', (req, res) => {    
     let query = `SELECT b.name, a.chore_id, a.total_payment
                 FROM chore_payment_daily AS a
                 INNER JOIN chore AS b
@@ -26,10 +22,21 @@ router.get('/payment/individual/:userID/:weekID', (req, res) => {
                 AND a.week_id = ${req.params.weekID};`;            
         pool.query(query)
         .then((weeklyResults) => {
-            const mergedResults = [...dailyResults.rows, ...weeklyResults.rows];
-            res.send(mergedResults);
+            query = `SELECT b.name, a.chore_id, a.total_payment
+            FROM chore_payment_adhoc AS a
+            INNER JOIN chore AS b
+            ON b.id = a.chore_id
+            WHERE a.user_id = ${req.params.userID} 
+            AND a.week_id = ${req.params.weekID};`;
+            pool.query(query)
+             .then((adhocResults) => {
+                const mergedResults = [...dailyResults.rows, ...weeklyResults.rows, ...adhocResults.rows];
+                res.send(mergedResults);
+              }).catch((error) => {
+                console.log('SELECT individual adhoc chore payment error is:', error);
+            })
         }).catch((error) => {
-            console.log('SELECT individual daily chore payment error is:', error);
+            console.log('SELECT individual weekly chore payment error is:', error);
         })
     }).catch((error) => {
       console.log('SELECT individual daily chore payment error is:', error);
