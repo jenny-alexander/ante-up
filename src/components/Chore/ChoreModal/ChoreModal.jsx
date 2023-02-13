@@ -24,8 +24,8 @@ function Modal(props) {
     const addChore = () => {
         console.log('in addChore!');
     }
-    const removeChore = () => {
-        console.log('in removeChore!');
+    const removeChore = (chore) => {
+        console.log('in removeChore and chore parm is:', chore);
     }
 
     if ( props.show ) {
@@ -64,7 +64,7 @@ function Modal(props) {
                                             <div className="manage-chore-btn">
                                                 {
                                                     userChoresExist ? 
-                                                        props.content.userChores.find(chore => chore.id === content.id) ? <button onClick={()=> removeChore()}>Remove</button> 
+                                                        props.content.userChores.find(chore => chore.id === content.id) ? <button onClick={()=> removeChore(content)}>Remove</button> 
                                                             : <button onClick={()=> addChore()}>Add</button>
                                                 
                                                         : <button onClick={()=> addChore()}>Add</button>
