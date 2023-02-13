@@ -27,8 +27,55 @@ router.get('/:id', (req, res) => {
     })
 });
 
+//Assign chore to user
+router.post('/add', (req, res) => {
+  const assignChoreToUserQuery = `INSERT INTO user_chore ("chore_id", "user_id")
+                              VALUES($1,$2)`;
+  pool.query(assignChoreToUserQuery, [req.body.choreId, req.body.userId])
+      .then((results) => {
+          //res.sendStatus(201);
+          const getChoreQuery = `SELECT chore.id, name, description, frequency, payment from user_chore
+                                INNER JOIN chore
+                                ON user_chore.chore_id = chore.id
+                                WHERE user_id = ${req.body.userId};`;  
+          pool.query(getChoreQuery)
+            .then((results) => {      
+              res.send(results.rows);
+            }).catch((error) => {
+            console.log('GET chore records from server error is:', error);
+          })
+      })
+      .catch((error) => {
+          console.log('assign chore to user error:', error);
+          res.sendStatus(500);
+      })
+})
 
-// Add chore
+//Remove chore from user
+router.put('/remove', (req, res) => {
+  const removeChoreFromUserQuery = `DELETE FROM user_chore WHERE chore_id = ${req.body.choreId}
+                                    AND user_id = ${req.body.userId};`;                              
+  pool.query(removeChoreFromUserQuery)
+      .then((results) => {
+          //res.sendStatus(201);
+          const getChoreQuery = `SELECT chore.id, name, description, frequency, payment from user_chore
+                                INNER JOIN chore
+                                ON user_chore.chore_id = chore.id
+                                WHERE user_id = ${req.body.userId};`;  
+            pool.query(getChoreQuery)
+              .then((results) => {      
+                res.send(results.rows);
+              }).catch((error) => {
+                console.log('GET chore records from server error is:', error);
+              })
+      })
+      .catch((error) => {
+          console.log('assign chore to user error:', error);
+          res.sendStatus(500);
+      })
+})
+
+// Add chore to list of all chores
 router.post('/add', (req, res) => {
   const createChoreQuery = `INSERT INTO chore ("name", "description", "frequency", "payment")
                             VALUES($1,$2,$3,$4)

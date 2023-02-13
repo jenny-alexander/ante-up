@@ -30,18 +30,21 @@ function Chore(props) {
         { value: 'All', label: 'All'},
         { value: 'Daily', label: 'Daily' },
         { value: 'Weekly', label: 'Weekly' },
-        // { value: 'Monthly', label: 'Monthly' },
         { value: 'Ad hoc', label: 'Ad hoc'}
       ]
 
     useEffect(() => {
             dispatch( {type: "GET_CHORE_REQUESTED", payload: props.user.id});
             dispatch( {type: "GET_ALL_CHORE_REQUESTED"});
-            dispatch( {type: 'GET_DAILY_PAYMENT_REQUESTED', payload: {userID: props.user.id,weekID: 1}}); //<--TODO: set this dynamically
-            dispatch( {type: 'GET_WEEKLY_PAYMENT_REQUESTED', payload: {userID: props.user.id,weekID: 1}}); //<--TODO: set this dynamically
-            dispatch( {type: 'GET_ADHOC_PAYMENT_REQUESTED', payload: {userID: props.user.id,weekID: 1}}); //<--TODO: set this dynamically
-
     },[])
+
+    useEffect(()=>{        
+        if (Object.entries(props.week).length !==0 ) {            
+            dispatch( {type: 'GET_DAILY_PAYMENT_REQUESTED', payload: {userID: props.user.id,weekID: props.week.week_no}}); //<--TODO: set this dynamically
+            dispatch( {type: 'GET_WEEKLY_PAYMENT_REQUESTED', payload: {userID: props.user.id,weekID: props.week.week_no}}); //<--TODO: set this dynamically
+            dispatch( {type: 'GET_ADHOC_PAYMENT_REQUESTED', payload: {userID: props.user.id,weekID: props.week.week_no}}); //<--TODO: set this dynamically            
+        }        
+    },[props.week])
 
     useEffect(()=> {        
         if (chorePayment.dailyPayment.payment.length > 0) {                        
@@ -236,15 +239,21 @@ function Chore(props) {
         setShowModal(false);
     }
 
+    const updateChoreList = () => {
+        console.log('in updateChoreList because chore was added or removed!');
+        dispatch( {type: "GET_CHORE_REQUESTED", payload: props.user.id});
+    }
 
     const ChoreListComponent = () => {
         return (
             
             <div className="chore-main">
                 {/* <button onClick={() => filterObjectArray(allChores, userChores)}>Click me</button> */}
-                <ChoreModal close={hideChoreModal}
+                <ChoreModal user={props.user}
+                            close={hideChoreModal}
                             show={showModal} 
                             title={'Manage Chores'}
+                            updateChoreList={updateChoreList}
                             // content={allChores.filter(all=>userChores.every(user => user.id !== all.id))} 
                             content={
                                         {allChores: allChores, 

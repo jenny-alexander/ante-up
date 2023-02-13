@@ -8,12 +8,16 @@ function DashboardChore(props) {
     const chorePayments = useSelector((store) => store.dashboard.individualChorePayments);
     const [choresTotal, setChoresTotal] = useState(0)
 
-    useEffect(() => {
-        dispatch( { type: 'GET_INDIVIDUAL_CHORE_PAYMENT', payload: { userID: props.user.id, weekID: 1} }); //TODO: Make dynamic
-    },[]);
+    useEffect(()=>{
+        if (Object.entries(props.weekInfo).length !==0 ) {
+            dispatch( { type: 'GET_INDIVIDUAL_CHORE_PAYMENT', 
+            payload: { 
+                    userID: props.user.id, 
+                    weekID: props.weekInfo.week_no} });
+        }        
+    },[props.weekInfo])
 
     useEffect(()=>{        
-        console.log('individualChorePayment is:', chorePayments);
         if (chorePayments.length > 0) {
             setUserChores(chorePayments);
             let total = 0;
@@ -27,7 +31,6 @@ function DashboardChore(props) {
 
     return (
         <div className="dashboard-chore">
-            {/* <div>HERE THEY ARE:{JSON.stringify(individualChorePayments)}</div> */}
             <div className="dashboard-chore-title">This week's chores</div>
             {userChores.map((chore,i) => 
                 <div className="dashboard-chore-card">

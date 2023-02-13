@@ -14,9 +14,7 @@ function Dashboard(props) {
     const [choresExist, setChoresExist] = useState(false);    
 
     useEffect(() => {
-        dispatch({type: 'GET_CHORE_REQUESTED', payload: props.user.id})
-        //dispatch( {type: 'GET_DAILY_PAYMENT_REQUESTED', payload: {userID: props.user.id,weekID: 1}}); //<--TODO: set this dynamically
-        //dispatch( {type: 'GET_WEEKLY_PAYMENT_REQUESTED', payload: {userID: props.user.id,weekID: 1}}); //<--TODO: set this dynamically
+        dispatch({type: 'GET_CHORE_REQUESTED', payload: props.user.id})        
     },[])
 
     useEffect(()=>{
@@ -25,20 +23,6 @@ function Dashboard(props) {
             setUserChores(chores.chore)
         }
     },[chores.userChore.chore]);
-
-    const DashboardContainer = () => {
-        return (
-            <div className="dashboard-main">                                   
-                <DashboardCalendar user={props.user}/>
-                <DashboardMoney 
-                    user={props.user} 
-                    weekInfo={props.week} />
-                <DashboardChore                    
-                    user={props.user}
-                    chore={userChores} />                        
-            </div>
-        )
-    }
 
     return (
         <div className="dashboard">
@@ -50,7 +34,8 @@ function Dashboard(props) {
                     weekInfo={props.week} />
                 <DashboardChore                    
                     user={props.user}
-                    chore={userChores} />                        
+                    chore={userChores}
+                    weekInfo={props.week} />                        
             </div>
         </div>
     )

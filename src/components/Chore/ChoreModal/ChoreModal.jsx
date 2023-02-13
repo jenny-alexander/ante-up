@@ -1,17 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import './ChoreModal.scss';
 
 function Modal(props) {
+    const dispatch = useDispatch();
     const[suggestChore, setSuggestChore] = useState(false);
     const [userChoresExist, setUserChoresExist] = useState(false);
 
-    useEffect(() => {
-        console.log('props in modal are:', props);
-    },[])
+    // useEffect(() => {
+    //     console.log('props in modal are:', props);
+    // },[])
 
     useEffect(() => {
         console.log('in useEffect for user chores in MODAL!');
@@ -21,11 +21,22 @@ function Modal(props) {
         }
     },[props.content.userChores]);
 
-    const addChore = () => {
-        console.log('in addChore!');
+    const addChore = (chore) => {
+        console.log('in addChore and chore param is:', chore);
+        dispatch( {type: 'ASSIGN_CHORE_TO_USER', 
+                   payload: {
+                        choreId: chore.id, 
+                        userId: props.user.id},
+                    });
     }
+
     const removeChore = (chore) => {
         console.log('in removeChore and chore parm is:', chore);
+        dispatch( {type: 'REMOVE_CHORE_FROM_USER', 
+        payload: {
+             choreId: chore.id, 
+             userId: props.user.id},
+         });
     }
 
     if ( props.show ) {
@@ -65,9 +76,9 @@ function Modal(props) {
                                                 {
                                                     userChoresExist ? 
                                                         props.content.userChores.find(chore => chore.id === content.id) ? <button onClick={()=> removeChore(content)}>Remove</button> 
-                                                            : <button onClick={()=> addChore()}>Add</button>
+                                                            : <button onClick={()=> addChore(content)}>Add</button>
                                                 
-                                                        : <button onClick={()=> addChore()}>Add</button>
+                                                        : <button onClick={()=> addChore(content)}>Add</button>
                                                 }
                                                 {/* <button onClick={()=> addChore()}>Add</button> */}
                                             </div> 

@@ -20,16 +20,16 @@ function DashboardMoney(props) {
 
     useEffect(() => {
         dispatch( {type: 'GET_BANK_REQUESTED', payload: props.user.id}); // TODO: STICK WITH SAME NAMING CONVENTION (FETCH vs GET)
-        dispatch( { type: 'FETCH_LATEST_ALLOWANCE', payload: props.user.id });
-        dispatch( { type: 'GET_TOTAL_DAILY_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: 1}}); //TODO: Make dynamic
-        dispatch( { type: 'GET_TOTAL_WEEKLY_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: 1}}); //TODO: Make dynamic
-        dispatch( { type: 'GET_TOTAL_ADHOC_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: 1}}); //TODO: Make dynamic
+        dispatch( { type: 'FETCH_LATEST_ALLOWANCE', payload: props.user.id });        
     },[])
 
     useEffect(()=>{
         console.log('props.weekinfo is:', props.weekInfo);
         if (Object.entries(props.weekInfo).length !==0 ) {
             setNextAllowance(props.weekInfo.allowanceDate.substring(0,10));
+            dispatch( { type: 'GET_TOTAL_DAILY_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: props.weekInfo.week_no}});
+            dispatch( { type: 'GET_TOTAL_WEEKLY_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: props.weekInfo.week_no}});
+            dispatch( { type: 'GET_TOTAL_ADHOC_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: props.weekInfo.week_no}});
         }        
     },[props.weekInfo])
 
