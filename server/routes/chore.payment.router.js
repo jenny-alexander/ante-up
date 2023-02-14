@@ -132,4 +132,19 @@ router.put('/adhoc', (req, res) => {
     })
 });
 
+//ADD NEW CHORE PAYMENT
+router.post('/add', (req, res) => {
+  console.log('req.body in add chore payment is:', req.body);
+  const addChorePaymentQuery = `INSERT INTO chore_payment_${req.body.frequency} ("chore_id", "user_id", "week_id")
+                              VALUES($1,$2,$3)`;
+  console.log('addChorePaymentQuery is:', addChorePaymentQuery);
+  pool.query(addChorePaymentQuery, [req.body.choreId, req.body.userId, req.body.weekID])
+      .then((results) => {
+          res.sendStatus(201);
+      }).catch((error) => {
+          console.log('add new chore payment error:', error);
+          res.sendStatus(500);
+      })
+})
+
 module.exports = router;

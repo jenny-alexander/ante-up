@@ -22,6 +22,8 @@ function* assignChore(action) {
     try {        
         const response = yield axios.post(`/api/chore/add`, action.payload);
         yield put({ type: 'ASSIGN_CHORE_SUCCESS', payload: response.data });
+        //NEW 
+        yield put({ type: 'ADD_CHORE_PAYMENT', payload: action.payload });
     } catch (error) {
         yield put({ type: 'ASSIGN_CHORE_FAILED', payload: error });
         console.log('Chore POST request failed', error);
@@ -35,7 +37,7 @@ function* removeChore(action) {
         yield put({ type: 'REMOVE_CHORE_SUCCESS', payload: response.data });
     } catch (error) {
         yield put({ type: 'REMOVE_CHORE_FAILED', payload: error });
-        console.log('Chore PUT request failed', error);
+        console.log('Chore DELETE request failed', error);
     }
 }
 

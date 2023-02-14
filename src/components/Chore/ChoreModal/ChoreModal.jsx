@@ -19,19 +19,22 @@ function Modal(props) {
     const addChore = (chore) => {
         dispatch( {type: 'ASSIGN_CHORE_TO_USER', 
                    payload: {
-                        choreId: chore.id, 
-                        userId: props.user.id},
-                    });
+                        choreId: chore.id,
+                        userId: props.user.id,                                                
+                        weekID: props.weekID,
+                        frequency: chore.frequency, }, 
+
+        });
     }
 
     const removeChore = (chore) => {
         dispatch( {type: 'REMOVE_CHORE_FROM_USER', 
-        payload: {
-             choreId: chore.id, 
-             userId: props.user.id,
-             weekID: props.weekID,
-             frequency: chore.frequency,
-            },
+            payload: {
+                choreId: chore.id, 
+                userId: props.user.id,
+                weekID: props.weekID,
+                frequency: chore.frequency,
+                },
          });
     }
 
