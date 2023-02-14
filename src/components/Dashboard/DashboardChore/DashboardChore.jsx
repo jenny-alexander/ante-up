@@ -13,7 +13,7 @@ function DashboardChore(props) {
             dispatch( { type: 'GET_INDIVIDUAL_CHORE_PAYMENT', 
             payload: { 
                     userID: props.user.id, 
-                    weekID: props.weekInfo.week_no} });
+                    weekID: props.weekInfo.weekID} });
         }        
     },[props.weekInfo])
 

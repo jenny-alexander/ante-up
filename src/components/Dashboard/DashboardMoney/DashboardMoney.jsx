@@ -27,9 +27,9 @@ function DashboardMoney(props) {
         console.log('props.weekinfo is:', props.weekInfo);
         if (Object.entries(props.weekInfo).length !==0 ) {
             setNextAllowance(props.weekInfo.allowanceDate.substring(0,10));
-            dispatch( { type: 'GET_TOTAL_DAILY_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: props.weekInfo.week_no}});
-            dispatch( { type: 'GET_TOTAL_WEEKLY_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: props.weekInfo.week_no}});
-            dispatch( { type: 'GET_TOTAL_ADHOC_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: props.weekInfo.week_no}});
+            dispatch( { type: 'GET_TOTAL_DAILY_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: props.weekInfo.weekID}});
+            dispatch( { type: 'GET_TOTAL_WEEKLY_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: props.weekInfo.weekID}});
+            dispatch( { type: 'GET_TOTAL_ADHOC_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: props.weekInfo.weekID}});
         }        
     },[props.weekInfo])
 

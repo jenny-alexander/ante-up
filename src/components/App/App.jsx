@@ -35,8 +35,10 @@ function App() {
 
   useEffect(() => {
     if (Object.entries(week).length !== 0 ) {
+      console.log('week info is:', weekInfo)
       setWeekInfo({...weekInfo,
-                    week_no: week.week_no,
+                    //week_no: week.week_no,
+                    weekID: week.id,
                     allowanceDate: week.allowance_date,
                     startDate: week.start_date,
                     endDate: week.end_date,

@@ -63,7 +63,7 @@ textarea {
       }
   }
   @media (min-width: 1626px){
-    grid-template-columns: minmax(auto, 25%) 1fr minmax(auto, 25%);
+    grid-template-columns: minmax(auto, 20%) 1fr minmax(auto, 20%);
     grid-template-rows: 80px 1fr;
     grid-template-areas: 
       "navigation header right-border"

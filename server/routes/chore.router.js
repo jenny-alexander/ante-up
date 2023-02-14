@@ -57,7 +57,6 @@ router.put('/remove', (req, res) => {
                                     AND user_id = ${req.body.userId};`;                              
   pool.query(removeChoreFromUserQuery)
       .then((results) => {
-          //res.sendStatus(201);
           const getChoreQuery = `SELECT chore.id, name, description, frequency, payment from user_chore
                                 INNER JOIN chore
                                 ON user_chore.chore_id = chore.id

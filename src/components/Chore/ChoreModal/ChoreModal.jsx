@@ -9,12 +9,7 @@ function Modal(props) {
     const[suggestChore, setSuggestChore] = useState(false);
     const [userChoresExist, setUserChoresExist] = useState(false);
 
-    // useEffect(() => {
-    //     console.log('props in modal are:', props);
-    // },[])
-
     useEffect(() => {
-        console.log('in useEffect for user chores in MODAL!');
         if (Object.entries(props.content.userChores).length > 0) {
             setUserChoresExist(true);
             // setUserChores(chores.userChore.chore)
@@ -22,7 +17,6 @@ function Modal(props) {
     },[props.content.userChores]);
 
     const addChore = (chore) => {
-        console.log('in addChore and chore param is:', chore);
         dispatch( {type: 'ASSIGN_CHORE_TO_USER', 
                    payload: {
                         choreId: chore.id, 
@@ -31,11 +25,13 @@ function Modal(props) {
     }
 
     const removeChore = (chore) => {
-        console.log('in removeChore and chore parm is:', chore);
         dispatch( {type: 'REMOVE_CHORE_FROM_USER', 
         payload: {
              choreId: chore.id, 
-             userId: props.user.id},
+             userId: props.user.id,
+             weekID: props.weekID,
+             frequency: chore.frequency,
+            },
          });
     }
 

@@ -40,9 +40,9 @@ function Chore(props) {
 
     useEffect(()=>{        
         if (Object.entries(props.week).length !==0 ) {            
-            dispatch( {type: 'GET_DAILY_PAYMENT_REQUESTED', payload: {userID: props.user.id,weekID: props.week.week_no}}); //<--TODO: set this dynamically
-            dispatch( {type: 'GET_WEEKLY_PAYMENT_REQUESTED', payload: {userID: props.user.id,weekID: props.week.week_no}}); //<--TODO: set this dynamically
-            dispatch( {type: 'GET_ADHOC_PAYMENT_REQUESTED', payload: {userID: props.user.id,weekID: props.week.week_no}}); //<--TODO: set this dynamically            
+            dispatch( {type: 'GET_DAILY_PAYMENT_REQUESTED', payload: {userID: props.user.id,weekID: props.week.weekID}}); //<--TODO: set this dynamically
+            dispatch( {type: 'GET_WEEKLY_PAYMENT_REQUESTED', payload: {userID: props.user.id,weekID: props.week.weekID}}); //<--TODO: set this dynamically
+            dispatch( {type: 'GET_ADHOC_PAYMENT_REQUESTED', payload: {userID: props.user.id,weekID: props.week.weekID}}); //<--TODO: set this dynamically            
         }        
     },[props.week])
 
@@ -239,11 +239,6 @@ function Chore(props) {
         setShowModal(false);
     }
 
-    const updateChoreList = () => {
-        console.log('in updateChoreList because chore was added or removed!');
-        dispatch( {type: "GET_CHORE_REQUESTED", payload: props.user.id});
-    }
-
     const ChoreListComponent = () => {
         return (
             
@@ -253,7 +248,7 @@ function Chore(props) {
                             close={hideChoreModal}
                             show={showModal} 
                             title={'Manage Chores'}
-                            updateChoreList={updateChoreList}
+                            weekID={props.week.weekID}
                             // content={allChores.filter(all=>userChores.every(user => user.id !== all.id))} 
                             content={
                                         {allChores: allChores, 
