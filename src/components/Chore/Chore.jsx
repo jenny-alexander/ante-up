@@ -77,7 +77,8 @@ function Chore(props) {
         }
     },[chores.allChore.chore]);
 
-    const buildPaymentState = ( payment, paymentType ) => {        
+    const buildPaymentState = ( payment, paymentType ) => {      
+        console.log('allChorePayment is:', allChoresPayment);  
         const newStateArray = [];   
         let choreTotal = 0;     
         payment.map((item) => {            

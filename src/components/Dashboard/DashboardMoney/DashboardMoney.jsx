@@ -53,15 +53,32 @@ function DashboardMoney(props) {
     },[allowance]);
 
     useEffect(() => {          
-        setTotalWeeklyChorePayment(weeklyTotalChorePayment);
+        if (weeklyTotalChorePayment != '' ) {
+            setTotalWeeklyChorePayment(weeklyTotalChorePayment);
+        } else {
+            setTotalWeeklyChorePayment(0);
+        }
+        
     }, [weeklyTotalChorePayment]);
 
-    useEffect(() => {              
-        setTotalDailyChorePayment(dailyTotalChorePayment);
+    useEffect(() => {     
+        if (dailyTotalChorePayment != '') {
+            setTotalDailyChorePayment(dailyTotalChorePayment);
+        } else {
+            setTotalDailyChorePayment(0);
+        }     
+        
     }, [dailyTotalChorePayment]);
 
-    useEffect(() => {              
-        setTotalAdhocChorePayment(adhocTotalChorePayment);
+    useEffect(() => {
+        console.log('adhodChore is:', adhocTotalChorePayment)
+        if (adhocTotalChorePayment != '') {
+            console.log('MEOW')
+            setTotalAdhocChorePayment(adhocTotalChorePayment);
+        }else {
+            setTotalAdhocChorePayment(0);
+        }        
+        
     }, [adhocTotalChorePayment]);
 
     const allChoresPayment = () => {
