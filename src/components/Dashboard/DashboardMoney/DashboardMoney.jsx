@@ -58,7 +58,6 @@ function DashboardMoney(props) {
         } else {
             setTotalWeeklyChorePayment(0);
         }
-        
     }, [weeklyTotalChorePayment]);
 
     useEffect(() => {     
@@ -67,24 +66,15 @@ function DashboardMoney(props) {
         } else {
             setTotalDailyChorePayment(0);
         }     
-        
     }, [dailyTotalChorePayment]);
 
     useEffect(() => {
-        console.log('adhodChore is:', adhocTotalChorePayment)
         if (adhocTotalChorePayment != '') {
-            console.log('MEOW')
             setTotalAdhocChorePayment(adhocTotalChorePayment);
         }else {
             setTotalAdhocChorePayment(0);
         }        
-        
     }, [adhocTotalChorePayment]);
-
-    const allChoresPayment = () => {
-        console.log('in allChoresPayment');
-
-    }
 
     return (
         <div className="dashboard-money">            

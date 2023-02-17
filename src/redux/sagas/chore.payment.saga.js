@@ -6,6 +6,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 - update chore payments
 */
 function* fetchDailyPayment(action) {    
+    console.log('getting daily payments')
     try {        
         const response = yield axios.get(`/api/chore/payment/daily/${action.payload.userID}/${action.payload.weekID}` );
         yield put({ type: 'GET_DAILY_PAYMENT_SUCCESS', payload: response.data });
@@ -15,8 +16,10 @@ function* fetchDailyPayment(action) {
 }
 
 function* updateDailyPayment(action) {    
-    try {                
-        const response = yield axios.put(`/api/chore/payment/daily`, action.payload);        
+    try {          
+        console.log('+++ ACTION payload is:', action.payload)      
+        const response = yield axios.put(`/api/chore/payment/daily`, action.payload);   
+        //yield put({ type: 'GET_DAILY_PAYMENT_REQUESTED', payload: action.payload });     
     } catch (error) {
         yield put({ type: 'PUT_DAILY_PAYMENT_FAILED', payload: error });        
     }

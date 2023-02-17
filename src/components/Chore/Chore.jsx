@@ -25,6 +25,9 @@ function Chore(props) {
     const [scheduleIsDisabled, setScheduleIsDisabled] = useState(true);
     const [allChoresPayment, setAllChoresPayment] = useState(0);
     const [showModal, setShowModal] = useState(false);
+    const [totalDailyChorePayment, setTotalDailyChorePayment] = useState(0);
+    const [totalWeeklyChorePayment, setTotalWeeklyChorePayment] = useState(0);
+    const [totalAdhocChorePayment, setTotalAdhocChorePayment] = useState(0);  
 
     const options = [
         { value: 'All', label: 'All'},
@@ -34,9 +37,14 @@ function Chore(props) {
       ]
 
     useEffect(() => {
-            dispatch( {type: "GET_CHORE_REQUESTED", payload: props.user.id});
-            dispatch( {type: "GET_ALL_CHORE_REQUESTED"});
+        dispatch( {type: "GET_CHORE_REQUESTED", payload: props.user.id});
+        dispatch( {type: "GET_ALL_CHORE_REQUESTED"});            
     },[])
+
+    //-->Use these useEffects after changing chore frequency completed
+    useEffect(() => {
+        getTotal();
+    },[totalDailyChorePayment, totalWeeklyChorePayment, totalAdhocChorePayment])
 
     useEffect(()=>{        
         if (Object.entries(props.week).length !==0 ) {            
@@ -46,14 +54,15 @@ function Chore(props) {
         }        
     },[props.week])
 
-    useEffect(()=> {        
-        if (chorePayment.dailyPayment.payment.length > 0) {                        
-            buildPaymentState(chorePayment.dailyPayment.payment, 'daily');            
-        }
+    //Use these to build up the payment states
+    useEffect(()=> {
+        if (chorePayment.dailyPayment.payment.length > 0) {   
+            buildPaymentState(chorePayment.dailyPayment.payment, 'daily'); 
+        }                        
     },[chorePayment.dailyPayment.payment]);
 
     useEffect(()=> {        
-        if (chorePayment.weeklyPayment.payment.length > 0) {      
+        if (chorePayment.weeklyPayment.payment.length > 0) {                           
             buildPaymentState(chorePayment.weeklyPayment.payment, 'weekly');   
         }
     },[chorePayment.weeklyPayment.payment]);
@@ -63,6 +72,7 @@ function Chore(props) {
             buildPaymentState(chorePayment.adhocPayment.payment, 'adhoc');   
         }
     },[chorePayment.adhocPayment.payment]);
+    //<--- END BUILD UP PAYMENT STATES
 
     useEffect(() => {
         if (chores.userChore.chore.length > 0) {            
@@ -77,11 +87,19 @@ function Chore(props) {
         }
     },[chores.allChore.chore]);
 
+    const getTotal = () => {
+        const mergeChores = [...checkedWeeklyState, ...checkedDailyState, ...checkedAdHocState];
+        let total = 0;        
+        for(let i = 0; i< mergeChores.length; i++) {            
+            total = total + mergeChores[i].totalPayment;
+        }
+        setAllChoresPayment(total);  
+    }
+
     const buildPaymentState = ( payment, paymentType ) => {      
-        console.log('allChorePayment is:', allChoresPayment);  
         const newStateArray = [];   
         let choreTotal = 0;     
-        payment.map((item) => {            
+        payment.map((item) => {                  
             const newObject = { id: item.id,
                                 choreID: item.chore_id,
                                 totalPayment: item.total_payment,
@@ -99,15 +117,17 @@ function Chore(props) {
             }
             choreTotal = newObject.totalPayment + choreTotal;
             newStateArray.push(newObject);
-        })          
-        if (paymentType === 'daily')
-            setCheckedDailyState(newStateArray); 
-        else if (paymentType === 'weekly'){
+        })   
+        if (paymentType === 'daily') {                        
+            setTotalDailyChorePayment(choreTotal);
+            setCheckedDailyState(newStateArray);                        
+        }else if (paymentType === 'weekly'){
+            setTotalWeeklyChorePayment(choreTotal)
             setCheckedWeeklyState(newStateArray);
         } else if (paymentType === 'adhoc'){
             setCheckedAdHocState(newStateArray);
-        }        
-        setAllChoresPayment(allChoresPayment + choreTotal);
+            setTotalAdhocChorePayment(choreTotal);
+        }; 
     }
 
     const handleFrequencyChange = (selected) => {        
@@ -208,16 +228,11 @@ function Chore(props) {
                         id: paymentForThisChore[0].id,
                         schedule: paymentForThisChore[0].schedule,
                         totalPayment: paymentForThisChore[0].totalPayment,
+                        // userID: props.user.id,
+                        // weekID: props.week.weekID,
                 }
         });
-
-        //loop through checked weekly state and 
-        const mergeChores = [...checkedWeeklyState, ...checkedDailyState, ...checkedAdHocState];
-        let total = 0;
-        for(let i = 0; i< mergeChores.length; i++) {            
-            total = total + mergeChores[i].totalPayment;
-        }        
-        setAllChoresPayment(total);
+        getTotal();      
         setScheduleIsDisabled(!scheduleIsDisabled);
     }
 
