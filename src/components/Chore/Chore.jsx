@@ -41,7 +41,6 @@ function Chore(props) {
         dispatch( {type: "GET_ALL_CHORE_REQUESTED"});            
     },[])
 
-    //-->Use these useEffects after changing chore frequency completed
     useEffect(() => {
         getTotal();
     },[totalDailyChorePayment, totalWeeklyChorePayment, totalAdhocChorePayment])

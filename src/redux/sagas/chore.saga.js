@@ -17,12 +17,10 @@ function* fetchChore(action) {
     }
 }
 
-function* assignChore(action) {
-    console.log('in assignChore saga and action is:', action);
+function* assignChore(action) {    
     try {        
         const response = yield axios.post(`/api/chore/add`, action.payload);
         yield put({ type: 'ASSIGN_CHORE_SUCCESS', payload: response.data });
-        //NEW 
         yield put({ type: 'ADD_CHORE_PAYMENT', payload: action.payload });
     } catch (error) {
         yield put({ type: 'ASSIGN_CHORE_FAILED', payload: error });
@@ -30,19 +28,18 @@ function* assignChore(action) {
     }
 }
 
-function* removeChore(action) {
-    console.log('in removeChore saga and action is:', action);
+function* removeChore(action) {    
     try {        
         const response = yield axios.put(`/api/chore/remove`, action.payload);
-        yield put({ type: 'REMOVE_CHORE_SUCCESS', payload: response.data });
+        yield put({type : 'REMOVE_CHORE_SUCCESS', payload: response.data});
+        yield put({ type: 'REMOVE_CHORE_PAYMENT', payload: action.payload });
     } catch (error) {
         yield put({ type: 'REMOVE_CHORE_FAILED', payload: error });
         console.log('Chore DELETE request failed', error);
     }
 }
 
-function* fetchAllChores() {
-    console.log('in fetchAllChores')
+function* fetchAllChores() {    
     try {        
         const response = yield axios.get(`/api/chore`);
         console.log('response.data is:', response.data)

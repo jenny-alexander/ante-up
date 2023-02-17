@@ -147,4 +147,21 @@ router.post('/add', (req, res) => {
       })
 })
 
+//REMOVE CHORE PAYMENT
+router.put('/remove', (req, res) => {
+  console.log('req.body in remove chore payment is:', req.body);
+  const removeChorePaymentQuery = `DELETE FROM chore_payment_${req.body.frequency} 
+                                  WHERE chore_id = ${req.body.choreId}
+                                  AND week_id = ${req.body.weekID}
+                                  AND user_id = ${req.body.userId};`;  
+  console.log('removeChorePaymentQuery is:', removeChorePaymentQuery);
+  pool.query(removeChorePaymentQuery)
+      .then((results) => {
+          res.sendStatus(201);
+      }).catch((error) => {
+          console.log('remove new chore payment error:', error);
+          res.sendStatus(500);
+      })
+})
+
 module.exports = router;

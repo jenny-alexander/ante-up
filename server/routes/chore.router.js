@@ -29,9 +29,9 @@ router.get('/:id', (req, res) => {
 
 //Assign chore to user
 router.post('/add', (req, res) => {
-  const assignChoreToUserQuery = `INSERT INTO user_chore ("chore_id", "user_id")
-                              VALUES($1,$2)`;
-  pool.query(assignChoreToUserQuery, [req.body.choreId, req.body.userId])
+  const assignChoreToUserQuery = `INSERT INTO user_chore ("chore_id", "user_id", "week_id")
+                              VALUES($1,$2,$3)`;
+  pool.query(assignChoreToUserQuery, [req.body.choreId, req.body.userId, req.body.weekID])
       .then((results) => {
           //res.sendStatus(201);
           const getChoreQuery = `SELECT chore.id, name, description, frequency, payment from user_chore

@@ -5,8 +5,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 - get chore payments (daily, weekly, monthly, ad hoc)
 - update chore payments
 */
-function* fetchDailyPayment(action) {    
-    console.log('getting daily payments')
+function* fetchDailyPayment(action) {        
     try {        
         const response = yield axios.get(`/api/chore/payment/daily/${action.payload.userID}/${action.payload.weekID}` );
         yield put({ type: 'GET_DAILY_PAYMENT_SUCCESS', payload: response.data });
@@ -52,8 +51,7 @@ function* fetchAdhocPayment(action) {
     }
 }
 
-function* updateAdhocPayment(action) {    
-    console.log('updateAdHocPayment action is:', action);
+function* updateAdhocPayment(action) {        
     try {
         const response = yield axios.put(`/api/chore/payment/adhoc`, action.payload);
     } catch (error) {
@@ -61,14 +59,26 @@ function* updateAdhocPayment(action) {
     }
 }
 
-function* addChorePayment(action) {
-    console.log('in addChorePayment saga and action is:', action);
+function* addChorePayment(action) {    
     try {        
-        const response = yield axios.post(`/api/chore/payment/add`, action.payload);
-        yield put({ type: 'ADD_CHORE_PAYMENT_SUCCESS', payload: response.data });
+        const response = yield axios.post(`/api/chore/payment/add`, action.payload);        
+        yield put({ type: `GET_${action.payload.frequency.toUpperCase()}_PAYMENT_REQUESTED`, 
+                    payload: { userID: action.payload.userId,
+                               weekID: action.payload.weekID,
+                    }
+                 });
     } catch (error) {
         yield put({ type: 'ADD_CHORE_PAYMENT_FAILED', payload: error });
         console.log('Chore POST request failed', error);
+    }
+}
+
+function* removeChorePayment(action) {    
+    try {        
+        const response = yield axios.put(`/api/chore/payment/remove`, action.payload);        
+    } catch (error) {
+        yield put({ type: 'REMOVE_CHORE_PAYMENT_FAILED', payload: error });
+        console.log('Chore deletion request failed', error);
     }
 }
 
@@ -77,7 +87,7 @@ function* chorePaymentSaga() {
     yield takeLatest('GET_WEEKLY_PAYMENT_REQUESTED', fetchWeeklyPayment);
     yield takeLatest('GET_ADHOC_PAYMENT_REQUESTED', fetchAdhocPayment);
     yield takeLatest('ADD_CHORE_PAYMENT', addChorePayment);
-    // yield takeLatest('REMOVE_CHORE_PAYMENT', removeChorePayment);
+    yield takeLatest('REMOVE_CHORE_PAYMENT', removeChorePayment);
     yield takeLatest('UPDATE_DAILY_PAYMENT', updateDailyPayment);
     yield takeLatest('UPDATE_WEEKLY_PAYMENT', updateWeeklyPayment);
     yield takeLatest('UPDATE_ADHOC_PAYMENT', updateAdhocPayment);
