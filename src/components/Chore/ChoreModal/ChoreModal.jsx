@@ -6,15 +6,7 @@ import './ChoreModal.scss';
 
 function Modal(props) {
     const dispatch = useDispatch();
-    const[suggestChore, setSuggestChore] = useState(false);
-    const [userChoresExist, setUserChoresExist] = useState(false);
-
-    useEffect(() => {
-        if (Object.entries(props.content.userChores).length > 0) {
-            setUserChoresExist(true);
-            // setUserChores(chores.userChore.chore)
-        }
-    },[props.content.userChores]);
+    const[suggestChore, setSuggestChore] = useState(false); //TODO: Need this when suggesting a new chore
 
     const addChore = (chore) => {
         dispatch( {type: 'ASSIGN_CHORE_TO_USER', 
@@ -61,7 +53,9 @@ function Modal(props) {
 
                         <div className={`${suggestChore ? 'modal-chore-list hide' : 'modal-chore-list'}`} >
                             { Object.entries(props.content.allChores).length > 0 ?
+                            
                                 props.content.allChores.map((content,i) => {
+                                    console.log('refiguring out the things')
                                     return (
                                         <div className="modal-content">
                                             <div className="modal-chore-details">
@@ -73,7 +67,7 @@ function Modal(props) {
                                             </div>
                                             <div className="manage-chore-btn">
                                                 {
-                                                    userChoresExist ? 
+                                                    props.content.userChores.length > 0 ? 
                                                         props.content.userChores.find(chore => chore.id === content.id) ? <button onClick={()=> removeChore(content)}>Remove</button> 
                                                             : <button onClick={()=> addChore(content)}>Add</button>
                                                 
@@ -84,7 +78,7 @@ function Modal(props) {
                                         </div>
                                     )
                                 })
-                                : <div>Nothing here</div>
+                                : null
                             }
                         </div>                                        
                     {/* <div className="modal-actions">                    
