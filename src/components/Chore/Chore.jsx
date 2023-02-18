@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import ChoreModal from './ChoreModal/ChoreModal';
-//import Modal from '../Common/Modal/Modal';
 import './Chore.scss';
 
 function Chore(props) {
@@ -242,17 +241,17 @@ function Chore(props) {
         setShowModal(false);
     }
 
-    const filterChores = () => {
-        const result = [];
-        if ( userChores && allChores ) {
-            result = allChores.filter(all => 
-                userChores.every(user => user.id !== all.id));                
-        }
-        return result;
-    }
-    const closeModal = () => {
-        setShowModal(false);
-    }
+    // const filterChores = () => {
+    //     const result = [];
+    //     if ( userChores && allChores ) {
+    //         result = allChores.filter(all => 
+    //             userChores.every(user => user.id !== all.id));                
+    //     }
+    //     return result;
+    // }
+    // const closeModal = () => {
+    //     setShowModal(false);
+    // }
 
     const ChoreListComponent = () => {
         return (
@@ -262,7 +261,7 @@ function Chore(props) {
                 <ChoreModal user={props.user}
                             close={hideChoreModal}
                             show={showModal} 
-                            title={'Manage Chores'}
+                            title={'Manage My Chores'}
                             weekID={props.week.weekID}
                             // content={allChores.filter(all=>userChores.every(user => user.id !== all.id))} 
                             content={
@@ -282,7 +281,7 @@ function Chore(props) {
                         />
                     </div>
                     <div className="chore-actions">
-                        <button onClick={() => {showManageChoreModal()}}>Manage Chores</button>
+                        <button onClick={() => {showManageChoreModal()}}>Manage My Chores</button>
                     </div>
                 </div>
                 <div className="chore-list">
