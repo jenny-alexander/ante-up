@@ -38,25 +38,28 @@
       //justify-content: space-between;
       justify-content: center;
       padding: 1em;
+      flex-direction: column;
       & .modal-header-container {
         //border: 1px solid red;
         display: flex;
         width: 100%;
         justify-content: space-between;
         column-gap: 0.7em;
+
           & .modal-title {
             //border: 2px dotted blue;
             display: flex;
-            justify-content: right;
+            justify-content: center;
             font-size: 1.8em;
-            width: 65%;
+            width: 95%;
             align-items: center;
           }
+
           & .chore-btns {
             display: flex;
             column-gap: 0.5em;     
             justify-content: space-between; 
-            width: 35%;
+            width: 5%;
             & .add-chore-btn {
               border-radius: 15px;
               align-items: baseline;
@@ -123,6 +126,33 @@
         //     }     
         //   }
       }
+      & .add-chore-btn-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        & .add-chore-btn {
+          width: 40%;
+          margin-right: 2.5em;
+          border-radius: 15px;
+          //align-items: baseline;
+          padding: 0.5em 0.25em;
+          margin-top: 0.5em;
+          border: 1px solid rgb(39, 95, 88);
+          color: rgb(39, 95, 88);
+          background-color: white;
+          transition: background-color 0.8s;
+          &.disable {
+            opacity: 0.3;
+            pointer-events: none;
+          }
+          &:hover {
+              cursor: pointer;
+
+              outline: 1px solid rgb(39, 95, 88);
+              transition: outline 0.1s ease-in;
+            }   
+        }
+      }
         // & button {
         //   border-radius: 15px;
         //   background-color: rgb(39, 95, 88);
@@ -178,8 +208,10 @@
       flex-direction: column;
       border-top: 1px solid lightgrey;
       padding: 0.5em;
+      height: 20em;
+
         & .modal-chore-list {
-          max-height: 20em;
+          
           overflow-y: auto;
           margin-bottom: 1em;          
           display: flex;
@@ -205,15 +237,18 @@
             & button {
               display: flex;
               border:none;
-              background-color: inherit;
-              color: rgb(39, 95, 88);
+              //border: 1px solid rgb(39, 95, 88);
+              //background-color: inherit;
+              //color: rgb(39, 95, 88);
+              background-color: rgba(58, 125, 117);
+              color: white;
+              border-radius: 15px;
               text-transform: uppercase;
               padding: 8px; 
               &:hover {
-                background-color: rgba(84, 165, 141, 0.3);
-                border-radius: 15px;
-                transition: background-color 0.2s ease-in-out;
                 cursor: pointer;
+                outline: 3px solid #54a58d;
+                transition: outline 0.1s ease-in-out;
               }
             }
             & .modal-chore-details {

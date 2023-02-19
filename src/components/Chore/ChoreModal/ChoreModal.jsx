@@ -3,15 +3,14 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { faCirclePlus} from '@fortawesome/free-solid-svg-icons';
-import { faPlus} from '@fortawesome/free-solid-svg-icons';
+import ChoreForm from '../ChoreForm/ChoreForm';
 
 import './ChoreModal.scss';
 
 function Modal(props) {
     const dispatch = useDispatch();
     const[addNewChore, setAddNewChore] = useState(false); //TODO: Need this when suggesting a new chore    
-
+    const[disableAddChore, setDisableAddChore] = useState(false);
     const assignChore = (chore) => {
         dispatch( {type: 'ASSIGN_CHORE_TO_USER', 
                    payload: {
@@ -43,10 +42,30 @@ function Modal(props) {
                         <div className="modal-title">{props.title}</div>
                         <div className="chore-btns">
                             {/* <FontAwesomeIcon className="fa-plus" fixedWidth icon={faPlus} />   */}
-                            <button className="add-chore-btn" onClick={()=>setAddNewChore(!addNewChore)}>Add New Chore</button>
+                            {/* {
+                                addNewChore ? null :
+                                <button className="add-chore-btn" 
+                                //disabled={true} 
+                                onClick={()=>setAddNewChore(!addNewChore)}>
+                                Add New Chore
+                            </button>
+                            } */}
+
                             <FontAwesomeIcon onClick={props.close} className="fa-Xmark" fixedWidth icon={faXmark} />                                      
                         </div>
                     </div>
+                    <div 
+                        className="add-chore-btn-container"
+                        
+                    >
+                        <button className={`${addNewChore ? 'add-chore-btn disable' : 'add-chore-btn'}`}
+                                disabled={addNewChore} 
+                                onClick={()=>setAddNewChore(!addNewChore)}>
+                                Add New Chore
+                            </button>
+                    </div>
+
+
 
                                             {/* <button className="add-chore-btn" onClick={()=>setAddChore(!suggestChore)}>Add New Chore</button>
                         <button className="close-chore-btn" onClick={props.close}>Close</button>                     */}
@@ -55,10 +74,8 @@ function Modal(props) {
                 <div className="modal-body-container">
                 <div className="modal-body">                    
                     { addNewChore ?
-                        <div>
-                            I will add a chore soon
-                        </div> : null }
-
+                        <ChoreForm cancel={() => setAddNewChore(!addNewChore)}/>
+                :
                         <div className={`${addNewChore ? 'modal-chore-list hide' : 'modal-chore-list'}`} >
                             { Object.entries(props.content.allChores).length > 0 ?
                             
@@ -85,7 +102,8 @@ function Modal(props) {
                                 })
                                 : null
                             }
-                        </div>                                        
+                        </div>   
+    }                                     
                     {/* <div className="modal-actions">                    
                         <div className="action-buttons">
                         
@@ -100,6 +118,7 @@ function Modal(props) {
                         </div>
                     </div> */}
                 </div>
+    
                 </div>
             </div>
         </div>
