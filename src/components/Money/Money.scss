@@ -2,44 +2,89 @@
     --color-button: rgb(39, 95, 88);
     --hover-brightness: 1.2;
 }
-.money {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f9f9f6;
-    overflow-y: auto;
-    scrollbar-gutter: stable;
-
-    hr {
-        border: 1px solid #087f6b;
-        width: 96%;
-        color: #087f6b;
-    }
-        
-    #line {
-        margin-top: 0.5em;
-        margin-bottom: 0.5em;
-        width: 100%;
-    }
-
+.money-container {
     & .money-title {
-        text-align: center;
+        text-align:center;
         padding-top: 0.5em;
     }
-
-    & .money-bank {
-        margin-bottom: 2em;
+    & .money {
+        //display: flex;
+        //flex-direction: column;
+    
+    
+        display:grid;
+        
+        //grid-template-rows: minmax(auto, 50%) 1fr;
+        grid-template-rows: 15em 20em;
+        //grid-template-columns: minmax(auto, 50%) 1fr;
+        grid-template-columns: repeat(2, 1fr);
+            grid-template-areas: 
+              
+              "money-saving money-transfer"
+              "money-allowance money-pie";
+            //   "money-pie money-transfer";
+    
+        //align-items: center;
+        background-color: #f9f9f6;
+        overflow-y: auto;
+        scrollbar-gutter: stable;
+        grid-gap: 1em;
+        margin-left: 2em;
+        margin-right: 2em;
+    
+        hr {
+            border: 1px solid #087f6b;
+            width: 96%;
+            color: #087f6b;
+        }
+            
+        #line {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+            width: 100%;
+        }
+    
+    
+    
+        // & .money-bank {
+        //     margin-bottom: 2em;
+        // }
+    
+        // & [class*="money-"] {
+        //     width: 90%;
+        // }
+        & .money-saving-for {
+            //border: 2px solid red;
+            display:flex;
+            grid-area: money-saving;
+            justify-content: center;
+        }
+        & .money-allowance {
+            //border: 2px solid rgb(0, 60, 255);
+            display:flex;
+            grid-area: money-allowance;
+            justify-content: center;
+        }
+        & .money-bank-chart {
+            //border: 2px solid rgb(0, 255, 110);
+            display: flex;
+            grid-area: money-pie;
+            justify-content: center;
+        }
+        & .money-bank {
+            //border: 2px solid purple;
+            display: flex;
+            grid-area: money-transfer;
+            justify-content: center;
+        }
     }
-
-    & [class*="money-"] {
-        width: 70%;
-    }
-}
-@media(max-width: 650px) {
-    .money {
-        & [class*="money-"] {
-            width:90%;
-
+    @media(max-width: 650px) {
+        .money {
+            & [class*="money-"] {
+                width:90%;
+    
+            }
         }
     }
 }
+
