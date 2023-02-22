@@ -227,8 +227,6 @@ function Chore(props) {
                         id: paymentForThisChore[0].id,
                         schedule: paymentForThisChore[0].schedule,
                         totalPayment: paymentForThisChore[0].totalPayment,
-                        // userID: props.user.id,
-                        // weekID: props.week.weekID,
                 }
         });
         getTotal();      
@@ -241,18 +239,6 @@ function Chore(props) {
     const hideChoreModal = () => {
         setShowModal(false);
     }
-
-    // const filterChores = () => {
-    //     const result = [];
-    //     if ( userChores && allChores ) {
-    //         result = allChores.filter(all => 
-    //             userChores.every(user => user.id !== all.id));                
-    //     }
-    //     return result;
-    // }
-    // const closeModal = () => {
-    //     setShowModal(false);
-    // }
 
     const ChoreListComponent = () => {
         return (
@@ -334,15 +320,36 @@ function Chore(props) {
                                 </tbody>
                             </table>
                         </div>)                                             
-                        : ''
+                        : `Use the 'Manage My Chores' button to add/assign chores.`
                     }
                 </div>
+                
                 <div className="all-chores-payment">
                     <div className="all-chores-payment-title">Total chore payments this week:</div>
                     <div className="all-chores-payment-amount">${allChoresPayment}
                     </div>
                 </div>
             </div>            
+        )
+    }
+
+    const ScheduleInput = (props ) => {
+        return (
+            <>
+                <div className={`${props.frequency.toLowerCase()}-chore`}>
+                    <label htmlFor={`custom-checkbox-${props.index}`}>{props.mapKey.substring(0,1).toUpperCase()}                                    
+                        <input className={`schedule-checkbox ${props.scheduleIsDisabled ? ' disabled' : ''}`} 
+                            disabled={props.disabled}
+                            type="checkbox"
+                            id={`custom-checkbox-${props.index}`}
+                            name={props.mapKey}
+                            value={props.mapKey}
+                            checked={props.paymentObject.schedule[props.mapKey]}
+                            onChange={() => props.handleChange(props.choreID, props.mapKey, props.payment)}                                
+                        />
+                    </label>                                           
+                </div>
+            </>
         )
     }
 
@@ -358,56 +365,46 @@ function Chore(props) {
         if ( paymentsForThisChore.length > 0 ) {
             const paymentObj = paymentsForThisChore[0];            
             setChoreTotalPayment(paymentObj.totalPayment);
-            //buildPaymentsArray(paymentObj.choreID, paymentObj.totalPayment);
             return (
                 Object.keys(paymentObj.schedule).map((key, index) => {                                          
-                    if ( key.substring(key.length - 3) === 'day' ) {                       
+                    if ( key.substring(key.length - 3) === 'day' ) {                                             
                         return (
-                        <div className="daily-chore">                            
-                                <label htmlFor={`custom-checkbox-${index}`}>{key.substring(0,1).toUpperCase()}
-                                    <input className="schedule-checkbox"
-                                        disabled={scheduleIsDisabled}
-                                        type="checkbox"
-                                        id={`custom-checkbox-${index}`}
-                                        name={key}
-                                        value={key}
-                                        checked={paymentObj.schedule[key]}
-                                        onChange={() => handleDailyScheduleChange(choreID, key, chorePayment)}                                
-                                    />
-                                </label>                                           
-                        </div>
+                            <ScheduleInput
+                                disabled={scheduleIsDisabled}
+                                mapKey={key}
+                                index={index}
+                                choreID={choreID}
+                                frequency={frequency}
+                                payment={chorePayment}
+                                paymentObject={paymentObj}
+                                handleChange={handleDailyScheduleChange}
+                            />
                         );
                     } else if( key === 'weekly' ) {                                          
                         return(
-                            <div className="weekly-chore">                                                
-                                <label className="weekly" htmlFor={`custom-checkbox-${index}`}>Completed
-                                    <input className="schedule-checkbox"
-                                        disabled={scheduleIsDisabled}
-                                        type="checkbox"
-                                        id={`custom-checkbox-${index}`}
-                                        name={key}
-                                        value={key}
-                                        checked={paymentObj.schedule[key]}
-                                        onChange={() => handleWeeklyScheduleChange(choreID, key, chorePayment)}                                
-                                    />
-                                </label>                                           
-                            </div>
+                            <ScheduleInput
+                                disabled={scheduleIsDisabled}
+                                mapKey={key}
+                                index={index}
+                                choreID={choreID}
+                                frequency={frequency}
+                                payment={chorePayment}
+                                paymentObject={paymentObj}
+                                handleChange={handleWeeklyScheduleChange}
+                            />
                         )
                     } else if( key === 'adhoc') {                            
                         return(
-                            <div className="weekly-chore">                                                
-                                <label className="weekly" htmlFor={`custom-checkbox-${index}`}>Completed
-                                    <input className="schedule-checkbox"
-                                        disabled={scheduleIsDisabled}
-                                        type="checkbox"
-                                        id={`custom-checkbox-${index}`}
-                                        name={key}
-                                        value={key}
-                                        checked={paymentObj.schedule[key]}
-                                        onChange={() => handleAdHocScheduleChange(choreID, key, chorePayment)}                                
-                                    />
-                                </label>                                           
-                            </div>
+                            <ScheduleInput
+                                disabled={scheduleIsDisabled}
+                                mapKey={key}
+                                index={index}
+                                choreID={choreID}
+                                frequency={frequency}
+                                payment={chorePayment}
+                                paymentObject={paymentObj}
+                                handleChange={handleAdHocScheduleChange}
+                            />
                         )
                     }
               })              

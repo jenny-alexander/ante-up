@@ -40,9 +40,7 @@ function ChoreForm(props) {
 
   return (
     <div className="new-chore-container">
-        {/* <form onSubmit={addNewChore}>         */}
             <div className="new-chore-title">Add a New Chore</div>
-
             <div className="form-body">
                 <div className="form-row">
                     <div className= "input-group">
@@ -60,7 +58,8 @@ function ChoreForm(props) {
                         <label for="chorePayment">
                             Payment
                         </label>
-                        <input id="chorePayment" type="text"
+                        <input id="chorePayment" 
+                            type="number"
                             value={chorePayment}
                             onChange={(event) => setChorePayment(event.target.value)}
                             required />              
@@ -100,9 +99,7 @@ function ChoreForm(props) {
                         onClick={props.cancel}>Cancel
                     </button>
                 </div>
-
             </div>
-        {/* </form> */}
     </div>
   )
 }
