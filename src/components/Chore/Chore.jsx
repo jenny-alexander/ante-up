@@ -36,7 +36,7 @@ function Chore(props) {
       ]
 
     useEffect(() => {
-        dispatch( {type: "GET_CHORE_REQUESTED", payload: props.user.id});
+        dispatch( {type: "GET_USER_CHORE_REQUESTED", payload: {userID: props.user.id, weekID: props.week.weekID}});
         dispatch( {type: "GET_ALL_CHORE_REQUESTED"});            
     },[])
 
@@ -73,7 +73,8 @@ function Chore(props) {
     //<--- END BUILD UP PAYMENT STATES
 
     useEffect(() => {
-        if (chores.userChore.chore.length > 0) {            
+        if (chores.userChore.chore.length > 0) {      
+            console.log('found user chores nd they are:', chores.userChore)      
             setChoresExist(true);
             setUserChores(chores.userChore.chore)
         }
@@ -257,20 +258,16 @@ function Chore(props) {
         return (
             
             <div className="chore-main">
-                {/* <button onClick={() => filterObjectArray(allChores, userChores)}>Click me</button> */}
                 <ChoreModal user={props.user}
                             close={hideChoreModal}
                             show={showModal} 
                             title={'Manage My Chores'}
                             weekID={props.week.weekID}
-                            // content={allChores.filter(all=>userChores.every(user => user.id !== all.id))} 
                             content={
                                         {allChores: allChores, 
                                         userChores: userChores}
                                     } 
-                            actions={[{name: 'Assign', action: 'addChore'},
-                                //   {name: 'Cancel', action: 'hideChoreModal'}
-                                ]}
+                            actions={[{name: 'Assign', action: 'addChore'},]}
                         />
                 <div className="frequency-selector">                    
                     <div className="frequency-title">Frequency:</div>

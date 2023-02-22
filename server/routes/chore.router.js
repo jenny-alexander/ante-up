@@ -14,11 +14,13 @@ router.get('/', (req, res) => {
 });
 
 // Get chores by userid
-router.get('/:id', (req, res) => {
+router.get('/:userID/:weekID', (req, res) => {
   const getChoreQuery = `SELECT chore.id, name, description, frequency, payment from user_chore
                         INNER JOIN chore
                         ON user_chore.chore_id = chore.id
-                        WHERE user_id = ${req.params.id};`;  
+                        WHERE user_id = ${req.params.userID}
+                        AND week_id = ${req.params.weekID};`;  
+                        console.log('get chores query is:', getChoreQuery)
   pool.query(getChoreQuery)
     .then((results) => {      
       res.send(results.rows);
@@ -28,7 +30,7 @@ router.get('/:id', (req, res) => {
 });
 
 //Assign chore to user
-router.post('/add', (req, res) => {
+router.post('/assign', (req, res) => {
   const assignChoreToUserQuery = `INSERT INTO user_chore ("chore_id", "user_id", "week_id")
                               VALUES($1,$2,$3)`;
   pool.query(assignChoreToUserQuery, [req.body.choreId, req.body.userId, req.body.weekID])
@@ -37,7 +39,8 @@ router.post('/add', (req, res) => {
           const getChoreQuery = `SELECT chore.id, name, description, frequency, payment from user_chore
                                 INNER JOIN chore
                                 ON user_chore.chore_id = chore.id
-                                WHERE user_id = ${req.body.userId};`;  
+                                WHERE user_id = ${req.body.userId}
+                                AND week_id = ${req.body.weekID};`;  
           pool.query(getChoreQuery)
             .then((results) => {      
               res.send(results.rows);
@@ -60,7 +63,8 @@ router.put('/remove', (req, res) => {
           const getChoreQuery = `SELECT chore.id, name, description, frequency, payment from user_chore
                                 INNER JOIN chore
                                 ON user_chore.chore_id = chore.id
-                                WHERE user_id = ${req.body.userId};`;  
+                                WHERE user_id = ${req.body.userId}
+                                AND week_id = ${req.body.weekID};`;  
             pool.query(getChoreQuery)
               .then((results) => {      
                 res.send(results.rows);
@@ -76,23 +80,24 @@ router.put('/remove', (req, res) => {
 
 // Add chore to list of all chores
 router.post('/add', (req, res) => {
-  const createChoreQuery = `INSERT INTO chore ("name", "description", "frequency", "payment")
-                            VALUES($1,$2,$3,$4)
+  const createChoreQuery = `INSERT INTO chore ("name", "frequency", "payment")
+                            VALUES($1,$2,$3)
                             RETURNING "id"`; 
-  pool.query(createChoreQuery, [req.body.choreDetails.name, 
-                                req.body.choreDetails.description, 
-                                req.body.choreDetails.frequency, 
-                                req.body.choreDetails.payment])
+                            console.log('createChoreQuery is:', createChoreQuery);
+  pool.query(createChoreQuery, [req.body.choreName, 
+                                req.body.choreFrequency, 
+                                req.body.chorePayment])
     .then((result) => {
-      const newChoreId = result.rows[0].id;
-      const addChoreToUserQuery = `INSERT INTO user_chore ("chore_id", "user_id") VALUES($1,$2);`;
-      pool.query(addChoreToUserQuery, [newChoreId, req.body.userID])
-        .then((result) => {
-          res.sendStatus(201);
-      }).catch((error) => {
-        console.log('Add chore table error:', error);
-        res.sendStatus(500);
-      })      
+      //const newChoreId = result.rows[0]?.id;
+      res.status(200).send((result.rows[0].id).toString());
+      // const addChoreToUserQuery = `INSERT INTO user_chore ("chore_id", "user_id") VALUES($1,$2);`;
+      // pool.query(addChoreToUserQuery, [newChoreId, req.body.userID])
+      //   .then((result) => {
+      //     res.sendStatus(201);
+      // }).catch((error) => {
+      //   console.log('Add chore table error:', error);
+      //   res.sendStatus(500);
+      // })      
     }).catch((error) => {
       console.log('Add chore table error:', error);
       res.sendStatus(500);

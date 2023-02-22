@@ -14,7 +14,7 @@ function Dashboard(props) {
     const [choresExist, setChoresExist] = useState(false);    
 
     useEffect(() => {
-        dispatch({type: 'GET_CHORE_REQUESTED', payload: props.user.id})        
+        dispatch( {type: "GET_USER_CHORE_REQUESTED", payload: {userID: props.user.id, weekID: props.week.weekID}});  
     },[])
 
     useEffect(()=>{

@@ -41,42 +41,26 @@ function Modal(props) {
                     <div className="modal-header-container">
                         <div className="modal-title">{props.title}</div>
                         <div className="chore-btns">
-                            {/* <FontAwesomeIcon className="fa-plus" fixedWidth icon={faPlus} />   */}
-                            {/* {
-                                addNewChore ? null :
-                                <button className="add-chore-btn" 
-                                //disabled={true} 
-                                onClick={()=>setAddNewChore(!addNewChore)}>
-                                Add New Chore
-                            </button>
-                            } */}
-
                             <FontAwesomeIcon onClick={props.close} className="fa-Xmark" fixedWidth icon={faXmark} />                                      
                         </div>
                     </div>
-                    <div 
-                        className="add-chore-btn-container"
-                        
-                    >
+                    <div className="add-chore-btn-container">
                         <button className={`${addNewChore ? 'add-chore-btn disable' : 'add-chore-btn'}`}
                                 disabled={addNewChore} 
                                 onClick={()=>setAddNewChore(!addNewChore)}>
                                 Add New Chore
                             </button>
                     </div>
-
-
-
-                                            {/* <button className="add-chore-btn" onClick={()=>setAddChore(!suggestChore)}>Add New Chore</button>
-                        <button className="close-chore-btn" onClick={props.close}>Close</button>                     */}
                 </div>
-                
                 <div className="modal-body-container">
                 <div className="modal-body">                    
                     { addNewChore ?
-                        <ChoreForm cancel={() => setAddNewChore(!addNewChore)}/>
+                        <ChoreForm userId={props.user.id}
+                                   weekID={props.weekID} 
+                                   cancel={() => setAddNewChore(!addNewChore)}
+                        />
                 :
-                        <div className={`${addNewChore ? 'modal-chore-list hide' : 'modal-chore-list'}`} >
+                        <div className='modal-chore-list'>
                             { Object.entries(props.content.allChores).length > 0 ?
                             
                                 props.content.allChores.map((content,i) => {

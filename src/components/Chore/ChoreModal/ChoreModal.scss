@@ -73,58 +73,17 @@
                   outline: 1px solid rgb(39, 95, 88);
                   transition: outline 0.1s ease-in;
                 }     
-            }
+              }
               & .fa-Xmark {
                 &:hover {
                   background-color: rgba(84, 165, 141, 0.3);
                   border-radius: 50%;
                   cursor: pointer;
                 }        
-        }  
-            // & .fa-plus {
-            //   color: rgb(39, 95, 88);
-            //   padding: 0.6em;
-            //   border-radius: 50%;
-            //   //color: white;
-            //   border: 1px solid rgb(39, 95, 88);
-            //   font-weight: bolder;
-            //   //font-size: 0.6em;
-            }
+              }  
 
-          
+          }          
 
-  
-
-
-        // & .close-chore-btn {
-        //   border-radius: 15px;
-        //   background-color: rgb(39, 95, 88);
-        //   border: 1px solid rgb(39, 95, 88);
-        //   color: white;
-        //   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-        //   0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-        //   padding: 0.5em 1em;
-        //   &:hover {
-        //       cursor: pointer;                          
-        //         outline: 3px solid #54a58d;
-        //         border: 1px solid #54a58d;
-        //         transition: outline 0.1s ease-in-out;
-        //     }          
-        // }
-        //   & .add-chore-btn {
-        //   border-radius: 15px;
-        //   align-items: baseline;
-        //   padding: 0.75em 0.5em;
-        //   border: 1px solid rgb(39, 95, 88);
-        //   color: rgb(39, 95, 88);
-        //   background-color: white;
-        //   transition: background-color 0.8s;
-        //   &:hover {
-        //       cursor: pointer;
-        //       outline: 1px solid rgb(39, 95, 88);
-        //       transition: outline 0.1s ease-in;
-        //     }     
-        //   }
       }
       & .add-chore-btn-container {
         display: flex;
@@ -132,6 +91,9 @@
         width: 100%;
         & .add-chore-btn {
           width: 40%;
+          @media(max-width: 395px) {
+            width: 60%;
+          }
           margin-right: 2.5em;
           border-radius: 15px;
           //align-items: baseline;
@@ -153,54 +115,7 @@
             }   
         }
       }
-        // & button {
-        //   border-radius: 15px;
-        //   background-color: rgb(39, 95, 88);
-        //   border: 1px solid rgb(39, 95, 88);
-        //   color: white;
-        //   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-        //   0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-        //   padding: 0.5em 1em;
 
-        //   &:hover {
-        //       cursor: pointer;                          
-        //         outline: 5px solid #54a58d;
-        //         border: 1px solid #54a58d;
-        //         transition: outline 0.1s ease-in-out;
-        //     }          
-        // } 
-        // & .add-chore-btn {
-        //   border-radius: 15px;
-        //   align-items: baseline;
-        //   //border: 1px solid lightgrey;
-        //   padding: 0.75em 0.5em;
-        //   border: 1px solid rgb(39, 95, 88);
-        //   color: rgb(39, 95, 88);
-        //   background-color: white;
-        //   transition: background-color 0.8s;
-        //   &:hover {
-        //       cursor: pointer;
-        //       //background-color: #c0bfbfd4;
-        //       //background-color: rgb(242 255 250 / 83%);
-    
-        //       outline: 1px solid rgb(39, 95, 88);
-        //       transition: outline 0.1s ease-in;
-              
-        //   }     
-        // }
-
-      // background-color: white;
-      // color: rgb(39, 95, 88);
-      // //background-color: rgb(39, 95, 88);
-      // box-shadow: none;
-      // padding: 0.75em 0.75em;
-      // margin: 1em;
-      // border-radius: 5px;
-      // &:hover {
-      //   cursor: pointer;
-      //   outline: 2px solid rgb(12 30 164 / 87%);
-      //   transition: outline 0.1s ease-in;
-      // }
     }
     
     & .modal-body {
@@ -208,7 +123,7 @@
       flex-direction: column;
       border-top: 1px solid lightgrey;
       padding: 0.5em;
-      height: 20em;
+      height: 25em;
 
         & .modal-chore-list {
           
@@ -219,7 +134,8 @@
            align-items:center;
            gap: 0.7em;
           & .modal-content {            
-            background-color:white;
+            //background-color:white;
+            background-color: #e9eff1;
             padding: 1rem;
             display: flex;
             @media(max-width: 775px) {
@@ -237,9 +153,7 @@
             & button {
               display: flex;
               border:none;
-              //border: 1px solid rgb(39, 95, 88);
-              //background-color: inherit;
-              //color: rgb(39, 95, 88);
+
               background-color: rgba(58, 125, 117);
               color: white;
               border-radius: 15px;
