@@ -36,7 +36,6 @@ function Chore(props) {
       ]
 
     useEffect(() => {
-        dispatch( {type: "GET_USER_CHORE_REQUESTED", payload: {userID: props.user.id, weekID: props.week.weekID}});
         dispatch( {type: "GET_ALL_CHORE_REQUESTED"});            
     },[])
 
@@ -45,7 +44,8 @@ function Chore(props) {
     },[totalDailyChorePayment, totalWeeklyChorePayment, totalAdhocChorePayment])
 
     useEffect(()=>{        
-        if (Object.entries(props.week).length !==0 ) {            
+        if (Object.entries(props.week).length !==0 ) {       
+            dispatch( {type: "GET_USER_CHORE_REQUESTED", payload: {userID: props.user.id, weekID: props.week.weekID}});     
             dispatch( {type: 'GET_DAILY_PAYMENT_REQUESTED', payload: {userID: props.user.id,weekID: props.week.weekID}});
             dispatch( {type: 'GET_WEEKLY_PAYMENT_REQUESTED', payload: {userID: props.user.id,weekID: props.week.weekID}});
             dispatch( {type: 'GET_ADHOC_PAYMENT_REQUESTED', payload: {userID: props.user.id,weekID: props.week.weekID}});
