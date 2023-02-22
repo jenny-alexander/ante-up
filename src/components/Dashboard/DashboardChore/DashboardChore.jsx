@@ -17,14 +17,13 @@ function DashboardChore(props) {
         }        
     },[props.weekInfo])
 
-    useEffect(()=>{        
-        if (chorePayments.length > 0) {
-            setUserChores(chorePayments);
+    useEffect(()=>{  
+        setUserChores(chorePayments);      
+        if (chorePayments.length > 0) {            
             let total = 0;
             for (let i = 0; i < chorePayments.length; i++) {
                 total = total + chorePayments[i].total_payment;
-            }
-            console.log('total of all chores is:', total);
+            }            
             setChoresTotal(total);
         }
     },[chorePayments]);

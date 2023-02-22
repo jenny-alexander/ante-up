@@ -73,11 +73,8 @@ function Chore(props) {
     //<--- END BUILD UP PAYMENT STATES
 
     useEffect(() => {
-        if (chores.userChore.chore.length > 0) {      
-            console.log('found user chores nd they are:', chores.userChore)      
-            setChoresExist(true);
-            setUserChores(chores.userChore.chore)
-        }
+        setChoresExist(chores.userChore.chore.length > 0);
+        setUserChores(chores.userChore.chore);
     },[chores.userChore.chore]);
 
     useEffect(() => {
