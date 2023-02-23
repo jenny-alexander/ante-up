@@ -239,11 +239,11 @@ function Chore(props) {
         return (
             
             <div className="chore-main">
-                <ChoreModal user={props.user}
+                <ChoreModal user={user}
                             close={hideChoreModal}
                             show={showModal} 
                             title={'Manage My Chores'}
-                            weekID={week.weekID}
+                            weekID={week.id}
                             content={
                                         {allChores: allChores, 
                                         userChores: userChores}

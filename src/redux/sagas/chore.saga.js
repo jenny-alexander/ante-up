@@ -17,7 +17,7 @@ function* fetchUserChore(action) {
     }
 }
 
-function* assignChore(action) {    
+function* assignChore(action) {        
     try {        
         const response = yield axios.post(`/api/chore/assign`, action.payload);
         yield put({ type: 'ASSIGN_CHORE_SUCCESS', payload: response.data });
