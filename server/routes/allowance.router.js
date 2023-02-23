@@ -5,9 +5,9 @@ const router = express.Router();
 /**
  * GET latest allowance (where latest = TRUE)
  */
-router.get('/latest/:id', (req, res) => {
-  const getLatestAllowanceQuery = `SELECT * FROM allowance where user_id = ${req.params.id}
-                             AND latest = TRUE;`;                             
+router.get('/latest/:userId/:weekId', (req, res) => {
+      const getLatestAllowanceQuery = `SELECT * FROM allowance where user_id = ${req.params.userId}
+                                       AND week_id = ${req.params.weekId};`;                             
   pool.query(getLatestAllowanceQuery)
     .then((results) => {
       res.send(results.rows[0])
@@ -24,7 +24,7 @@ router.get('/next/:id', (req, res) => {
   const todayDate = new Date();
   const dateCopy = new Date(todayDate.getTime());
   const nextAllowanceDate = new Date(dateCopy.setDate(dateCopy.getDate() + ((7 - dateCopy.getDay() + 4) % 7 || 7)));
-  const dateForQuery = nextAllowanceDate.toLocaleDateString();
+  //const dateForQuery = nextAllowanceDate.toLocaleDateString();
 
   const getNextAllowanceQuery = `SELECT * FROM allowance where user_id = ${req.params.id}
                                  AND allowance_date = '${req.body.nextAllowanceDate}';`;                                 
@@ -39,16 +39,16 @@ router.get('/next/:id', (req, res) => {
 /**
  * GET "old" allowances where deposits = FALSE
  */
-router.get('/:id', (req, res) => {
-  const getAllowanceQuery = `SELECT * FROM allowance where user_id = ${req.params.id}
-                             AND latest = FALSE;`;
-  pool.query(getAllowanceQuery)
-    .then((results) => {
-      res.send(results.rows)
-    }).catch((error) => {
-      console.log('GET allowance records from server error is:', error);
-    })
-});
+// router.get('/:id', (req, res) => {
+//   const getAllowanceQuery = `SELECT * FROM allowance where user_id = ${req.params.id}
+//                              AND latest = FALSE;`;
+//   pool.query(getAllowanceQuery)
+//     .then((results) => {
+//       res.send(results.rows)
+//     }).catch((error) => {
+//       console.log('GET allowance records from server error is:', error);
+//     })
+// });
 
 /**
  * PUT route template

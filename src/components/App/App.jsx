@@ -30,7 +30,8 @@ function App() {
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
     dispatch({type: 'FETCH_WEEK'});
-    dispatch({type:'FETCH_ALLOWANCE'});
+    dispatch({ type: 'GET_ALL_CHORE_REQUESTED'});
+    // dispatch({type:'FETCH_ALLOWANCE'});
   }, []);
 
   useEffect(() => {
@@ -43,6 +44,14 @@ function App() {
                     startDate: week.start_date,
                     endDate: week.end_date,
       })
+      if(week.id > 0 ) {
+        console.log('about to check for corresponding allowance record');
+        dispatch({type:'FETCH_LATEST_ALLOWANCE', 
+                  payload:
+                    { weekId: week.id,
+                      userId: 1
+                    }});
+      }
     }
   },[week])
 
@@ -69,11 +78,11 @@ function App() {
       }
         
         <Routes>
-          <Route path="/" element={user.id ? (<Dashboard user={user} week={weekInfo} />) : (<LoginPage />)} />
-          <Route path="/login" element={user.id ? (<Dashboard user={user} week={weekInfo}/>) : (<LoginPage />)} />
-          <Route path="/registration" element={user.id ? (<Dashboard user={user} week={weekInfo}/>) : (<RegisterPage />)} />
-          <Route path="/dashboard" element={user.id ? (<Dashboard user={user} week={weekInfo}/>) : (<LoginPage />)} />
-          <Route path="/money" element={user.id ? (<Money />) : (<LoginPage />)} />
+          <Route path="/" element={user.id ? (<Dashboard user={user} />) : (<LoginPage />)} />
+          <Route path="/login" element={user.id ? (<Dashboard user={user} />) : (<LoginPage />)} />
+          <Route path="/registration" element={user.id ? (<Dashboard user={user} />) : (<RegisterPage />)} />
+          <Route path="/dashboard" element={user.id ? (<Dashboard user={user} />) : (<LoginPage />)} />
+          <Route path="/money" element={user.id ? (<Money user={user} week={weekInfo} />) : (<LoginPage />)} />
           <Route path="/chore" element={user.id ? (<Chore user={user} week={weekInfo} />) : (<LoginPage />)} />
           <Route path="/activity" element={user.id ? (<ActivityLog />) : (<LoginPage />)} />
           <Route path="/help" element={user.id ? (<Help />) : (<LoginPage />)} />

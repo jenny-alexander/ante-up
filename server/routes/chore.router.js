@@ -19,8 +19,7 @@ router.get('/:userID/:weekID', (req, res) => {
                         INNER JOIN chore
                         ON user_chore.chore_id = chore.id
                         WHERE user_id = ${req.params.userID}
-                        AND week_id = ${req.params.weekID};`;  
-                        console.log('get chores query is:', getChoreQuery)
+                        AND week_id = ${req.params.weekID};`;                          
   pool.query(getChoreQuery)
     .then((results) => {      
       res.send(results.rows);

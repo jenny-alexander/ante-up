@@ -14,11 +14,13 @@ function Money(props) {
     const allowance = useSelector((store) => store.allowance);
     const bank = useSelector((store) => store.bank );
     const user = useSelector((store) => store.user);
+    //const week = useSelector((store) => store.week);
+    
     const [allowanceInfo, setAllowanceInfo] = useState ({});
 
     useEffect(()=> {
-        dispatch( { type: 'FETCH_ALLOWANCE', payload: user.id} );
-        dispatch( { type: 'FETCH_LATEST_ALLOWANCE', payload: user.id });
+        console.log('allowance info is:', allowance);
+        //dispatch( { type: 'FETCH_LATEST_ALLOWANCE', payload: { userId: user.id, weekId: week.id} });
         dispatch( { type: 'GET_BANK_REQUESTED', payload: user.id})
     },[])
 
@@ -42,9 +44,9 @@ function Money(props) {
                     <div className="money-bank-chart">
                         <Card component={<MoneyPie bank={bank.bank} />} />
                     </div>
-                    {/* <div className="money-bank">
+                    <div className="money-bank">
                         <Card component={<MoneyBucketManager bank={bank} />} />
-                    </div> */}
+                    </div>
                 </> : '' }
                 </div>
         

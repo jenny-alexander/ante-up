@@ -12,6 +12,8 @@ function Chore(props) {
     const dispatch = useDispatch();    
     const chores = useSelector((store) => store.chore);
     const chorePayment = useSelector((store) => store.chorePayment);
+    const week = useSelector((store) => store.week);
+    const user = useSelector((store) => store.user);
     const [userChores, setUserChores] = useState([]);
     const [allChores, setAllChores] = useState([]);
     const [choresExist, setChoresExist] = useState(false);
@@ -36,21 +38,17 @@ function Chore(props) {
       ]
 
     useEffect(() => {
-        dispatch( {type: "GET_ALL_CHORE_REQUESTED"});            
-    },[])
-
-    useEffect(() => {
         getTotal();
     },[totalDailyChorePayment, totalWeeklyChorePayment, totalAdhocChorePayment])
 
-    useEffect(()=>{        
-        if (Object.entries(props.week).length !==0 ) {       
-            dispatch( {type: "GET_USER_CHORE_REQUESTED", payload: {userID: props.user.id, weekID: props.week.weekID}});     
-            dispatch( {type: 'GET_DAILY_PAYMENT_REQUESTED', payload: {userID: props.user.id,weekID: props.week.weekID}});
-            dispatch( {type: 'GET_WEEKLY_PAYMENT_REQUESTED', payload: {userID: props.user.id,weekID: props.week.weekID}});
-            dispatch( {type: 'GET_ADHOC_PAYMENT_REQUESTED', payload: {userID: props.user.id,weekID: props.week.weekID}});
+    useEffect(()=>{             
+        if (Object.entries(week).length !==0 && (Object.entries(user).length !==0 ) ) {       
+            dispatch( {type: "GET_USER_CHORE_REQUESTED", payload: {userID: user.id, weekID: week.id}});     
+            dispatch( {type: 'GET_DAILY_PAYMENT_REQUESTED', payload: {userID: user.id,weekID: week.id}});
+            dispatch( {type: 'GET_WEEKLY_PAYMENT_REQUESTED', payload: {userID: user.id,weekID: week.id}});
+            dispatch( {type: 'GET_ADHOC_PAYMENT_REQUESTED', payload: {userID: user.id,weekID: week.id}});
         }        
-    },[props.week])
+    },[week, user]);
 
     //Use these to build up the payment states
     useEffect(()=> {
@@ -245,7 +243,7 @@ function Chore(props) {
                             close={hideChoreModal}
                             show={showModal} 
                             title={'Manage My Chores'}
-                            weekID={props.week.weekID}
+                            weekID={week.weekID}
                             content={
                                         {allChores: allChores, 
                                         userChores: userChores}

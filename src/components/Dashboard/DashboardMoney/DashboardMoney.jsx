@@ -6,7 +6,9 @@ import { faCircleRight } from '@fortawesome/free-solid-svg-icons';
 
 function DashboardMoney(props) {
     const dispatch = useDispatch();
+    const user = useSelector((store) => store.user);
     const bank = useSelector((store) => store.bank );   
+    const week = useSelector((store) => store.week);
     const allowance = useSelector((store) => store.allowance); //TODO: rename as store (i.e. allowanceStore)
     const dailyTotalChorePayment = useSelector((store) => store.dashboard.dailyTotalChorePayment); 
     const weeklyTotalChorePayment = useSelector((store) => store.dashboard.weeklyTotalChorePayment);
@@ -18,20 +20,15 @@ function DashboardMoney(props) {
     const[totalWeeklyChorePayment, setTotalWeeklyChorePayment] = useState(0);
     const[totalAdhocChorePayment, setTotalAdhocChorePayment] = useState(0);  
 
-    useEffect(() => {
-        dispatch( {type: 'GET_BANK_REQUESTED', payload: props.user.id}); // TODO: STICK WITH SAME NAMING CONVENTION (FETCH vs GET)
-        dispatch( { type: 'FETCH_LATEST_ALLOWANCE', payload: props.user.id });        
-    },[])
-
     useEffect(()=>{
-        console.log('props.weekinfo is:', props.weekInfo);
-        if (Object.entries(props.weekInfo).length !==0 ) {
-            setNextAllowance(props.weekInfo.allowanceDate.substring(0,10));
-            dispatch( { type: 'GET_TOTAL_DAILY_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: props.weekInfo.weekID}});
-            dispatch( { type: 'GET_TOTAL_WEEKLY_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: props.weekInfo.weekID}});
-            dispatch( { type: 'GET_TOTAL_ADHOC_CHORE_PAYMENT', payload: {userID: props.user.id, weekID: props.weekInfo.weekID}});
+        if (Object.entries(week).length > 0 && Object.entries(user).length > 0 ) {
+            setNextAllowance(week.allowance_date.substring(0,10));
+            dispatch( {type: 'GET_BANK_REQUESTED', payload: user.id}); // TODO: STICK WITH SAME NAMING CONVENTION (FETCH vs GET)      
+            dispatch( { type: 'GET_TOTAL_DAILY_CHORE_PAYMENT', payload: {userID: user.id, weekID: week.id}});
+            dispatch( { type: 'GET_TOTAL_WEEKLY_CHORE_PAYMENT', payload: {userID: user.id, weekID: week.id}});
+            dispatch( { type: 'GET_TOTAL_ADHOC_CHORE_PAYMENT', payload: {userID: user.id, weekID: week.id}});            
         }        
-    },[props.weekInfo])
+    },[week, user])
 
     useEffect(() => {        
         setAllowanceGoal({...allowanceGoal, 

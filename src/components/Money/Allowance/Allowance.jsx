@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import * as Constants from '../../constants/index';
 import * as Constants from '../../../constants/index';
 import './Allowance.scss';
 import Swal from 'sweetalert2';
-import { Day } from 'react-day-picker';
 
 function Allowance(props) {
     const user = useSelector((store) => store.user);

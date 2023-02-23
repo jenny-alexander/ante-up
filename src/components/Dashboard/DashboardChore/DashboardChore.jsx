@@ -4,28 +4,23 @@ import './DashboardChore.scss';
 
 function DashboardChore(props) {
     const[userChores, setUserChores] = useState([]);
+    const week = useSelector((store) => store.week);
+    const user = useSelector((store) => store.user);
+    
     const dispatch = useDispatch();
     const chorePayments = useSelector((store) => store.dashboard.individualChorePayments);
-    const [choresTotal, setChoresTotal] = useState(0)
 
     useEffect(()=>{
-        if (Object.entries(props.weekInfo).length !==0 ) {
+        if (Object.entries(week).length > 0 && Object.entries(user).length > 0 ) {
             dispatch( { type: 'GET_INDIVIDUAL_CHORE_PAYMENT', 
             payload: { 
-                    userID: props.user.id, 
-                    weekID: props.weekInfo.weekID} });
+                    userID: user.id, 
+                    weekID: week.id} });   
         }        
-    },[props.weekInfo])
+    },[week, user])
 
     useEffect(()=>{  
         setUserChores(chorePayments);      
-        if (chorePayments.length > 0) {            
-            let total = 0;
-            for (let i = 0; i < chorePayments.length; i++) {
-                total = total + chorePayments[i].total_payment;
-            }            
-            setChoresTotal(total);
-        }
     },[chorePayments]);
 
     return (
