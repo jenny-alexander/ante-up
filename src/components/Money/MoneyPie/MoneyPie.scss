@@ -5,16 +5,12 @@
     padding-bottom: 1em;
 
     & .VictoryContainer {
-        width: 55% !important;
-        
-
+        width: 55% !important;        
         & svg {
             overflow: visible;
         }
     }
 }
-.chart-title {    
-    //margin-bottom: 1em;
-    font-size: 1.2em;
-    font-weight: bold;
+.chart-title {        
+    font-size: 1.2em;    
 }

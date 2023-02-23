@@ -3,9 +3,9 @@
     display: flex;
     flex-direction:column;
     justify-content: space-between;
-    margin: 1em;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    margin: 0.2em;
+    //padding-top: 0.5rem;
+    //padding-bottom: 0.5rem;
     row-gap: 1em;
     input {
         font-size: 1em;
@@ -18,7 +18,7 @@
         margin-top: 0.5em;
         & .saving-title {
             font-size: 1.2em;
-            text-decoration: underline;
+            //text-decoration: underline;
             & .saving-info-icon {
                 font-size: 1em;
             }

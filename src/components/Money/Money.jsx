@@ -40,9 +40,9 @@ function Money(props) {
                     <div className="money-bank-chart">
                         <Card component={<MoneyPie bank={bank.bank} />} />
                     </div>
-                    <div className="money-bank">
+                    {/* <div className="money-bank">
                         <Card component={<MoneyBucketManager bank={bank} />} />
-                    </div>
+                    </div> */}
                 </> : '' }
         </div >
     )
