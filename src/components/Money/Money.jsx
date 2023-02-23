@@ -27,8 +27,10 @@ function Money(props) {
     },[allowance])
 
     return (
-        <div className="money">
+        <div className="money-container">
             <h1 className="money-title">Money</h1>            
+            <div className="money">
+            
                 {Object.entries(allowanceInfo).length > 0 ? 
                 <>
                     <div className="money-saving-for">
@@ -44,6 +46,7 @@ function Money(props) {
                         <Card component={<MoneyBucketManager bank={bank} />} />
                     </div> */}
                 </> : '' }
+                </div>
         </div >
     )
 }

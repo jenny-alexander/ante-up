@@ -9,7 +9,7 @@
     background-color: #f9f9f6;
     overflow-y: auto;
     scrollbar-gutter: stable;
-    margin-bottom: 1em;
+
     hr {
         border: 1px solid #087f6b;
         width: 96%;
@@ -34,12 +34,13 @@
     & [class*="money-"] {
         width: 70%;
     }
-}
-@media(max-width: 650px) {
-    .money {
-        & [class*="money-"] {
-            width:90%;
-
+    @media(max-width: 650px) {
+        .money {
+            & [class*="money-"] {
+                width:90%;
+    
+            }
         }
     }
 }
+

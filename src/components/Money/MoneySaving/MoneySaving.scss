@@ -1,11 +1,13 @@
 .money-saving {
     width: 75% !important;    
+    height: 100%;
+    justify-content: center;
     display: flex;
     flex-direction:column;
     justify-content: space-between;
-    margin: 0.2em;
-    //padding-top: 0.5rem;
-    //padding-bottom: 0.5rem;
+    margin: 1em;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     row-gap: 1em;
     input {
         font-size: 1em;
@@ -15,7 +17,7 @@
         display: flex;
         justify-content: center;
         column-gap: 0.5em;
-        margin-top: 0.5em;
+        //margin-top: 0.5em;
         & .saving-title {
             font-size: 1.2em;
             //text-decoration: underline;

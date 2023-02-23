@@ -2,7 +2,9 @@ $greenButton: rgb(39, 95, 88);
 .bucket-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    height: 100%;
+    //align-items: center;
+    align-items: start;
     background-color: white;    
     padding: 8px;    
     border-radius: 12px;
@@ -15,9 +17,9 @@ $greenButton: rgb(39, 95, 88);
     }
 
     .bucket-title {
-        margin-top: 5px;
+        //margin-top: 5px;
         font-size: 1.2em;
-        font-weight: bold;
+        //font-weight: bold;
         margin-bottom: 15px;            
     }
 
