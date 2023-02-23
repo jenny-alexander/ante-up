@@ -27,10 +27,10 @@ function Money(props) {
     },[allowance])
 
     return (
-        <div className="money-container">
-            <h1 className="money-title">Money</h1>            
+        
+                     
             <div className="money">
-            
+            <h1 className="money-title">Money</h1>  
                 {Object.entries(allowanceInfo).length > 0 ? 
                 <>
                     <div className="money-saving-for">
@@ -47,7 +47,7 @@ function Money(props) {
                     </div> */}
                 </> : '' }
                 </div>
-        </div >
+        
     )
 }
 
