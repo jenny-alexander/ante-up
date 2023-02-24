@@ -27,9 +27,10 @@ function ChoreForm(props) {
                     choreName: choreName,
                     chorePayment: chorePayment,
                     choreFrequency: frequencySelected.value,
+                    assignToUser: assignToUser,
         }})
     }
-    const callback = () => {
+    const assign = () => {
         setAssignToUser(!assignToUser);
       };
 
@@ -82,7 +83,7 @@ function ChoreForm(props) {
                     <div className="input-group">
                         <div className="assign-chore-checkbox">
                             <label>
-                                <input  type="checkbox" defaultChecked={assignToUser} onClick={callback} />
+                                <input  type="checkbox" defaultChecked={assignToUser} onClick={assign} />
                                 <span></span>
                                 <strong>Assign To Me</strong>
                             </label>

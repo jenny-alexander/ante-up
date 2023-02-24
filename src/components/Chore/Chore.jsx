@@ -43,7 +43,7 @@ function Chore(props) {
 
     useEffect(()=>{             
         if (Object.entries(week).length !==0 && (Object.entries(user).length !==0 ) ) {       
-            dispatch( {type: "GET_USER_CHORE_REQUESTED", payload: {userID: user.id, weekID: week.id}});     
+            dispatch( {type: "GET_USER_CHORE_REQUESTED", payload: {userId: user.id, weekId: week.id}});     
             dispatch( {type: 'GET_DAILY_PAYMENT_REQUESTED', payload: {userID: user.id,weekID: week.id}});
             dispatch( {type: 'GET_WEEKLY_PAYMENT_REQUESTED', payload: {userID: user.id,weekID: week.id}});
             dispatch( {type: 'GET_ADHOC_PAYMENT_REQUESTED', payload: {userID: user.id,weekID: week.id}});

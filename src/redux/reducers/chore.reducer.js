@@ -14,7 +14,6 @@ const allChoresInitialState = {
 
 const userChore = (state = initialState, action) => {
     switch (action.type) {
-
         case 'GET_USER_CHORE_REQUESTED':
             return { ...state, loading: true, changeSuccess: false }
         case 'GET_CHORE_SUCCESS':
@@ -22,7 +21,8 @@ const userChore = (state = initialState, action) => {
         case 'GET_CHORE_FAILED':
             return { ...state, loading: false, error: action.payload, changeSuccess: false }
         case 'ASSIGN_CHORE_SUCCESS':
-                return { ...state, loading: false, chore: action.payload, error: null, changeSuccess: false }
+                const assignedChore = action.payload;
+                return { ...state, loading: false, chore: [...state.chore, ...assignedChore], error: null, changeSuccess: false }
         case 'REMOVE_CHORE_SUCCESS':
                 return { ...state, loading: false, chore: action.payload, error: null, changeSuccess: false }
         case 'UPDATE_CHORE_SUCCESS':

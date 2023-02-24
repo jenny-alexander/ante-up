@@ -133,10 +133,11 @@ router.put('/adhoc', (req, res) => {
 });
 
 //ADD NEW CHORE PAYMENT
-router.post('/add', (req, res) => {  
-  const addChorePaymentQuery = `INSERT INTO chore_payment_${req.body.frequency} ("chore_id", "user_id", "week_id")
-                              VALUES($1,$2,$3)`;  
-  pool.query(addChorePaymentQuery, [req.body.choreId, req.body.userId, req.body.weekID])
+router.post('/add', (req, res) => {
+  console.log('values in req.body are:', req.body);
+  const addChorePaymentQuery = `INSERT INTO chore_payment_${req.body.frequency} ("chore_id", "user_id", "week_id", "user_chore_id")
+                              VALUES($1,$2,$3,$4)`;  
+  pool.query(addChorePaymentQuery, [req.body.choreId, req.body.userId, req.body.weekID, req.body.user_chore_id])
       .then((results) => {
           res.sendStatus(201);
       }).catch((error) => {
@@ -145,15 +146,27 @@ router.post('/add', (req, res) => {
       })
 })
 
+// //REMOVE CHORE PAYMENT
+// router.put('/remove', (req, res) => {
+//   const removeChorePaymentQuery = `DELETE FROM chore_payment_${req.body.frequency} 
+//                                   WHERE chore_id = ${req.body.choreId}
+//                                   AND week_id = ${req.body.weekID}
+//                                   AND user_id = ${req.body.userId};`;    
+//   pool.query(removeChorePaymentQuery)
+//       .then((results) => {
+//           res.sendStatus(201);
+//       }).catch((error) => {
+//           console.log('remove new chore payment error:', error);
+//           res.sendStatus(500);
+//       })
+// })
 //REMOVE CHORE PAYMENT
-router.put('/remove', (req, res) => {
-  const removeChorePaymentQuery = `DELETE FROM chore_payment_${req.body.frequency} 
-                                  WHERE chore_id = ${req.body.choreId}
-                                  AND week_id = ${req.body.weekID}
-                                  AND user_id = ${req.body.userId};`;    
+router.delete('/remov/:id/:frequency', (req, res) => {
+  const removeChorePaymentQuery = `DELETE FROM chore_payment_${req.params.frequency} 
+                                  WHERE id = ${req.params.id};`;    
   pool.query(removeChorePaymentQuery)
       .then((results) => {
-          res.sendStatus(201);
+          res.sendStatus(200);
       }).catch((error) => {
           console.log('remove new chore payment error:', error);
           res.sendStatus(500);

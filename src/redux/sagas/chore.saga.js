@@ -8,8 +8,9 @@ import { put, takeLatest } from 'redux-saga/effects';
 */
 
 function* fetchUserChore(action) {
+    console.log('action.payload in fetchUserChore is:', action);
     try {        
-        const response = yield axios.get(`/api/chore/${action.payload.userID}/${action.payload.weekID}`);
+        const response = yield axios.get(`/api/chore/${action.payload.userId}/${action.payload.weekId}`);
         yield put({ type: 'GET_CHORE_SUCCESS', payload: response.data });
     } catch (error) {
         yield put({ type: 'GET_CHORE_FAILED', payload: error });
@@ -20,8 +21,8 @@ function* fetchUserChore(action) {
 function* assignChore(action) {        
     try {        
         const response = yield axios.post(`/api/chore/assign`, action.payload);
-        yield put({ type: 'ASSIGN_CHORE_SUCCESS', payload: response.data });
-        yield put({ type: 'ADD_CHORE_PAYMENT', payload: action.payload });
+        yield put({ type: 'ASSIGN_CHORE_SUCCESS', payload: response.data });        
+        yield put({ type: 'ADD_CHORE_PAYMENT', payload: {...action.payload, 'user_chore_id': response.data[0]?.user_chore_id} });
     } catch (error) {
         yield put({ type: 'ASSIGN_CHORE_FAILED', payload: error });
         console.log('Chore POST request failed', error);
@@ -30,19 +31,16 @@ function* assignChore(action) {
 
 function* removeChore(action) {    
     try {        
-        const response = yield axios.put(`/api/chore/remove`, action.payload);
-        yield put({type : 'REMOVE_CHORE_SUCCESS', payload: response.data});
-        yield put({ type: 'REMOVE_CHORE_PAYMENT', payload: action.payload });
+        const response = yield axios.delete(`/api/chore/remove/${action.payload.userChoreId}`);
+        yield put({ type: 'GET_USER_CHORE_REQUESTED', payload: action.payload})
     } catch (error) {
         yield put({ type: 'REMOVE_CHORE_FAILED', payload: error });
         console.log('Chore DELETE request failed', error);
     }
-}
-
+} 
 function* fetchAllChores() {    
     try {        
         const response = yield axios.get(`/api/chore`);
-        console.log('response.data is:', response.data)
         yield put({ type: 'GET_ALL_CHORES_SUCCESS', payload: response.data });
     } catch (error) {
         yield put({ type: 'GET_ALL_CHORES_FAILED', payload: error });
@@ -51,19 +49,18 @@ function* fetchAllChores() {
 }
 
 function* addChore(action) {
-    console.log('in addChore with action.payload:', action.payload);
     try {
         const response = yield axios.post(`/api/chore/add`, action.payload);
-        //yield put({ type:'ADD_CHORE_REQUESTED', payload: action.payload.userID });
-        console.log('response from addChore is:', response.data);
-        yield put({type: 'ASSIGN_CHORE_TO_USER', 
-                    payload: {
-                        userId: action.payload.userId,
-                        weekID: action.payload.weekID,
-                        choreId: response.data,
-                        frequency: action.payload.choreFrequency,
-                    }
-        })
+        if (action.payload.assignToUser) {
+            yield put({type: 'ASSIGN_CHORE_TO_USER', 
+            payload: {
+                userId: action.payload.userId,
+                weekID: action.payload.weekID,
+                choreId: response.data,
+                frequency: action.payload.choreFrequency,
+            }
+            })
+        }
         yield put({type: 'GET_ALL_CHORE_REQUESTED'});
     } catch (error) {
         console.log('Chore POST new chore failed with error:', error);

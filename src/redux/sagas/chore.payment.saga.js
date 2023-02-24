@@ -59,7 +59,8 @@ function* updateAdhocPayment(action) {
     }
 }
 
-function* addChorePayment(action) {    
+function* addChorePayment(action) {
+    console.log('*** action.payload into addChorePayment is:', action.payload); 
     try {        
         const response = yield axios.post(`/api/chore/payment/add`, action.payload);        
         yield put({ type: `GET_${action.payload.frequency.toUpperCase()}_PAYMENT_REQUESTED`, 
@@ -72,10 +73,18 @@ function* addChorePayment(action) {
         console.log('Chore POST request failed', error);
     }
 }
-
+//TODO: CHANGE THIS FOR A DELETE using req.params!!!
+// function* removeChorePayment(action) {    
+//     try {        
+//         const response = yield axios.put(`/api/chore/payment/remove`, action.payload);        
+//     } catch (error) {
+//         yield put({ type: 'REMOVE_CHORE_PAYMENT_FAILED', payload: error });
+//         console.log('Chore deletion request failed', error);
+//     }
+// }
 function* removeChorePayment(action) {    
     try {        
-        const response = yield axios.put(`/api/chore/payment/remove`, action.payload);        
+        const response = yield axios.delete(`/api/chore/payment/remove/${action.payload.id}/${action.payload.frequency}`);        
     } catch (error) {
         yield put({ type: 'REMOVE_CHORE_PAYMENT_FAILED', payload: error });
         console.log('Chore deletion request failed', error);
