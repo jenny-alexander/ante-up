@@ -11,4 +11,6 @@ const weekReducer = (state = {}, action) => {
 
 // user will be on the redux state at:
 // state.user
+export const getWeekInfo = (state) => state.week;
 export default weekReducer;
+

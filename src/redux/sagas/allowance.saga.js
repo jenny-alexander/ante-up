@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest, select } from 'redux-saga/effects';
+import { getWeekInfo} from '../reducers/week.reducer';
+import { getUserInfo } from '../reducers/user.reducer';
 
 /* api functionality should include:
 - get allowance info from db
@@ -9,11 +11,25 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* createNewAllowanceRecord(action)
  {
+    //console.log('*** YEE HAW in createNewAllowanceRecord and action is:', action.payload)
+    const weekInfo = yield select(getWeekInfo);
+    const userInfo = yield select(getUserInfo);
+    console.log('select info from reducers is:', weekInfo, userInfo);
     try {
         //yield put({ type: 'UNSET_ALLOWANCE_RECORD'});
         //action.payload should include: age, week_id, allowance date.
-        
-        const response = yield axios.post(`api/allowance/create`, action.payload);
+        if (Object.entries(userInfo).length > 0 && Object.entries(weekInfo).length > 0 ) {
+            console.log('*** about to call allowance router')
+            const response = yield axios.post(`api/allowance/add`, 
+            { userId: userInfo.id,              
+              spend: userInfo.age * 0.7,
+              save: userInfo.age * 0.2,
+              share: userInfo.age * 0.1,
+              weekId: weekInfo.id,
+              allowanceDate: weekInfo.allowance_date.substring(0,10),
+        });
+        }
+
 
     } catch(error) {
         console.log('Allowance CREATE NEW RECORD failed:', error);
@@ -29,16 +45,6 @@ function* fetchLatestAllowance(action) {
         console.log('Allowance GET LATEST request failed', error);
     }
 }
-
-// function* fetchAllowance(action) {
-//     try {
-//         yield put({ type: 'UNSET_ALLOWANCE' });
-//         const response = yield axios.get(`/api/allowance/${action.payload}`);
-//         yield put({ type: 'SET_ALLOWANCE', payload: response.data });
-//     } catch (error) {
-//         console.log('Allowance GET request failed', error);
-//     }
-// }
 
 function* fetchNextAllowanceInfo(action) {
     try {
@@ -64,6 +70,7 @@ function* allowanceSaga() {
     yield takeLatest('GET_NEXT_ALLOWANCE_INFO', fetchNextAllowanceInfo);
     yield takeLatest('FETCH_LATEST_ALLOWANCE', fetchLatestAllowance);
     yield takeLatest('UPDATE_ALLOWANCE', updateAllowance);
+    yield takeLatest('CREATE_ALLOWANCE_RECORD', createNewAllowanceRecord);
 }
 
 export default allowanceSaga;

@@ -70,8 +70,23 @@ router.put('/update-deposit-flag', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
-  // POST route code here
+router.post('/add/', (req, res) => {
+  console.log('req.body is:', req.body);
+    const addAllowanceQuery = `INSERT INTO allowance ("user_id", "week_id", "allowance_date",
+                              "spend", "save", "share")
+                              VALUES($1,$2,$3,$4,$5,$6);`;                                                  
+    pool.query(addAllowanceQuery, [req.body.userId, 
+                                  req.body.weekId, 
+                                  req.body.allowanceDate,
+                                  req.body.spend.toFixed(2),
+                                  req.body.save.toFixed(2),
+                                  req.body.share.toFixed(2)])
+      .then((result) => {      
+        res.status(200);     
+      }).catch((error) => {
+        console.log('Add chore table error:', error);
+        res.sendStatus(500);
+      })
 });
 
 module.exports = router;

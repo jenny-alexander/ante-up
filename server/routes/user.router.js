@@ -24,7 +24,7 @@ router.post('/register', (req, res, next) => {
   const password = encryptLib.encryptPassword(req.body.password);
 
   const queryText = `INSERT INTO "user" (username, password, age, type)
-    VALUES ($1, $2, $3, $4) RETURNING id`;
+    VALUES ($1, $2, $3, $4) RETURNING "id"`;
   pool
     .query(queryText, [username, password, age, type])
     .then(() => res.sendStatus(201))
@@ -33,7 +33,6 @@ router.post('/register', (req, res, next) => {
       res.sendStatus(500);
     });
 });
-
 //Update the user information
 router.put('/', (req, res) => {  
   let putQueryString = `UPDATE "user" SET username = '${req.body.username}',
