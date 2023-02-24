@@ -133,11 +133,9 @@ router.put('/adhoc', (req, res) => {
 });
 
 //ADD NEW CHORE PAYMENT
-router.post('/add', (req, res) => {
-  console.log('req.body in add chore payment is:', req.body);
+router.post('/add', (req, res) => {  
   const addChorePaymentQuery = `INSERT INTO chore_payment_${req.body.frequency} ("chore_id", "user_id", "week_id")
-                              VALUES($1,$2,$3)`;
-  console.log('addChorePaymentQuery is:', addChorePaymentQuery);
+                              VALUES($1,$2,$3)`;  
   pool.query(addChorePaymentQuery, [req.body.choreId, req.body.userId, req.body.weekID])
       .then((results) => {
           res.sendStatus(201);
@@ -149,12 +147,10 @@ router.post('/add', (req, res) => {
 
 //REMOVE CHORE PAYMENT
 router.put('/remove', (req, res) => {
-  console.log('req.body in remove chore payment is:', req.body);
   const removeChorePaymentQuery = `DELETE FROM chore_payment_${req.body.frequency} 
                                   WHERE chore_id = ${req.body.choreId}
                                   AND week_id = ${req.body.weekID}
-                                  AND user_id = ${req.body.userId};`;  
-  console.log('removeChorePaymentQuery is:', removeChorePaymentQuery);
+                                  AND user_id = ${req.body.userId};`;    
   pool.query(removeChorePaymentQuery)
       .then((results) => {
           res.sendStatus(201);

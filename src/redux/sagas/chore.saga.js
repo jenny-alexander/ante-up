@@ -64,6 +64,7 @@ function* addChore(action) {
                         frequency: action.payload.choreFrequency,
                     }
         })
+        yield put({type: 'GET_ALL_CHORE_REQUESTED'});
     } catch (error) {
         console.log('Chore POST new chore failed with error:', error);
     }

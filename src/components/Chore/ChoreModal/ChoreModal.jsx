@@ -1,16 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import ChoreForm from '../ChoreForm/ChoreForm';
-
 import './ChoreModal.scss';
 
-function Modal(props) {
+function ChoreModal(props) {
     const dispatch = useDispatch();
     const[addNewChore, setAddNewChore] = useState(false); //TODO: Need this when suggesting a new chore    
-    const[disableAddChore, setDisableAddChore] = useState(false);
+
     const assignChore = (chore) => {
         dispatch( {type: 'ASSIGN_CHORE_TO_USER', 
                    payload: {
@@ -61,10 +60,8 @@ function Modal(props) {
                         />
                 :
                         <div className='modal-chore-list'>
-                            { Object.entries(props.content.allChores).length > 0 ?
-                            
+                            { Object.entries(props.content.allChores).length > 0 ?                            
                                 props.content.allChores.map((content,i) => {
-                                    console.log('refiguring out the things')
                                     return (
                                         <div className="modal-content">
                                             <div className="modal-chore-details">
@@ -112,11 +109,11 @@ function Modal(props) {
     }
 
 }
-Modal.PropTypes = {
+ChoreModal.PropTypes = {
     title: PropTypes.string,
     close: PropTypes.func.isRequired,
     show: PropTypes.bool.isRequired,
     actions: PropTypes.array,
     content: PropTypes.array,
 }
-export default Modal;
+export default ChoreModal;

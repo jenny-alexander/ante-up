@@ -14,8 +14,6 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Welcome from '../Welcome/Welcome';
 import '../Header/Header.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import './App.scss';
 
 function App() {
@@ -23,43 +21,35 @@ function App() {
   const user = useSelector(store => store.user);
   const week = useSelector(store => store.week);
   const [weekInfo, setWeekInfo] = useState({});  
-  const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
                   "October", "November", "December"];
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_USER' });
     dispatch({type: 'FETCH_WEEK'});
     dispatch({ type: 'GET_ALL_CHORE_REQUESTED'});
-    // dispatch({type:'FETCH_ALLOWANCE'});
   }, []);
 
   useEffect(() => {
     if (Object.entries(week).length !== 0 ) {
-      console.log('week info is:', weekInfo)
       setWeekInfo({...weekInfo,
-                    //week_no: week.week_no,
                     weekID: week.id,
                     allowanceDate: week.allowance_date,
                     startDate: week.start_date,
                     endDate: week.end_date,
       })
-      if(week.id > 0 ) {
-        console.log('about to check for corresponding allowance record');
+      if(week.id > 0 && user.id > 0 ) {
         dispatch({type:'FETCH_LATEST_ALLOWANCE', 
                   payload:
                     { weekId: week.id,
-                      userId: 1
+                      userId: user.id
                     }});
       }
     }
-  },[week])
-
+  },[week, user])
 
   const getDateString = (date) => {
     const datum = new Date(date);
     const dateOfWeek = datum.getDate();
-    // const dayOfWeek = weekday[datum.getDay()];
     const month = months[datum.getMonth()];
     const year = datum.getFullYear();    
     return  month +  ', ' + dateOfWeek + ' ' + year;
@@ -78,12 +68,12 @@ function App() {
       }
         
         <Routes>
-          <Route path="/" element={user.id ? (<Dashboard user={user} />) : (<LoginPage />)} />
-          <Route path="/login" element={user.id ? (<Dashboard user={user} />) : (<LoginPage />)} />
-          <Route path="/registration" element={user.id ? (<Dashboard user={user} />) : (<RegisterPage />)} />
-          <Route path="/dashboard" element={user.id ? (<Dashboard user={user} />) : (<LoginPage />)} />
-          <Route path="/money" element={user.id ? (<Money user={user} week={weekInfo} />) : (<LoginPage />)} />
-          <Route path="/chore" element={user.id ? (<Chore user={user} week={weekInfo} />) : (<LoginPage />)} />
+          <Route path="/" element={user.id ? (<Dashboard />) : (<LoginPage />)} />
+          <Route path="/login" element={user.id ? (<Dashboard />) : (<LoginPage />)} />
+          <Route path="/registration" element={user.id ? (<Dashboard />) : (<RegisterPage />)} />
+          <Route path="/dashboard" element={user.id ? (<Dashboard />) : (<LoginPage />)} />
+          <Route path="/money" element={user.id ? (<Money />) : (<LoginPage />)} />
+          <Route path="/chore" element={user.id ? (<Chore />) : (<LoginPage />)} />
           <Route path="/activity" element={user.id ? (<ActivityLog />) : (<LoginPage />)} />
           <Route path="/help" element={user.id ? (<Help />) : (<LoginPage />)} />
           <Route path="/user" element={user.id ? (<UserProfile user={user} />) : (<LoginPage />)} />

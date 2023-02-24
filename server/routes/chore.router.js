@@ -87,16 +87,7 @@ router.post('/add', (req, res) => {
                                 req.body.choreFrequency, 
                                 req.body.chorePayment])
     .then((result) => {
-      //const newChoreId = result.rows[0]?.id;
-      res.status(200).send((result.rows[0].id).toString());
-      // const addChoreToUserQuery = `INSERT INTO user_chore ("chore_id", "user_id") VALUES($1,$2);`;
-      // pool.query(addChoreToUserQuery, [newChoreId, req.body.userID])
-      //   .then((result) => {
-      //     res.sendStatus(201);
-      // }).catch((error) => {
-      //   console.log('Add chore table error:', error);
-      //   res.sendStatus(500);
-      // })      
+      res.status(200).send((result.rows[0].id).toString());     
     }).catch((error) => {
       console.log('Add chore table error:', error);
       res.sendStatus(500);

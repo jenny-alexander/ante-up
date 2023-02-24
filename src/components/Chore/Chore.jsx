@@ -239,7 +239,8 @@ function Chore(props) {
         return (
             
             <div className="chore-main">
-                <ChoreModal user={user}
+                { showModal ?
+                    <ChoreModal user={user}
                             close={hideChoreModal}
                             show={showModal} 
                             title={'Manage My Chores'}
@@ -250,6 +251,7 @@ function Chore(props) {
                                     } 
                             actions={[{name: 'Assign', action: 'addChore'},]}
                         />
+                    : '' }
                 <div className="frequency-selector">                    
                     <div className="frequency-title">Frequency:</div>
                     <div className="frequency-dropdown">
