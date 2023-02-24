@@ -19,6 +19,23 @@ router.get('/:id', (req, res) => {
 });
 
 /**
+ * POST route template
+ * 
+ * (share + spend + save) as TOTAL
+ */
+router.post('/new/:userId', (req, res) => {
+    const addBankQuery = `INSERT INTO bank ("user_id")
+                              VALUES($1);`;                                                                       
+    pool.query(addBankQuery, [req.params.userId])
+      .then((result) => {      
+        res.status(200);     
+      }).catch((error) => {
+        console.log('Add new BANK record error:', error);
+        res.sendStatus(500);
+      })
+});
+
+/**
  * PUT route template
  */
 router.put('/deposit', (req, res) => {

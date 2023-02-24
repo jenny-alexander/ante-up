@@ -1,5 +1,16 @@
 import axios from 'axios';
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
+
+function* createNewBankRecord(action) {
+    console.log('action in createNewBankRecord is:', action.payload);
+    try {        
+        yield axios.post(`/api/bank/new/${action.payload.id}`);
+        //yield put({ type: 'GET_BANK_SUCCESS', payload: response.data });
+    } catch (error) {
+        console.log('Bank GET request failed', error);
+        yield put({ type: 'GET_BANK_FAILED', payload: error })
+    }
+}
 
 function* fetchBank(action) {
     try {
@@ -51,7 +62,8 @@ function* bankSaga() {
     yield takeLatest('CHANGE_BANK', depositBank);
     yield takeLatest('GET_BANK_REQUESTED', fetchBank);
     yield takeLatest('SAVE_BANK_GOAL', saveBankGoal);
-    yield takeLatest('CLEAR_DEPOSIT_SUCCESS_FLAG', clearDepositSuccess);    
+    yield takeLatest('CLEAR_DEPOSIT_SUCCESS_FLAG', clearDepositSuccess);
+    yield takeLatest('CREATE_BANK_RECORD', createNewBankRecord);
 }
 
 export default bankSaga;

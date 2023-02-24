@@ -70,8 +70,7 @@ router.put('/update-deposit-flag', (req, res) => {
 /**
  * POST route template
  */
-router.post('/add/', (req, res) => {
-  console.log('req.body is:', req.body);
+router.post('/add/', (req, res) => {  
     const addAllowanceQuery = `INSERT INTO allowance ("user_id", "week_id", "allowance_date",
                               "spend", "save", "share")
                               VALUES($1,$2,$3,$4,$5,$6);`;                                                  
@@ -84,7 +83,7 @@ router.post('/add/', (req, res) => {
       .then((result) => {      
         res.status(200);     
       }).catch((error) => {
-        console.log('Add chore table error:', error);
+        console.log('Add new CHORE record error:', error);
         res.sendStatus(500);
       })
 });

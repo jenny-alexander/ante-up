@@ -11,26 +11,20 @@ import { getUserInfo } from '../reducers/user.reducer';
 
 function* createNewAllowanceRecord(action)
  {
-    //console.log('*** YEE HAW in createNewAllowanceRecord and action is:', action.payload)
     const weekInfo = yield select(getWeekInfo);
     const userInfo = yield select(getUserInfo);
-    console.log('select info from reducers is:', weekInfo, userInfo);
     try {
-        //yield put({ type: 'UNSET_ALLOWANCE_RECORD'});
-        //action.payload should include: age, week_id, allowance date.
-        if (Object.entries(userInfo).length > 0 && Object.entries(weekInfo).length > 0 ) {
-            console.log('*** about to call allowance router')
-            const response = yield axios.post(`api/allowance/add`, 
-            { userId: userInfo.id,              
-              spend: userInfo.age * 0.7,
-              save: userInfo.age * 0.2,
-              share: userInfo.age * 0.1,
-              weekId: weekInfo.id,
-              allowanceDate: weekInfo.allowance_date.substring(0,10),
-        });
+        if (Object.entries(userInfo).length > 0 && Object.entries(weekInfo).length > 0 ) {            
+            yield axios.post(`api/allowance/add`, 
+            { 
+                userId: userInfo.id,              
+                spend: userInfo.age * 0.7,
+                save: userInfo.age * 0.2,
+                share: userInfo.age * 0.1,
+                weekId: weekInfo.id,
+                allowanceDate: weekInfo.allowance_date.substring(0,10),
+            });
         }
-
-
     } catch(error) {
         console.log('Allowance CREATE NEW RECORD failed:', error);
     }
