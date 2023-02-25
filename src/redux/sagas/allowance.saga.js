@@ -10,7 +10,7 @@ import { getUserInfo } from '../reducers/user.reducer';
 */
 
 function* createNewAllowanceRecord(action)
- {
+ {    
     const weekInfo = yield select(getWeekInfo);
     const userInfo = yield select(getUserInfo);
     try {
@@ -29,8 +29,7 @@ function* createNewAllowanceRecord(action)
         console.log('Allowance CREATE NEW RECORD failed:', error);
     }
  }
-function* fetchLatestAllowance(action) {
-    // console.log('action is:', action);
+function* fetchLatestAllowance(action) {    
     try {
         yield put({ type: 'UNSET_LATEST_ALLOWANCE' });
         const response = yield axios.get(`/api/allowance/latest/${action.payload.userId}/${action.payload.weekId}`);        

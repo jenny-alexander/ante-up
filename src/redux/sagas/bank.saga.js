@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest, select} from 'redux-saga/effects';
+import { getUserInfo } from '../reducers/user.reducer';
 
 function* createNewBankRecord(action) {
-    console.log('action in createNewBankRecord is:', action.payload);
+    const userInfo = yield select(getUserInfo);
     try {        
-        yield axios.post(`/api/bank/new/${action.payload.id}`);
-        //yield put({ type: 'GET_BANK_SUCCESS', payload: response.data });
+        yield axios.post(`/api/bank/new/${userInfo.id}`);        
     } catch (error) {
         console.log('Bank GET request failed', error);
         yield put({ type: 'GET_BANK_FAILED', payload: error })

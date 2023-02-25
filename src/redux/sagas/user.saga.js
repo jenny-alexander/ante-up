@@ -19,8 +19,6 @@ function* fetchUser() {
     // with an id and username set the client-side user object to let
     // the client-side code know the user is logged in
     yield put({ type: 'SET_USER', payload: response.data });
-    yield put({ type: 'CREATE_ALLOWANCE_RECORD', payload: response.data}); //NEW
-    yield put({ type: 'CREATE_BANK_RECORD', payload: response.data});
   } catch (error) {
     console.log('User get request failed', error);
   }

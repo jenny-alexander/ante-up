@@ -2,10 +2,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 1em;
+    //padding-bottom: 1em;
 
     & .VictoryContainer {
-        width: 55% !important;        
+        width: 55% !important;
+        margin-top: 1em;        
         & svg {
             overflow: visible;
         }

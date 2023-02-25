@@ -6,7 +6,7 @@ const router = express.Router();
  * GET latest allowance (where latest = TRUE)
  */
 router.get('/latest/:userId/:weekId', (req, res) => {
-      const getLatestAllowanceQuery = `SELECT * FROM allowance where user_id = ${req.params.userId}
+  const getLatestAllowanceQuery = `SELECT * FROM allowance where user_id = ${req.params.userId}
                                        AND week_id = ${req.params.weekId};`;                             
   pool.query(getLatestAllowanceQuery)
     .then((results) => {
@@ -20,12 +20,6 @@ router.get('/latest/:userId/:weekId', (req, res) => {
  * GET next allowance info
  */
 router.get('/next/:id', (req, res) => {
-  //Need to figure out which date to use.
-  const todayDate = new Date();
-  const dateCopy = new Date(todayDate.getTime());
-  const nextAllowanceDate = new Date(dateCopy.setDate(dateCopy.getDate() + ((7 - dateCopy.getDay() + 4) % 7 || 7)));
-  //const dateForQuery = nextAllowanceDate.toLocaleDateString();
-
   const getNextAllowanceQuery = `SELECT * FROM allowance where user_id = ${req.params.id}
                                  AND allowance_date = '${req.body.nextAllowanceDate}';`;                                 
   pool.query(getNextAllowanceQuery)
@@ -77,9 +71,13 @@ router.post('/add/', (req, res) => {
     pool.query(addAllowanceQuery, [req.body.userId, 
                                   req.body.weekId, 
                                   req.body.allowanceDate,
-                                  req.body.spend.toFixed(2),
-                                  req.body.save.toFixed(2),
-                                  req.body.share.toFixed(2)])
+                                  Math.ceil(req.body.spend),
+                                  Math.ceil(req.body.save),
+                                  Math.ceil(req.body.share),
+                                  // req.body.spend.toFixed(2),
+                                  // req.body.save.toFixed(2),
+                                  // req.body.share.toFixed(2),
+                                ])
       .then((result) => {      
         res.status(200);     
       }).catch((error) => {
