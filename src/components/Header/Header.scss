@@ -22,9 +22,14 @@ $greenButton: rgb(39, 95, 88);
           width: 100%;
           margin-left: 1.5em;
         }
-        & img {
+        & .profile-image {
           width: 3em;
           height: 3em;
+        }
+        & .profile-character {
+          width: 1.5em;
+          height: 1.5em;
+          font-size: 1.5em;
         }
         & button {
           display: flex;

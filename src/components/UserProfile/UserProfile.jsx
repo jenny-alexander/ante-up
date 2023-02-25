@@ -21,6 +21,7 @@ function UserProfile(props) {
         'whale',
         'pig',
         'fox',
+        'parrot',
       ]
     
     const Slider = (props) => {

@@ -23,7 +23,9 @@ function LoginForm() {
           username: username,
           password: password,
         },
+        
       });
+      navigate('/dashboard');
     } else {
       dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }

@@ -28,9 +28,10 @@ function DashboardChore(props) {
             <div className="dashboard-chore-title">This week's chores</div>
             {
             userChores.length > 0 ?
-                userChores.map((chore,i) => 
+                userChores.map((chore,i) =>                 
                     <div className="dashboard-chore-card">
                         <div className="dashboard-chore-name">{chore.name}</div>
+                        {/* <div className="dashboard-chore-time">Time:{chore.time}</div> */}
                         <div className="dashboard-chore-payment">Total earned: ${chore.total_payment}</div>
                     </div>
                 ) 

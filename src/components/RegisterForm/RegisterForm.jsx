@@ -25,6 +25,7 @@ function RegisterForm() {
         type: profileType,
       },
     });
+    navigate('/dashboard');
   };
 
   const onProfileChangeValue = (event) => {

@@ -30,8 +30,8 @@ function Header(props) {
                 </div>            
                     <div className="header-info">
                         <div className="week-info">Week of: {props.weekInfo}</div>                                                                    
-                        <button className="profile-info" onClick={toggleUserMenu}>    
-                            <img className="profile-image" src={`/images/profile/${props.user.avatar}.png`}/>
+                        <button className="profile-info" onClick={toggleUserMenu}>                                                    
+                            <img className="profile-image" src={`/images/profile/${props.user.avatar}.png`}/>                            
                         </button>                
                     </div>
                 </div>
