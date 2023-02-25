@@ -35,7 +35,7 @@ function DashboardMoney(props) {
                           goalAmount: bank.bank.goal_amount,
                           goalDescription: bank.bank.goal_desc,                         
                         })
-    },[bank.bank]);
+    },[bank.bank.goal_amount]);
 
     useEffect(() => {
         if (allowance && allowance.latest ) {            
@@ -103,11 +103,7 @@ function DashboardMoney(props) {
                         <div className="amount">$
                         {
                             totalDailyChorePayment + totalAdhocChorePayment + totalWeeklyChorePayment
-                        }
-                            {/* {totalDailyChorePayment !== null ? 
-                                totalWeeklyChorePayment !== null ? 
-                                    totalDailyChorePayment + totalWeeklyChorePayment : '0' : '0' 
-                            } */}
+                        }                           
                         </div>
                     </div>
                 </div>                
@@ -115,9 +111,12 @@ function DashboardMoney(props) {
             <div className="saving-for">
                 <FontAwesomeIcon className="saving-for-icon" icon={faCircleRight} />                
                 <div className="saving-for-text">
-                    {allowanceGoal ? (<div>You're saving ${allowanceGoal.goalAmount} for {allowanceGoal.goalDescription}</div>)
+                    {allowanceGoal.goalAmount > 0 ? 
+                        (<div>
+                            You're saving ${allowanceGoal.goalAmount} for: {allowanceGoal.goalDescription.charAt(0).toLowerCase() + allowanceGoal.goalDescription.slice(1)}
+                        </div>)
                     :
-                    <div>Hi</div>
+                    <div>Enter a Save Goal in the Money Section!</div>
     }
                 </div>
             </div>

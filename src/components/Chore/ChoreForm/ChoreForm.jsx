@@ -18,8 +18,6 @@ function ChoreForm(props) {
         { value: 'Ad hoc', label: 'Ad hoc'}
       ]
     const addNewChore = () => {
-        console.log('in addNewChore!');
-        console.log('chore frequency is:', frequencySelected.valueOf)
         dispatch({type: 'ADD_NEW_CHORE', 
                   payload: {
                     userId: props.userId,

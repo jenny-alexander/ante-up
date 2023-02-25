@@ -21,10 +21,8 @@ function ChoreModal(props) {
         });
     }
 
-    const removeChore = (chore) => {
-        console.log('in removeChore and userChoreis:', userChore);
-        const userChore = props.content.userChores.find(userChore => userChore.id === chore.id);
-        console.log('userCHore is:', userChore);
+    const removeChore = (chore) => {        
+        const userChore = props.content.userChores.find(userChore => userChore.id === chore.id);        
         dispatch( {type: 'REMOVE_CHORE_FROM_USER', 
             payload: {
                 userChoreId: userChore.user_chore_id,

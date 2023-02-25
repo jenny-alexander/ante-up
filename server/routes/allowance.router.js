@@ -31,20 +31,6 @@ router.get('/next/:id', (req, res) => {
 });
 
 /**
- * GET "old" allowances where deposits = FALSE
- */
-// router.get('/:id', (req, res) => {
-//   const getAllowanceQuery = `SELECT * FROM allowance where user_id = ${req.params.id}
-//                              AND latest = FALSE;`;
-//   pool.query(getAllowanceQuery)
-//     .then((results) => {
-//       res.send(results.rows)
-//     }).catch((error) => {
-//       console.log('GET allowance records from server error is:', error);
-//     })
-// });
-
-/**
  * PUT route template
  */
 router.put('/update-deposit-flag', (req, res) => {
@@ -59,7 +45,6 @@ router.put('/update-deposit-flag', (req, res) => {
       res.sendStatus(500);
     })
 });
-
 
 /**
  * POST route template

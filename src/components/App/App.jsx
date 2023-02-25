@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Routes, useNavigate} from 'react-router-dom';
+import { Route, Routes} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Navigation from '../Navigation/Navigation';
 import Dashboard from '../Dashboard/Dashboard';
@@ -18,7 +18,6 @@ import './App.scss';
 
 function App() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const user = useSelector(store => store.user);
   const week = useSelector(store => store.week);
   const allowance = useSelector(store => store.allowance)

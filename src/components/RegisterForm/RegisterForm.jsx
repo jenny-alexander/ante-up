@@ -14,8 +14,7 @@ function RegisterForm() {
   const navigate = useNavigate();
 
   const registerUser = (event) => {
-    event.preventDefault();    
-    console.log('values in register are:', username, password, age, profileType)
+    event.preventDefault();        
     dispatch({
       type: 'REGISTER',
       payload: {

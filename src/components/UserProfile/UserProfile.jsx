@@ -42,7 +42,7 @@ function UserProfile(props) {
     }
 
       const updateProfile = () => {
-        event.preventDefault();
+        event.preventDefault();    
         if (username) {
             dispatch({
               type: 'UPDATE_USER',
