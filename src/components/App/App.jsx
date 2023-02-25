@@ -21,6 +21,7 @@ function App() {
   const navigate = useNavigate();
   const user = useSelector(store => store.user);
   const week = useSelector(store => store.week);
+  const allowance = useSelector(store => store.allowance)
   const [weekInfo, setWeekInfo] = useState({});  
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
                   "October", "November", "December"];

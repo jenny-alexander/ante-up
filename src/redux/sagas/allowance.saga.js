@@ -31,7 +31,7 @@ function* createNewAllowanceRecord(action)
  }
 function* fetchLatestAllowance(action) {    
     try {
-        yield put({ type: 'UNSET_LATEST_ALLOWANCE' });
+        //yield put({ type: 'UNSET_LATEST_ALLOWANCE' });
         const response = yield axios.get(`/api/allowance/latest/${action.payload.userId}/${action.payload.weekId}`);        
         yield put({ type: 'SET_LATEST_ALLOWANCE', payload: response.data });
     } catch (error) {
