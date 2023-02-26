@@ -18,11 +18,9 @@ function UserMenu(props) {
            className="user-menu-wrap">
             <div className="user-menu">
                 <div className="user-menu-header">
-                    <button className="close-user-menu" 
-                            onClick={props.toggleUserMenu}
-                    >
-                        <FontAwesomeIcon icon={faXmark} />
-                    </button>
+                    <div className="user-menu-header-btns">
+                            <FontAwesomeIcon onClick={props.toggleUserMenu} className="fa-Xmark" fixedWidth icon={faXmark} />                                      
+                    </div>
                 </div>
                 <div className="user-menu-name">
                     <img className="menu-profile-image" src={`/images/profile/${props.user.avatar}.png`}/>

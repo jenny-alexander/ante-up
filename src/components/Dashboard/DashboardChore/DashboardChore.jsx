@@ -5,8 +5,7 @@ import './DashboardChore.scss';
 function DashboardChore(props) {
     const[userChores, setUserChores] = useState([]);
     const week = useSelector((store) => store.week);
-    const user = useSelector((store) => store.user);
-    
+    const user = useSelector((store) => store.user); 
     const dispatch = useDispatch();
     const chorePayments = useSelector((store) => store.dashboard.individualChorePayments);
 
@@ -30,8 +29,7 @@ function DashboardChore(props) {
             userChores.length > 0 ?
                 userChores.map((chore,i) =>                 
                     <div className="dashboard-chore-card">
-                        <div className="dashboard-chore-name">{chore.name}</div>
-                        {/* <div className="dashboard-chore-time">Time:{chore.time}</div> */}
+                        <div className="dashboard-chore-name">{chore.name}</div>                        
                         <div className="dashboard-chore-payment">Total earned: ${chore.total_payment}</div>
                     </div>
                 ) 

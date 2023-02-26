@@ -1,8 +1,7 @@
 .dashboard-money {
     border: 1px solid lightgrey;
     border-radius: 10px;
-    background-color: white;
-    //box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    background-color: white;    
     grid-area: money;
     display: flex;
     flex-direction: column;
@@ -23,32 +22,27 @@
     }
 
     .allowance-circles {
-        display: flex;
-        //flex-wrap: wrap;
+        display: flex;        
         flex-wrap:nowrap;
         gap: 1em;
         @media(max-width: 395px) {
             display: flex;
-            flex-direction: row;
-            //flex-wrap: wrap;
+            flex-direction: row;            
             align-items: center;
             justify-content: space-around;
             gap: 0.2em;
         }
     }
-    .res-circle {
-        //width: 20%;
+    .res-circle {        
          width: 70px;
          height: 70px;
         border-radius: 50%;
-        background-color: #f1f1ed;
-        //line-height: 0;
+        background-color: #f1f1ed;        
         position:relative;
         @media(max-width: 395px) {
             width: 65px;
             height: 65px;
         }
-
     }
     .res-circle::after {
         content: "";
@@ -80,14 +74,3 @@
         }
     }
 }
-// //@media(max-width: 900px) {
-//     @media (max-width: 395px) {
-//     .allowance-circles {
-//         display: flex;
-//         flex-direction: row;
-//         flex-wrap: wrap;
-//         align-items: center;
-//         justify-content: space-around;
-//         gap: 0.2em;
-//     }
-// }

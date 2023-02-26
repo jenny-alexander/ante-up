@@ -5,10 +5,8 @@
 .welcome {    
     background-color: rgb(216, 232, 229);
     grid-area: navigation;
-    //padding: 0.5em;
     padding-left: 1em;
     padding-right: 1em;
-    //min-width: 150%;
     & .main {
         display: flex;
         flex-direction: column;
@@ -28,25 +26,17 @@
                 gap: 1.5em;
                 align-items: center;
                 color: rgb(28 52 49);
-                //background-color: lightgrey;
-
                 & .icon {
                     font-size: 2em;
                 }
-
                 & .about-title {
                     font-size:larger;
                 }
-
                 & .about-blurb {
                     padding-top: 0.5em;
-                    //font-size: smaller
                     font-size: 1.1em;
                 }
-
-
             }
-
         }
     }
 }

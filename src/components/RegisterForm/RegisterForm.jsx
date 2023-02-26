@@ -36,8 +36,7 @@ function RegisterForm() {
       <ReactSlider
           className="customSlider"
           thumbClassName="customSlider-thumb"
-          trackClassName="customSlider-track"
-          //markClassName="customSlider-mark"
+          trackClassName="customSlider-track"          
           marks
           min={5}
           max={17}            

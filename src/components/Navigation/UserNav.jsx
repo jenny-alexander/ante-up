@@ -8,10 +8,6 @@ function UserNav(props) {
          className: 'nav-option',
          to: '/user'
         },
-        {name: 'Help',
-        className: 'nav-option',
-        to: '/help'
-       },
     ]
 
     return (        

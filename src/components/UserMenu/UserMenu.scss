@@ -4,7 +4,7 @@ $green: rgb(39, 95, 88);
     top: 4em;
     right: 2em;
     width: 14em;
-    height: 14em;
+    height: 12em;
     background-color: white;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     border-radius: 10px;
@@ -13,7 +13,7 @@ $green: rgb(39, 95, 88);
     padding-bottom: 0.5em;
     & .user-menu {
         display: grid;
-        grid-template-rows: 1em 4.5em 8.5em;
+        grid-template-rows: 1em 4.5em 7em;
         grid-template-areas: 
         "header"
         "profile"
@@ -21,17 +21,19 @@ $green: rgb(39, 95, 88);
         row-gap: 0.2em;
         & .user-menu-header {
             grid-area: header;
-            display: flex;
-            //position: absolute;
+            display: flex;            
             justify-content: end;
             margin-top: 0.3em;
             margin-right: 0.3em;
-            & .close-user-menu {
-                background-color: inherit;
-                border: none;
-                &:hover{
-                    cursor: pointer;
-                }
+            & .user-menu-header-btns {
+                margin-top: 0.2em;
+                & .fa-Xmark {
+                    &:hover {
+                      background-color: rgba(84, 165, 141, 0.3);
+                      border-radius: 50%;
+                      cursor: pointer;
+                    }        
+                  }  
             }
         }
         & .user-menu-name {
@@ -108,28 +110,4 @@ $green: rgb(39, 95, 88);
              }
         }
     }
-    // .caret {
-    //     position: relative;
-    //   }
-      
-    //   .caret:before {
-    //     content: '';
-    //     position: absolute;
-    //     top: -245px;
-    //     left: 150px;        
-    //     border-bottom: 14px solid white;
-    //     border-left: 14px solid transparent;
-    //     border-right: 14px solid transparent;
-    //   }
-      
-    //   .caret:after {
-    //     content: '';
-    //     position: absolute;
-    //     left: 100px;
-    //     top: 100px;
-    //     border-bottom: -86px solid #fff;
-    //     border-left: -86px solid transparent;
-    //     border-right: -86px solid transparent;
-    //   }
 }
-

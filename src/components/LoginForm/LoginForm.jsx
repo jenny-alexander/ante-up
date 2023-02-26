@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-//import { useHistory } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import './LoginForm.scss';
 
@@ -9,8 +8,7 @@ function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
-  const dispatch = useDispatch();
-  //const history = useHistory();
+  const dispatch = useDispatch();  
   const navigate = useNavigate();
 
   const login = (event) => {
@@ -32,12 +30,9 @@ function LoginForm() {
   };
 
   return (
-    
     <div className="login-form">
-      <form onSubmit={login}>
-        {/* <p className="font-Biryani text-3xl text-blue-900 pb-6">ANTE UP!</p> */}
+      <form onSubmit={login}>        
         <div className="login-title">Log in to AnteUp</div>
-
         <div className="form-body">
           <div className="form-row">
             <div className= "input-group">
@@ -66,8 +61,7 @@ function LoginForm() {
           </div>
           <div className="not-registered">
             <p>Not yet registered?</p>
-            <button type="button" className="white-button register" onClick={() => {
-                //history.push('/registration');
+            <button type="button" className="white-button register" onClick={() => {                
                 navigate('/registration');
               }} >
               Register here

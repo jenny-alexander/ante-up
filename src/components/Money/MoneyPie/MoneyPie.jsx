@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { VictoryPie } from "victory-pie";
 import { VictoryTooltip } from "victory-tooltip";
-import './MoneyPie.scss' //change this to './MoneyPie.scss';
+import './MoneyPie.scss';
 import * as Constants from '../../../constants/index';
 
 function MoneyPie(props) {

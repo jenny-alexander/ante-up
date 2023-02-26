@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './DashboardMoney.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleRight } from '@fortawesome/free-solid-svg-icons';
+import './DashboardMoney.scss';
 
 function DashboardMoney(props) {
     const dispatch = useDispatch();
@@ -42,8 +42,7 @@ function DashboardMoney(props) {
             setAllowanceAmounts({...allowanceAmounts,
                 spend: allowance.latestAllowance.spend,
                 save: allowance.latestAllowance.save,
-                share: allowance.latestAllowance.share,
-                //extra: allowance.latestAllowance.chore_money, //TODO: Don't need this so remove from app and DB
+                share: allowance.latestAllowance.share,                
             })
         }
 
@@ -73,40 +72,32 @@ function DashboardMoney(props) {
         }        
     }, [adhocTotalChorePayment]);
 
+    const CircleText = (props) => {
+        return (
+            <div className="res-circle"> 
+                <div className="circle-text">
+                    <div className="title">{props.title}:</div>
+                    <div className="amount">${props.amount}</div>
+                </div>                                        
+            </div>            
+        )
+    }
+
     return (
         <div className="dashboard-money">            
             <div className="next-allowance-date">Next allowance is:          
                 <div>{nextAllowance ? nextAllowance : null}</div>
             </div>
-            <div className="allowance-circles">
-                <div className="res-circle"> 
-                    <div className="circle-text">
-                        <div className="title">Spend:</div>
-                        <div className="amount">${allowance.latestAllowance ? allowance.latestAllowance.spend : null}</div>
-                    </div>                                        
-                </div>
-                <div className="res-circle">
-                    <div className="circle-text">
-                        <div className="title">Save:</div>
-                        <div className="amount">${allowance.latestAllowance ? allowance.latestAllowance.save : null}</div>
-                    </div>
-                </div>
-                <div className="res-circle">
-                    <div className="circle-text">
-                        <div className="title">Share:</div>
-                        <div className="amount">${allowance.latestAllowance ? allowance.latestAllowance.share : null}</div>
-                    </div>
-                </div>
-                <div className="res-circle">
-                    <div className="circle-text">
-                        <div className="title">Chores:</div>
-                        <div className="amount">$
-                        {
-                            totalDailyChorePayment + totalAdhocChorePayment + totalWeeklyChorePayment
-                        }                           
-                        </div>
-                    </div>
-                </div>                
+            <div className="allowance-circles"> 
+                { allowance.latestAllowance ? 
+                    <>
+                        <CircleText title="Spend" amount={allowance.latestAllowance.spend} />
+                        <CircleText title="Save" amount={allowance.latestAllowance.save} />
+                        <CircleText title="Share" amount={allowance.latestAllowance.share} />
+                        <CircleText title="Chores" amount={totalDailyChorePayment + totalAdhocChorePayment + totalWeeklyChorePayment} />
+                    </>
+                    : null    
+                }
             </div>
             <div className="saving-for">
                 <FontAwesomeIcon className="saving-for-icon" icon={faCircleRight} />                

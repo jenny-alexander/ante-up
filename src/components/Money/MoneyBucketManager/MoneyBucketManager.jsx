@@ -26,8 +26,7 @@ function MoneyBucketManager(props) {
             animation: false,
             position: 'bottom-left',
             showConfirmButton: false,
-            timer: 2000,
-            //timerProgressBar: true,
+            timer: 2000,            
           })
           
           Toast.fire({
@@ -78,7 +77,6 @@ function MoneyBucketManager(props) {
             let v = swalval && swalval.value || swalval.dismiss;            
             if (v && v.amountValue  || v === 'cancel') {
                 if (v !== 'cancel') {
-                    //setformdata(swalval);
                     dispatch({
                         type: 'CHANGE_BANK',
                         payload: {

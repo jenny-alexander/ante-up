@@ -16,7 +16,7 @@
       width: 60%;
     }
     @media(max-width: 525px) {
-      width: 80%;
+      width: 90%;
     }
     background: white;
     border: 1px solid rgb(187, 186, 186);
@@ -34,27 +34,25 @@
     transform: translate(-50%, -50%);
 
     & .modal-header {
-      display: flex;
-      //justify-content: space-between;
+      display: flex;      
       justify-content: center;
       padding: 1em;
       flex-direction: column;
-      & .modal-header-container {
-        //border: 1px solid red;
+      & .modal-header-container {        
         display: flex;
         width: 100%;
         justify-content: space-between;
         column-gap: 0.7em;
-
-          & .modal-title {
-            //border: 2px dotted blue;
+          & .modal-title {            
             display: flex;
             justify-content: center;
             font-size: 1.8em;
             width: 95%;
             align-items: center;
+            @media(max-width: 375px) {
+              font-size: 1.5em;
+            }
           }
-
           & .chore-btns {
             display: flex;
             column-gap: 0.5em;     
@@ -81,9 +79,7 @@
                   cursor: pointer;
                 }        
               }  
-
           }          
-
       }
       & .add-chore-btn-container {
         display: flex;
@@ -95,8 +91,7 @@
             width: 60%;
           }
           margin-right: 2.5em;
-          border-radius: 15px;
-          //align-items: baseline;
+          border-radius: 15px;          
           padding: 0.5em 0.25em;
           margin-top: 0.5em;
           border: 1px solid rgb(39, 95, 88);
@@ -109,32 +104,26 @@
           }
           &:hover {
               cursor: pointer;
-
               outline: 1px solid rgb(39, 95, 88);
               transition: outline 0.1s ease-in;
             }   
         }
       }
-
     }
-    
     & .modal-body {
       display: flex;
       flex-direction: column;
       border-top: 1px solid lightgrey;
       padding: 0.5em;
       height: 25em;
-
         & .modal-chore-list {
-          
           overflow-y: auto;
           margin-bottom: 1em;          
           display: flex;
           flex-direction: column;
            align-items:center;
            gap: 0.7em;
-          & .modal-content {            
-            //background-color:white;
+          & .modal-content {                        
             background-color: #e9eff1;
             padding: 1rem;
             display: flex;
@@ -153,7 +142,6 @@
             & button {
               display: flex;
               border:none;
-
               background-color: rgba(58, 125, 117);
               color: white;
               border-radius: 15px;
@@ -169,8 +157,11 @@
               display: flex;
               gap: 1em;
               max-width: 75%;
-              @media(max-width: 575px) {
+              @media(max-width: 675px) {
                 max-width: 60%;
+              }
+              @media(max-width: 425px) {
+                max-width: 50%;
               }
             }
             & .chore-name {
@@ -200,8 +191,7 @@
           border-top: 1px solid #ccc;
           background: #eeeeeeab;
           border-bottom-left-radius: 12px;
-          border-bottom-right-radius: 12px;
-    
+          border-bottom-right-radius: 12px;    
           .action-buttons {
             display:flex;
             padding-top: 1em 0.5em;
@@ -218,17 +208,15 @@
               0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
               padding: 0.75em 1.5em;
               margin: 1em;
-              letter-spacing: 0.2em;
-            
+              letter-spacing: 0.2em;            
               &:hover {
                   cursor: pointer;          
                     outline: 4px solid rgb(12 30 164 / 87%);
                     transition: outline 0.1s ease-in-out;
-                }
-              
+                }              
             } 
           }
         }
+      }
   }
-}
 }

@@ -37,9 +37,7 @@ $sliderTrackColor: #ddd;
             display: flex;            
             column-gap: 0.5em;            
             & .radio-input{
-                padding: 0.55em;                
-                //background-color:rgb(216 232 229 / 60%);
-                // box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;   
+                padding: 0.55em;                  
                 border: 1px solid lightgrey;            
                 border-radius: 12px;                
                 width: 7.5em;
@@ -48,8 +46,7 @@ $sliderTrackColor: #ddd;
                     background-color:rgb(216 232 229 / 60%);
                     transition: background-color 0.2s ease-in-out;
                 }
-                // display: flex;
-                // text-align: center;                
+            
                 & label {
                     display: flex;                    
                     align-items: flex-end;
@@ -120,7 +117,6 @@ $sliderTrackColor: #ddd;
     color: white;    
     padding: 0.5em 1.5em;
     width: 100%;
-    //transition: 120ms all ease-in-out;
     &:hover {
         cursor: pointer;
         outline: 5px solid #54a58d;
@@ -137,15 +133,12 @@ $sliderTrackColor: #ddd;
     background: white;
     color: rgb(7,10,10,1);
     padding: 0.5em 1.5em;
-    //margin-top: 0.5em;
-    //transition: 120ms all ease-in-out;
     &:focus {
         outline: 2px solid $greenButton;
         outline-offset: 2px;
     }
     &:hover {
         cursor: pointer;
-        //border: 1px solid#54a58d;
         outline: 5px solid #54a58d;
         transition: outline 0.1s ease-in-out;
     } 

@@ -16,9 +16,9 @@ function NavOptions(props) {
         className: 'nav-option',
         to: '/chore'
        },
-       {name: 'Activity Log',
-       className: 'nav-option',
-       to: '/activity'
+       {name: 'About',
+       className: 'nav-about',
+       to: '/about'
       },
     ]
 

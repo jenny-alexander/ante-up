@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Select from 'react-select';
 import './ChoreForm.scss';
 
 function ChoreForm(props) {
-    const[choreName, setChoreName] = useState('');
-    const[choreDescription, setChoreDescription] = useState(''); //TODO: probably won't use it    
+    const[choreName, setChoreName] = useState('');   
     const[chorePayment, setChorePayment] = useState(0);
     const[assignToUser, setAssignToUser] = useState(true);
     const [frequencySelected, setFrequencySelected] = useState('Daily');      
-    const [selectedRow, setSelectedRow] = useState(-1);    
     const dispatch = useDispatch();  
 
     const options = [        
@@ -34,7 +32,6 @@ function ChoreForm(props) {
 
       const handleFrequencyChange = (selected) => {              
         setFrequencySelected(selected);
-        setSelectedRow(-1);
     }
 
   return (
@@ -90,7 +87,6 @@ function ChoreForm(props) {
                 </div>
                 <div className="add-chore-form-buttons">
                     <button 
-                        //type="submit" 
                         onClick={addNewChore}
                         className="green-button add">Add Chore</button>
                     <button 
@@ -102,4 +98,5 @@ function ChoreForm(props) {
     </div>
   )
 }
+
 export default ChoreForm;

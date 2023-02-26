@@ -9,13 +9,10 @@ function Allowance(props) {
     const dispatch = useDispatch();
     const[lastDeposited, setLastDeposited] = useState('');
     const[updatedLatestAllowance, setUpdatedLatestAllowance] = useState({});
-    const[allowanceDay, setAllowanceDay] = useState('');
-
     const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
     useEffect(()=> {
-        setUpdatedLatestAllowance(props.allowance.latestAllowance);
-        setAllowanceDay(getDayOfWeek(props.allowance.latestAllowance.allowance_date)); 
+        setUpdatedLatestAllowance(props.allowance.latestAllowance);        
     },[props.allowance.latestAllowance])
 
     useEffect(() => {
@@ -60,7 +57,7 @@ function Allowance(props) {
                 userID: user.id,
                 allowanceDeposit: true,
                 depositDetails: { 
-                    bankChangeType: 'deposit', //+ for deposit, - for withdrawal
+                    bankChangeType: 'deposit',
                     amount : amount,
                     toAccount: toAccount,
                 }
@@ -102,28 +99,37 @@ function Allowance(props) {
     }
     const launchSuccessToast = () => {
         const Toast = Swal.mixin({
-            toast: true,
-            //animation: false,
+            toast: true,            
             position: 'bottom-left',
             showConfirmButton: false,
-            timer: 2000,
-            //timerProgressBar: true,
+            timer: 2000,            
           })
           
           Toast.fire({
             icon: 'success',
             title: 'Deposited Successfully!',
             showClass: {
-                backdrop: 'swal2-noanimation', // disable backdrop animation
+                backdrop: 'swal2-noanimation',
                 popup: 'swal2-noanimation',
                 icon: 'swal2-noanimation'
               },
           })
     }
-    const getDayOfWeek = (date) => {
-        const datum = new Date(date);
-        const dayOfWeek = weekday[datum.getDay()];
-        return dayOfWeek;
+    const AllowanceRow = (props) => {
+        return (
+            <tr>
+                <td>{props.amountType}</td>                           
+                <td>{ Constants.dollarUS.format(props.amount)}</td>
+                <td>
+                {
+                    props.deposited ? <p>Deposited</p> :                               
+                        <button className="allowance-button" 
+                                onClick={ () => openAllowanceModal(props.amount,props.toAccount, props.accountName,props.dbAccountName)}
+                        > Deposit</button>
+                }
+                </td>
+        </tr>
+        )
     }
 
         return (           
@@ -138,45 +144,35 @@ function Allowance(props) {
                             <th>Amount</th>
                             <th>Actions</th>
                         </tr>
-                    </thead>
-                    
+                    </thead>                    
                     <tbody>
-                        <tr>
-                            <td>Spend</td>                           
-                            <td>{ Constants.dollarUS.format(props.allowance?.latestAllowance?.spend)}</td>
-                            <td>
-                                {
-                                props.allowance?.latestAllowance?.spend_deposited ? <p>Deposited</p> :                               
-                                    <button className="allowance-button" 
-                                            onClick={ () => openAllowanceModal(props.allowance.latestAllowance.spend,'spend', 'Spend','spend_deposited')}
-                                    > Deposit</button>
-                                }
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Save</td>                            
-                            <td>{Constants.dollarUS.format(props.allowance?.latestAllowance?.save)}</td>
-                            <td>
-                            {     
-                                props.allowance?.latestAllowance?.save_deposited ? <p>Deposited</p> :                               
-                                    <button className="allowance-button" 
-                                            onClick={ () => openAllowanceModal(props.allowance.latestAllowance.save,'save','Save','save_deposited')}
-                                    > Deposit</button>                                    
-                                } 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Share</td>                            
-                            <td>{ Constants.dollarUS.format(props.allowance?.latestAllowance?.share)}</td>
-                            <td>
-                            {     
-                                props.allowance?.latestAllowance?.share_deposited ? <p>Deposited</p> :                               
-                                    <button className="allowance-button" 
-                                            onClick={ () => openAllowanceModal(props.allowance.latestAllowance.share,'share','Share','share_deposited')}
-                                    > Deposit</button>
-                                } 
-                            </td>
-                        </tr>
+                        { 
+                            props.allowance?.latestAllowance ? 
+                                <>
+                                    <AllowanceRow amountType="Spend"
+                                                  amount={props.allowance.latestAllowance?.spend}
+                                                  deposited={props.allowance.latestAllowance.spend_deposited}
+                                                  toAccount="spend" 
+                                                  accountName="Spend"
+                                                  dbAccountName="spend_deposited"
+                                    />
+                                    <AllowanceRow amountType="Save"
+                                                  amount={props.allowance.latestAllowance?.save} 
+                                                  deposited={props.allowance.latestAllowance.save_deposited}
+                                                  toAccount="save" 
+                                                  accountName="Save"
+                                                  dbAccountName="save_deposited"
+                                    />
+                                    <AllowanceRow amountType="Share"
+                                                  amount={props.allowance.latestAllowance?.share}
+                                                  deposited={props.allowance.latestAllowance.share_deposited}
+                                                  toAccount="share" 
+                                                  accountName="Share"
+                                                  dbAccountName="share_deposited"
+                                    />
+                                </> : null
+                        }
+
                     </tbody>
                 </table>                
             </div>
