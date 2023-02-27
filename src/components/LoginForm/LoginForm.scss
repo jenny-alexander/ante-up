@@ -7,9 +7,17 @@ $greenButton: rgb(39, 95, 88);
         font-size: 2em;
         padding-bottom: 0.5em; 
     }
+
     & .login-form {
         display: flex;        
         padding: 1em;
+        & .login-alert {
+            font-size: 1em;
+            padding-bottom:1em;
+            color: rgb(209, 0, 0);
+            display: flex;
+            border:1px solid black;
+        }
     }
     & .form-row {
         padding-bottom: 0.5em;

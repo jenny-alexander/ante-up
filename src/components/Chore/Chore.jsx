@@ -334,7 +334,8 @@ function Chore(props) {
         return (
             <>
                 <div className={`${props.frequency.toLowerCase()}-chore`}>
-                    <label htmlFor={`custom-checkbox-${props.index}`}>{props.mapKey.substring(0,1).toUpperCase()}                                    
+                    <label htmlFor={`custom-checkbox-${props.index}`}>
+                        {props.frequency==='Daily' ? props.mapKey.substring(0,1).toUpperCase() : props.frequency}                                    
                         <input className={`schedule-checkbox ${props.scheduleIsDisabled ? ' disabled' : ''}`} 
                             disabled={props.disabled}
                             type="checkbox"
@@ -359,7 +360,7 @@ function Chore(props) {
         } else if ( frequency === 'Ad hoc' ) {            
             paymentsForThisChore = checkedAdHocState.filter(payment => payment.choreID === choreID);
         }        
-        if ( paymentsForThisChore.length > 0 ) {
+        if ( paymentsForThisChore?.length > 0 ) {
             const paymentObj = paymentsForThisChore[0];            
             setChoreTotalPayment(paymentObj.totalPayment);
             return (

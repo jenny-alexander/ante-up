@@ -14,17 +14,19 @@
                 outline-offset: 2px;
             }
 }
-.swal2-icon.allowance  {
-    margin-top: 1em;
-}
-.swal2-title.allowance {
-    padding-top: 0em;
-}
-.swal2-popup.allowance {
-    width: 26em;
+.swal2-container {
+    .swal2-icon.allowance  {
+        margin-top: 1em;
+    }
+    .swal2-title.allowance {
+        padding-top: 0em;
+    }
+    .swal2-popup.allowance {
+        width: 26em;
+    }
 }
 
-.allowance {
+.allowance-container {
     display: flex;
     flex-direction: column;
     align-items: center;

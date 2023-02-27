@@ -269,7 +269,7 @@ $greenButton: rgb(39, 95, 88);
                     &:hover {
                         cursor: pointer;
                     }
-                    &.disabled {
+                    &:disabled {
                         pointer-events: none;
                     }
                 }

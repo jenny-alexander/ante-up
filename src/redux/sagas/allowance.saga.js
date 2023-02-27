@@ -31,7 +31,6 @@ function* createNewAllowanceRecord(action)
  }
 function* fetchLatestAllowance(action) {    
     try {
-        //yield put({ type: 'UNSET_LATEST_ALLOWANCE' });
         const response = yield axios.get(`/api/allowance/latest/${action.payload.userId}/${action.payload.weekId}`);        
         yield put({ type: 'SET_LATEST_ALLOWANCE', payload: response.data });
     } catch (error) {
@@ -59,7 +58,6 @@ function* updateAllowance(action) {
 }
 
 function* allowanceSaga() {
-    //yield takeLatest('FETCH_ALLOWANCE', fetchAllowance);
     yield takeLatest('GET_NEXT_ALLOWANCE_INFO', fetchNextAllowanceInfo);
     yield takeLatest('FETCH_LATEST_ALLOWANCE', fetchLatestAllowance);
     yield takeLatest('UPDATE_ALLOWANCE', updateAllowance);

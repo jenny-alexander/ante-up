@@ -33,7 +33,13 @@ function LoginForm() {
     <div className="login-form">
       <form onSubmit={login}>        
         <div className="login-title">Log in to AnteUp</div>
+
         <div className="form-body">
+        {errors.loginMessage && (
+          <div className="login-alert" role="alert">
+            {errors.loginMessage}
+          </div>
+          )}
           <div className="form-row">
             <div className= "input-group">
               <label for="username">

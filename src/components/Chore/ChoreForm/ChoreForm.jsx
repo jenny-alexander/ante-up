@@ -16,6 +16,7 @@ function ChoreForm(props) {
         { value: 'Ad hoc', label: 'Ad hoc'}
       ]
     const addNewChore = () => {
+        e.preventDefault();
         dispatch({type: 'ADD_NEW_CHORE', 
                   payload: {
                     userId: props.userId,
@@ -30,13 +31,15 @@ function ChoreForm(props) {
         setAssignToUser(!assignToUser);
       };
 
-      const handleFrequencyChange = (selected) => {              
+      const handleFrequencyChange = (selected) => {    
+        console.log('*** frequency selected is:', selected);          
         setFrequencySelected(selected);
     }
 
   return (
     <div className="new-chore-container">
-            <div className="new-chore-title">Add a New Chore</div>
+        <div className="new-chore-title">Add a New Chore</div>
+            <form onSubmit={addNewChore}>
             <div className="form-body">
                 <div className="form-row">
                     <div className= "input-group">
@@ -69,7 +72,8 @@ function ChoreForm(props) {
                         <div className="add-chore-frequency">
                             <Select options={options}
                                     onChange={handleFrequencyChange}                                
-                                    value={frequencySelected}
+                                    //value={frequencySelected}
+                                    defaultValue={options[0]}
                             />
                         </div>            
                     </div>
@@ -87,14 +91,15 @@ function ChoreForm(props) {
                 </div>
                 <div className="add-chore-form-buttons">
                     <button 
-                        onClick={addNewChore}
+                        type="submit"
                         className="green-button add">Add Chore</button>
                     <button 
                         className="white-button cancel"
                         onClick={props.cancel}>Cancel
                     </button>
                 </div>
-            </div>
+        </div>
+        </form>
     </div>
   )
 }

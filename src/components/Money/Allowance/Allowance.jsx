@@ -133,7 +133,7 @@ function Allowance(props) {
     }
 
         return (           
-            <div className="allowance">                                                
+            <div className="allowance-container">                                                
                 <div className='allowance-title'>  
                     Allowance info                  
                 </div>                
