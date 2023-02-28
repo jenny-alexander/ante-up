@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactSlider from "react-slider";
 import { useNavigate } from 'react-router-dom';
@@ -7,24 +7,38 @@ import './RegisterForm.scss';
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [profileType, setProfileType] = useState('Parent');  
+  const [profileType, setProfileType] = useState('Child');  
   const [age, setAge] = useState(10);
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();  
   const navigate = useNavigate();
 
+  useEffect(() => {
+    dispatch({type:'CLEAR_REGISTRATION_ERROR'});
+  },[]);
+
   const registerUser = (event) => {
-    event.preventDefault();        
-    dispatch({
-      type: 'REGISTER',
-      payload: {
-        username: username,
-        password: password,
-        age: age,
-        type: profileType,
-      },
-    });
-    navigate('/dashboard');
+    event.preventDefault();
+    if (username && password) {       
+      if (username.length < 8) {
+        dispatch({ type: 'REGISTRATION_USERNAME_LENGTH_ERROR' });
+      } else if (password.length < 8) {
+        dispatch({ type: 'REGISTRATION_PASSWORD_LENGTH_ERROR' });
+      } else {
+        dispatch({
+          type: 'REGISTER',
+          payload: {
+            username: username,
+            password: password,
+            age: age,
+            type: profileType,
+          },
+        });
+        navigate('/dashboard');
+      }
+    } else {      
+      dispatch({ type: 'REGISTRATION_INPUT_ERROR' });
+    }
   };
 
   const onProfileChangeValue = (event) => {
@@ -51,8 +65,10 @@ function RegisterForm() {
     <div className="registration-form">
       <form onSubmit={registerUser}>        
         <div className="register-title">Let's Get Started!</div>
-
-        <div className="form-body">
+        <div className="form-body">          
+            {errors.registrationMessage
+              && (<div className="registration-error" role="alert">{errors.registrationMessage}</div>)
+            }                    
           <div className="form-row">
             <div className= "input-group">
               <label for="username">
@@ -76,7 +92,7 @@ function RegisterForm() {
             </div>
             
           </div>
-          <div className="form-row">
+          {/* <div className="form-row">
             <div className="input-radio-title">Profile Type:</div>
             <div className="input-group-radio">
               
@@ -90,7 +106,7 @@ function RegisterForm() {
  
               </div>
             </div>            
-          </div>
+          </div> */}
           {
             profileType === 'Child' ? 
             ( <div className="form-row age-slider">

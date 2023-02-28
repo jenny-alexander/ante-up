@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -11,19 +11,28 @@ function LoginForm() {
   const dispatch = useDispatch();  
   const navigate = useNavigate();
 
+  useEffect(() => {
+    dispatch({type:'CLEAR_LOGIN_ERROR'});
+  },[]); 
+
   const login = (event) => {
     event.preventDefault();
 
     if (username && password) {
-      dispatch({
-        type: 'LOGIN',
-        payload: {
-          username: username,
-          password: password,
-        },
-        
-      });
-      navigate('/dashboard');
+        if (username.length < 8) {
+          dispatch({ type: 'LOGIN_USERNAME_LENGTH_ERROR' });
+        } else if (password.length < 8) {
+          dispatch({ type: 'LOGIN_PASSWORD_LENGTH_ERROR' });
+        } else {
+          dispatch({
+            type: 'LOGIN',
+            payload: {
+              username: username,
+              password: password,
+            },        
+        });
+        navigate('/dashboard');
+      }
     } else {
       dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }
@@ -36,7 +45,7 @@ function LoginForm() {
 
         <div className="form-body">
         {errors.loginMessage && (
-          <div className="login-alert" role="alert">
+          <div className="login-error" role="alert">
             {errors.loginMessage}
           </div>
           )}

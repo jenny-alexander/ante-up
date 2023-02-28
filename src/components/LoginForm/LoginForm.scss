@@ -11,13 +11,14 @@ $greenButton: rgb(39, 95, 88);
     & .login-form {
         display: flex;        
         padding: 1em;
-        & .login-alert {
-            font-size: 1em;
-            padding-bottom:1em;
-            color: rgb(209, 0, 0);
-            display: flex;
-            border:1px solid black;
+        min-width: 285px;
+        @media(max-width: 375px) {
+            min-width: auto;
         }
+        & .login-error {
+            color: red;
+            padding-bottom: 0.5em;
+        }      
     }
     & .form-row {
         padding-bottom: 0.5em;

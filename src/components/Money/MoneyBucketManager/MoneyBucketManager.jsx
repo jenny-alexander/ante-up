@@ -46,8 +46,15 @@ function MoneyBucketManager(props) {
 
     const changeAmount = (changeType, bucketType) => {
         setChangeType(changeType);
+        const getTitle = () => {
+            if(changeType === 'withdraw') {
+                return 'from';
+            }else {
+                return 'into';
+            }
+        }
         const changeAmountSWAL =  {            
-            title: `Enter amount to ${changeType} into ${bucketType} account`,
+            title: `Enter amount to ${changeType} ${getTitle()} ${bucketType} account`,
             focusConfirm: false,
             html: `<input class="swal2-input" id="amount" type="number" placeholder="0.00" />`,         
             showClass: {                

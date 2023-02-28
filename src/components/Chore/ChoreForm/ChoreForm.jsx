@@ -7,8 +7,9 @@ function ChoreForm(props) {
     const[choreName, setChoreName] = useState('');   
     const[chorePayment, setChorePayment] = useState(0);
     const[assignToUser, setAssignToUser] = useState(true);
-    const [frequencySelected, setFrequencySelected] = useState('Daily');      
+    const [frequencySelected, setFrequencySelected] = useState('');      
     const dispatch = useDispatch();  
+    const [formError, setFormError] = useState({});
 
     const options = [        
         { value: 'Daily', label: 'Daily' },
@@ -17,23 +18,40 @@ function ChoreForm(props) {
       ]
     const addNewChore = () => {
         event.preventDefault();
-        dispatch({type: 'ADD_NEW_CHORE', 
-                  payload: {
-                    userId: props.userId,
-                    weekID: props.weekID,
-                    choreName: choreName,
-                    chorePayment: chorePayment,
-                    choreFrequency: frequencySelected.value,
-                    assignToUser: assignToUser,
-        }})
+        if (frequencySelected === '') {            
+            setFormError({...formError, frequency: true})
+        } else {
+            if (!formError.payment && !formError.frequency) {
+                dispatch({type: 'ADD_NEW_CHORE', 
+                payload: {
+                  userId: props.userId,
+                  weekID: props.weekID,
+                  choreName: choreName,
+                  chorePayment: chorePayment,
+                  choreFrequency: frequencySelected.value,
+                  assignToUser: assignToUser,
+                }
+            })}    
+        }
     }
+    
     const assign = () => {
         setAssignToUser(!assignToUser);
       };
 
-      const handleFrequencyChange = (selected) => {    
+    const handleFrequencyChange = (selected) => {    
         console.log('*** frequency selected is:', selected);          
         setFrequencySelected(selected);
+        setFormError({...formError, frequency: false})
+    }
+
+    const validatePayment = (value) => {
+        setChorePayment(value);
+        if (value > 99) {
+            setFormError({...formError, payment: true});
+        } else {
+            setFormError({...formError, payment:false});
+        }        
     }
 
   return (
@@ -42,8 +60,12 @@ function ChoreForm(props) {
             <form className="add-chore-form" onSubmit={addNewChore}>
             <div className="form-body">
                 <div className="form-row">
-                {chorePayment > 100 ? 
-                        <p className="form-error">Amount must be less than $1000</p>: ''}
+                    {formError.payment ? 
+                        <p className="form-error">Amount must be less than $100</p> : ''
+                    }
+                    {formError.frequency ?
+                        <p className="form-error">Please select a frequency</p> : ''
+                     }
                     <div className= "input-group">
                     <label for="choreName">
                         Chore Name
@@ -62,7 +84,8 @@ function ChoreForm(props) {
                         <input id="chorePayment" 
                             type="number"
                             value={chorePayment}
-                            onChange={(event) => setChorePayment(event.target.value)}
+                            // onChange={(event) => setChorePayment(event.target.value)}
+                            onChange={(event) => validatePayment(event.target.value)}
                             required />              
                     </div>
                 </div>
@@ -73,8 +96,9 @@ function ChoreForm(props) {
                         </label>
                         <div className="add-chore-frequency">
                             <Select options={options}
-                                    onChange={handleFrequencyChange}                                
-                                    defaultValue={options[0]}
+                                    onChange={handleFrequencyChange}
+                                    value={frequencySelected}                           
+                                    //defaultValue={options[0]}
                             />
                         </div>            
                     </div>

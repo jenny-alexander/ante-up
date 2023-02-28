@@ -8,10 +8,14 @@ const loginMessage = (state = '', action) => {
       return '';
     case 'LOGIN_INPUT_ERROR':
       return 'Enter your username and password!';
+    case 'LOGIN_USERNAME_LENGTH_ERROR':
+        return 'Username must be at least 8 characters';
+    case 'LOGIN_PASSWORD_LENGTH_ERROR':
+        return 'Password must be at least 8 characters'
     case 'LOGIN_FAILED':
-      return "Oops! The username and password didn't match. Try again!";
+      return "Username or password not found. Try again!";
     case 'LOGIN_FAILED_NO_CODE':
-      return 'Oops! Something went wrong! Is the server running?';
+      return 'Oops! Something went wrong! Try again.';
     default:
       return state;
   }
@@ -25,8 +29,12 @@ const registrationMessage = (state = '', action) => {
       return '';
     case 'REGISTRATION_INPUT_ERROR':
       return 'Choose a username and password!';
+    case 'REGISTRATION_USERNAME_LENGTH_ERROR':
+      return 'Username must be at least 8 characters';
+    case 'REGISTRATION_PASSWORD_LENGTH_ERROR':
+      return 'Password must be at least 8 characters'
     case 'REGISTRATION_FAILED':
-      return "Oops! That didn't work. The username might already be taken. Try again!";
+      return "Oops! That didn't work. Username might already be taken. Try again!";
     default:
       return state;
   }

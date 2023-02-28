@@ -14,6 +14,14 @@ $sliderTrackColor: #ddd;
 .registration-form {
     display: flex;    
     padding: 1em;
+    min-width: 285px;
+    @media(max-width: 375px) {
+        min-width: auto;
+    }
+    & .registration-error {
+        color: red;
+        padding-bottom: 0.5em;
+    }
 }
 .form-row {
     padding-bottom: 0.5em;
