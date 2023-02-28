@@ -48,7 +48,7 @@ function* fetchAllChores() {
     }
 }
 
-function* addChore(action) {
+function* addChore(action) {    
     try {
         const response = yield axios.post(`/api/chore/add`, action.payload);
         if (action.payload.assignToUser) {
@@ -57,7 +57,7 @@ function* addChore(action) {
                 userId: action.payload.userId,
                 weekID: action.payload.weekID,
                 choreId: response.data,
-                frequency: action.payload.choreFrequency,
+                frequency: action.payload.choreFrequency.split(" ").join(""),
             }
             })
         }

@@ -75,6 +75,15 @@ $greenButton: rgb(39, 95, 88);
         }
     }
 }
+.swal2-html-container {
+    margin: 1em .3em !important;
+}
+.swal2-container {
+    & .swal2-title {
+        font-weight: 300;
+    }
+}
+
 
 //Hide scrolling on number input
 input::-webkit-outer-spin-button,

@@ -16,7 +16,7 @@ function ChoreForm(props) {
         { value: 'Ad hoc', label: 'Ad hoc'}
       ]
     const addNewChore = () => {
-        e.preventDefault();
+        event.preventDefault();
         dispatch({type: 'ADD_NEW_CHORE', 
                   payload: {
                     userId: props.userId,
@@ -72,7 +72,6 @@ function ChoreForm(props) {
                         <div className="add-chore-frequency">
                             <Select options={options}
                                     onChange={handleFrequencyChange}                                
-                                    //value={frequencySelected}
                                     defaultValue={options[0]}
                             />
                         </div>            

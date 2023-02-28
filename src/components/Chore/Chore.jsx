@@ -333,7 +333,7 @@ function Chore(props) {
     const ScheduleInput = (props ) => {
         return (
             <>
-                <div className={`${props.frequency.toLowerCase()}-chore`}>
+                <div className={`${props.frequency.split(" ").join("").toLowerCase()}-chore`}>
                     <label htmlFor={`custom-checkbox-${props.index}`}>
                         {props.frequency==='Daily' ? props.mapKey.substring(0,1).toUpperCase() : props.frequency}                                    
                         <input className={`schedule-checkbox ${props.scheduleIsDisabled ? ' disabled' : ''}`} 

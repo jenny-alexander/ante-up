@@ -37,22 +37,22 @@ function MoneyBucketManager(props) {
                 popup: 'swal2-noanimation',
                 icon: 'swal2-noanimation'
               },
+              //timer: 11100,
+              customClass: {
+                title: 'money-bucket-toast swal2-title',
+            },
           })
     }
 
     const changeAmount = (changeType, bucketType) => {
-        setChangeType(changeType)
+        setChangeType(changeType);
         const changeAmountSWAL =  {            
             title: `Enter amount to ${changeType} into ${bucketType} account`,
             focusConfirm: false,
-            html: `<label for="amount">Amount:</label>
-                <input class="swal2-input" id="amount" type="number" placeholder="0.00" />
-                   <br />
-                   <label for"bucket-comments">Reason:</label>
-                   <input class="swal2-input" id="bucket-comments"></input>`,            
+            html: `<input class="swal2-input" id="amount" type="number" placeholder="0.00" />`,         
             showClass: {                
-                popup: 'swal2-noanimation',
-                title: 'swal2-title bucket',
+                popup: 'swal2-noanimation money-bucket',
+                title: 'swal2-title money-bucket',
               },
             showCancelButton: true,
             cancelButtonColor: 'grey',
@@ -63,49 +63,67 @@ function MoneyBucketManager(props) {
                 title: 'money-bucket swal2-title',
             },
             preConfirm: () => ({
-                amountValue: document.getElementById('amount').value,
-                comments: document.getElementById('bucket-comments').value,
+                amountValue: document.getElementById('amount').value,                
             })          
         }
 
         return changeAmountSWAL;
     }
     
-    const handleChangeBankAmount = async (bucketType, changeType) => {
+    const handleChangeBankAmount = async (bucketType, changeType, bucketAmount) => {
         const changeBankAmount = async () => {
-            const swalval = await MySwal.fire(changeAmount(changeType, bucketType));
-            let v = swalval && swalval.value || swalval.dismiss;            
-            if (v && v.amountValue  || v === 'cancel') {
-                if (v !== 'cancel') {
-                    dispatch({
-                        type: 'CHANGE_BANK',
-                        payload: {
-                            userID: user.id,
-                            allowanceDeposit: false,
-                            depositDetails: {
-                                bankChangeType: changeType,
-                                amount : v.amountValue,
-                                toAccount: bucketType,
-                            }
-                        },
-                    });
-                    dispatch({
-                        type: 'ADD_BANK_TRANSACTION',
-                        payload: {
-                            userId: user.id,
-                            type: changeType,
-                            timestamp: new Date().toISOString(),
-                            amount: v.amountValue,
-                            notes: v.comments,
-                        }
-                    })
+            const swalval = await MySwal.fire(changeAmount(changeType, bucketType, bucketAmount));
+            let v = swalval && swalval.value || swalval.dismiss;
+            if (v && v.amountValue  || v === 'cancel') {                
+                if ( changeType === 'withdraw' && Number(v.amountValue) > Number(bucketAmount)) {                    
+                    await MySwal.fire({ 
+                        type: 'error', 
+                        icon: 'warning',
+                        title: 'Withdrawal amount too much!',
+                        confirmButtonColor: '#007E58',    
+                        showClass: {
+                            icon: 'swal2-noanimation'
+                          },            
+                     });
+                       changeBankAmount();
+                } else if (changeType === 'deposit' && Number(v.amountValue > 10000)) {
+                    await MySwal.fire({ 
+                        type: 'error', 
+                        icon: 'warning',
+                        title: `Amount can't be over $10,000`,
+                        confirmButtonColor: '#007E58',    
+                        showClass: {
+                            icon: 'swal2-noanimation'
+                          },            
+                     });
+                       changeBankAmount();
                 }
+                 else {
+                    if (v !== 'cancel') {
+                        dispatch({
+                            type: 'CHANGE_BANK',
+                            payload: {
+                                userID: user.id,
+                                allowanceDeposit: false,
+                                depositDetails: {
+                                    bankChangeType: changeType,
+                                    amount : v.amountValue,
+                                    toAccount: bucketType,
+                                }
+                            },
+                        });
+                    }
+                }
+                
             } else {
               await MySwal.fire({ 
                 type: 'error', 
                 icon: 'warning',
                 title: 'An amount is required!',
-                confirmButtonColor: '#007E58',                
+                confirmButtonColor: '#007E58',    
+                showClass: {
+                    icon: 'swal2-noanimation'
+                  },            
              });
               changeBankAmount();
             }
@@ -119,12 +137,12 @@ function MoneyBucketManager(props) {
                 <div className="spend-title">
                     {props.bucket.charAt(0).toUpperCase() + props.bucket.slice(1)}
                 </div>
-                <div className="spend-total">{props.amount}</div>
+                <div className="spend-total">{Constants.dollarUS.format(props.amount)}</div>
                 <div className="buttons">
-                    <button className="deposit-button" onClick={() => {handleChangeBankAmount(props.bucket, 'deposit')}}>
+                    <button className="deposit-button" onClick={() => {handleChangeBankAmount(props.bucket, 'deposit', props.amount)}}>
                         <FontAwesomeIcon className="icon-center" icon={faPlus} />
                     </button>
-                    <button className="deposit-button" onClick={() => {handleChangeBankAmount(props.bucket, 'withdraw')}}>
+                    <button className="deposit-button" onClick={() => {handleChangeBankAmount(props.bucket, 'withdraw', props.amount)}}>
                         <FontAwesomeIcon className="icon-center" icon={faMinus} />
                     </button>
                 </div>
@@ -139,15 +157,15 @@ function MoneyBucketManager(props) {
             </div>
             <div className="small-bucket">
                 <Bucket className = "bucket spend" 
-                        amount={props.bank && props.bank.bank ? Constants.dollarUS.format(props.bank.bank.spend) : ''}
+                        amount={props.bank && props.bank.bank ? props.bank.bank.spend : ''}
                         bucket={'spend'}
                 />
                 <Bucket className = "bucket save" 
-                        amount={props.bank && props.bank.bank ? Constants.dollarUS.format(props.bank.bank.save) : ''}
+                        amount={props.bank && props.bank.bank ? props.bank.bank.save : ''}
                         bucket="save"
                 />
                 <Bucket className = "bucket share" 
-                        amount={props.bank && props.bank.bank ? Constants.dollarUS.format(props.bank.bank.share) : ''}
+                        amount={props.bank && props.bank.bank ? props.bank.bank.share : ''}
                         bucket="share"
                 />                
             </div>
