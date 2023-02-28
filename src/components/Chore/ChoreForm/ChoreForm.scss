@@ -8,11 +8,29 @@
         font-size: 1.5em;
       padding-bottom: 0.5em;
     }
-    & .form-body {
+    & .form-error{
+      color: red;
+      padding-bottom: 1em;
+    }
+    & .add-chore-form {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      & .form-body {
+        width: 60%;
+        @media(max-width: 850px) {
+          width: 70%;
+        }
         padding-top: 0.5em;
         & .add-chore-form-buttons {
             display: flex;
-            column-gap: 0.7em;
+            column-gap: 1em;
+            & .white-button.cancel {
+              width: 50%;
+            }
+            & .green-button.add {
+              width: 50%;
+            }
         }
         & .assign-chore-checkbox {
             label {
@@ -71,4 +89,6 @@
         }
 
     }
+    }
+
 }

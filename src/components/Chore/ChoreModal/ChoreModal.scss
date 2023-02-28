@@ -119,6 +119,9 @@
       border-top: 1px solid lightgrey;
       padding: 0.5em;
       height: 25em;
+      @media(max-width: 395px){
+        height: 28em;
+      }
         & .modal-chore-list {
           overflow-y: auto;
           margin-bottom: 1em;          

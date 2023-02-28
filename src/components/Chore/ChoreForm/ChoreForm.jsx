@@ -39,9 +39,11 @@ function ChoreForm(props) {
   return (
     <div className="new-chore-container">
         <div className="new-chore-title">Add a New Chore</div>
-            <form onSubmit={addNewChore}>
+            <form className="add-chore-form" onSubmit={addNewChore}>
             <div className="form-body">
                 <div className="form-row">
+                {chorePayment > 100 ? 
+                        <p className="form-error">Amount must be less than $1000</p>: ''}
                     <div className= "input-group">
                     <label for="choreName">
                         Chore Name
@@ -56,7 +58,7 @@ function ChoreForm(props) {
                     <div className="input-group">
                         <label for="chorePayment">
                             Payment
-                        </label>
+                        </label>                        
                         <input id="chorePayment" 
                             type="number"
                             value={chorePayment}
