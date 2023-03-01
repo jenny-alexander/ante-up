@@ -41,8 +41,10 @@ function Chore(props) {
         getTotal();
     },[totalDailyChorePayment, totalWeeklyChorePayment, totalAdhocChorePayment])
 
-    useEffect(()=>{             
-        if (Object.entries(week).length !==0 && (Object.entries(user).length !==0 ) ) {       
+    useEffect(()=>{  
+        
+        if (Object.entries(week).length !==0 && (Object.entries(user).length !==0 ) ) {      
+            console.log('*** why are you calling this')    
             dispatch( {type: "GET_USER_CHORE_REQUESTED", payload: {userId: user.id, weekId: week.id}});     
             dispatch( {type: 'GET_DAILY_PAYMENT_REQUESTED', payload: {userID: user.id,weekID: week.id}});
             dispatch( {type: 'GET_WEEKLY_PAYMENT_REQUESTED', payload: {userID: user.id,weekID: week.id}});
@@ -246,8 +248,10 @@ function Chore(props) {
                             title={'Manage My Chores'}
                             weekID={week.id}
                             content={
-                                        {allChores: allChores, 
-                                        userChores: userChores}
+                                        {
+                                            allChores: allChores, 
+                                            userChores: userChores
+                                        }
                                     } 
                             actions={[{name: 'Assign', action: 'addChore'},]}
                         />

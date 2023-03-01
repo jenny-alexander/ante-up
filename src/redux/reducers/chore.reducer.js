@@ -3,7 +3,8 @@ const initialState = {
     chore: {},
     loading: false,
     error: null,
-    changeSuccess: false,    
+    changeSuccess: false,
+    assignSuccess: false,
 }
 
 const allChoresInitialState = {
@@ -18,6 +19,10 @@ const userChore = (state = initialState, action) => {
             return { ...state, loading: true, changeSuccess: false }
         case 'GET_CHORE_SUCCESS':
             return { ...state, loading: false, chore: action.payload, error: null, changeSuccess: false }
+        // case 'ASSIGN_CHORE_SUCCESS':
+        //     return { ...state, assignSuccess: true };
+        // case 'ASSIGN_CHORE_FAILED':
+        //         return { ...state, assignSuccess: false };
         case 'GET_CHORE_FAILED':
             return { ...state, loading: false, error: action.payload, changeSuccess: false }
         case 'ASSIGN_CHORE_SUCCESS':

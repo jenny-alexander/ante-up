@@ -41,10 +41,6 @@ function RegisterForm() {
     }
   };
 
-  const onProfileChangeValue = (event) => {
-    setProfileType(event.target.value);    
-  }
-
   const Slider = () => {
     return (
       <ReactSlider
@@ -92,21 +88,6 @@ function RegisterForm() {
             </div>
             
           </div>
-          {/* <div className="form-row">
-            <div className="input-radio-title">Profile Type:</div>
-            <div className="input-group-radio">
-              
-              <div className="input-radio-buttons" onChange={onProfileChangeValue}>
-              <div className="radio-input">
-                  <label><input type="radio" value="Parent" name="profile" checked={profileType === "Parent"}/>Parent</label>
-                </div>  
-                <div className="radio-input">
-                  <label><input type="radio" value="Child" name="profile" checked={profileType === "Child"} />Child</label>
-                </div>
- 
-              </div>
-            </div>            
-          </div> */}
           {
             profileType === 'Child' ? 
             ( <div className="form-row age-slider">

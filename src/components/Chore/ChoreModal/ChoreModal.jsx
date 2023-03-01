@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,7 +8,13 @@ import './ChoreModal.scss';
 
 function ChoreModal(props) {
     const dispatch = useDispatch();
+    const[allChores, setAllChores] = useState([]);
     const[addNewChore, setAddNewChore] = useState(false); //TODO: Need this when suggesting a new chore    
+
+    // useEffect(() => {
+    //     console.log('*** in useEffect of ChoreModal')
+    //     setAllChores(props.content.allChores);
+    // },[])
 
     const assignChore = (chore) => {
         dispatch( {type: 'ASSIGN_CHORE_TO_USER', 
@@ -17,7 +23,6 @@ function ChoreModal(props) {
                         userId: props.user.id,                                                
                         weekID: props.weekID,
                         frequency: chore.frequency, }, 
-
         });
     }
 
