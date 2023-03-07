@@ -230,11 +230,13 @@ function Chore(props) {
         setScheduleIsDisabled(!scheduleIsDisabled);
     }
 
-    const showManageChoreModal = () => {        
+    const showManageChoreModal = () => {   
         setShowModal(true);
+        window.sessionStorage.removeItem('scroll-top');
     }
     const hideChoreModal = () => {
         setShowModal(false);
+        window.sessionStorage.removeItem('scroll-top');
     }
 
     const ChoreListComponent = () => {
@@ -244,7 +246,8 @@ function Chore(props) {
                 { showModal ?
                     <ChoreModal user={user}
                             close={hideChoreModal}
-                            show={showModal} 
+                            show={showModal}
+                            offset={200}
                             title={'Manage My Chores'}
                             weekID={week.id}
                             content={
