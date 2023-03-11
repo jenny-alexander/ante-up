@@ -1,5 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -8,12 +8,15 @@ import './ChoreModal.scss';
 
 function ChoreModal(props) {
     const dispatch = useDispatch();
+    const chores = useSelector((store) => store.chore);
     const[allChores, setAllChores] = useState([]);
+    const [userChores, setUserChores] = useState([]);
     const[addNewChore, setAddNewChore] = useState(false); //TODO: Need this when suggesting a new chore  
     const [scrollTop, setScrollTop] = useState(0);
-    const scrollRef = useRef(null);
-    // let choreStorage = window.sessionStorage;
+    const scrollRef = useRef(null);    
 
+    console.log('***rendering ChoreModal.jsx');
+    
     useEffect(() => {
         const sessionScrollTop = window.sessionStorage.getItem('scroll-top');
         if (sessionScrollTop > 0 ) {
@@ -23,9 +26,22 @@ function ChoreModal(props) {
             behavior: "smooth",});            
         }
     }, [])
+    useEffect(() => {
+        if (chores.allChore.chore.length > 0) {
+            setAllChores(chores.allChore.chore)
+        }
+    },[chores.allChore.chore]);
 
-    const assignChore = (chore) => {        
-        storeScrollTop(scrollTop);
+
+
+    useEffect(() => {
+        //setChoresExist(chores.userChore.chore.length > 0);
+        setUserChores(chores.userChore.chore);
+    },[chores.userChore.chore]);
+
+    const assignChore = (chore) => {     
+        console.log('*** in assignChore & value in allChores is:', allChores);   
+        //storeScrollTop(scrollTop);
         dispatch( {type: 'ASSIGN_CHORE_TO_USER', 
                    payload: {
                         choreId: chore.id,
@@ -36,8 +52,8 @@ function ChoreModal(props) {
     }
 
     const removeChore = (chore) => {
-        storeScrollTop(scrollTop);
-        const userChore = props.content.userChores.find(userChore => userChore.id === chore.id);        
+        //storeScrollTop(scrollTop);
+        const userChore = userChores.find(userChore => userChore.id === chore.id);        
         dispatch( {type: 'REMOVE_CHORE_FROM_USER', 
             payload: {
                 userChoreId: userChore.user_chore_id,
@@ -47,16 +63,20 @@ function ChoreModal(props) {
                 frequency: chore.frequency,
                 },
          });
+         setUserChores((currentChore) =>
+            currentChore.filter((thisChore) => thisChore.id !== currentChore.id)
+       );
     }
 
-    const storeScrollTop = (scrollValue) => {
-        window.sessionStorage.removeItem('scroll-top');
-        window.sessionStorage.setItem('scroll-top', scrollValue);
-    }
+    // const storeScrollTop = (scrollValue) => {
+    //     window.sessionStorage.removeItem('scroll-top');
+    //     window.sessionStorage.setItem('scroll-top', scrollValue);
+    // }
 
-    const handleScroll = (event) => { setScrollTop(event.currentTarget.scrollTop); };
+    // const handleScroll = (event) => { setScrollTop(event.currentTarget.scrollTop); };
 
     if ( props.show ) {
+        // if ( isOpen ) {
         return (
         <div className="modal-container">
             <div className="modal">
@@ -64,7 +84,10 @@ function ChoreModal(props) {
                     <div className="modal-header-container">
                         <div className="modal-title">{props.title}</div>
                         <div className="chore-btns">
-                            <FontAwesomeIcon onClick={props.close} className="fa-Xmark" fixedWidth icon={faXmark} />                                      
+                            <FontAwesomeIcon                                 
+                                onClick={props.close} 
+                                className="fa-Xmark" 
+                                fixedWidth icon={faXmark} />                                      
                         </div>
                     </div>
                     <div className="add-chore-btn-container">                        
@@ -73,7 +96,7 @@ function ChoreModal(props) {
                                 onClick={()=>setAddNewChore(!addNewChore)}>
                                 Add New Chore
                             </button>
-                            {/* Scroll top: <b>{scrollTop}</b> */}
+                            
                     </div>
                 </div>
                 <div className="modal-body-container"  >
@@ -86,10 +109,10 @@ function ChoreModal(props) {
                         :                        
                             <div className='modal-chore-list' 
                                 ref={scrollRef} 
-                                onScroll={handleScroll}
+                                //onScroll={handleScroll}
                             >
-                                { Object.entries(props.content.allChores).length > 0 ?                            
-                                    props.content.allChores.map((content,i) => {
+                                { Object.entries(allChores).length > 0 ?                            
+                                    allChores.map((content,i) => {
                                         return (
                                             <div className="modal-content">
                                                 <div className="modal-chore-details">
@@ -101,7 +124,7 @@ function ChoreModal(props) {
                                                 </div>
                                                 <div className="manage-chore-btn">
                                                     {
-                                                        props.content.userChores.length > 0  && props.content.userChores.find(chore => chore.id === content.id) ? 
+                                                        userChores?.length > 0  && userChores?.find(chore => chore.id === content.id) ? 
                                                             <button onClick={()=> removeChore(content)}>Remove</button> 
                                                             : <button onClick={()=> assignChore(content)}>Assign</button>
                                                     }
@@ -114,7 +137,7 @@ function ChoreModal(props) {
                                 }
                             </div>                                                                               
                         }                                     
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>
@@ -131,4 +154,4 @@ ChoreModal.PropTypes = {
     actions: PropTypes.array,
     content: PropTypes.array,
 }
-export default ChoreModal;
+export default React.memo(ChoreModal);

@@ -15,6 +15,7 @@ import Welcome from '../Welcome/Welcome';
 import './App.scss';
 
 function App() {
+  console.log('*** rendering App.jsx)')
   const dispatch = useDispatch();
   const user = useSelector(store => store.user);
   const week = useSelector(store => store.week);
