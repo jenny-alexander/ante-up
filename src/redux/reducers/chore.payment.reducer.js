@@ -33,6 +33,12 @@ const dailyPayment = (state = dailyInitialState, action) => {
             return { ...state, loading: false, error: null, changeSuccess: true }
         case 'UPDATE_DAILY_PAYMENT_FAILED':
             return { ...state, loading: false, error: action.payload, changeSuccess: false }
+        case 'REMOVE_DAILY_PAYMENT_SUCCESS':        
+            const filteredPayments = state.payment.filter( payment => payment.user_chore_id !== action.payload.user_chore_id );            
+            return {
+                ...state,
+                payment: filteredPayments
+            }
         default:
             return state;
     }
@@ -46,6 +52,12 @@ const weeklyPayment = (state = weeklyInitialState, action) => {
             return { ...state, loading: false, payment: action.payload, error: null, changeSuccess: false }
         case 'GET_WEEKLY_PAYMENT_FAILED':
             return { ...state, loading: false, error: action.payload, changeSuccess: false }
+        case 'REMOVE_WEEKLY_PAYMENT_SUCCESS':        
+            const filteredPayments = state.payment.filter( payment => payment.user_chore_id !== action.payload.user_chore_id );            
+            return {
+                ...state,
+                payment: filteredPayments
+            }
         case 'PUT_WEEKLY_PAYMENT_SUCCESS':
             return { ...state, loading: false, error: null, changeSuccess: true }
         case 'UPDATE_WEEKLY_PAYMENT_FAILED':
@@ -67,6 +79,12 @@ const adhocPayment = (state = adhocInitialState, action) => {
             return { ...state, loading: false, error: null, changeSuccess: true }
         case 'UPDATE_ADHOC_PAYMENT_FAILED':
                 return { ...state, loading: false, error: action.payload, changeSuccess: false }
+        case 'REMOVE_ADHOC_PAYMENT_SUCCESS':        
+            const filteredPayments = state.payment.filter( payment => payment.user_chore_id !== action.payload.user_chore_id );            
+            return {
+                ...state,
+                payment: filteredPayments
+            }
         default:
             return state;
     }

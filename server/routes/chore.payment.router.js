@@ -137,6 +137,7 @@ router.post('/add', (req, res) => {
   console.log('values in req.body are:', req.body);
   const addChorePaymentQuery = `INSERT INTO chore_payment_${req.body.frequency} ("chore_id", "user_id", "week_id", "user_chore_id")
                               VALUES($1,$2,$3,$4)`;  
+  
   pool.query(addChorePaymentQuery, [req.body.choreId, req.body.userId, req.body.weekID, req.body.user_chore_id])
       .then((results) => {
           res.sendStatus(201);
@@ -161,9 +162,10 @@ router.post('/add', (req, res) => {
 //       })
 // })
 //REMOVE CHORE PAYMENT
-router.delete('/remov/:id/:frequency', (req, res) => {
+router.delete('/remove/:id/:frequency', (req, res) => {
+  console.log('in delete chore payment and req.params are:', req.params);
   const removeChorePaymentQuery = `DELETE FROM chore_payment_${req.params.frequency} 
-                                  WHERE id = ${req.params.id};`;    
+                                  WHERE user_chore_id = ${req.params.id};`;    
   pool.query(removeChorePaymentQuery)
       .then((results) => {
           res.sendStatus(200);

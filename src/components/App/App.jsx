@@ -14,12 +14,10 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import Welcome from '../Welcome/Welcome';
 import './App.scss';
 
-function App() {
-  console.log('*** rendering App.jsx)')
+function App() {  
   const dispatch = useDispatch();
   const user = useSelector(store => store.user);
-  const week = useSelector(store => store.week);
-  // const allowance = useSelector(store => store.allowance)
+  const week = useSelector(store => store.week);  
   const [loggedIn, setLoggedIn] = useState(false);
   const [weekInfo, setWeekInfo] = useState({});  
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September",

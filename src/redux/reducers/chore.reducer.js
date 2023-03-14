@@ -40,7 +40,6 @@ const userChore = (state = initialState, action) => {
 }
 const allChore = (state = allChoresInitialState, action) => {
     switch (action.type) {
-
         case 'GET_ALL_CHORES_REQUESTED':
             return { ...state, loading: true}
         case 'GET_ALL_CHORES_SUCCESS':
@@ -52,7 +51,6 @@ const allChore = (state = allChoresInitialState, action) => {
     }
 }
 
-//export default choreReducer;
 export default combineReducers({
     userChore, //chore per user
     allChore, //all chores

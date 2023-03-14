@@ -9,30 +9,15 @@ import './ChoreModal.scss';
 function ChoreModal(props) {
     const dispatch = useDispatch();
     const chores = useSelector((store) => store.chore);
+    //const chorePayments = useSelector((store) => store.chorePayments);
     const[allChores, setAllChores] = useState([]);
     const [userChores, setUserChores] = useState([]);
     const[addNewChore, setAddNewChore] = useState(false); //TODO: Need this when suggesting a new chore  
-    const [scrollTop, setScrollTop] = useState(0);
-    const scrollRef = useRef(null);    
-
-    console.log('***rendering ChoreModal.jsx');
-    
-    useEffect(() => {
-        const sessionScrollTop = window.sessionStorage.getItem('scroll-top');
-        if (sessionScrollTop > 0 ) {
-            scrollRef.current.scrollTo({
-            top: sessionScrollTop,
-            left: 0,
-            behavior: "smooth",});            
-        }
-    }, [])
     useEffect(() => {
         if (chores.allChore.chore.length > 0) {
             setAllChores(chores.allChore.chore)
         }
     },[chores.allChore.chore]);
-
-
 
     useEffect(() => {
         //setChoresExist(chores.userChore.chore.length > 0);
@@ -40,8 +25,6 @@ function ChoreModal(props) {
     },[chores.userChore.chore]);
 
     const assignChore = (chore) => {     
-        console.log('*** in assignChore & value in allChores is:', allChores);   
-        //storeScrollTop(scrollTop);
         dispatch( {type: 'ASSIGN_CHORE_TO_USER', 
                    payload: {
                         choreId: chore.id,
@@ -51,8 +34,7 @@ function ChoreModal(props) {
         });
     }
 
-    const removeChore = (chore) => {
-        //storeScrollTop(scrollTop);
+    const removeChore = (chore) => {        
         const userChore = userChores.find(userChore => userChore.id === chore.id);        
         dispatch( {type: 'REMOVE_CHORE_FROM_USER', 
             payload: {
@@ -63,20 +45,10 @@ function ChoreModal(props) {
                 frequency: chore.frequency,
                 },
          });
-         setUserChores((currentChore) =>
-            currentChore.filter((thisChore) => thisChore.id !== currentChore.id)
-       );
+         setUserChores((currentChore) => currentChore.filter((thisChore) => thisChore.id !== currentChore.id));         
     }
 
-    // const storeScrollTop = (scrollValue) => {
-    //     window.sessionStorage.removeItem('scroll-top');
-    //     window.sessionStorage.setItem('scroll-top', scrollValue);
-    // }
-
-    // const handleScroll = (event) => { setScrollTop(event.currentTarget.scrollTop); };
-
     if ( props.show ) {
-        // if ( isOpen ) {
         return (
         <div className="modal-container">
             <div className="modal">
@@ -103,14 +75,12 @@ function ChoreModal(props) {
                     <div className="modal-body" >                    
                         { addNewChore ?
                             <ChoreForm userId={props.user.id}
-                                    weekID={props.weekID} 
+                                    weekID={props.weekID}
+                                    close={() => setAddNewChore(!addNewChore)}
                                     cancel={() => setAddNewChore(!addNewChore)}
                             />
                         :                        
-                            <div className='modal-chore-list' 
-                                ref={scrollRef} 
-                                //onScroll={handleScroll}
-                            >
+                            <div className='modal-chore-list'>
                                 { Object.entries(allChores).length > 0 ?                            
                                     allChores.map((content,i) => {
                                         return (
@@ -145,8 +115,8 @@ function ChoreModal(props) {
     } else {
         return null;
     }
-
 }
+
 ChoreModal.PropTypes = {
     title: PropTypes.string,
     close: PropTypes.func.isRequired,
@@ -154,4 +124,5 @@ ChoreModal.PropTypes = {
     actions: PropTypes.array,
     content: PropTypes.array,
 }
+
 export default React.memo(ChoreModal);

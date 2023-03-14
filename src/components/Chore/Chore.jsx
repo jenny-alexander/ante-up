@@ -10,30 +10,16 @@ import './Chore.scss';
 
 function Chore(props) {
     const dispatch = useDispatch();    
-    //const chores = useSelector((store) => store.chore);
-    // const chorePayment = useSelector((store) => store.chorePayment);
     const week = useSelector((store) => store.week);
     const user = useSelector((store) => store.user);
-    const [frequencySelected, setFrequencySelected] = useState('All');      
-    // const [selectedRow, setSelectedRow] = useState(-1);    
-    // const [checkedDailyState, setCheckedDailyState] = useState([]);
-    // const [checkedWeeklyState, setCheckedWeeklyState] = useState([]);
-    // const [checkedAdHocState, setCheckedAdHocState] = useState([]);
-    // const [choreTotalPayment, setChoreTotalPayment] = useState(0);
-    // const [scheduleIsDisabled, setScheduleIsDisabled] = useState(true);
-    // const [allChoresPayment, setAllChoresPayment] = useState(0);
-    // const [totalDailyChorePayment, setTotalDailyChorePayment] = useState(0);
-    // const [totalWeeklyChorePayment, setTotalWeeklyChorePayment] = useState(0);
-    // const [totalAdhocChorePayment, setTotalAdhocChorePayment] = useState(0);  
-
-    console.log('*** Rendering Chore.jsx');
-
+    const [frequencySelected, setFrequencySelected] = useState('All');
     const options = [
         { value: 'All', label: 'All'},
         { value: 'Daily', label: 'Daily' },
         { value: 'Weekly', label: 'Weekly' },
         { value: 'Ad hoc', label: 'Ad hoc'}
       ]
+
       const handleFrequencyChange = (selected) => {        
         if (selected.value==='All') {
             setUserChores(chores.userChore.chore);
@@ -54,18 +40,16 @@ function Chore(props) {
         const [selectedRow, setSelectedRow] = useState(-1);    
         const [checkedDailyState, setCheckedDailyState] = useState([]);
         const [checkedWeeklyState, setCheckedWeeklyState] = useState([]);
-        const [checkedAdHocState, setCheckedAdHocState] = useState([]);
-        // const [choreTotalPayment, setChoreTotalPayment] = useState(0);
+        const [checkedAdHocState, setCheckedAdHocState] = useState([]);        
         const [scheduleIsDisabled, setScheduleIsDisabled] = useState(true);
         const [allChoresPayment, setAllChoresPayment] = useState(0);
         const [totalDailyChorePayment, setTotalDailyChorePayment] = useState(0);
         const [totalWeeklyChorePayment, setTotalWeeklyChorePayment] = useState(0);
-        const [totalAdhocChorePayment, setTotalAdhocChorePayment] = useState(0);    
-        console.log('*** Rendering ChoreList');
+        const [totalAdhocChorePayment, setTotalAdhocChorePayment] = useState(0);            
 
-        useEffect(() => {
+        useEffect(() => {            
             getTotal();
-        },[totalDailyChorePayment, totalWeeklyChorePayment, totalAdhocChorePayment])
+        },[checkedDailyState, checkedWeeklyState, checkedAdHocState])
     
         useEffect(()=>{          
             if (Object.entries(week).length !==0 && (Object.entries(user).length !==0 ) ) {                  
@@ -77,43 +61,39 @@ function Chore(props) {
         },[week, user]);
 
         useEffect(() => {
-            setChoresExist(chores.userChore.chore.length > 0);
-            setUserChores(chores.userChore.chore);
+            if (chores.userChore.chore != undefined ) {
+                setChoresExist(chores.userChore.chore.length > 0);
+                setUserChores(chores.userChore.chore);
+            }
         },[chores.userChore.chore]);
 
-            //Use these to build up the payment states
+        //Use these to build up the payment states
         useEffect(()=> {
-            if (chorePayment.dailyPayment.payment.length > 0) {   
-                buildPaymentState(chorePayment.dailyPayment.payment, 'daily'); 
-            }                        
+            buildPaymentState(chorePayment.dailyPayment.payment, 'daily');                      
         },[chorePayment.dailyPayment.payment]);
 
-        useEffect(()=> {        
-            if (chorePayment.weeklyPayment.payment.length > 0) {                           
-                buildPaymentState(chorePayment.weeklyPayment.payment, 'weekly');   
-            }
+        useEffect(()=> {               
+            buildPaymentState(chorePayment.weeklyPayment.payment, 'weekly');   
         },[chorePayment.weeklyPayment.payment]);
 
-        useEffect(()=> {        
-            if (chorePayment.adhocPayment.payment.length > 0) {      
-                buildPaymentState(chorePayment.adhocPayment.payment, 'adhoc');   
-            }
+        useEffect(()=> {            
+            buildPaymentState(chorePayment.adhocPayment.payment, 'adhoc');   
         },[chorePayment.adhocPayment.payment]);
         //<--- END BUILD UP PAYMENT STATES
 
         const getTotal = () => {
-            const mergeChores = [...checkedWeeklyState, ...checkedDailyState, ...checkedAdHocState];
+            const mergeChores = [...checkedWeeklyState, ...checkedDailyState, ...checkedAdHocState];            
             let total = 0;        
             for(let i = 0; i< mergeChores.length; i++) {            
                 total = total + mergeChores[i].totalPayment;
-            }
+            }            
             setAllChoresPayment(total);  
         }
     
-        const buildPaymentState = ( payment, paymentType ) => {      
+        const buildPaymentState = ( payment, paymentType ) => {                  
             const newStateArray = [];   
             let choreTotal = 0;     
-            payment.map((item) => {                  
+            payment?.map((item) => {                  
                 const newObject = { id: item.id,
                                     choreID: item.chore_id,
                                     totalPayment: item.total_payment,
@@ -131,17 +111,17 @@ function Chore(props) {
                 }
                 choreTotal = newObject.totalPayment + choreTotal;
                 newStateArray.push(newObject);
-            })   
+            })            
             if (paymentType === 'daily') {                        
                 setTotalDailyChorePayment(choreTotal);
                 setCheckedDailyState(newStateArray);                        
-            }else if (paymentType === 'weekly'){
+            }else if (paymentType === 'weekly'){                
                 setTotalWeeklyChorePayment(choreTotal)
                 setCheckedWeeklyState(newStateArray);
             } else if (paymentType === 'adhoc'){
                 setCheckedAdHocState(newStateArray);
                 setTotalAdhocChorePayment(choreTotal);
-            }; 
+            };
         }
     
 
@@ -268,12 +248,10 @@ function Chore(props) {
                 paymentsForThisChore = checkedWeeklyState.filter(payment => payment.choreID === props.choreID);
             } else if ( props.frequency === 'Ad hoc' ) {            
                 paymentsForThisChore = checkedAdHocState.filter(payment => payment.choreID === props.choreID);
-            }
-            console.log('*** paymentsForThisChore are:', paymentsForThisChore);
+            }            
             let paymentAmount = 0;
             if ( paymentsForThisChore?.length > 0 ) {
-                const paymentObj = paymentsForThisChore[0];
-                console.log('*** paymentObj is:', paymentObj);
+                const paymentObj = paymentsForThisChore[0];                
                 paymentAmount = paymentObj.totalPayment;
             } 
             return (
@@ -281,21 +259,21 @@ function Chore(props) {
             )
         }
 
-        const renderSchedule = (frequency, choreID, chorePayment) => {    
-            console.log('*** in renderSchedule for choreID:', choreID, '& chorePayment is:', chorePayment);   
+        const renderSchedule = (frequency, choreID, chorePayment) => {            
             let paymentsForThisChore;
-            if ( frequency === 'Daily') {
-                paymentsForThisChore = checkedDailyState.filter(payment => payment.choreID == choreID);
-            } else if ( frequency === 'Weekly' ) {
-                paymentsForThisChore = checkedWeeklyState.filter(payment => payment.choreID === choreID);
-            } else if ( frequency === 'Ad hoc' ) {            
-                paymentsForThisChore = checkedAdHocState.filter(payment => payment.choreID === choreID);
-            }        
+            switch (frequency) {
+                case 'Daily':
+                    paymentsForThisChore = checkedDailyState.filter(payment => payment.choreID == choreID);
+                    break;
+                case 'Weekly':
+                    paymentsForThisChore = checkedWeeklyState.filter(payment => payment.choreID === choreID);
+                    break;
+                case 'Ad hoc':
+                    paymentsForThisChore = checkedAdHocState.filter(payment => payment.choreID === choreID);
+                    break;
+            }       
             if ( paymentsForThisChore?.length > 0 ) {
                 const paymentObj = paymentsForThisChore[0];
-                console.log('*** paymentObj is:', paymentObj);      
-                //setChoreTotalPayment(paymentObj.totalPayment); //TODO: FIND a better way to do this!
-
                 return (
                     Object.keys(paymentObj.schedule).map((key, index) => {                                          
                         if ( key.substring(key.length - 3) === 'day' ) {                                             
@@ -340,8 +318,7 @@ function Chore(props) {
                         }
                 })              
                 )
-            } else {
-                setChoreTotalPayment(0);
+            } else {                
                 return null;
             }    
         }
@@ -387,8 +364,6 @@ function Chore(props) {
         </tr>
         )
     }
-
-
         return (
             <>
             <div className="chore-list">
@@ -416,14 +391,13 @@ function Chore(props) {
                 : `Use the 'Manage My Chores' button to add/assign chores.`
             }
         </div>
-        {/* <ChorePayment/> */}
+        <ChorePayment allChoresPayment={allChoresPayment}/>
         </>    
         )
     }
 
-    const ChoreButton = () => {
+    const ChoreButton = (props) => {
         const [showModal, setShowModal] = useState(false);
-        console.log('*** RENDERING ChoreButton')
         const showManageChoreModal = () => {   
             setShowModal(true);
         }
@@ -440,6 +414,7 @@ function Chore(props) {
                             title={'Manage My Chores'}
                             weekID={week.id}
                             actions={[{name: 'Assign', action: 'addChore'},]}
+                            // getTotal={props.getTotal()}
                 />
             :
                 <button onClick={() => {showManageChoreModal()}}>Manage My Chores</button>}
@@ -448,18 +423,15 @@ function Chore(props) {
     }
 
     const ChorePayment = (props) => {
-        const chorePayment = useSelector((store) => store.chorePayment);
         return (
             <div className="all-chores-payment">
                 <div className="all-chores-payment-title">Total chore payments this week:</div>
-                <div className="all-chores-payment-amount">${allChoresPayment}</div>
+                <div className="all-chores-payment-amount">${props.allChoresPayment}</div>                
             </div>            
         )
     }
-
-    //TODO: Move the payments dispatches into a ChorePayment component
-    const ChoreDetails = (props) => {
-        console.log('*** RENDERING ChoreDetails')
+    
+    const ChoreDetails = (props) => {        
         return (       
             <div className="chore-main">
                 <div className="frequency-selector">                    
@@ -474,7 +446,7 @@ function Chore(props) {
                         <ChoreButton />
                     </div>
                 </div>
-                <ChoreList/>
+                <ChoreList/>                
             </div>            
         )
     }

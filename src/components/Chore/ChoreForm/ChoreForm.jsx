@@ -31,8 +31,9 @@ function ChoreForm(props) {
                   choreFrequency: frequencySelected.value,
                   assignToUser: assignToUser,
                 }
-            })}    
-        }
+            })
+            props.close();
+        }}
     }
     
     const assign = () => {

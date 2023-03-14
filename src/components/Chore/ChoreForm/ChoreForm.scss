@@ -27,10 +27,25 @@
             column-gap: 1em;
             & .white-button.cancel {
               width: 50%;
+              &:hover {
+                outline: 4px solid #54a58d;
+                border: 1px solid #54a58d;
+                transition: outline 0.1s ease-in-out;
+              }
             }
             & .green-button.add {
+              border-radius: 5px;
+              border: 1px solid rgb(39, 95, 88);
+              background: rgb(39, 95, 88);
               width: 50%;
+              color: white;
+              &:hover {
+                outline: 4px solid #54a58d;
+                border: 1px solid #54a58d;
+                transition: outline 0.1s ease-in-out;
+              }
             }
+
         }
         & .assign-chore-checkbox {
             label {

@@ -15,10 +15,8 @@ function* fetchDailyPayment(action) {
 }
 
 function* updateDailyPayment(action) {    
-    try {          
-        console.log('+++ ACTION payload is:', action.payload)      
-        const response = yield axios.put(`/api/chore/payment/daily`, action.payload);   
-        //yield put({ type: 'GET_DAILY_PAYMENT_REQUESTED', payload: action.payload });     
+    try {                  
+        const response = yield axios.put(`/api/chore/payment/daily`, action.payload);               
     } catch (error) {
         yield put({ type: 'PUT_DAILY_PAYMENT_FAILED', payload: error });        
     }
@@ -59,8 +57,10 @@ function* updateAdhocPayment(action) {
     }
 }
 
-function* addChorePayment(action) {
-    console.log('*** action.payload into addChorePayment is:', action.payload); 
+function* addChorePayment(action) {    
+    if (action.payload.frequency === 'Ad hoc') {
+        action.payload.frequency = 'adhoc';
+    }
     try {        
         const response = yield axios.post(`/api/chore/payment/add`, action.payload);        
         yield put({ type: `GET_${action.payload.frequency.toUpperCase()}_PAYMENT_REQUESTED`, 
@@ -73,18 +73,13 @@ function* addChorePayment(action) {
         console.log('Chore POST request failed', error);
     }
 }
-//TODO: CHANGE THIS FOR A DELETE using req.params!!!
-// function* removeChorePayment(action) {    
-//     try {        
-//         const response = yield axios.put(`/api/chore/payment/remove`, action.payload);        
-//     } catch (error) {
-//         yield put({ type: 'REMOVE_CHORE_PAYMENT_FAILED', payload: error });
-//         console.log('Chore deletion request failed', error);
-//     }
-// }
-function* removeChorePayment(action) {    
+function* removeChorePayment(action) {  
+    if (action.payload.frequency === 'Ad hoc') {
+        action.payload.frequency = 'adhoc';
+    }
     try {        
         const response = yield axios.delete(`/api/chore/payment/remove/${action.payload.id}/${action.payload.frequency}`);        
+        yield put({ type: `REMOVE_${action.payload.frequency.toUpperCase()}_PAYMENT_SUCCESS`, payload: {user_chore_id: action.payload.id}});
     } catch (error) {
         yield put({ type: 'REMOVE_CHORE_PAYMENT_FAILED', payload: error });
         console.log('Chore deletion request failed', error);
