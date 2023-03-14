@@ -63,7 +63,14 @@ function Chore(props) {
         useEffect(() => {
             if (chores.userChore.chore != undefined ) {
                 setChoresExist(chores.userChore.chore.length > 0);
-                setUserChores(chores.userChore.chore);
+                const choresWithId = chores.userChore.chore.map((chore => {
+                    return {
+                        ...chore,
+                        key: crypto.randomUUID(),
+                    }
+                }))
+                setUserChores(choresWithId);
+                //setUserChores(chores.userChore.chore);
             }
         },[chores.userChore.chore]);
 
@@ -90,7 +97,8 @@ function Chore(props) {
             setAllChoresPayment(total);  
         }
     
-        const buildPaymentState = ( payment, paymentType ) => {                  
+        const buildPaymentState = ( payment, paymentType ) => {  
+            console.log('*** in buildPaymentState and payment is:', payment, 'paymentType is:', paymentType)                
             const newStateArray = [];   
             let choreTotal = 0;     
             payment?.map((item) => {                  
@@ -104,6 +112,7 @@ function Chore(props) {
                             newObject.schedule[key] = item[key];
                         }
                     })  
+                    console.log('***paymentType is daily and newObject is:', newObject);
                 } else if (paymentType === 'weekly') {
                     newObject.schedule.weekly = item.weekly;
                 } else if (paymentType === 'adhoc') {
@@ -111,6 +120,7 @@ function Chore(props) {
                 }
                 choreTotal = newObject.totalPayment + choreTotal;
                 newStateArray.push(newObject);
+                console.log('***newStateArray is:', newStateArray);
             })            
             if (paymentType === 'daily') {                        
                 setTotalDailyChorePayment(choreTotal);
@@ -259,11 +269,14 @@ function Chore(props) {
             )
         }
 
-        const renderSchedule = (frequency, choreID, chorePayment) => {            
+        const renderSchedule = (frequency, choreID, chorePayment) => {     
+            console.log('*** in renderSchedule and chorePayment is:', chorePayment, 'frequency is:', frequency, 'chore ID is:', choreID);   
+            console.log('*** checkedDailyState is:', checkedDailyState)    
             let paymentsForThisChore;
             switch (frequency) {
                 case 'Daily':
                     paymentsForThisChore = checkedDailyState.filter(payment => payment.choreID == choreID);
+                    console.log('*** paymentsForThisChore are:', paymentsForThisChore);
                     break;
                 case 'Weekly':
                     paymentsForThisChore = checkedWeeklyState.filter(payment => payment.choreID === choreID);
@@ -383,6 +396,7 @@ function Chore(props) {
                         {userChores.map((chore,i)=> 
                             <ChoreRow chore={chore} 
                                       index={i}
+                                      key={chore.key}
                             />
                          )}
                         </tbody>

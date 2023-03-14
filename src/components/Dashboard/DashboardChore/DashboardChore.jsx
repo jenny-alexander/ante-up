@@ -18,8 +18,14 @@ function DashboardChore(props) {
         }        
     },[week, user])
 
-    useEffect(()=>{  
-        setUserChores(chorePayments);      
+    useEffect(()=>{
+        const choresWithId = chorePayments?.map(chore => {
+            return {
+                ...chore,
+                key: crypto.randomUUID(),
+            }
+        })        
+        setUserChores(choresWithId);
     },[chorePayments]);
 
     return (
