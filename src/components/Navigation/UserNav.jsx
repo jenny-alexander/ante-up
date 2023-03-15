@@ -6,7 +6,8 @@ function UserNav(props) {
     const navOptions = [
         {name: 'User Profile',
          className: 'nav-option',
-         to: '/user'
+         to: '/user',
+         key: crypto.randomUUID(),
         },
     ]
 
@@ -14,10 +15,10 @@ function UserNav(props) {
         <>                
             {
                 navOptions.map(option => 
-                        <NavLink 
+                        <NavLink key={option.key}
                             onClick={props.toggleUserMenu} 
                             className={option.className} 
-                            to={option.to}>{option.name}
+                            to={option.to}>{option.name}                            
                         </NavLink>
                 )
             }         

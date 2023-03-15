@@ -34,7 +34,7 @@ function DashboardChore(props) {
             {
             userChores.length > 0 ?
                 userChores.map((chore,i) =>                 
-                    <div className="dashboard-chore-card">
+                    <div className="dashboard-chore-card" key={chore.key}>
                         <div className="dashboard-chore-name">{chore.name}</div>                        
                         <div className="dashboard-chore-payment">Total earned: ${chore.total_payment}</div>
                     </div>

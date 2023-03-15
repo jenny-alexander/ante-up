@@ -12,18 +12,30 @@ function UserProfile(props) {
     const errors = useSelector((store) => store.errors);
     const dispatch = useDispatch();
 
-    const avatars = [
-        'chameleon',
-        'crab',
-        'leopard',
-        'hamster',
-        'dinosaur',
-        'whale',
-        'pig',
-        'fox',
-        'parrot',
-      ]
+    // const avatars = [
+    //     'chameleon',
+    //     'crab',
+    //     'leopard',
+    //     'hamster',
+    //     'dinosaur',
+    //     'whale',
+    //     'pig',
+    //     'fox',
+    //     'parrot',
+    //   ]
     
+    const avatars = [
+        { name: 'chameleon', key: crypto.randomUUID() },
+        { name: 'crab', key: crypto.randomUUID() },
+        { name: 'leopard', key: crypto.randomUUID() },
+        { name: 'hamster', key: crypto.randomUUID() },
+        { name: 'dinosaur', key: crypto.randomUUID() },
+        { name: 'whale', key: crypto.randomUUID() },
+        { name: 'pig', key: crypto.randomUUID() },
+        { name: 'fox', key: crypto.randomUUID() },
+        { name: 'parrot', key: crypto.randomUUID() },
+      ];
+
     const Slider = (props) => {
         return (
             <ReactSlider
@@ -76,11 +88,11 @@ function UserProfile(props) {
                                 { editProfile ? 
                                         avatars.map(avatar => {
                                             return (
-                                                <div className="image-container">
+                                                <div className="image-container" key={avatar.key}>
                                                     <button
-                                                        className={`${avatar === selectedAvatar ? 'selected-image' : 'image'}`} 
-                                                        onClick={() => setSelectedAvatar(avatar)} >
-                                                        <img src={`/images/profile/${avatar}.png`}/>
+                                                        className={`${avatar.name === selectedAvatar ? 'selected-image' : 'image'}`} 
+                                                        onClick={() => setSelectedAvatar(avatar.name)} >
+                                                        <img src={`/images/profile/${avatar.name}.png`}/>
                                                     </button>
                                                 </div>
                                             )

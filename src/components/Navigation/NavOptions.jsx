@@ -6,19 +6,23 @@ function NavOptions(props) {
     const navOptions = [
         {name: 'Dashboard',
          className: 'nav-option',
-         to: '/dashboard'
+         to: '/dashboard',
+         key: crypto.randomUUID(),
         },
         {name: 'Money',
          className: 'nav-option',
-         to: '/money'
+         to: '/money',
+         key: crypto.randomUUID(),
         },
         {name: 'Chores',
         className: 'nav-option',
-        to: '/chore'
+        to: '/chore',
+        key: crypto.randomUUID(),
        },
        {name: 'About',
        className: 'nav-about',
-       to: '/about'
+       to: '/about',
+       key: crypto.randomUUID(),
       },
     ]
 
@@ -27,7 +31,7 @@ function NavOptions(props) {
                 <div className="action-links">
                 {
                     navOptions.map(option => 
-                        <div>
+                        <div key={option.key}>
                             <NavLink onClick={props.toggleMenu} className={option.className} to={option.to}>{option.name}
                                 
                             </NavLink>

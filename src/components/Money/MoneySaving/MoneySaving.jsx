@@ -12,7 +12,7 @@ function MoneySaving(props) {
     const bank = useSelector((store) => store.bank );
     const user = useSelector((store) => store.user);
     const[editSavingFor, setEditSavingFor] = useState(false);
-    const[savingFor, setSavingFor] = useState({});
+    const[savingFor, setSavingFor] = useState({description: '', amount: ''});
 
     const saveGoalChanges = () => {        
         dispatch( { type: 'SAVE_BANK_GOAL', payload: { amount: savingFor.amount, 
@@ -36,7 +36,7 @@ function MoneySaving(props) {
 
                 <div className="money-input-group">
                     <div className="saving-goal-amount">
-                        <label id="goal-amount-label" for="saving-goal">Amount:</label>
+                        <label id="goal-amount-label" htmlFor="saving-goal">Amount:</label>
                         <input id="goal-amount-input"
                             type="number"
                             disabled={!editSavingFor}
@@ -44,7 +44,7 @@ function MoneySaving(props) {
                             onChange={(e) => { setSavingFor({ ...savingFor, amount: e.target.value }); } } />
                     </div>                    
                     <div className="saving-goal-desc">
-                        <label id="goal-desc-label" for="saving-goal">Description:</label>
+                        <label id="goal-desc-label" htmlFor="saving-goal">Description:</label>
                         <input id="goal-desc-input"
                             type="text"
                             disabled={!editSavingFor}

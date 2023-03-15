@@ -51,7 +51,7 @@ function LoginForm() {
           )}
           <div className="form-row">
             <div className= "input-group">
-              <label for="username">
+              <label htmlFor="username">
                 Username
               </label>
               <input id="username" type="text" placeholder="Min 8 characters"
@@ -62,7 +62,7 @@ function LoginForm() {
           </div>
           <div className="form-row">
             <div className="input-group">
-              <label for="password">
+              <label htmlFor="password">
                 Password
               </label>
               <input id="password" type="password" placeholder="********"

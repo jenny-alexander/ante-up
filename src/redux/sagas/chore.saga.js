@@ -51,11 +51,9 @@ function* fetchAllChores() {
     }
 }
 
-function* addChore(action) {
-    console.log('*** in addChore saga and action is:', action)
+function* addChore(action) {    
     try {
-        const response = yield axios.post(`/api/chore/add`, action.payload);
-        console.log('*** in addChore and action.payload is:', action.payload);
+        const response = yield axios.post(`/api/chore/add`, action.payload);        
         if (action.payload.assignToUser) {
             yield put({type: 'ASSIGN_CHORE_TO_USER', 
             payload: {
