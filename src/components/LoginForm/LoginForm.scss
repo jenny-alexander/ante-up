@@ -1,17 +1,25 @@
 $greenButton: rgb(39, 95, 88);
 
-.login-card {
-    width: 60%;
+.login-card {    
+    @media(max-width: 650px) {
+        width: 95%;
+    }
+    @media(max-width: 750px) { 
+        width: 80%;
+    }
+    @media(min-width: 751px) {
+        width: 60%;
+    }
     margin: 0;
     & .login-title {
         font-size: 2em;
         padding-bottom: 0.5em; 
     }
-
     & .login-form {
         display: flex;        
         padding: 1em;
         min-width: 285px;
+        justify-content: center;
         @media(max-width: 375px) {
             min-width: auto;
         }

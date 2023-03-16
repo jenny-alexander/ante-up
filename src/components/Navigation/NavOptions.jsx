@@ -20,7 +20,7 @@ function NavOptions(props) {
         key: crypto.randomUUID(),
        },
        {name: 'About',
-       className: 'nav-about',
+       className: 'nav-option',
        to: '/about',
        key: crypto.randomUUID(),
       },

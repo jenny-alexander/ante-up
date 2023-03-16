@@ -100,7 +100,7 @@ function DashboardMoney(props) {
                 }
             </div>
             <div className="saving-for">
-                <FontAwesomeIcon className="saving-for-icon" icon={faCircleRight} />                
+                {/* <FontAwesomeIcon className="saving-for-icon" icon={faCircleRight} />                 */}
                 <div className="saving-for-text">
                     {allowanceGoal.goalAmount > 0 ? 
                         (<div>

@@ -1,17 +1,30 @@
+:root {
+  --color-background: #fffffe;
+  --color-button: #ffd803;
+  --color-headline: #272343;
+  --color-button-text: #272343;
+  --color-paragraph: #2d334a;
+  --color-stroke: #272343;
+  --color-secondary: #e3f6f5;
+  --color-tertiary: #bae8e8;
+  --color-highlight: #ffd803;
+}
 #react-root {
   display: grid;
   height: 100vh;
 }
 html, body {
   margin: 0;
-  font-family: 'Josefin Sans', sans-serif;
+  //font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 button {  
   letter-spacing: 0.1em;
 }
 
 [class*="swal2-"]{
-  font-family: 'Josefin Sans', sans-serif;
+  //font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .swal2-title {

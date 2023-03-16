@@ -4,7 +4,6 @@
     align-items: center;
     background-color: #f9f9f6;
     margin-bottom: 2em;
-
     & .about-container {
         width: 70%;
         & .about-title {
@@ -12,14 +11,14 @@
             padding-top: 0.5em;
         }
         & .about-component {            
-            padding: 1em;
+            padding: 2em;
             gap: 1.5em;
             & .about-description {
                 display: flex;
                 flex-direction: column;
                 gap: 1em;
                 width: 100%;
-                font-size: 1.1em;   
+                font-size: 1em;   
                 & .lessons-learned-list {
                     li {
                         padding: 0.3em;
@@ -28,19 +27,7 @@
                 }
                 border-bottom: 1px solid lightgrey;
             }
-            & .about-tech-used {
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                gap: 0.5em;
-            }
-            & .about-lang-used {
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                gap: 0.5em;
-            }
-            & .about-other-used {
+            & .about-used {
                 display: flex;
                 flex-direction: column;
                 width: 100%;
@@ -52,10 +39,10 @@
                 flex-wrap: wrap;
                 align-items: center;
                 gap: 1em;
+                &.languages {
+                    gap: 1.5em;
+                }
             }
-
         }
-
-
     }
 }

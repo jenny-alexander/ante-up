@@ -39,7 +39,7 @@ function About(props) {
 
                     </div>              
                 </div>
-                <div className="about-tech-used">
+                <div className="about-used">
                     <div className="about-tech-text">Built on PERN stack:</div>
                     <div className="image-container" key={techStack.key}>
                         {techStack.map(tech => {
@@ -47,7 +47,7 @@ function About(props) {
                         })}
                     </div>
                 </div>
-                <div className="about-lang-used">
+                <div className="about-used">
                     <div className="about-language-text">Languages Used:</div>
                     <div className="image-container" key={languages.key}>
                         {languages.map(language => {
@@ -55,9 +55,9 @@ function About(props) {
                         })}
                     </div>
                 </div>
-                <div className="about-other-used">
+                <div className="about-used">
                     <div className="about-other-text">Other libraries/tools/extensions:</div>
-                    <div className="image-container" key={other.key}>
+                    <div className="image-container languages" key={other.key}>
                         {other.map(other => {
                                 return (<img src={`/images/about/${other.name}.png`}/>)
                         })}

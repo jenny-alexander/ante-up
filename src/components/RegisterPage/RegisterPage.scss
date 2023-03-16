@@ -5,11 +5,14 @@
   justify-content: center;
   margin-top: 6em;
   & .register-card {
-      @media(max-width: 650px) {
-        width: 95%;
+    @media(max-width: 650px) {
+      width: 95%;
     }
-      @media(min-width: 651px) { 
+    @media(max-width: 750px) { 
+        width: 80%;
+    }
+    @media(min-width: 751px) {
         width: 60%;
-    }   
+    }
   }  
 }
