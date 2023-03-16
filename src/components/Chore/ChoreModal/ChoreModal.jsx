@@ -2,7 +2,7 @@ import React, {useState, useRef, useEffect} from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faXmark, faEdit, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import ChoreForm from '../ChoreForm/ChoreForm';
 import './ChoreModal.scss';
 
@@ -12,7 +12,9 @@ function ChoreModal(props) {
     //const chorePayments = useSelector((store) => store.chorePayments);
     const[allChores, setAllChores] = useState([]);
     const [userChores, setUserChores] = useState([]);
-    const[addNewChore, setAddNewChore] = useState(false); //TODO: Need this when suggesting a new chore  
+    const [addNewChore, setAddNewChore] = useState(false);
+    const [editChores, setEditChores] = useState(false);
+
     useEffect(() => {
         if (chores.allChore.chore.length > 0) {
             setAllChores(chores.allChore.chore)
@@ -47,6 +49,12 @@ function ChoreModal(props) {
          });
          setUserChores((currentChore) => currentChore.filter((thisChore) => thisChore.id !== currentChore.id));         
     }
+    const deleteChore = (chore) => {        
+        console.log('in deleteChore')
+    }
+    const editChore = (chore) => {        
+        console.log('in editChore')
+    }
 
     if ( props.show ) {
         return (
@@ -62,12 +70,18 @@ function ChoreModal(props) {
                                 fixedWidth icon={faXmark} />                                      
                         </div>
                     </div>
-                    <div className="add-chore-btn-container">                        
-                        <button className={`${addNewChore ? 'add-chore-btn disable' : 'add-chore-btn'}`}
+                    <div className="manage-chore-btn-container">                        
+                        <button className={`${addNewChore ? 'manage-chore-btn disable' : 'manage-chore-btn'}`}
                                 disabled={addNewChore} 
                                 onClick={()=>setAddNewChore(!addNewChore)}>
                                 Add New Chore
-                            </button>
+                        </button>
+                        <button className={`${addNewChore ? 'manage-chore-btn disable' : 'manage-chore-btn'}`}
+                                disabled={addNewChore} 
+                                onClick={()=>setEditChores(!editChores)}
+                        >
+                            Edit Chores
+                        </button>
                             
                     </div>
                 </div>
@@ -92,13 +106,32 @@ function ChoreModal(props) {
                                                         <div className="chore-frequency">{content.frequency}</div>
                                                     </div>
                                                 </div>
-                                                <div className="manage-chore-btn">
-                                                    {
-                                                        userChores?.length > 0  && userChores?.find(chore => chore.id === content.id) ? 
-                                                            <button onClick={()=> removeChore(content)}>Remove</button> 
-                                                            : <button onClick={()=> assignChore(content)}>Assign</button>
-                                                    }
-                                                </div> 
+                                                { editChores ?  
+                                                <div className="edit-chore-btns">
+                                                    <button className="edit-btn">
+                                                        <FontAwesomeIcon                                 
+                                                            onClick={()=>{editChore}} 
+                                                            //className="fa-Xmark" 
+                                                            fixedWidth icon={faEdit} 
+                                                        />     
+                                                    </button>
+                                                    <button className="delete-btn">
+                                                        <FontAwesomeIcon                                 
+                                                            onClick={()=>{deleteChore}} 
+                                                            //className="fa-Xmark" 
+                                                            fixedWidth icon={faTrashCan} 
+                                                        /> 
+                                                        </button>
+                                                    </div>
+                                                    :
+                                                    <div className="manage-chore-btn">
+                                                        {
+                                                            userChores?.length > 0  && userChores?.find(chore => chore.id === content.id) ? 
+                                                                <button onClick={()=> removeChore(content)}>Remove</button> 
+                                                                : <button onClick={()=> assignChore(content)}>Assign</button>
+                                                        }
+                                                    </div> 
+                                                }
 
                                             </div>
                                         )

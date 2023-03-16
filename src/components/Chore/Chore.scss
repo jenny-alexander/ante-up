@@ -63,7 +63,6 @@ $greenButton: rgb(39, 95, 88);
 
                 &:hover {
                     cursor: pointer;                    
-                    //transform: scale(1.05);
                     background-color: #c0bfbf;
                 }
                 &:focus {
@@ -187,12 +186,12 @@ $greenButton: rgb(39, 95, 88);
                     transition: background-color 0.8s;
                     &:hover {
                         cursor: pointer;
-                        //background-color: #c0bfbfd4;
-                        //background-color: rgb(242 255 250 / 83%);
-
-                        outline: 1px solid rgb(39, 95, 88);
-                        transition: outline 0.1s ease-in;
-                        
+                        // outline: 1px solid rgb(39, 95, 88);
+                        // transition: outline 0.1s ease-in;
+                        cursor: pointer;
+                        outline: 3px solid #54a58d;
+                        border: 1px solid #54a58d;
+                        transition: outline 0.08s ease-in-out;                        
                     }
                 }                 
             }

@@ -67,7 +67,7 @@
             column-gap: 0.5em;     
             justify-content: space-between; 
             width: 5%;
-            & .add-chore-btn {
+            & .manage-chore-btn {
               border-radius: 5px;
               align-items: baseline;
               padding: 0.75em 0.5em;
@@ -90,12 +90,14 @@
               }  
           }          
       }
-      & .add-chore-btn-container {
+      & .manage-chore-btn-container {
         display: flex;
         justify-content: center;
         width: 100%;
-        & .add-chore-btn {
-          width: 40%;
+        gap: 0.5em;
+        margin-top: 0.5em;
+        & .manage-chore-btn {
+          width: 30%;
           @media(max-width: 395px) {
             width: 60%;
           }
@@ -146,13 +148,20 @@
               //   flex-wrap:wrap;   
               // }            
               justify-content: space-between;  
-              gap: 0.5em;
+              gap: 0.6em;
               align-items: center;
               border: 1px solid lightgrey;
               border-radius: 12px;
               width: 80%;
               @media(max-width: 425px) {
                 width: 85%;
+              }
+              & .edit-chore-btns {
+                display: flex;
+                gap: 0.8em;
+                & svg {
+                font-size: 1.2em;
+                }
               }
               & button {
                 display: flex;
