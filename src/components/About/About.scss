@@ -31,7 +31,12 @@
                 display: flex;
                 flex-direction: column;
                 width: 100%;
-                gap: 0.5em;
+                //gap: 0.2em;
+                align-items: center;
+                & .about-text {
+                    font-weight: bold;
+                    margin-bottom: 1em;
+                }
             }
             & .image-container {
                 display: flex;

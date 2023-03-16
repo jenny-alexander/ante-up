@@ -38,7 +38,9 @@
          height: 70px;
         border-radius: 50%;
         // background-color: #f1f1ed;        
-        background-color: rgb(192 203 255 / 25%);
+        //background-color: rgb(192 203 255 / 25%);
+        background-color: rgb(210 227 242 / 25%);
+        border: 1px solid lightgrey;
         position:relative;
         @media(max-width: 395px) {
             width: 65px;
@@ -74,10 +76,10 @@
             font-size: 0.9em;
             display: flex;
             flex-wrap: wrap;
-            background-color: rgb(192 203 255 / 25%);
+            border: 1px solid lightgrey;
+            background-color: rgb(210 227 242 / 25%);
             border-radius: 10px;
             padding: 10px;
-            border: 1px dotted lightgrey;
         }
     }
 }

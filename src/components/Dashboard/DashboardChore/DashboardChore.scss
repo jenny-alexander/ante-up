@@ -17,8 +17,9 @@
             padding: 1em;
             display: flex;
             align-items: center;
-            // background-color: #f1f1ed;
-            background-color: rgb(192 203 255 / 25%);
+            //background-color: #f1f1ed;
+            border: 1px solid lightgrey;
+            background-color: rgb(210 227 242 / 25%);
             border-radius: 10px;
             column-gap: 1em;
             & div {

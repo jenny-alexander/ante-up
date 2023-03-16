@@ -71,7 +71,7 @@ button {
       }
   }
   @media (min-width: 1626px){
-    grid-template-columns: minmax(auto, 30%) 1fr minmax(auto, 30%);
+    grid-template-columns: minmax(auto, 25%) 1fr minmax(auto, 25%);
     &.logged-in {
       grid-template-columns: minmax(auto, 20%) 1fr minmax(auto, 20%);
     }

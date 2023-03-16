@@ -33,14 +33,14 @@ function About(props) {
                             <ul className="lessons-learned-list">
                                 <li>Manage state as close to the component using it as possible.</li>
                                 <li>Writing your own CSS allows you better control over styling and gives lots of practice using grid and flexbox.</li>
-                                <li>Real users give the best feedback.</li>
+                                <li>Encorporate user testing into process.</li>
                             </ul>
                         </div>
 
                     </div>              
                 </div>
                 <div className="about-used">
-                    <div className="about-tech-text">Built on PERN stack:</div>
+                    <div className="about-text">Built on PERN stack:</div>
                     <div className="image-container" key={techStack.key}>
                         {techStack.map(tech => {
                                 return (<img src={`/images/about/${tech.name}.png`}/>)
@@ -48,7 +48,7 @@ function About(props) {
                     </div>
                 </div>
                 <div className="about-used">
-                    <div className="about-language-text">Languages Used:</div>
+                    <div className="about-text">Languages Used:</div>
                     <div className="image-container" key={languages.key}>
                         {languages.map(language => {
                                 return (<img src={`/images/about/${language.name}.png`}/>)
@@ -56,7 +56,7 @@ function About(props) {
                     </div>
                 </div>
                 <div className="about-used">
-                    <div className="about-other-text">Other libraries/tools/extensions:</div>
+                    <div className="about-text">Other libraries/tools/extensions:</div>
                     <div className="image-container languages" key={other.key}>
                         {other.map(other => {
                                 return (<img src={`/images/about/${other.name}.png`}/>)

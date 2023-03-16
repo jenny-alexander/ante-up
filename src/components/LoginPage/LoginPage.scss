@@ -1,9 +1,16 @@
 .login-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin-left: 1em;
     margin-right: 1em;
-    display: flex;
-    justify-content: center;
     margin-top: 6em;
+    min-height: 450px;
+    & .login-logo {
+        display:flex;
+        justify-content: center;
+    }
     @media (max-width: 650px) {
         margin-top: 2em;
     }

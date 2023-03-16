@@ -15,6 +15,7 @@ $sliderTrackColor: #ddd;
     display: flex;    
     padding: 1em;
     min-width: 285px;
+    justify-content: center;
     @media(max-width: 375px) {
         min-width: auto;
     }
