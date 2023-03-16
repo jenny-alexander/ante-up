@@ -99,7 +99,7 @@
           @media(max-width: 395px) {
             width: 60%;
           }
-          margin-right: 2.5em;
+          //margin-right: 2.5em;
           border-radius: 5px;          
           padding: 0.5em 0.25em;
           margin-top: 0.5em;
@@ -193,7 +193,10 @@
                 font-size: 0.9em;
                 padding: 0.5em;
                 display:flex;
-                border: 1px solid rgb(39, 95, 88);
+                @media(min-width: 525px){
+                  border: 1px solid rgb(39, 95, 88);
+                }
+                
                 color: rgb(39, 95, 88);
                 border-radius: 50%;
                 min-height: 1.5em;

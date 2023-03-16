@@ -3,9 +3,10 @@
   margin-right: 1em;
   display: flex;
   justify-content: center;
-  margin-top: 6em;
+  //margin-top: 6em;
   & .register-card {
     @media(max-width: 650px) {
+      margin-top: 2em;
       width: 95%;
     }
     @media(max-width: 750px) { 

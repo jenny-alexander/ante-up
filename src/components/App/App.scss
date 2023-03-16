@@ -46,11 +46,14 @@ button {
     & .welcome {
       display:none;
     }
-    & .header {
-      background-color: rgb(216, 232, 229);
-      padding-top: 0.7em;
-      max-height: 80px;
-    }    
+    // & .header {
+    //   background-color: rgb(216, 232, 229);
+    //   @media(max-width: 651px){
+    //     background-color: #f9f9f6
+    //   }  
+    //   padding-top: 0.7em;
+    //   max-height: 80px;
+    // }    
     & .right-border{
       display: none;
     }

@@ -12,32 +12,12 @@ function Chore(props) {
     const dispatch = useDispatch();    
     const week = useSelector((store) => store.week);
     const user = useSelector((store) => store.user);
-    const [frequencySelected, setFrequencySelected] = useState('All');
-    const options = [
-        { value: 'All', label: 'All'},
-        { value: 'Daily', label: 'Daily' },
-        { value: 'Weekly', label: 'Weekly' },
-        { value: 'Ad hoc', label: 'Ad hoc'}
-      ]
-
-      const handleFrequencyChange = (selected) => {        
-        if (selected.value==='All') {
-            setUserChores(chores.userChore.chore);
-        } else {
-            const filteredChores = chores.userChore.chore.filter(a =>
-                a.frequency === selected.value);
-            setUserChores(filteredChores);
-        }        
-        setFrequencySelected(selected);
-        setSelectedRow(-1);
-    }
 
     const ChoreList = (props) => {
         const chores = useSelector((store) => store.chore); 
         const chorePayment = useSelector((store) => store.chorePayment);
         const [userChores, setUserChores] = useState([]);
         const [choresExist, setChoresExist] = useState(false); 
-        const [selectedRow, setSelectedRow] = useState(-1);    
         const [checkedDailyState, setCheckedDailyState] = useState([]);
         const [checkedWeeklyState, setCheckedWeeklyState] = useState([]);
         const [checkedAdHocState, setCheckedAdHocState] = useState([]);        
@@ -61,8 +41,20 @@ function Chore(props) {
         },[week, user]);
 
         useEffect(() => {
+            if (choresExist) {
+                if (props.frequencySelected.value==='All') {
+                    setUserChores(chores.userChore.chore);
+                } else {
+                    const filteredChores = chores.userChore.chore.filter(a =>
+                        a.frequency === props.frequencySelected.value);
+                    setUserChores(filteredChores);
+                }
+         }
+        },[props.frequencySelected])
+
+        useEffect(() => {
             if (chores.userChore.chore != undefined ) {
-                //setChoresExist(chores.userChore.chore.length > 0);
+                setChoresExist(chores.userChore.chore.length > 0);
                 
                 if(Object.entries(chores.userChore.chore).length > 0) {
                     setChoresExist(true);
@@ -196,12 +188,12 @@ function Chore(props) {
             setCheckedAdHocState(updatedState);
         };
     
-        const showDetails = (i) => {   
+        const showDetails = (i) => {              
             setScheduleIsDisabled(true);
-            if (selectedRow === i) {
-                setSelectedRow(-1);
+            if (props.selectedRow === i) {
+                props.setSelectedRow(-1);
             }else {
-                setSelectedRow(i);            
+                props.setSelectedRow(i);            
             }        
         }
         
@@ -289,6 +281,7 @@ function Chore(props) {
                         if ( key.substring(key.length - 3) === 'day' ) {                                             
                             return (
                                 <ScheduleInput
+                                    key={key}
                                     disabled={scheduleIsDisabled}
                                     mapKey={key}
                                     index={index}
@@ -342,21 +335,21 @@ function Chore(props) {
                 <button 
                     className='chore-btn'
                     onClick={()=>showDetails(props.index)}>
-                        { selectedRow === props.index ? (
+                        { props.selectedRow === props.index ? (
                             <FontAwesomeIcon icon={faChevronUp} />
                         ) : (
                             <FontAwesomeIcon icon={faChevronDown} />
                         )}
                 </button>
             </td>
-            <td className={`${selectedRow===props.index ? 'expanded-row-content show-row': 'expanded-row-content hide-row'}`}>
-                { selectedRow === props.index ?                                                                      
+            <td className={`${props.selectedRow===props.index ? 'expanded-row-content show-row': 'expanded-row-content hide-row'}`}>
+                { props.selectedRow === props.index ?                                                                      
                     <div className='chore-details-schedule'>                                                    
                         { renderSchedule(props.chore.frequency, props.chore.id, props.chore.payment)}                                                                                                                
                     </div> : null                                                                                                    
                 }
                 <div className="edit-schedule">                                            
-                    { scheduleIsDisabled && selectedRow === props.index ? 
+                    { scheduleIsDisabled && props.selectedRow === props.index ? 
                         <button onClick={()=>setScheduleIsDisabled(!scheduleIsDisabled)}>Edit schedule</button>
                         :
                         <>
@@ -365,7 +358,7 @@ function Chore(props) {
                         </>
                 }
                 </div>
-                { selectedRow === props.index ?        
+                { props.selectedRow === props.index ?        
                     <PaymentForChore frequency={props.chore.frequency}
                                     choreID={props.chore.id}
                     /> : null
@@ -394,6 +387,7 @@ function Chore(props) {
                             <ChoreRow chore={chore} 
                                       index={i}
                                       key={chore.key}
+                                      selectedRow={props.selectedRow}
                             />
                          )}
                         </tbody>
@@ -442,7 +436,19 @@ function Chore(props) {
         )
     }
     
-    const ChoreDetails = (props) => {        
+    const ChoreDetails = (props) => {
+        const [selectedRow, setSelectedRow] = useState(-1);   
+        const [frequencySelected, setFrequencySelected] = useState('All');
+        const options = [
+            { value: 'All', label: 'All'},
+            { value: 'Daily', label: 'Daily' },
+            { value: 'Weekly', label: 'Weekly' },
+            { value: 'Ad hoc', label: 'Ad hoc'}
+          ]   
+        const handleFrequencyChange = (selected) => {         
+            setFrequencySelected(selected);
+            setSelectedRow(-1);
+        }
         return (       
             <div className="chore-main">
                 <div className="frequency-selector">                    
@@ -453,11 +459,14 @@ function Chore(props) {
                                 value={frequencySelected}
                         />
                     </div>
+                    <div>{frequencySelected.value}</div>
                     <div className="chore-actions">
                         <ChoreButton />
                     </div>
                 </div>
-                <ChoreList/>                
+                <ChoreList frequencySelected={frequencySelected}
+                           selectedRow={selectedRow}
+                           setSelectedRow={setSelectedRow}/>                
             </div>            
         )
     }

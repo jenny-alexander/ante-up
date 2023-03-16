@@ -62,15 +62,15 @@ function App() {
 
   return (
     <div className={`${loggedIn ? 'application logged-in' : 'application'}`}>      
-      { 
-        Object.entries(user).length === 0 ?  
-          <Welcome /> 
-            : 
-          <>
-          <Navigation className="show-nav" />
-          <Header user={user} weekInfo={getDateString(week.start_date)}/>
-          </>
-      }        
+      <Header user={user} weekInfo={getDateString(week.start_date)}/>
+      <>
+        { 
+          Object.entries(user).length === 0 ?  
+            <Welcome /> 
+              : 
+            <Navigation className="show-nav" />
+        }
+      </>      
         <Routes>
           <Route path="/" element={user.id ? (<Dashboard />) : (<LoginPage />)} />
           <Route path="/login" element={user.id ? (<Dashboard />) : (<LoginPage />)} />

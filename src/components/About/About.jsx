@@ -27,21 +27,26 @@ function About(props) {
             <>
                 <div className="about-description">
                     <p>I developed this application so my kids could keep track of their allowances and chores. </p>  
-                    <div className="about-takeaway">
-                        <div></div>
+                    <div className="about-takeaway">                        
                         <div>Lessons learned from this challenge:
                             <ul className="lessons-learned-list">
                                 <li>Manage state as close to the component using it as possible.</li>
                                 <li>Writing your own CSS allows you better control over styling and gives lots of practice using grid and flexbox.</li>
-                                <li>Encorporate user testing into process.</li>
+                                <li>User testing is essential.</li>
                             </ul>
                         </div>
-
-                    </div>              
+                    </div>
+                    <div className="about-upnext">                        
+                        <div>To do:
+                            <ul className="lessons-learned-list">
+                                <li>Use CSS Modules to prevent selector name collisions.</li>
+                            </ul>
+                        </div>
+                    </div>           
                 </div>
                 <div className="about-used">
                     <div className="about-text">Built on PERN stack:</div>
-                    <div className="image-container" key={techStack.key}>
+                    <div className="image-container stack" key={techStack.key}>
                         {techStack.map(tech => {
                                 return (<img src={`/images/about/${tech.name}.png`}/>)
                         })}

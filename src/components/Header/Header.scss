@@ -1,7 +1,20 @@
 $greenButton: rgb(39, 95, 88);
 .header {
   position: relative;
-}
+    @media(max-width: 651px){
+      background-color: #f9f9f6;
+      &.logged-in {
+        background-color: rgb(216, 232, 229);
+      }
+    }  
+    padding-top: 0.7em;
+    max-height: 80px;
+    & .login-logo {
+      display: flex;
+      justify-content: center;
+    }
+  }  
+
 .header-container {
     display: flex;
     align-items: center;    
