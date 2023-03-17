@@ -11,7 +11,8 @@
   left: 0;
   
   .modal {
-    width: 40%; 
+    width: 40%;
+    border-radius: 12px;
     @media(min-width: 1500px) {
       width: 30%;
     }
@@ -52,7 +53,7 @@
           & .modal-title {            
             display: flex;
             justify-content: center;
-            font-size: 1.8em;
+            font-size: 1.7em;
             @media(max-width: 425px) {
               font-size: 1.6em;
             }
@@ -98,6 +99,9 @@
         margin-top: 0.5em;
         & .manage-chore-btn {
           width: 30%;
+          &#cancel-edit{
+            width: 40%;
+          }
           @media(max-width: 395px) {
             width: 60%;
           }
@@ -170,7 +174,8 @@
                 color: white;
                 border-radius: 5px;
                 text-transform: uppercase;
-                padding: 8px; 
+                padding: 8px;
+                font-size: 0.6em;
                 &:hover {
                   cursor: pointer;
                   outline: 3px solid #54a58d;
@@ -186,15 +191,15 @@
                 max-width: 75%;
               }
               & .chore-name {
-                font-size: 0.9em;
+                font-size: 0.8em;
                 @media(max-width: 540px) {
-                  font-size: 0.8em;
+                  font-size: 0.7em;
                 }
                 width: 100%;
               }
               & .chore-frequency {
                 padding-top: 0.2em;
-                font-size: 0.8em;              
+                font-size: 0.7em;              
               }
               & .modal-chore-payment {
                 display: flex;

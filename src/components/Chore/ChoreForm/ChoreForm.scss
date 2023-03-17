@@ -1,28 +1,34 @@
-.new-chore-container {
+.chore-form-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 1em;
 
-    & .new-chore-title {
-        font-size: 1.5em;
+    & .chore-form-title {
+        font-size: 1.3em;
       padding-bottom: 0.5em;
     }
     & .form-error{
       color: red;
       padding-bottom: 1em;
     }
-    & .add-chore-form {
+    & .chore-form {
       display: flex;
       width: 100%;
       justify-content: center;
       & .form-body {
         width: 60%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 0.5em;
         @media(max-width: 850px) {
           width: 70%;
         }
+        & .input-group {
+          font-size: 0.8em;
+        }
         padding-top: 0.5em;
-        & .add-chore-form-buttons {
+        & .chore-form-buttons {
             display: flex;
             column-gap: 1em;
             & .white-button.cancel {

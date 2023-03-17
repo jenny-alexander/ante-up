@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Select from 'react-select';
 import './ChoreForm.scss';
@@ -7,7 +7,7 @@ function ChoreForm(props) {
     const[choreName, setChoreName] = useState('');   
     const[chorePayment, setChorePayment] = useState(0);
     const[assignToUser, setAssignToUser] = useState(true);
-    const [frequencySelected, setFrequencySelected] = useState('');      
+    const [frequencySelected, setFrequencySelected] = useState('Daily');      
     const dispatch = useDispatch();  
     const [formError, setFormError] = useState({});
 
@@ -15,7 +15,16 @@ function ChoreForm(props) {
         { value: 'Daily', label: 'Daily' },
         { value: 'Weekly', label: 'Weekly' },
         { value: 'Ad hoc', label: 'Ad hoc'}
-      ]
+      ];
+
+    useEffect(() => {        
+        if (props.type === 'edit' && Object.entries(props.chore).length > 0) {
+            setChoreName(props.chore.name);
+            setChorePayment(props.chore.payment);
+            setFrequencySelected({label: props.chore.frequency, value: props.chore.frequency});
+        }
+    },[props.chore])
+
     const addNewChore = () => {
         event.preventDefault();
         if (frequencySelected === '') {            
@@ -36,6 +45,11 @@ function ChoreForm(props) {
         }}
     }
     
+    const editExistingChore = () => {
+        event.preventDefault();
+        console.log('editing existing chore');
+    }
+
     const assign = () => {
         setAssignToUser(!assignToUser);
       };
@@ -56,9 +70,11 @@ function ChoreForm(props) {
     }
 
   return (
-    <div className="new-chore-container">
-        <div className="new-chore-title">Add a New Chore</div>
-            <form className="add-chore-form" onSubmit={addNewChore}>
+    <div className="chore-form-container">
+        <div className="chore-form-title">{props.type === 'add' ? 'Add a New Chore' : 'Edit Chore'}</div>
+            <form 
+                className="chore-form" 
+                onSubmit={props.type === 'add' ? addNewChore : editExistingChore}>
             <div className="form-body">
                 <div className="form-row">
                     {formError.payment ? 
@@ -99,11 +115,12 @@ function ChoreForm(props) {
                             <Select options={options}
                                     onChange={handleFrequencyChange}
                                     value={frequencySelected}                           
-                                    //defaultValue={options[0]}
+                                    //defaultValue={options[0]}                                    
                             />
                         </div>            
                     </div>
                 </div>
+                { props.type==='add' ?
                 <div className="form-row">
                     <div className="input-group">
                         <div className="assign-chore-checkbox">
@@ -114,11 +131,11 @@ function ChoreForm(props) {
                             </label>
                         </div>
                     </div>
-                </div>
-                <div className="add-chore-form-buttons">
+                </div> : null }
+                <div className="chore-form-buttons">
                     <button 
                         type="submit"
-                        className="green-button add">Add Chore</button>
+                        className="green-button add">{props.type==='add' ? 'Add Chore' : 'Update'}</button>
                     <button 
                         className="white-button cancel"
                         onClick={props.cancel}>Cancel

@@ -2,7 +2,7 @@ import React, {useState, useRef, useEffect} from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark, faEdit, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faXmark, faEdit, faTrashCan, faPlus } from '@fortawesome/free-solid-svg-icons';
 import ChoreForm from '../ChoreForm/ChoreForm';
 import './ChoreModal.scss';
 
@@ -12,8 +12,10 @@ function ChoreModal(props) {
     //const chorePayments = useSelector((store) => store.chorePayments);
     const[allChores, setAllChores] = useState([]);
     const [userChores, setUserChores] = useState([]);
+    const [showEditForm, setShowEditForm] = useState(false);
     const [addNewChore, setAddNewChore] = useState(false);
     const [editChores, setEditChores] = useState(false);
+    const [choreToEdit, setChoreToEdit] = useState({});
 
     useEffect(() => {
         if (chores.allChore.chore.length > 0) {
@@ -52,8 +54,9 @@ function ChoreModal(props) {
     const deleteChore = (chore) => {        
         console.log('in deleteChore')
     }
-    const editChore = (chore) => {        
-        console.log('in editChore')
+    const editChore = (chore) => {    
+        setShowEditForm(!showEditForm)        
+        setChoreToEdit(chore);
     }
 
     if ( props.show ) {
@@ -70,30 +73,56 @@ function ChoreModal(props) {
                                 fixedWidth icon={faXmark} />                                      
                         </div>
                     </div>
-                    <div className="manage-chore-btn-container">                        
-                        <button className={`${addNewChore ? 'manage-chore-btn disable' : 'manage-chore-btn'}`}
-                                disabled={addNewChore} 
-                                onClick={()=>setAddNewChore(!addNewChore)}>
-                                Add New Chore
-                        </button>
-                        <button className={`${addNewChore ? 'manage-chore-btn disable' : 'manage-chore-btn'}`}
-                                disabled={addNewChore} 
-                                onClick={()=>setEditChores(!editChores)}
-                        >
-                            Edit Chores
-                        </button>
-                            
+                    { addNewChore || showEditForm ? null 
+                    :
+                    <div className="manage-chore-btn-container">
+                        { editChores ? 
+                            <>
+                            <button className={`${showEditForm ? 'manage-chore-btn disable' : 'manage-chore-btn'}`}
+                                    id='cancel-edit'
+                                    disabled={showEditForm} 
+                                    onClick={()=>setEditChores(!editChores)}>Cancel Editing Chores</button>
+                            </>
+                            :
+                            <>
+                                <button className={`${addNewChore ? 'manage-chore-btn disable' : 'manage-chore-btn'}`}
+                                        disabled={addNewChore} 
+                                        onClick={()=>setAddNewChore(!addNewChore)}>
+                                        Add New Chore
+                                </button>
+                                <button className={`${addNewChore ? 'manage-chore-btn disable' : 'manage-chore-btn'}`}
+                                        //disabled={editChores} 
+                                        onClick={()=>setEditChores(!editChores)}
+                                >
+                                    Edit Chores
+                                </button>
+                            </>  
+                        }
                     </div>
-                </div>
+                
+                    }
+                    </div>
                 <div className="modal-body-container"  >
                     <div className="modal-body" >                    
                         { addNewChore ?
-                            <ChoreForm userId={props.user.id}
-                                    weekID={props.weekID}
-                                    close={() => setAddNewChore(!addNewChore)}
-                                    cancel={() => setAddNewChore(!addNewChore)}
+                            <ChoreForm 
+                                type="add"
+                                userId={props.user.id}
+                                weekID={props.weekID}
+                                close={() => setAddNewChore(!addNewChore)}
+                                cancel={() => setAddNewChore(!addNewChore)}
                             />
-                        :                        
+                        :      
+                        showEditForm ?
+                            <ChoreForm 
+                                type="edit"
+                                userId={props.user.id}
+                                weekID={props.weekID}
+                                chore={choreToEdit}
+                                close={() => setShowEditForm(!showEditForm)}
+                                cancel={() => setShowEditForm(!showEditForm)}
+                            />
+                        :
                             <div className='modal-chore-list'>
                                 { Object.entries(allChores).length > 0 ?                            
                                     allChores.map((content,i) => {
@@ -108,20 +137,20 @@ function ChoreModal(props) {
                                                 </div>
                                                 { editChores ?  
                                                 <div className="edit-chore-btns">
+                                                    
                                                     <button className="edit-btn">
-                                                        <FontAwesomeIcon                                 
-                                                            onClick={()=>{editChore}} 
-                                                            //className="fa-Xmark" 
+                                                        <FontAwesomeIcon                                                                                             
+                                                            //onClick={()=>setShowEditForm(!showEditForm)}
+                                                            onClick={()=>{editChore(content)}}
                                                             fixedWidth icon={faEdit} 
                                                         />     
                                                     </button>
                                                     <button className="delete-btn">
                                                         <FontAwesomeIcon                                 
                                                             onClick={()=>{deleteChore}} 
-                                                            //className="fa-Xmark" 
                                                             fixedWidth icon={faTrashCan} 
                                                         /> 
-                                                        </button>
+                                                    </button>
                                                     </div>
                                                     :
                                                     <div className="manage-chore-btn">
@@ -132,7 +161,6 @@ function ChoreModal(props) {
                                                         }
                                                     </div> 
                                                 }
-
                                             </div>
                                         )
                                     })
