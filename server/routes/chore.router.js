@@ -3,8 +3,8 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 // Get all chores
-router.get('/', (req, res) => {
-  const getAllChoresQuery = `SELECT * FROM chore;`;
+router.get('/:userID', (req, res) => {
+  const getAllChoresQuery = `SELECT * FROM chore where user_id = ${req.params.userID};`;
   pool.query(getAllChoresQuery)
     .then((results) => {      
       res.send(results.rows);
@@ -18,7 +18,7 @@ router.get('/:userID/:weekID', (req, res) => {
   const getChoreQuery = `SELECT chore.id, user_chore.id as user_chore_id, name, description, frequency, payment from user_chore
                         INNER JOIN chore
                         ON user_chore.chore_id = chore.id
-                        WHERE user_id = ${req.params.userID}
+                        WHERE user_chore.user_id = ${req.params.userID}
                         AND week_id = ${req.params.weekID};`;                          
   pool.query(getChoreQuery)
     .then((results) => {      
@@ -33,12 +33,14 @@ router.post('/assign', (req, res) => {
   const assignChoreToUserQuery = `INSERT INTO user_chore ("chore_id", "user_id", "week_id")
                               VALUES($1,$2,$3)
                               RETURNING "id"`;
+                              console.log('assignChoreToUserQuery is:', assignChoreToUserQuery);
   pool.query(assignChoreToUserQuery, [req.body.choreId, req.body.userId, req.body.weekID])
       .then((result) => {                    
           const getChoreQuery = `SELECT chore.id, user_chore.id as user_chore_id, name, description, frequency, payment from user_chore
           INNER JOIN chore
           ON user_chore.chore_id = chore.id
           WHERE user_chore.id = ${result.rows[0]?.id};`;
+          console.log('getChoreQuery is', getChoreQuery);
           pool.query(getChoreQuery)
             .then((result) => {      
               res.send(result.rows);
@@ -61,6 +63,20 @@ router.delete('/remove/:id', (req, res) => {
       })
       .catch((error) => {
           console.log('assign chore to user error:', error);
+          res.sendStatus(500);
+      })
+})
+
+//Delete chore from chore table (for specific user)
+router.delete('/delete/:id', (req, res) => {  
+  const deleteChoreQuery = `DELETE FROM chore WHERE id = ${req.params.id};`;
+  console.log('deleteChoreQuery is:', deleteChoreQuery);
+  pool.query(deleteChoreQuery)
+      .then((results) => {
+        res.send(200);
+      })
+      .catch((error) => {
+          console.log('delete chore error:', error);
           res.sendStatus(500);
       })
 })

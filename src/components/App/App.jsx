@@ -25,8 +25,11 @@ function App() {
 
   useEffect(() => {
     dispatch({type: 'FETCH_WEEK'});
-    dispatch({ type: 'GET_ALL_CHORE_REQUESTED'});
-  }, []);
+    dispatch({ type: 'GET_ALL_CHORE_REQUESTED',
+               payload: {
+                userId: user.id
+              }});
+  }, [user]);
 
   useEffect(() => {
     if (Object.entries(week).length !== 0 ) {

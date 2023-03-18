@@ -46,6 +46,12 @@ const allChore = (state = allChoresInitialState, action) => {
             return { ...state, loading: false, chore: action.payload, error: null }
         case 'GET_ALL_CHORES_FAILED':
             return { ...state, loading: false, error: action.payload,  }
+        case 'DELETE_CHORE_SUCCESS':        
+            const filteredChores = state.chore.filter( chore => chore.id !== action.payload.choreId );            
+            return {
+                ...state,
+                chore: filteredChores
+            }
         default:
             return state;
     }

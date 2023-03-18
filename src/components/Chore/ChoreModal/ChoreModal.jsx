@@ -52,7 +52,12 @@ function ChoreModal(props) {
          setUserChores((currentChore) => currentChore.filter((thisChore) => thisChore.id !== currentChore.id));         
     }
     const deleteChore = (chore) => {        
-        console.log('in deleteChore')
+        console.log('in deleteChore with chore:', chore);
+            dispatch({type: 'DELETE_CHORE', 
+                payload: {
+                    choreId: chore.id,
+                }
+            })
     }
     const editChore = (chore) => {    
         setShowEditForm(!showEditForm)        
@@ -147,7 +152,7 @@ function ChoreModal(props) {
                                                     </button>
                                                     <button className="delete-btn">
                                                         <FontAwesomeIcon                                 
-                                                            onClick={()=>{deleteChore}} 
+                                                            onClick={()=>{deleteChore(content)}} 
                                                             fixedWidth icon={faTrashCan} 
                                                         /> 
                                                     </button>

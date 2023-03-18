@@ -21,7 +21,7 @@ function* fetchUserChore(action) {
 function* assignChore(action) {        
     try {        
         const response = yield axios.post(`/api/chore/assign`, action.payload);
-        yield put({ type: 'ASSIGN_CHORE_SUCCESS', payload: response.data });        
+        yield put({ type: 'ASSIGN_CHORE_SUCCESS', payload: response.data });   
         yield put({ type: 'ADD_CHORE_PAYMENT', payload: {...action.payload, 'user_chore_id': response.data[0]?.user_chore_id} });
     } catch (error) {
         yield put({ type: 'ASSIGN_CHORE_FAILED', payload: error });
@@ -41,9 +41,9 @@ function* removeChore(action) {
         console.log('Chore DELETE request failed', error);
     }
 } 
-function* fetchAllChores() {    
+function* fetchAllChores(action) {    
     try {        
-        const response = yield axios.get(`/api/chore`);
+        const response = yield axios.get(`/api/chore/${action.payload.userId}`);
         yield put({ type: 'GET_ALL_CHORES_SUCCESS', payload: response.data });
     } catch (error) {
         yield put({ type: 'GET_ALL_CHORES_FAILED', payload: error });
@@ -70,12 +70,24 @@ function* addChore(action) {
     }
 }
 
+function* deleteChore(action) {
+    console.log('in deleteChore and action is:', action);
+    try {        
+        const response = yield axios.delete(`/api/chore/delete/${action.payload.choreId}`);
+        yield put({type: 'DELETE_CHORE_SUCCESS', payload:{choreId: action.payload.choreId}});       
+    } catch (error) {
+        yield put({ type: 'REMOVE_CHORE_FAILED', payload: error });
+        console.log('Chore DELETE request failed', error);
+    }
+} 
+
 function* choreSaga() {
     yield takeLatest('GET_USER_CHORE_REQUESTED', fetchUserChore);
     yield takeLatest('GET_ALL_CHORE_REQUESTED', fetchAllChores);
     yield takeLatest('ASSIGN_CHORE_TO_USER', assignChore);
     yield takeLatest('REMOVE_CHORE_FROM_USER', removeChore);
     yield takeLatest('ADD_NEW_CHORE', addChore);
+    yield takeLatest('DELETE_CHORE', deleteChore);
 }
 
 export default choreSaga;
