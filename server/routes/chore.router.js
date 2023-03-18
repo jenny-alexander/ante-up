@@ -93,12 +93,13 @@ router.delete('/delete/:id', (req, res) => {
 
 // Add chore to list of all chores
 router.post('/add', (req, res) => {
-  const createChoreQuery = `INSERT INTO chore ("name", "frequency", "payment")
-                            VALUES($1,$2,$3)
+  const createChoreQuery = `INSERT INTO chore ("name", "frequency", "payment", "user_id")
+                            VALUES($1,$2,$3,$4)
                             RETURNING "id"`;                             
   pool.query(createChoreQuery, [req.body.choreName, 
                                 req.body.choreFrequency, 
-                                req.body.chorePayment])
+                                req.body.chorePayment,
+                                req.body.userId])
     .then((result) => {      
       res.status(200).send((result.rows[0].id).toString());     
     }).catch((error) => {

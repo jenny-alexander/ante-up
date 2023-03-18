@@ -64,7 +64,7 @@ function* addChore(action) {
             }
             })
         }
-        yield put({type: 'GET_ALL_CHORE_REQUESTED'});
+        yield put({type: 'GET_ALL_CHORE_REQUESTED', payload:{userId: action.payload.userId}});
     } catch (error) {
         console.log('Chore POST new chore failed with error:', error);
     }

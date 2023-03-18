@@ -18,9 +18,10 @@ function ChoreModal(props) {
     const [choreToEdit, setChoreToEdit] = useState({});
 
     useEffect(() => {
-        if (chores.allChore.chore.length > 0) {
-            setAllChores(chores.allChore.chore)
-        }
+        // if (chores.allChore.chore.length > 0) {
+        //     setAllChores(chores.allChore.chore)
+        // }
+        setAllChores(chores.allChore.chore);
     },[chores.allChore.chore]);
 
     useEffect(() => {
@@ -166,7 +167,10 @@ function ChoreModal(props) {
                                             </div>
                                         )
                                     })
-                                    : null
+                                    : <div className="empty-chores">
+                                        <div>You don't have any chores yet!</div>
+                                        <div>Start by clicking the 'Add New Chore' button</div>
+                                        </div>
                                 }
                             </div>                                                                               
                         }                                     
