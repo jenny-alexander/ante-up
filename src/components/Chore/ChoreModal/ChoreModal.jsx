@@ -51,15 +51,12 @@ function ChoreModal(props) {
          });
          setUserChores((currentChore) => currentChore.filter((thisChore) => thisChore.id !== currentChore.id));         
     }
-    const deleteChore = (chore) => {        
-        console.log('in deleteChore with chore:', chore);
-            dispatch({type: 'DELETE_CHORE', 
-                payload: {
-                    choreId: chore.id,
-                }
-            })
+    const deleteChore = (chore) => {                
+            dispatch({type: 'DELETE_CHORE', payload: {choreId: chore.id} })
     }
-    const editChore = (chore) => {    
+
+    const editChore = (chore) => {
+        console.log('editChore and chore param is:', chore);
         setShowEditForm(!showEditForm)        
         setChoreToEdit(chore);
     }

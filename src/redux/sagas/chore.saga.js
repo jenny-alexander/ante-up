@@ -70,8 +70,7 @@ function* addChore(action) {
     }
 }
 
-function* deleteChore(action) {
-    console.log('in deleteChore and action is:', action);
+function* deleteChore(action) {    
     try {        
         const response = yield axios.delete(`/api/chore/delete/${action.payload.choreId}`);
         yield put({type: 'DELETE_CHORE_SUCCESS', payload:{choreId: action.payload.choreId}});       
@@ -79,7 +78,23 @@ function* deleteChore(action) {
         yield put({ type: 'REMOVE_CHORE_FAILED', payload: error });
         console.log('Chore DELETE request failed', error);
     }
-} 
+}
+
+function* updateChore(action) {
+    try {
+        const response = yield axios.put(`api/chore/update`, action.payload);
+        yield put({type:'UPDATE_CHORE_SUCCESS',
+            payload: {
+                choreId: action.payload.choreId,
+                choreName: action.payload.choreName,
+                chorePayment: action.payload.chorePayment,
+                choreFrequency: action.payload.choreFrequency,
+            } 
+        });
+    } catch (error) {
+        console.log('UPDATE for Chore failed, error is:', error);
+    }
+}
 
 function* choreSaga() {
     yield takeLatest('GET_USER_CHORE_REQUESTED', fetchUserChore);
@@ -87,6 +102,7 @@ function* choreSaga() {
     yield takeLatest('ASSIGN_CHORE_TO_USER', assignChore);
     yield takeLatest('REMOVE_CHORE_FROM_USER', removeChore);
     yield takeLatest('ADD_NEW_CHORE', addChore);
+    yield takeLatest('UPDATE_CHORE', updateChore);
     yield takeLatest('DELETE_CHORE', deleteChore);
 }
 

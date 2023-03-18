@@ -30,10 +30,6 @@ const userChore = (state = initialState, action) => {
                 return { ...state, loading: false, chore: [...state.chore, ...assignedChore], error: null, changeSuccess: false }
         case 'REMOVE_CHORE_SUCCESS':
                 return { ...state, loading: false, chore: action.payload, error: null, changeSuccess: false }
-        case 'UPDATE_CHORE_SUCCESS':
-            return {...state, loading: false, chore: action.payload, error: null, changeSuccess: true}
-        case 'UPDATE_CHORE_FAILED':
-            return {...state, loading: false, chore: action.payload, error: action.payload, changeSuccess: false}
         default:
             return state;
     }
@@ -52,6 +48,24 @@ const allChore = (state = allChoresInitialState, action) => {
                 ...state,
                 chore: filteredChores
             }
+        case 'UPDATE_CHORE_SUCCESS':
+            const updatedChores = state.chore.map(chore => {
+                if ( chore.id === action.payload.choreId ) {
+                    return {...chore,
+                        name: action.payload.choreName,
+                        payment: action.payload.chorePayment,
+                        frequency: action.payload.choreFrequency,
+                    }
+                } else {
+                    return chore;
+                }
+            })
+            return {
+                ...state,
+                chore: updatedChores
+            }
+        // case 'UPDATE_CHORE_FAILED':
+        //     return {...state, loading: false, chore: action.payload, error: action.payload, changeSuccess: false}
         default:
             return state;
     }

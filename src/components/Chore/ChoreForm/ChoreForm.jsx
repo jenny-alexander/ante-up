@@ -47,7 +47,16 @@ function ChoreForm(props) {
     
     const editExistingChore = () => {
         event.preventDefault();
-        console.log('editing existing chore');
+        console.log('editing existing chore');          
+            dispatch({type: 'UPDATE_CHORE', 
+                payload: {
+                    choreId: props.chore.id,
+                    choreName: choreName,
+                    chorePayment: chorePayment,
+                    choreFrequency: frequencySelected.value,
+                } 
+            })
+            props.close();
     }
 
     const assign = () => {

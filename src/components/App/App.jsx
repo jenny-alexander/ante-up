@@ -23,13 +23,20 @@ function App() {
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
                   "October", "November", "December"];
 
-  useEffect(() => {
-    dispatch({type: 'FETCH_WEEK'});
-    dispatch({ type: 'GET_ALL_CHORE_REQUESTED',
-               payload: {
-                userId: user.id
-              }});
-  }, [user]);
+  // useEffect(() => {
+  //   console.log('***in useEffect of App.jsx')
+  //   dispatch({type: 'FETCH_WEEK'});
+  //   if (user.userId != undefined ) {
+  //     dispatch({ type: 'GET_ALL_CHORE_REQUESTED',
+  //     payload: {
+  //      userId: user.id
+  //    }});
+  //   }
+  //}, [user]);
+
+    useEffect(() => {    
+      dispatch({type: 'FETCH_WEEK'});
+  }, []);
 
   useEffect(() => {
     if (Object.entries(week).length !== 0 ) {
@@ -49,6 +56,10 @@ function App() {
     }
     if (user.id > 0) {
       setLoggedIn(true);
+      dispatch({ type: 'GET_ALL_CHORE_REQUESTED',
+      payload: {
+       userId: user.id
+     }});
     } else {
       setLoggedIn(false);
     };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './Dashboard.scss';
 import DashboardCalendar from '../Dashboard/DashboardCalendar/DashboardCalendar';
 import DashboardMoney from '../Dashboard/DashboardMoney/DashboardMoney';

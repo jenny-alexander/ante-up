@@ -32,15 +32,13 @@ router.get('/:userID/:weekID', (req, res) => {
 router.post('/assign', (req, res) => {
   const assignChoreToUserQuery = `INSERT INTO user_chore ("chore_id", "user_id", "week_id")
                               VALUES($1,$2,$3)
-                              RETURNING "id"`;
-                              console.log('assignChoreToUserQuery is:', assignChoreToUserQuery);
+                              RETURNING "id"`;                              
   pool.query(assignChoreToUserQuery, [req.body.choreId, req.body.userId, req.body.weekID])
       .then((result) => {                    
           const getChoreQuery = `SELECT chore.id, user_chore.id as user_chore_id, name, description, frequency, payment from user_chore
           INNER JOIN chore
           ON user_chore.chore_id = chore.id
-          WHERE user_chore.id = ${result.rows[0]?.id};`;
-          console.log('getChoreQuery is', getChoreQuery);
+          WHERE user_chore.id = ${result.rows[0]?.id};`;          
           pool.query(getChoreQuery)
             .then((result) => {      
               res.send(result.rows);
@@ -50,6 +48,19 @@ router.post('/assign', (req, res) => {
       })
       .catch((error) => {
           console.log('assign chore to user error:', error);
+          res.sendStatus(500);
+      })
+})
+
+router.put('/update', (req, res) => {
+  const updateChoreQuery = `UPDATE chore SET name = '${req.body.choreName}',
+                                         payment = '${req.body.chorePayment}',
+                                         frequency = '${req.body.choreFrequency}'
+                                      WHERE id = ${req.body.choreId};`;
+  pool.query(updateChoreQuery)
+      .then((results) => {
+          res.sendStatus(200);
+      }).catch((error) => {
           res.sendStatus(500);
       })
 })
@@ -70,7 +81,6 @@ router.delete('/remove/:id', (req, res) => {
 //Delete chore from chore table (for specific user)
 router.delete('/delete/:id', (req, res) => {  
   const deleteChoreQuery = `DELETE FROM chore WHERE id = ${req.params.id};`;
-  console.log('deleteChoreQuery is:', deleteChoreQuery);
   pool.query(deleteChoreQuery)
       .then((results) => {
         res.send(200);
