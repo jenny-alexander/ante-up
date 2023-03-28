@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { put, takeLatest, select } from 'redux-saga/effects';
+import { put, takeLatest, select, take } from 'redux-saga/effects';
 import { getWeekInfo} from '../reducers/week.reducer';
 import { getUserInfo } from '../reducers/user.reducer';
+import { getAllowanceInfo } from '../reducers/allowance.reducer';
 
 /* api functionality should include:
 - get allowance info from db
@@ -32,7 +33,19 @@ function* createNewAllowanceRecord(action)
 function* fetchLatestAllowance(action) {    
     try {
         const response = yield axios.get(`/api/allowance/latest/${action.payload.userId}/${action.payload.weekId}`);        
-        yield put({ type: 'SET_LATEST_ALLOWANCE', payload: response.data });
+        if(response.status === 200) {            
+            yield put({ type: 'SET_LATEST_ALLOWANCE', payload: response.data });
+        }
+        else if(response.status === 204) {
+            yield put({ type: 'CREATE_ALLOWANCE_RECORD'});
+            //Here we make sure the new allowance record is created before continuing.
+            let stateSlice = yield select(getAllowanceInfo);  
+            while (Object.entries(stateSlice).length == 0 ) {
+              yield take();
+              stateSlice = yield select(getAllowanceInfo);
+            }
+        } 
+        
     } catch (error) {
         console.log('Allowance GET LATEST request failed', error);
     }

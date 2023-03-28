@@ -23,18 +23,7 @@ function App() {
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
                   "October", "November", "December"];
 
-  // useEffect(() => {
-  //   console.log('***in useEffect of App.jsx')
-  //   dispatch({type: 'FETCH_WEEK'});
-  //   if (user.userId != undefined ) {
-  //     dispatch({ type: 'GET_ALL_CHORE_REQUESTED',
-  //     payload: {
-  //      userId: user.id
-  //    }});
-  //   }
-  //}, [user]);
-
-    useEffect(() => {    
+  useEffect(() => {    
       dispatch({type: 'FETCH_WEEK'});
   }, []);
 
@@ -57,9 +46,9 @@ function App() {
     if (user.id > 0) {
       setLoggedIn(true);
       dispatch({ type: 'GET_ALL_CHORE_REQUESTED',
-      payload: {
-       userId: user.id
-     }});
+        payload: {
+        userId: user.id
+      }});
     } else {
       setLoggedIn(false);
     };

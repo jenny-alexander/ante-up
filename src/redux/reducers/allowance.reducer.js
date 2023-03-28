@@ -52,6 +52,7 @@ const nextAllowance = (state = {}, action) => {
 // make one object that has keys allowance and latestAllowance\
 // these will be on the redux state at:
 // state.allowance.allowance and state.allowance.latestAllowance
+export const getAllowanceInfo = (state) => state.allowance.latestAllowance;
 export default combineReducers({
     //allowance,
     latestAllowance,

@@ -9,8 +9,12 @@ router.get('/latest/:userId/:weekId', (req, res) => {
   const getLatestAllowanceQuery = `SELECT * FROM allowance where user_id = ${req.params.userId}
                                        AND week_id = ${req.params.weekId};`;                             
   pool.query(getLatestAllowanceQuery)
-    .then((results) => {
-      res.send(results.rows[0])
+    .then((results) => {      
+      if(results.rows[0] === undefined) {
+        res.sendStatus(204);
+      } else {
+        res.send(results.rows[0]);
+      }
     }).catch((error) => {
       console.log('GET allowance records from server error is:', error);
     })
@@ -24,7 +28,7 @@ router.get('/next/:id', (req, res) => {
                                  AND allowance_date = '${req.body.nextAllowanceDate}';`;                                 
   pool.query(getNextAllowanceQuery)
     .then((results) => {
-      res.send(results.rows[0])
+      res.send(results.rows[0]);
     }).catch((error) => {
       console.log('GET NEXT allowance record from server error is:', error);
     })
@@ -59,9 +63,6 @@ router.post('/add/', (req, res) => {
                                   Math.ceil(req.body.spend),
                                   Math.ceil(req.body.save),
                                   Math.ceil(req.body.share),
-                                  // req.body.spend.toFixed(2),
-                                  // req.body.save.toFixed(2),
-                                  // req.body.share.toFixed(2),
                                 ])
       .then((result) => {      
         res.status(200);     

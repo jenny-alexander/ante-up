@@ -8,8 +8,7 @@ import './ChoreModal.scss';
 
 function ChoreModal(props) {
     const dispatch = useDispatch();
-    const chores = useSelector((store) => store.chore);
-    //const chorePayments = useSelector((store) => store.chorePayments);
+    const chores = useSelector((store) => store.chore);    
     const[allChores, setAllChores] = useState([]);
     const [userChores, setUserChores] = useState([]);
     const [showEditForm, setShowEditForm] = useState(false);
@@ -18,14 +17,10 @@ function ChoreModal(props) {
     const [choreToEdit, setChoreToEdit] = useState({});
 
     useEffect(() => {
-        // if (chores.allChore.chore.length > 0) {
-        //     setAllChores(chores.allChore.chore)
-        // }
         setAllChores(chores.allChore.chore);
     },[chores.allChore.chore]);
 
     useEffect(() => {
-        //setChoresExist(chores.userChore.chore.length > 0);
         setUserChores(chores.userChore.chore);
     },[chores.userChore.chore]);
 
@@ -94,7 +89,6 @@ function ChoreModal(props) {
                                         Add New Chore
                                 </button>
                                 <button className={`${addNewChore ? 'manage-chore-btn disable' : 'manage-chore-btn'}`}
-                                        //disabled={editChores} 
                                         onClick={()=>setEditChores(!editChores)}
                                 >
                                     Edit Chores
