@@ -31,15 +31,14 @@ function About(props) {
                         <div>Lessons learned from this challenge:
                             <ul className="lessons-learned-list">
                                 <li>Manage state as close to the component using it as possible.</li>
-                                <li>Writing your own CSS allows you better control over styling and gives lots of practice using grid and flexbox.</li>
-                                <li>User testing is essential.</li>
+                                <li>Writing your own CSS allows you better control over styling.</li>
                             </ul>
                         </div>
                     </div>
                     <div className="about-upnext">                        
-                        <div>To do:
+                        <div>Take-away:
                             <ul className="lessons-learned-list">
-                                <li>Use CSS Modules to prevent selector name collisions.</li>
+                                <li>Future apps should use CSS Modules to prevent selector name collisions.</li>
                             </ul>
                         </div>
                     </div>           
