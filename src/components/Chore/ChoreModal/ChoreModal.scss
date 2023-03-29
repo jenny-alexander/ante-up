@@ -35,11 +35,11 @@
     position: fixed;
     left: 50%;
     top: 40%;
-    // @media(max-height: 500px){
-    //   top: 45%;
-    // }
     @media screen and (max-height: 800px) {
       top: 45%;
+    }
+    @media screen and (max-height: 700px) {
+      top: 55%;
     } 
     transform: translate(-50%, -50%);
 
@@ -104,6 +104,9 @@
           width: 30%;
           &#cancel-edit{
             width: 40%;
+            @media(max-width: 475px) {
+              width: 60%;
+            }
           }
           @media(max-width: 395px) {
             width: 60%;

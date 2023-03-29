@@ -6,7 +6,7 @@
 ## Description
 
 * Ante Up is a **responsive** full stack web application that gives kids the ability to track their allowances and chores.
-* There will be 4 phases of development:
+* There were 5 phases of development:
 
   * Login/Register functionality:
     * User can login or register (if new user).
