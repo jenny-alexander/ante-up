@@ -1,9 +1,11 @@
 
 # ![image of ante-up logo](./public/images/ante_up_welcome.png)
 
+## Run the app here: <https://calm-basin-24164.herokuapp.com/>
+
 ## Description
 
-* Ante Up is a full stack web application that gives kids the ability to track their allowances and chores.
+* Ante Up is a **responsive** full stack web application that gives kids the ability to track their allowances and chores.
 * There will be 4 phases of development:
 
   * Login/Register functionality:
@@ -17,7 +19,10 @@
 # ![image of dashboard](./public/images/ante-up-dashboard.png)
 
 * Money functionality:
-  * User can "deposit" allowance into their 3 buckets: spend, share or save.
+  * User can "deposit" allowance into their 3 buckets: spend, share or save. Values are based as follows:
+    * Spend is age * 70%
+    * Save is age * 20%
+    * Share is age * 10%
   * User will see a breakdown of spend, share and save bucks via VictoryPie component from Victory package.
   * User can move money (withdraw, deposit) between spend, share and save buckets.
 
