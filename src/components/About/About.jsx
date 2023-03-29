@@ -36,7 +36,7 @@ function About(props) {
                         </div>
                     </div>
                     <div className="about-upnext">                        
-                        <div>Take-away:
+                        <div>Up Next:
                             <ul className="lessons-learned-list">
                                 <li>Future apps should use CSS Modules to prevent selector name collisions.</li>
                             </ul>

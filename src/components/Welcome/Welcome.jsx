@@ -15,9 +15,9 @@ function Welcome(props) {
                         <img className="profile-image" src="/images/laundry.png"/>
                         <div className="about-blurb">Keep track of chores</div>
                     </div>
-                    <div className="about-history">                        
-                        <img className="profile-image" src="/images/history.png"/>
-                        <div className="about-blurb">View chore & payment history</div>
+                    <div className="about-dashboard">                        
+                        <img className="profile-image" src="/images/dashboard.png"/>
+                        <div className="about-blurb">Display info in Dashboard</div>
                     </div>                    
                 </div>
             </div>

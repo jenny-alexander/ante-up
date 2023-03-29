@@ -17,8 +17,7 @@ function MoneySaving(props) {
     const saveGoalChanges = () => {        
         dispatch( { type: 'SAVE_BANK_GOAL', payload: { amount: savingFor.amount, 
                                             description: Utility.replaceApostrophe(savingFor.description),
-                                            userID: user.id}})        
-        //TODO: check for successful save
+                                            userID: user.id}})                
         setEditSavingFor(!editSavingFor);                                         
     }
 
