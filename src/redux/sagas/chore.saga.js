@@ -64,6 +64,7 @@ function* addChore(action) {
             }
             })
         }
+        yield put({type: 'ADD_CHORE_SUCCESS'});
         yield put({type: 'GET_ALL_CHORE_REQUESTED', payload:{userId: action.payload.userId}});
     } catch (error) {
         console.log('Chore POST new chore failed with error:', error);
@@ -73,7 +74,7 @@ function* addChore(action) {
 function* deleteChore(action) {    
     try {        
         const response = yield axios.delete(`/api/chore/delete/${action.payload.choreId}`);
-        yield put({type: 'DELETE_CHORE_SUCCESS', payload:{choreId: action.payload.choreId}});       
+        yield put({type: 'DELETE_CHORE_SUCCESS', payload:{choreId: action.payload.choreId}});  
     } catch (error) {
         yield put({ type: 'REMOVE_CHORE_FAILED', payload: error });
         console.log('Chore DELETE request failed', error);

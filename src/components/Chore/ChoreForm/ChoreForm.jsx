@@ -24,7 +24,7 @@ function ChoreForm(props) {
             setFrequencySelected({label: props.chore.frequency, value: props.chore.frequency});
         }
     },[props.chore])
-
+    
     const addNewChore = () => {
         event.preventDefault();
         if (frequencySelected === '') {            

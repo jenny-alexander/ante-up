@@ -1,9 +1,9 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector} from 'react-redux';
-import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark, faEdit, faTrashCan, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faXmark, faEdit, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import ChoreForm from '../ChoreForm/ChoreForm';
+import Swal from 'sweetalert2';
 import './ChoreModal.scss';
 
 function ChoreModal(props) {
@@ -23,6 +23,71 @@ function ChoreModal(props) {
     useEffect(() => {
         setUserChores(chores.userChore.chore);
     },[chores.userChore.chore]);
+
+    useEffect(() => { 
+        if (chores.allChore.addSuccess === true) {
+            launchSuccessToast('Chore added!');
+            dispatch({type:'CLEAR_ADD_SUCCESS_FLAG'});
+        }
+    },[chores.allChore.addSuccess]);
+
+    useEffect(() => { 
+        if (chores.allChore.deleteSuccess === true) {
+            launchSuccessToast('Chore deleted!');
+            dispatch({type:'CLEAR_DELETE_SUCCESS_FLAG'});
+        }
+    },[chores.allChore.deleteSuccess]);
+
+    useEffect(() => { 
+        if (chores.allChore.updateSuccess === true) {
+            launchSuccessToast('Chore updated!');
+            dispatch({type:'CLEAR_UPDATE_SUCCESS_FLAG'});
+        }
+    },[chores.allChore.updateSuccess]);
+
+    const openDeleteChoreModal = (chore) => {
+        Swal.fire({
+            title: `Delete Chore?`,
+            position: 'top',     
+            icon: 'question',
+            confirmButtonText: 'Yes',
+            showCancelButton: true,
+            cancelButtonText: 'No',
+            confirmButtonColor: '#007E58',
+            customClass: {
+                popup: 'swal2-popup chore',
+                title: 'swal2-title chore',
+                icon:'swal2-icon chore',              
+            },
+            showClass: {
+                popup: 'swal2-noanimation',
+                icon: 'swal2-noanimation'
+              },
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteChore(chore)
+            } 
+        })              
+    }
+
+    const launchSuccessToast = (title) => {
+        const Toast = Swal.mixin({
+            toast: true,            
+            position: 'bottom-left',
+            showConfirmButton: false,
+            timer: 3500,            
+          })
+          
+          Toast.fire({
+            icon: 'success',
+            title: title,
+            showClass: {
+                backdrop: 'swal2-noanimation',
+                popup: 'swal2-noanimation',
+                icon: 'swal2-noanimation'
+              },
+          })
+    }
 
     const assignChore = (chore) => {     
         dispatch( {type: 'ASSIGN_CHORE_TO_USER', 
@@ -47,6 +112,7 @@ function ChoreModal(props) {
          });
          setUserChores((currentChore) => currentChore.filter((thisChore) => thisChore.id !== currentChore.id));         
     }
+
     const deleteChore = (chore) => {                
             dispatch({type: 'DELETE_CHORE', payload: {choreId: chore.id} })
     }
@@ -144,7 +210,8 @@ function ChoreModal(props) {
                                                     </button>
                                                     <button className="delete-btn">
                                                         <FontAwesomeIcon                                 
-                                                            onClick={()=>{deleteChore(content)}} 
+                                                            // onClick={()=>{deleteChore(content)}} 
+                                                            onClick={()=>{openDeleteChoreModal(content)}} 
                                                             fixedWidth icon={faTrashCan} 
                                                         /> 
                                                     </button>
@@ -178,12 +245,4 @@ function ChoreModal(props) {
     }
 }
 
-ChoreModal.PropTypes = {
-    title: PropTypes.string,
-    close: PropTypes.func.isRequired,
-    show: PropTypes.bool.isRequired,
-    actions: PropTypes.array,
-    content: PropTypes.array,
-}
-
-export default React.memo(ChoreModal);
+export default ChoreModal;

@@ -407,6 +407,7 @@ function Chore(props) {
             setShowModal(true);
         }
         const hideChoreModal = () => {
+            //dispatch({type:'CLEAR_ADD_SUCCESS_FLAG'});
             setShowModal(false);
         }
         return (

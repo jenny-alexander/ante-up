@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 
 import './Modal.scss';
 
@@ -45,11 +44,5 @@ function Modal(props) {
     }
 
 }
-Modal.PropTypes = {
-    title: PropTypes.string,
-    close: PropTypes.func.isRequired,
-    show: PropTypes.bool.isRequired,
-    actions: PropTypes.array,
-    content: PropTypes.array,
-}
+
 export default Modal;

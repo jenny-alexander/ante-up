@@ -9,7 +9,6 @@ function Allowance(props) {
     const dispatch = useDispatch();
     const[lastDeposited, setLastDeposited] = useState('');
     const[updatedLatestAllowance, setUpdatedLatestAllowance] = useState({});
-    const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
     useEffect(()=> {
         setUpdatedLatestAllowance(props.allowance.latestAllowance);        
@@ -20,12 +19,6 @@ function Allowance(props) {
             showErrorModal();
         }
     },[props.bank.error])
-
-    useEffect(() => {        
-        if (props.bank.allowanceDepositSuccess === true) {            
-            dispatch({type:'CLEAR_DEPOSIT_SUCCESS_FLAG'});
-        }
-    }, [])
 
     useEffect(() => { 
         if (props.bank.allowanceDepositSuccess === true) {
@@ -39,6 +32,7 @@ function Allowance(props) {
                 }
             })
             launchSuccessToast();
+            dispatch({type:'CLEAR_DEPOSIT_SUCCESS_FLAG'});
         }
     },[props.bank.allowanceDepositSuccess])
     

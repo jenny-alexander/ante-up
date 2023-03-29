@@ -260,6 +260,19 @@
           }
         }
     }
+  }
 
+}
+.swal2-container {
+  .swal2-icon.chore  {
+      margin-top: 1em;
+  }
+  .swal2-title.chore {
+      padding-top: 0em;
+      margin-bottom: 0em;
+  }
+  .swal2-popup.chore {
+      top: 100px;
+      width: 18em;
   }
 }
