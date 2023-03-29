@@ -10,14 +10,13 @@
     padding-right: 5em;
     grid-area: chore;
     & .dashboard-chore-title {
-        font-size: 1.5em;
+        font-size: 1.4em;
         padding-top: 0.7em;
     }
         & .dashboard-chore-card{
             padding: 1em;
             display: flex;
-            align-items: center;
-            //background-color: #f1f1ed;
+            align-items: center;            
             border: 1px solid lightgrey;
             background-color: rgb(210 227 242 / 25%);
             border-radius: 10px;

@@ -23,8 +23,7 @@
       width: 90%;
     }
     background: white;
-    border: 1px solid rgb(187, 186, 186);
-    //border-radius: 12px;    
+    border: 1px solid rgb(187, 186, 186);    
     transition: opacity 3s ease-in-out;
     box-shadow: -2rem 2rem 2rem rgba(black, 0.2);    
     transform: scale(1);
@@ -40,6 +39,9 @@
     }
     @media screen and (max-height: 700px) {
       top: 55%;
+    }
+    @media screen and (max-height: 600px) {
+      top: 65%;
     } 
     transform: translate(-50%, -50%);
 
