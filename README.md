@@ -6,30 +6,39 @@
 * Ante Up is a full stack web application that gives kids the ability to track their allowances and chores.
 * There will be 4 phases of development:
 
-  * Login/Register functionality (COMPLETED):
+  * Login/Register functionality:
     * User can login or register (if new user).
 
-# ![image of login](./public/images/ante-up-login-new.png)
+# ![image of login](./public/images/ante-up-login.png)
 
-* Dashboard functionality (CURRENTLY IN PROGRESS):
+* Dashboard functionality:
   * User see a snapshot of upcoming allowances and chores that are due.
 
-# ![image of dashboard](./public/images/ante-up-dashboard-new.png)
+# ![image of dashboard](./public/images/ante-up-dashboard.png)
 
-* Money functionality (COMPLETED):
+* Money functionality:
   * User can "deposit" allowance into their 3 buckets: spend, share or save.
   * User will see a breakdown of spend, share and save bucks via VictoryPie component from Victory package.
   * User can move money (withdraw, deposit) between spend, share and save buckets.
 
-# ![image of money](./public/images/ante-up-money-new.png)
+# ![image of money](./public/images/ante-up-money.png)
 
-* Chore functionality (IN PROGRESS):
+* Chore functionality:
   * User can see a list of chores.
   * User can toggle between daily & monthly chores.
   * User can update a chore when done (via checkbox).
   * User can add comments to a chore.
 
-# ![image of chore](./public/images/ante-up-chores-new.png)
+# ![image of chore](./public/images/ante-up-chores.png)
+
+# ![image of chore](./public/images/ante-up-chores-manage.png)
+
+* User profile functionality:
+  * User can change username.
+  * User can change avatar.
+  * User can change age.
+
+# ![image of chore](./public/images/ante-up-profile.png)
 
 **Frontend:** Frontend is built using React, Redux, Redux-Saga, JavaScript, CSS and HTML.
 

@@ -35,9 +35,12 @@
     position: fixed;
     left: 50%;
     top: 40%;
-    @media(max-height: 700px){
-      top: 60%;
-    }
+    // @media(max-height: 500px){
+    //   top: 45%;
+    // }
+    @media screen and (max-height: 800px) {
+      top: 45%;
+    } 
     transform: translate(-50%, -50%);
 
     & .modal-header {
