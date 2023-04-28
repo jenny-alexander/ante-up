@@ -13,16 +13,13 @@ let config = {};
 if (process.env.DATABASE_URL) {
   // Heroku gives a url, not a connection object
   // https://github.com/brianc/node-pg-pool
-  
   const params = url.parse(process.env.DATABASE_URL);
-  const auth = params.auth.split(':');  
+  const auth = params.auth.split(':');
   config = {
     user: auth[0],
     password: auth[1],
     host: params.hostname,
-    // port: params.port, //not working when deployed to render host site
-    // render docs say that default port is 5432
-    port: 5432,
+    port: params.port,
     database: params.pathname.split('/')[1],
     ssl: { rejectUnauthorized: false },
     max: 10, // max number of clients in the pool
