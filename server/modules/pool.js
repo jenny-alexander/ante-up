@@ -22,7 +22,7 @@ if (process.env.DATABASE_URL) {
     host: params.hostname,
     // port: params.port, //not working when deployed to render host site
     // render docs say that default port is 5432
-    port: process.env.DATABASE_PORT,
+    port: 5432,
     database: params.pathname.split('/')[1],
     ssl: { rejectUnauthorized: false },
     max: 10, // max number of clients in the pool
