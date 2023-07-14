@@ -1,8 +1,6 @@
 
 # ![image of ante-up logo](./public/images/ante_up_welcome.png)
 
-## Run the app here: <https://calm-basin-24164.herokuapp.com/>
-
 ## Description
 
 * Ante Up is a **responsive** full stack web application that gives kids the ability to track their allowances and chores.
