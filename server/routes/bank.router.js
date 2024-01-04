@@ -2,11 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- * 
- * (share + spend + save) as TOTAL
- */
+//Get bank info for user
 router.get('/:id', (req, res) => {
     const getBankQuery = `SELECT *, (share + spend + save) as TOTAL FROM bank where user_id = ${req.params.id};`;
     pool.query(getBankQuery)
@@ -18,26 +14,20 @@ router.get('/:id', (req, res) => {
         })
 });
 
-/**
- * POST route template
- * 
- * (share + spend + save) as TOTAL
- */
+//Create new bank record for user
 router.post('/new/:userId', (req, res) => {
     const addBankQuery = `INSERT INTO bank ("user_id")
-                              VALUES($1);`;                                                                       
+                              VALUES($1);`;
     pool.query(addBankQuery, [req.params.userId])
-      .then((result) => {      
-        res.status(200);     
-      }).catch((error) => {
-        console.log('Add new BANK record error:', error);
-        res.sendStatus(500);
-      })
+        .then((result) => {
+            res.status(200);
+        }).catch((error) => {
+            console.log('Add new BANK record error:', error);
+            res.sendStatus(500);
+        })
 });
 
-/**
- * PUT route template
- */
+//Update bank account (save, spend or share account)
 router.put('/deposit', (req, res) => {
     let action = '';
     if (req.body.depositDetails.bankChangeType === 'deposit') {
@@ -46,7 +36,7 @@ router.put('/deposit', (req, res) => {
         action = '-';
     }
     const updateBankQuery = `UPDATE bank set ${req.body.depositDetails.toAccount} = ${req.body.depositDetails.toAccount} ${action} ${req.body.depositDetails.amount}
-        WHERE user_id = ${req.body.userID};`        
+        WHERE user_id = ${req.body.userID};`
     pool.query(updateBankQuery)
         .then((result) => {
             const getBankQuery = `SELECT *, (spend + save + share) as TOTAL FROM bank where user_id = ${req.body.userID};`;
@@ -62,9 +52,7 @@ router.put('/deposit', (req, res) => {
         })
 });
 
-/**
- * PUT bank goal
- */
+//Update Save Goal
 router.put('/save-goal', (req, res) => {
     let amount = null;
     if (req.body.amount !== '') {

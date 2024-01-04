@@ -2,15 +2,13 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET latest allowance (where latest = TRUE)
- */
+//Get latest allowance for user
 router.get('/latest/:userId/:weekId', (req, res) => {
   const getLatestAllowanceQuery = `SELECT * FROM allowance where user_id = ${req.params.userId}
-                                       AND week_id = ${req.params.weekId};`;                             
+                                       AND week_id = ${req.params.weekId};`;
   pool.query(getLatestAllowanceQuery)
-    .then((results) => {      
-      if(results.rows[0] === undefined) {
+    .then((results) => {
+      if (results.rows[0] === undefined) {
         res.sendStatus(204);
       } else {
         res.send(results.rows[0]);
@@ -20,12 +18,10 @@ router.get('/latest/:userId/:weekId', (req, res) => {
     })
 });
 
-/**
- * GET next allowance info
- */
+//Get next allowance for user
 router.get('/next/:id', (req, res) => {
   const getNextAllowanceQuery = `SELECT * FROM allowance where user_id = ${req.params.id}
-                                 AND allowance_date = '${req.body.nextAllowanceDate}';`;                                 
+                                 AND allowance_date = '${req.body.nextAllowanceDate}';`;
   pool.query(getNextAllowanceQuery)
     .then((results) => {
       res.send(results.rows[0]);
@@ -34,9 +30,7 @@ router.get('/next/:id', (req, res) => {
     })
 });
 
-/**
- * PUT route template
- */
+//Update deposit flag for either: Save deposit, Share deposit or Spend deposit
 router.put('/update-deposit-flag', (req, res) => {
   const updateAllowanceFlagQuery = `UPDATE allowance set ${req.body.depositedFlagColumn} = TRUE
                            WHERE id = ${req.body.updatedLatestAllowance.id}
@@ -50,26 +44,24 @@ router.put('/update-deposit-flag', (req, res) => {
     })
 });
 
-/**
- * POST route template
- */
-router.post('/add/', (req, res) => {  
-    const addAllowanceQuery = `INSERT INTO allowance ("user_id", "week_id", "allowance_date",
+//Add new allowance record when new user is registered
+router.post('/add/', (req, res) => {
+  const addAllowanceQuery = `INSERT INTO allowance ("user_id", "week_id", "allowance_date",
                               "spend", "save", "share")
-                              VALUES($1,$2,$3,$4,$5,$6);`;                                                  
-    pool.query(addAllowanceQuery, [req.body.userId, 
-                                  req.body.weekId, 
-                                  req.body.allowanceDate,
-                                  Math.ceil(req.body.spend),
-                                  Math.ceil(req.body.save),
-                                  Math.ceil(req.body.share),
-                                ])
-      .then((result) => {      
-        res.status(200);     
-      }).catch((error) => {
-        console.log('Add new CHORE record error:', error);
-        res.sendStatus(500);
-      })
+                              VALUES($1,$2,$3,$4,$5,$6);`;
+  pool.query(addAllowanceQuery, [req.body.userId,
+  req.body.weekId,
+  req.body.allowanceDate,
+  Math.ceil(req.body.spend),
+  Math.ceil(req.body.save),
+  Math.ceil(req.body.share),
+  ])
+    .then((result) => {
+      res.status(200);
+    }).catch((error) => {
+      console.log('Add new CHORE record error:', error);
+      res.sendStatus(500);
+    })
 });
 
 module.exports = router;

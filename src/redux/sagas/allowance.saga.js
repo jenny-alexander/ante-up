@@ -1,51 +1,44 @@
 import axios from 'axios';
 import { put, takeLatest, select, take } from 'redux-saga/effects';
-import { getWeekInfo} from '../reducers/week.reducer';
+import { getWeekInfo } from '../reducers/week.reducer';
 import { getUserInfo } from '../reducers/user.reducer';
 import { getAllowanceInfo } from '../reducers/allowance.reducer';
 
-/* api functionality should include:
-- get allowance info from db
-- update to monthly and weekly totals
-- update boolean deposited values (to determine whether $ was paid to user)
-*/
-
-function* createNewAllowanceRecord(action)
- {    
+function* createNewAllowanceRecord(action) {
     const weekInfo = yield select(getWeekInfo);
     const userInfo = yield select(getUserInfo);
     try {
-        if (Object.entries(userInfo).length > 0 && Object.entries(weekInfo).length > 0 ) {            
-            yield axios.post(`api/allowance/add`, 
-            { 
-                userId: userInfo.id,              
-                spend: userInfo.age * 0.7,
-                save: userInfo.age * 0.2,
-                share: userInfo.age * 0.1,
-                weekId: weekInfo.id,
-                allowanceDate: weekInfo.allowance_date.substring(0,10),
-            });
+        if (Object.entries(userInfo).length > 0 && Object.entries(weekInfo).length > 0) {
+            yield axios.post(`api/allowance/add`,
+                {
+                    userId: userInfo.id,
+                    spend: userInfo.age * 0.7,
+                    save: userInfo.age * 0.2,
+                    share: userInfo.age * 0.1,
+                    weekId: weekInfo.id,
+                    allowanceDate: weekInfo.allowance_date.substring(0, 10),
+                });
         }
-    } catch(error) {
+    } catch (error) {
         console.log('Allowance CREATE NEW RECORD failed:', error);
     }
- }
-function* fetchLatestAllowance(action) {    
+}
+function* fetchLatestAllowance(action) {
     try {
-        const response = yield axios.get(`/api/allowance/latest/${action.payload.userId}/${action.payload.weekId}`);        
-        if(response.status === 200) {            
+        const response = yield axios.get(`/api/allowance/latest/${action.payload.userId}/${action.payload.weekId}`);
+        if (response.status === 200) {
             yield put({ type: 'SET_LATEST_ALLOWANCE', payload: response.data });
         }
-        else if(response.status === 204) {
-            yield put({ type: 'CREATE_ALLOWANCE_RECORD'});
+        else if (response.status === 204) {
+            yield put({ type: 'CREATE_ALLOWANCE_RECORD' });
             //Here we make sure the new allowance record is created before continuing.
-            let stateSlice = yield select(getAllowanceInfo);  
-            while (Object.entries(stateSlice).length == 0 ) {
-              yield take();
-              stateSlice = yield select(getAllowanceInfo);
+            let stateSlice = yield select(getAllowanceInfo);
+            while (Object.entries(stateSlice).length == 0) {
+                yield take();
+                stateSlice = yield select(getAllowanceInfo);
             }
-        } 
-        
+        }
+
     } catch (error) {
         console.log('Allowance GET LATEST request failed', error);
     }

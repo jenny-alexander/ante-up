@@ -6,23 +6,6 @@ const initialState = {
     error: null,
 }
 
-// const allowance = (state = [], action) => {
-//     switch (action.type) {
-//         case 'SET_ALLOWANCE':
-//             return [...state, action.payload];
-//         case 'UNSET_ALLOWANCE':
-//             return [];
-//         case 'GET_BANK_REQUESTED':
-//             return { ...state, loading: true, changeSuccess: false }
-//         case 'GET_BANK_SUCCESS':
-//             return { ...state, loading: false, bank: action.payload, error: null, changeSuccess: false }
-//         case 'GET_BANK_FAILED':
-//             return { ...state, loading: false, error: action.payload, changeSuccess: false }
-//         default:
-//             return state;
-//     }
-// }
-
 const latestAllowance = (state = {}, action) => {
     switch (action.type) {
         case 'SET_LATEST_ALLOWANCE':
@@ -54,7 +37,6 @@ const nextAllowance = (state = {}, action) => {
 // state.allowance.allowance and state.allowance.latestAllowance
 export const getAllowanceInfo = (state) => state.allowance.latestAllowance;
 export default combineReducers({
-    //allowance,
     latestAllowance,
     nextAllowance,
 });

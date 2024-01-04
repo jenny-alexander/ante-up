@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { put, takeLatest, select} from 'redux-saga/effects';
+import { put, takeLatest, select } from 'redux-saga/effects';
 import { getUserInfo } from '../reducers/user.reducer';
 
 function* createNewBankRecord(action) {
     const userInfo = yield select(getUserInfo);
-    try {        
-        yield axios.post(`/api/bank/new/${userInfo.id}`);        
+    try {
+        yield axios.post(`/api/bank/new/${userInfo.id}`);
     } catch (error) {
         console.log('Bank GET request failed', error);
         yield put({ type: 'GET_BANK_FAILED', payload: error })
@@ -50,15 +50,14 @@ function* saveBankGoal(action) {
 function* clearDepositSuccess(action) {
     try {
         yield put({ type: 'CLEAR_DEPOSIT_SUCCESS' });
-    } 
-    catch(error){
+    }
+    catch (error) {
         console.log('Problem clearing deposit success:', error);
     }
-    
+
 }
 
 function* bankSaga() {
-    yield takeLatest('FETCH_BANK', fetchBank);
     yield takeLatest('CHANGE_BANK', depositBank);
     yield takeLatest('GET_BANK_REQUESTED', fetchBank);
     yield takeLatest('SAVE_BANK_GOAL', saveBankGoal);
