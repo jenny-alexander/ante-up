@@ -45,10 +45,18 @@
 
 # ![image of chore](./public/images/ante-up-profile.png)
 
+## To Run
+
+* Run queries found in database.sql file in a database application (I use Postico). This will create the required database files.
+* Clone repository locally.
+* Run **_npm install_** to install all dependencies.
+* Run **_npm run server_** to start server.
+* Run **_npm run client_** to start client.
+
 **Frontend:** Frontend is built using React, Redux, Redux-Saga, JavaScript, CSS and HTML.
 
 **Backend:** Backend is built using Node.js, Express, Axios and PostgreSQL.
 
-**Database:** I'm using Postico.
+**Database:** PostgreSQL.
 
 **Other Tools:** VSCode, Git, GitHub
