@@ -91,7 +91,7 @@ function RegisterForm() {
           {
             profileType === 'Child' ? 
             ( <div className="form-row age-slider">
-                <div className="age-slider-title">How old are you today?</div>             
+                <div className="age-slider-title">How old are you?</div>             
                   <Slider />                 
               </div> ): null
           }
