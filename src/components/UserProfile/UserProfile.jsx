@@ -79,7 +79,7 @@ function UserProfile(props) {
 
     return (
         <div className="user-profile">
-            <h1 className="user-profile-title">User Profile Test</h1>
+            <h1 className="user-profile-title">User Profile</h1>
             <Card className="user-profile-container" 
                   component={
                     <div className="user-profile-main">
